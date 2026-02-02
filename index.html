@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerry AI - Status Dashboard</title>
+    <meta http-equiv="refresh" content="30">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #30363d;
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        h1 { font-size: 1.8rem; color: #fff; }
+        .subtitle { color: #8b949e; font-size: 0.9rem; }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .status-badge.working {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        .status-badge.idle {
+            background: rgba(234, 179, 8, 0.2);
+            color: #eab308;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+        .status-badge.offline {
+            background: rgba(107, 114, 128, 0.2);
+            color: #6b7280;
+            border: 1px solid rgba(107, 114, 128, 0.3);
+        }
+        .pulse {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .working .pulse { background: #22c55e; }
+        .idle .pulse { background: #eab308; }
+        .offline .pulse { background: #6b7280; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section h2 {
+            font-size: 1rem;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .current-task {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .current-task h3 {
+            color: #f97316;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .current-task p { color: #c9d1d9; }
+        .current-task .meta {
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        
+        .task-list { list-style: none; }
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #30363d;
+        }
+        .task-item:last-child { border-bottom: none; }
+        
+        .priority {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+        }
+        .priority.high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        .priority.med {
+            background: rgba(234, 179, 8, 0.2);
+            color: #eab308;
+        }
+        .priority.low {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        
+        .task-content { flex: 1; }
+        .task-content h4 { color: #fff; margin-bottom: 0.25rem; }
+        .task-content p { color: #8b949e; font-size: 0.9rem; }
+        
+        .completed-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            color: #8b949e;
+        }
+        .completed-item .check {
+            color: #22c55e;
+            font-size: 1.1rem;
+        }
+        .completed-item .date {
+            margin-left: auto;
+            font-size: 0.8rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+        .stat h3 {
+            font-size: 2rem;
+            color: #f97316;
+        }
+        .stat p {
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+        footer span { color: #f97316; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="avatar">🧠</div>
+            <div>
+                <h1>Jerry AI</h1>
+                <p class="subtitle">UndrDog DTC Brain • Last updated: <span id="lastUpdate">Loading...</span></p>
+            </div>
+        </header>
+        
+        <div id="statusBadge" class="status-badge working">
+            <span class="pulse"></span>
+            <span id="statusText">Working</span>
+        </div>
+        
+        <div class="section">
+            <h2>🔥 Currently Working On</h2>
+            <div class="current-task" id="currentTask">
+                <h3>Loading...</h3>
+                <p>Fetching current status...</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Queue</h2>
+            <ul class="task-list" id="taskQueue">
+                <li class="task-item">
+                    <span class="priority high">HIGH</span>
+                    <div class="task-content">
+                        <h4>Loading...</h4>
+                        <p>Fetching queue...</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>✅ Recently Completed</h2>
+            <div id="completedTasks">
+                <div class="completed-item">
+                    <span class="check">✓</span>
+                    <span>Loading...</span>
+                    <span class="date">--</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Today's Stats</h2>
+            <div class="stats" id="stats">
+                <div class="stat">
+                    <h3 id="tasksCompleted">-</h3>
+                    <p>Tasks Completed</p>
+                </div>
+                <div class="stat">
+                    <h3 id="messagesProcessed">-</h3>
+                    <p>Messages</p>
+                </div>
+                <div class="stat">
+                    <h3 id="activeHours">-</h3>
+                    <p>Active Hours</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Auto-refreshes every 30 seconds • Built by <span>Jerry</span> 🐕</p>
+        </footer>
+    </div>
+    
+    <script>
+        async function loadStatus() {
+            try {
+                const response = await fetch('status.json?' + Date.now());
+                const data = await response.json();
+                updateDashboard(data);
+            } catch (e) {
+                console.log('Loading from embedded data...');
+            }
+        }
+        
+        function updateDashboard(data) {
+            // Update last updated time
+            document.getElementById('lastUpdate').textContent = data.lastUpdate || new Date().toLocaleString();
+            
+            // Update status badge
+            const badge = document.getElementById('statusBadge');
+            const statusText = document.getElementById('statusText');
+            badge.className = 'status-badge ' + (data.status || 'idle');
+            statusText.textContent = data.statusText || 'Idle';
+            
+            // Update current task
+            const currentTask = document.getElementById('currentTask');
+            if (data.currentTask) {
+                currentTask.innerHTML = `
+                    <h3>${data.currentTask.title}</h3>
+                    <p>${data.currentTask.description}</p>
+                    <p class="meta">Started: ${data.currentTask.started || 'Just now'}</p>
+                `;
+            }
+            
+            // Update queue
+            const queue = document.getElementById('taskQueue');
+            if (data.queue && data.queue.length > 0) {
+                queue.innerHTML = data.queue.map(task => `
+                    <li class="task-item">
+                        <span class="priority ${task.priority}">${task.priority.toUpperCase()}</span>
+                        <div class="task-content">
+                            <h4>${task.title}</h4>
+                            <p>${task.description}</p>
+                        </div>
+                    </li>
+                `).join('');
+            }
+            
+            // Update completed
+            const completed = document.getElementById('completedTasks');
+            if (data.completed && data.completed.length > 0) {
+                completed.innerHTML = data.completed.map(task => `
+                    <div class="completed-item">
+                        <span class="check">✓</span>
+                        <span>${task.title}</span>
+                        <span class="date">${task.date}</span>
+                    </div>
+                `).join('');
+            }
+            
+            // Update stats
+            if (data.stats) {
+                document.getElementById('tasksCompleted').textContent = data.stats.tasksCompleted || 0;
+                document.getElementById('messagesProcessed').textContent = data.stats.messages || 0;
+                document.getElementById('activeHours').textContent = data.stats.activeHours || '0h';
+            }
+        }
+        
+        // Initial load
+        loadStatus();
+    </script>
+</body>
+</html>
