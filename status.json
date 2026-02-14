@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-14T17:16:00Z",
+  "lastUpdate": "2026-02-14T17:30:00Z",
   "jerry": {
     "status": "active",
     "currentTask": "Mission Control maintenance & monitoring Valentine's Day performance",
-    "todaysTasks": 16
+    "todaysTasks": 17
   },
   "agents": {
     "savanah": {
@@ -58,91 +58,91 @@
       "name": "Malby",
       "role": "Head of Media Buying",
       "status": "active",
-      "currentTask": "Scaling Valentine's Day winners - CPA improving, ROAS 3x+",
-      "lastActive": "2026-02-14T17:00:00Z",
+      "currentTask": "Valentine's Day scaling - 584 purchases, $31.32 CPA, 2.99x ROAS",
+      "lastActive": "2026-02-14T17:30:00Z",
       "stats": {
-        "spendToday": 16689,
-        "roas": 3.06,
-        "cpa": 30.57,
-        "purchases": 546
+        "spendToday": 18292,
+        "roas": 2.99,
+        "cpa": 31.32,
+        "purchases": 584
       }
     }
   },
   "stats": {
     "totalAgents": 6,
     "activeAgents": 3,
-    "tasksToday": 38
+    "tasksToday": 39
   },
   "activity": [
     {
+      "agent": "malby",
+      "action": "📊 Meta sync: $18.3K spent, 584 purchases, $31.32 CPA, 2.99x ROAS - Valentine's momentum holding",
+      "time": "just now",
+      "timestamp": "2026-02-14T17:30:00Z"
+    },
+    {
       "agent": "jerry",
       "action": "💓 Status heartbeat - 2 agents active, Valentine's Day on fire 🔥",
-      "time": "just now",
+      "time": "14 min ago",
       "timestamp": "2026-02-14T17:16:00Z"
     },
     {
       "agent": "dave",
       "action": "📧 Klaviyo sync: 7 live flows, E09 'Shift Happens!' sent at 10:01 AM, E10 queued",
-      "time": "1 min ago",
+      "time": "15 min ago",
       "timestamp": "2026-02-14T17:15:00Z"
     },
     {
       "agent": "jerry",
       "action": "Status heartbeat - 2 agents active, Valentine's Day rolling strong 💕",
-      "time": "15 min ago",
+      "time": "29 min ago",
       "timestamp": "2026-02-14T17:01:00Z"
     },
     {
       "agent": "malby",
       "action": "🔥 Valentine's Day crushing: $16.7K spent, 546 purchases, $30.57 CPA, 3.06x ROAS",
-      "time": "16 min ago",
+      "time": "30 min ago",
       "timestamp": "2026-02-14T17:00:00Z"
     },
     {
       "agent": "jerry",
       "action": "Status heartbeat - 4 agents active, system healthy",
-      "time": "31 min ago",
+      "time": "45 min ago",
       "timestamp": "2026-02-14T16:45:00Z"
     },
     {
       "agent": "malby",
       "action": "LIVE: $15.1K spent today, 466 purchases, $32.45 CPA, 2.86x ROAS",
-      "time": "46 min ago",
+      "time": "60 min ago",
       "timestamp": "2026-02-14T16:30:00Z"
     },
     {
       "agent": "jerry",
       "action": "Connected Mission Control to Meta Ads API - real-time data live",
-      "time": "48 min ago",
+      "time": "62 min ago",
       "timestamp": "2026-02-14T16:28:00Z"
     },
     {
       "agent": "jerry",
       "action": "Connected Mission Control to Klaviyo API - 8 live flows detected",
-      "time": "49 min ago",
+      "time": "63 min ago",
       "timestamp": "2026-02-14T16:27:00Z"
     },
     {
       "agent": "dave",
       "action": "8 flows live: Buy or Die, Post Purchase, Gold Bar, 000 Clean Slate flows active",
-      "time": "56 min ago",
+      "time": "70 min ago",
       "timestamp": "2026-02-14T16:20:00Z"
     },
     {
       "agent": "savanah",
       "action": "Briefed 3 new hook variations for destructive demo angle",
-      "time": "61 min ago",
+      "time": "75 min ago",
       "timestamp": "2026-02-14T16:15:00Z"
-    },
-    {
-      "agent": "tanner",
-      "action": "Started A/B test analysis for /bro page buybox placement",
-      "time": "66 min ago",
-      "timestamp": "2026-02-14T16:10:00Z"
     }
   ],
   "meta": {
-    "lastMetaSync": "2026-02-14T17:00:00Z",
+    "lastMetaSync": "2026-02-14T17:30:00Z",
     "lastKlaviyoSync": "2026-02-14T17:15:00Z",
     "dataSources": ["meta-ads-api", "klaviyo-api"],
     "cronJobs": ["meta-ads-sync", "klaviyo-sync", "status-heartbeat"]
