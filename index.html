@@ -696,16 +696,16 @@
                     </div>
                     <div class="agent-kpis">
                         <div class="agent-kpi">
-                            <div class="agent-kpi-value">$34</div>
-                            <div class="agent-kpi-label">Best CPA</div>
+                            <div class="agent-kpi-value" id="card-sav-cpa">$22.84</div>
+                            <div class="agent-kpi-label">CPA (7D)</div>
                         </div>
                         <div class="agent-kpi">
-                            <div class="agent-kpi-value">12</div>
-                            <div class="agent-kpi-label">Hooks</div>
+                            <div class="agent-kpi-value" id="card-sav-cpm">$23.17</div>
+                            <div class="agent-kpi-label">CPM</div>
                         </div>
                         <div class="agent-kpi">
-                            <div class="agent-kpi-value">5</div>
-                            <div class="agent-kpi-label">Angles</div>
+                            <div class="agent-kpi-value" id="card-sav-hook">19%</div>
+                            <div class="agent-kpi-label">Hook Rate</div>
                         </div>
                     </div>
                 </div>
@@ -938,25 +938,38 @@
             </div>
             
             <div class="agent-detail">
-                <div class="detail-card">
-                    <h3>📊 Key Metrics</h3>
+                <div class="detail-card full-width">
+                    <h3>📊 Key Metrics (Last 7 Days vs Previous 7)</h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value positive">$34</div>
-                            <div class="kpi-label">Best CPA</div>
-                            <div class="kpi-trend up">↑ Dr. Chris creative</div>
+                            <div class="kpi-value positive" id="sav-cpa">$22.84</div>
+                            <div class="kpi-label">New Customer CPA</div>
+                            <div class="kpi-trend up">↓ 58% vs $55.04 🔥</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">12</div>
-                            <div class="kpi-label">Hook Types</div>
+                            <div class="kpi-value positive" id="sav-ctr">1.35%</div>
+                            <div class="kpi-label">Outbound CTR</div>
+                            <div class="kpi-trend up">↑ 9% vs 1.24%</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">5</div>
-                            <div class="kpi-label">Winning Angles</div>
+                            <div class="kpi-value positive" id="sav-cpc">$1.71</div>
+                            <div class="kpi-label">Cost/Outbound Click</div>
+                            <div class="kpi-trend up">↓ 11% vs $1.92</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">25%+</div>
-                            <div class="kpi-label">Hook Rate Target</div>
+                            <div class="kpi-value positive" id="sav-cpm">$23.17</div>
+                            <div class="kpi-label">CPM</div>
+                            <div class="kpi-trend up">↓ 3% vs $23.82</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="sav-hook">19.0%</div>
+                            <div class="kpi-label">Hook Rate</div>
+                            <div class="kpi-trend">Target: 25%+</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="sav-spend">$67.9K</div>
+                            <div class="kpi-label">Ad Spend (7D)</div>
+                            <div class="kpi-trend up">↑ 24% vs $54.7K</div>
                         </div>
                     </div>
                 </div>
