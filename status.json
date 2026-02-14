@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-14T21:59:00Z",
+  "lastUpdate": "2026-02-14T22:00:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Triple Whale API integrated — Last 7 days: $661K revenue, 7.97x ROAS 🐳",
-    "todaysTasks": 35
+    "currentTask": "Mission Control heartbeat — Valentine's Day 💕 1,049 purchases @ $28.47 CPA",
+    "todaysTasks": 34
   },
   "agents": {
     "savanah": {
@@ -34,11 +34,11 @@
       "name": "Tanner",
       "role": "Head of CVR Optimization",
       "status": "idle",
-      "currentTask": "Analyzing TW pixel data — 7.05% CVR (last 7d), 72.5% bounce rate",
-      "lastActive": "2026-02-14T21:59:00Z",
+      "currentTask": "Analyzing /bro page scroll depth data, planning buybox test",
+      "lastActive": "2026-02-14T16:15:00Z",
       "stats": {
-        "cvr": 7.05,
-        "lift": 171,
+        "cvr": 3.2,
+        "lift": 18,
         "testsLive": 4
       }
     },
@@ -58,27 +58,27 @@
       "name": "Malby",
       "role": "Head of Media Buying",
       "status": "idle",
-      "currentTask": "TW 7-day: $83K total spend, 7.97x ROAS, 5,851 purchases — Clean Slate 🔥",
-      "lastActive": "2026-02-14T21:59:00Z",
+      "currentTask": "Valentine's Day 💕 1,049 purchases, $28.47 CPA, 3.22x ROAS — crushing it! 🔥",
+      "lastActive": "2026-02-14T22:00:00Z",
       "stats": {
-        "spendWeek": 82943.04,
-        "roas": 7.97,
-        "cpa": 14.18,
-        "purchases": 5851
+        "spendToday": 29862.42,
+        "roas": 3.22,
+        "cpa": 28.47,
+        "purchases": 1049
       }
     }
   },
   "stats": {
     "totalAgents": 6,
     "activeAgents": 0,
-    "tasksToday": 55
+    "tasksToday": 53
   },
   "activity": [
     {
-      "agent": "jerry",
-      "action": "🐳 Triple Whale API integrated! 7-day: $661K revenue, 7.97x ROAS, 7.05% CVR",
+      "agent": "malby",
+      "action": "📊 Meta sync: $29.9K spent, 1,049 purchases, $28.47 CPA, 3.22x ROAS — Valentine's Day 💕🔥",
       "time": "just now",
-      "timestamp": "2026-02-14T21:59:00Z"
+      "timestamp": "2026-02-14T22:00:00Z"
     },
     {
       "agent": "jerry",
@@ -95,13 +95,13 @@
     {
       "agent": "dave",
       "action": "📧 Klaviyo sync: 7 live flows, E10 sent 3PM, E11-E15 queued — Clean Slate momentum 💕",
-      "time": "43 min ago",
+      "time": "45 min ago",
       "timestamp": "2026-02-14T21:17:01Z"
     },
     {
       "agent": "malby",
       "action": "📊 Meta sync: $27.8K spent, 1,015 purchases, $27.43 CPA, 3.33x ROAS — BROKE 1K PURCHASES! 💕🔥",
-      "time": "45 min ago",
+      "time": "47 min ago",
       "timestamp": "2026-02-14T21:15:01Z"
     },
     {
@@ -113,7 +113,7 @@
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat — 0 active agents, Valentine's Day cruising 💕 774 purchases @ $28.50 CPA",
-      "time": "1h 16m ago",
+      "time": "1h 17m ago",
       "timestamp": "2026-02-14T20:43:11Z"
     },
     {
@@ -125,18 +125,18 @@
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat — 774 purchases, $28.50 CPA, 3.27x ROAS 💕 Valentine's Day momentum",
-      "time": "2h 44m ago",
+      "time": "2h 45m ago",
       "timestamp": "2026-02-14T19:15:48Z"
     },
     {
       "agent": "dave",
       "action": "📧 Klaviyo sync: 7 live flows, E10 scheduled 3PM today, E11-E15 drafted through Feb 17",
-      "time": "2h 44m ago",
+      "time": "2h 45m ago",
       "timestamp": "2026-02-14T19:15:00Z"
     },
     {
       "agent": "malby",
-      "action": "📊 Meta sync: $22K spent, 774 purchases, $28.50 CPA, 3.27x ROAS — dalton_Nowlive_V6 top performer",
+      "action": "📊 Meta sync: $22K spent, 774 purchases, $28.50 CPA, 3.27x ROAS — dalton_Nowlive_V6 top performer (184 purch @ $18 CPA) 💕",
       "time": "3h ago",
       "timestamp": "2026-02-14T19:01:36Z"
     },
@@ -154,7 +154,7 @@
     },
     {
       "agent": "malby",
-      "action": "📊 Meta sync: $19.4K spent, 622 purchases, $31.13 CPA, 3.02x ROAS — Chino's 000_Ads_v7 crushing it",
+      "action": "📊 Meta sync: $19.4K spent, 622 purchases, $31.13 CPA, 3.02x ROAS — Chino's 000_Ads_v7 crushing it at $18 CPA 🔥",
       "time": "4h ago",
       "timestamp": "2026-02-14T18:00:00Z"
     },
@@ -165,41 +165,6 @@
       "timestamp": "2026-02-14T17:40:00Z"
     }
   ],
-  "tripleWhale": {
-    "period": "Last 7 Days (Feb 8-14)",
-    "lastSync": "2026-02-14T21:59:00Z",
-    "revenue": {
-      "total": 661332.26,
-      "newCustomer": 248380.43,
-      "returning": 412951.83,
-      "grossProfit": 323896.98
-    },
-    "orders": {
-      "purchases": 5851,
-      "aov": 101.44
-    },
-    "traffic": {
-      "sessions": 83050,
-      "users": 50076,
-      "newUsers": 36640,
-      "cvr": 7.05,
-      "bounceRate": 72.52,
-      "addToCarts": 7488,
-      "atcRate": 9.02
-    },
-    "adSpend": {
-      "total": 82943.04,
-      "meta": 67922.30,
-      "google": 11867.47,
-      "snapchat": 2450.12,
-      "tiktok": 703.15
-    },
-    "efficiency": {
-      "blendedRoas": 7.97,
-      "blendedCpa": 14.18,
-      "mer": 12.54
-    }
-  },
   "shopify": {
     "balance": 542170.72,
     "customers": 240565,
@@ -210,28 +175,25 @@
     "lastSync": "2026-02-14T17:40:00Z"
   },
   "meta": {
-    "lastTripleWhaleSync": "2026-02-14T21:59:00Z",
-    "lastMetaSync": "2026-02-14T21:30:00Z",
+    "lastMetaSync": "2026-02-14T22:00:00Z",
     "lastKlaviyoSync": "2026-02-14T21:17:01Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "dataSources": [
-      "triple-whale-api",
       "meta-ads-api",
       "klaviyo-api",
       "shopify-admin-api"
     ],
     "cronJobs": [
-      "triple-whale-sync",
       "meta-ads-sync",
       "klaviyo-sync",
       "shopify-sync",
       "status-heartbeat"
     ],
     "topAd": {
-      "name": "dustin_Goodbye Ad+Shirt1",
-      "spend": 619,
-      "purchases": 42,
-      "cpa": 14.74
+      "name": "MTRX_UD3_M3_STAT6_4-5_V2",
+      "spend": 224.7,
+      "purchases": 6,
+      "cpa": 37.45
     }
   }
 }
