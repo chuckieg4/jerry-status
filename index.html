@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UndrDog Mission Control</title>
-    <meta http-equiv="refresh" content="30">
+    <!-- Data refreshes via JS, no page reload -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -1434,8 +1434,27 @@
             
             // Update nav tabs
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            event.target.closest('.nav-tab')?.classList.add('active');
+            event?.target?.closest('.nav-tab')?.classList.add('active');
+            
+            // Remember current tab
+            localStorage.setItem('missionControlTab', tabId);
+            window.location.hash = tabId;
         }
+        
+        // Restore tab from URL hash or localStorage
+        function restoreTab() {
+            let tabId = window.location.hash.slice(1) || localStorage.getItem('missionControlTab') || 'overview';
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('panel-' + tabId)?.classList.add('active');
+            document.querySelectorAll('.nav-tab').forEach(t => {
+                if (t.onclick?.toString().includes(tabId)) t.classList.add('active');
+                else t.classList.remove('active');
+            });
+        }
+        
+        // Run on load
+        restoreTab();
+        window.addEventListener('hashchange', restoreTab);
         
         // Load status data
         async function loadStatus() {
