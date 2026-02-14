@@ -1052,25 +1052,56 @@
             </div>
             
             <div class="agent-detail">
-                <div class="detail-card">
-                    <h3>📊 Key Metrics</h3>
+                <div class="detail-card full-width">
+                    <h3>📊 Flow Performance (Last 30 Days)</h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">8</div>
-                            <div class="kpi-label">Active Flows</div>
+                            <div class="kpi-value positive" id="dave-bod-open">45.4%</div>
+                            <div class="kpi-label">Buy or Die Open Rate</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value positive">42%</div>
+                            <div class="kpi-value positive" id="dave-bod-rev">$75,205</div>
+                            <div class="kpi-label">Buy or Die Revenue</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="dave-pp-open">58.8%</div>
+                            <div class="kpi-label">Post Purchase Open Rate</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="dave-pp-rev">$7,435</div>
+                            <div class="kpi-label">Post Purchase Revenue</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value negative" id="dave-ab-open">—</div>
+                            <div class="kpi-label">Abandonment Open Rate</div>
+                            <div class="kpi-trend down">⚠️ Just launched</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value negative" id="dave-ab-rev">$0</div>
+                            <div class="kpi-label">Abandonment Revenue</div>
+                            <div class="kpi-trend down">⚠️ No data yet</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-card full-width">
+                    <h3>📨 Campaign Performance (Last 30 Days)</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="dave-camp-rev">$332,570</div>
+                            <div class="kpi-label">Campaign Revenue</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="dave-camp-open">48.2%</div>
                             <div class="kpi-label">Avg Open Rate</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">27%</div>
-                            <div class="kpi-label">Email Rev %</div>
-                            <div class="kpi-trend">Target: 30-40%</div>
+                            <div class="kpi-value neutral" id="dave-camp-click">2.04%</div>
+                            <div class="kpi-label">Avg Click Rate</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">50%+</div>
-                            <div class="kpi-label">Drop Open Rate</div>
+                            <div class="kpi-value positive" id="dave-total-rev">$415,209</div>
+                            <div class="kpi-label">Total Email Revenue</div>
                         </div>
                     </div>
                 </div>
