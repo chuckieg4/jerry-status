@@ -661,6 +661,11 @@
             <span class="tab-info"><span>Malby</span><span class="tab-title">Media Buying</span></span>
             <span class="tab-status active"></span>
         </button>
+        <button class="nav-tab" onclick="showTab('penny')">
+            <span class="tab-emoji">🪙</span>
+            <span class="tab-info"><span>Penny</span><span class="tab-title">Finance</span></span>
+            <span class="tab-status active"></span>
+        </button>
     </nav>
     
     <main class="main">
@@ -684,11 +689,11 @@
                     </div>
                     <div class="agent-kpis">
                         <div class="agent-kpi">
-                            <div class="agent-kpi-value">5</div>
+                            <div class="agent-kpi-value">6</div>
                             <div class="agent-kpi-label">Agents</div>
                         </div>
                         <div class="agent-kpi">
-                            <div class="agent-kpi-value">172KB</div>
+                            <div class="agent-kpi-value">177KB</div>
                             <div class="agent-kpi-label">Training</div>
                         </div>
                         <div class="agent-kpi">
@@ -843,6 +848,35 @@
                     </div>
                 </div>
                 
+                <!-- Penny Card -->
+                <div class="agent-card" style="--agent-color: #10b981;" onclick="showTab('penny')">
+                    <div class="agent-header">
+                        <div class="agent-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">🪙</div>
+                        <div class="agent-info">
+                            <div class="agent-name">Penny</div>
+                            <div class="agent-role">Accountant</div>
+                        </div>
+                        <div class="agent-status active">
+                            <span class="status-dot"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="agent-kpis">
+                        <div class="agent-kpi">
+                            <div class="agent-kpi-value" id="card-penny-mtd-rev">$812K</div>
+                            <div class="agent-kpi-label">MTD Rev</div>
+                        </div>
+                        <div class="agent-kpi">
+                            <div class="agent-kpi-value" id="card-penny-mer">5.2x</div>
+                            <div class="agent-kpi-label">MER</div>
+                        </div>
+                        <div class="agent-kpi">
+                            <div class="agent-kpi-value" id="card-penny-net">$293K</div>
+                            <div class="agent-kpi-label">Net (Est)</div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             
             <!-- Shopify Business Health -->
@@ -902,11 +936,11 @@
                     <h3>📊 Key Metrics</h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">5</div>
+                            <div class="kpi-value neutral">6</div>
                             <div class="kpi-label">Sub-Agents</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">172KB</div>
+                            <div class="kpi-value neutral">177KB</div>
                             <div class="kpi-label">Training Data</div>
                         </div>
                         <div class="kpi-box">
@@ -1464,6 +1498,174 @@
                         <div class="info-item"><span class="icon">📝</span> Brief Templates</div>
                         <div class="info-item"><span class="icon">📋</span> Contract Templates</div>
                         <div class="info-item"><span class="icon">🎬</span> UGC Library Access</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Penny Panel -->
+        <div id="panel-penny" class="tab-panel">
+            <div class="agent-detail-header">
+                <div class="agent-detail-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">🪙</div>
+                <div class="agent-detail-info">
+                    <h2>Penny</h2>
+                    <div class="agent-detail-role">Accountant • P&L Tracking</div>
+                </div>
+                <div class="agent-detail-status active">
+                    <span class="live-dot"></span>
+                    Active
+                </div>
+            </div>
+            
+            <div class="agent-detail">
+                <!-- Previous Month P&L -->
+                <div class="detail-card full-width">
+                    <h3>📅 January 2026 (Previous Month)</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-prev-revenue">$581K</div>
+                            <div class="kpi-label">Revenue</div>
+                            <div class="kpi-trend">From TW</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-prev-adspend">$204K</div>
+                            <div class="kpi-label">Ad Spend</div>
+                            <div class="kpi-trend">35% of rev</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-prev-variable">$233K</div>
+                            <div class="kpi-label">Variable Costs</div>
+                            <div class="kpi-trend">COGS + Ship + Proc</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-prev-fixed">$100K</div>
+                            <div class="kpi-label">Fixed Costs</div>
+                            <div class="kpi-trend">Est. from sheet</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-prev-contribution">$144K</div>
+                            <div class="kpi-label">Contribution</div>
+                            <div class="kpi-trend">Rev - Ads - Var</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-prev-net">$44K</div>
+                            <div class="kpi-label">Net Profit</div>
+                            <div class="kpi-trend">7.6% margin</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- MTD P&L -->
+                <div class="detail-card full-width">
+                    <h3>📊 February 2026 MTD (Feb 1-14)</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-mtd-revenue">$812K</div>
+                            <div class="kpi-label">Revenue</div>
+                            <div class="kpi-trend up">🔥 140% of Jan already</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-mtd-adspend">$157K</div>
+                            <div class="kpi-label">Ad Spend</div>
+                            <div class="kpi-trend up">19% MER (healthy)</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-mtd-variable">$312K</div>
+                            <div class="kpi-label">Variable Costs</div>
+                            <div class="kpi-trend">Est. 38.5% of rev</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-mtd-fixed">$50K</div>
+                            <div class="kpi-label">Fixed Costs</div>
+                            <div class="kpi-trend">Half of monthly</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-mtd-contribution">$343K</div>
+                            <div class="kpi-label">Contribution</div>
+                            <div class="kpi-trend up">42% margin</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-mtd-net">$293K</div>
+                            <div class="kpi-label">Net Profit (Est)</div>
+                            <div class="kpi-trend up">36% margin 🚀</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cash Flow -->
+                <div class="detail-card">
+                    <h3>💰 Cash Position (Shopify Payments)</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-balance">$542K</div>
+                            <div class="kpi-label">Pending Balance</div>
+                            <div class="kpi-trend">Unreleased funds</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-payout">$66.8K</div>
+                            <div class="kpi-label">Next Payout</div>
+                            <div class="kpi-trend">Feb 15</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cost Breakdown -->
+                <div class="detail-card">
+                    <h3>📋 Variable Cost Assumptions</h3>
+                    <div class="info-list">
+                        <div class="info-item"><span class="icon">📦</span> COGS: 28% of revenue (~$227K MTD)</div>
+                        <div class="info-item"><span class="icon">🚚</span> Shipping: 7% of revenue (~$57K MTD)</div>
+                        <div class="info-item"><span class="icon">💳</span> Payment Processing: 3.5% (~$28K MTD)</div>
+                        <div class="info-item"><span class="icon">↩️</span> Returns/Refunds: ~2% (Lifetime Guarantee)</div>
+                    </div>
+                </div>
+                
+                <!-- Health Indicators -->
+                <div class="detail-card">
+                    <h3>🩺 Financial Health</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-mer">5.2x</div>
+                            <div class="kpi-label">MER</div>
+                            <div class="kpi-trend up">🟢 Healthy (&gt;4x)</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-cm-pct">42%</div>
+                            <div class="kpi-label">Contribution %</div>
+                            <div class="kpi-trend up">🟢 Healthy (&gt;40%)</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="penny-net-pct">36%</div>
+                            <div class="kpi-label">Net Margin %</div>
+                            <div class="kpi-trend up">🟢 Exceptional (&gt;15%)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>⚠️ Needs from Chuckie</h3>
+                    <div class="action-list">
+                        <div class="action-item">
+                            <div class="action-priority high">1</div>
+                            <div class="action-content">
+                                <div class="action-title">Monthly Fixed Costs Breakdown</div>
+                                <div class="action-desc">Need actuals for: Payroll, SaaS, Rent, Insurance, Pro fees</div>
+                            </div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-priority medium">2</div>
+                            <div class="action-content">
+                                <div class="action-title">Confirm COGS %</div>
+                                <div class="action-desc">Using 28% estimate — need actual landed cost per unit</div>
+                            </div>
+                        </div>
+                        <div class="action-item">
+                            <div class="action-priority low">3</div>
+                            <div class="action-content">
+                                <div class="action-title">Bookskeep January Sheet</div>
+                                <div class="action-desc">For full P&L reconciliation and YoY comparison</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
