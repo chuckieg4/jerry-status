@@ -160,6 +160,22 @@
             white-space: nowrap;
         }
         
+        .tab-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+        
+        .tab-title {
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
         .nav-tab:hover {
             background: rgba(255,255,255,0.05);
             color: var(--text-primary);
@@ -613,36 +629,36 @@
     <nav class="nav-tabs">
         <button class="nav-tab active" onclick="showTab('overview')">
             <span class="tab-emoji">📊</span>
-            Overview
+            <span class="tab-info"><span>Overview</span><span class="tab-title">All Systems</span></span>
         </button>
         <button class="nav-tab" onclick="showTab('jerry')">
             <span class="tab-emoji">🧠</span>
-            Jerry
+            <span class="tab-info"><span>Jerry</span><span class="tab-title">Orchestrator</span></span>
             <span class="tab-status active"></span>
         </button>
         <button class="nav-tab" onclick="showTab('savanah')">
             <span class="tab-emoji">🎨</span>
-            Savanah
+            <span class="tab-info"><span>Savanah</span><span class="tab-title">Creative Director</span></span>
             <span class="tab-status active"></span>
         </button>
         <button class="nav-tab" onclick="showTab('dave')">
             <span class="tab-emoji">📧</span>
-            Dave
+            <span class="tab-info"><span>Dave</span><span class="tab-title">Email & SMS</span></span>
             <span class="tab-status active"></span>
         </button>
         <button class="nav-tab" onclick="showTab('tanner')">
             <span class="tab-emoji">📈</span>
-            Tanner
+            <span class="tab-info"><span>Tanner</span><span class="tab-title">CRO Lead</span></span>
             <span class="tab-status idle"></span>
         </button>
         <button class="nav-tab" onclick="showTab('leanna')">
             <span class="tab-emoji">🤝</span>
-            Leanna
+            <span class="tab-info"><span>Leanna</span><span class="tab-title">Influencer Lead</span></span>
             <span class="tab-status idle"></span>
         </button>
         <button class="nav-tab" onclick="showTab('malby')">
             <span class="tab-emoji">📊</span>
-            Malby
+            <span class="tab-info"><span>Malby</span><span class="tab-title">Media Buying</span></span>
             <span class="tab-status active"></span>
         </button>
     </nav>
