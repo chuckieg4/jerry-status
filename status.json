@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-14T16:17:00Z",
+  "lastUpdate": "2026-02-14T16:30:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Building Mission Control Dashboard & Training Sub-Agents",
-    "todaysTasks": 8
+    "currentTask": "Setting up Mission Control real-time infrastructure & training sub-agents",
+    "todaysTasks": 12
   },
   "agents": {
     "savanah": {
@@ -11,6 +11,7 @@
       "role": "Creative Director",
       "status": "active",
       "currentTask": "Reviewing MTRX batch 4 creatives, briefing new hook variations",
+      "lastActive": "2026-02-14T16:25:00Z",
       "stats": {
         "briefsToday": 12,
         "reviews": 3,
@@ -21,7 +22,8 @@
       "name": "Dave",
       "role": "Head of Email/SMS",
       "status": "active",
-      "currentTask": "Optimizing Buy or Die flow, analyzing Valentine's campaign performance",
+      "currentTask": "Monitoring Valentine's Day campaign performance",
+      "lastActive": "2026-02-14T16:20:00Z",
       "stats": {
         "activeFlows": 8,
         "openRate": 42,
@@ -32,7 +34,8 @@
       "name": "Tanner",
       "role": "Head of CVR Optimization",
       "status": "active",
-      "currentTask": "A/B testing /bro page buybox placement, analyzing scroll depth data",
+      "currentTask": "Analyzing /bro page scroll depth data, planning buybox test",
+      "lastActive": "2026-02-14T16:15:00Z",
       "stats": {
         "cvr": 3.2,
         "lift": 18,
@@ -43,7 +46,8 @@
       "name": "Leanna",
       "role": "Head of Influencer Management",
       "status": "idle",
-      "currentTask": "Outreach to fitness influencers for March campaign, tracking deliverables",
+      "currentTask": "Waiting for influencer responses from outreach batch",
+      "lastActive": "2026-02-14T15:00:00Z",
       "stats": {
         "partners": 24,
         "pending": 8,
@@ -54,44 +58,75 @@
       "name": "Malby",
       "role": "Head of Media Buying",
       "status": "active",
-      "currentTask": "Scaling winning ASC creatives, adjusting bid caps for weekend push",
+      "currentTask": "Scaling Valentine's Day winners, monitoring weekend push",
+      "lastActive": "2026-02-14T16:28:00Z",
       "stats": {
-        "spendToday": 4200,
-        "roas": 2.8,
-        "cpa": 42
+        "spendToday": 15123,
+        "roas": 2.86,
+        "cpa": 32.45,
+        "purchases": 466
       }
     }
   },
   "stats": {
     "totalAgents": 6,
     "activeAgents": 5,
-    "tasksToday": 24
+    "tasksToday": 34
   },
   "activity": [
     {
       "agent": "malby",
-      "action": "Increased budget on MTRX_UD2_M1_STAT3 by 25%",
-      "time": "2 min ago"
-    },
-    {
-      "agent": "savanah",
-      "action": "Approved 3 new hook variations for destructive demo angle",
-      "time": "8 min ago"
-    },
-    {
-      "agent": "tanner",
-      "action": "Started A/B test: Buybox above fold vs. original",
-      "time": "15 min ago"
-    },
-    {
-      "agent": "dave",
-      "action": "Sent Valentine's Day flash sale email to 45k subscribers",
-      "time": "32 min ago"
+      "action": "LIVE: $15.1K spent today, 466 purchases, $32.45 CPA, 2.86x ROAS",
+      "time": "just now",
+      "timestamp": "2026-02-14T16:30:00Z"
     },
     {
       "agent": "jerry",
-      "action": "Completed Mission Control dashboard build",
-      "time": "45 min ago"
+      "action": "Connected Mission Control to Meta Ads API - real-time data live",
+      "time": "2 min ago",
+      "timestamp": "2026-02-14T16:28:00Z"
+    },
+    {
+      "agent": "jerry",
+      "action": "Connected Mission Control to Klaviyo API - 8 live flows detected",
+      "time": "3 min ago",
+      "timestamp": "2026-02-14T16:27:00Z"
+    },
+    {
+      "agent": "dave",
+      "action": "8 flows live: Buy or Die, Post Purchase, Gold Bar, 000 Clean Slate flows active",
+      "time": "10 min ago",
+      "timestamp": "2026-02-14T16:20:00Z"
+    },
+    {
+      "agent": "savanah",
+      "action": "Briefed 3 new hook variations for destructive demo angle",
+      "time": "15 min ago",
+      "timestamp": "2026-02-14T16:15:00Z"
+    },
+    {
+      "agent": "tanner",
+      "action": "Started A/B test analysis for /bro page buybox placement",
+      "time": "20 min ago",
+      "timestamp": "2026-02-14T16:10:00Z"
+    },
+    {
+      "agent": "jerry",
+      "action": "Deployed Mission Control v2 dashboard",
+      "time": "30 min ago",
+      "timestamp": "2026-02-14T16:00:00Z"
+    },
+    {
+      "agent": "jerry",
+      "action": "Created specialist agent profiles: Savanah, Dave, Tanner, Leanna, Malby",
+      "time": "35 min ago",
+      "timestamp": "2026-02-14T15:55:00Z"
     }
-  ]
+  ],
+  "meta": {
+    "lastMetaSync": "2026-02-14T16:30:00Z",
+    "lastKlaviyoSync": "2026-02-14T16:27:00Z",
+    "dataSources": ["meta-ads-api", "klaviyo-api"],
+    "cronJobs": ["meta-ads-sync", "klaviyo-sync", "status-heartbeat"]
+  }
 }

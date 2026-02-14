@@ -726,26 +726,26 @@
                                 <div class="agent-name">Malby</div>
                                 <div class="agent-role">Head of Media Buying</div>
                             </div>
-                            <div class="agent-status active">
+                            <div class="agent-status active" id="malby-status">
                                 <span class="status-dot"></span>
                                 Active
                             </div>
                         </div>
                         <div class="agent-current">
                             <div class="agent-current-label">Working On</div>
-                            <div class="agent-current-task">Scaling winning ASC creatives, adjusting bid caps for weekend push</div>
+                            <div class="agent-current-task" id="malby-task">Scaling winning ASC creatives, adjusting bid caps for weekend push</div>
                         </div>
                         <div class="agent-stats">
                             <div class="agent-stat">
-                                <div class="agent-stat-value">$4.2k</div>
+                                <div class="agent-stat-value" id="malby-spend">$15.1k</div>
                                 <div class="agent-stat-label">Spend Today</div>
                             </div>
                             <div class="agent-stat">
-                                <div class="agent-stat-value">2.8x</div>
+                                <div class="agent-stat-value" id="malby-roas">2.86x</div>
                                 <div class="agent-stat-label">ROAS</div>
                             </div>
                             <div class="agent-stat">
-                                <div class="agent-stat-value">$42</div>
+                                <div class="agent-stat-value" id="malby-cpa">$32</div>
                                 <div class="agent-stat-label">CPA</div>
                             </div>
                         </div>
@@ -840,24 +840,88 @@
             }
         }
         
+        function formatCurrency(num) {
+            if (num >= 1000) return '$' + (num / 1000).toFixed(1) + 'k';
+            return '$' + num.toFixed(0);
+        }
+        
         function updateDashboard(data) {
+            // Update Jerry
             if (data.jerry) {
                 document.getElementById('jerryTask').textContent = data.jerry.currentTask || 'Awaiting tasks...';
             }
             
+            // Update header stats
             if (data.stats) {
                 document.getElementById('activeAgents').textContent = data.stats.activeAgents || 4;
                 document.getElementById('tasksToday').textContent = data.stats.tasksToday || 24;
             }
+            
+            // Update Malby with real Meta data
+            if (data.agents && data.agents.malby) {
+                const malby = data.agents.malby;
+                if (malby.currentTask) {
+                    document.getElementById('malby-task').textContent = malby.currentTask;
+                }
+                if (malby.stats) {
+                    if (malby.stats.spendToday) {
+                        document.getElementById('malby-spend').textContent = formatCurrency(malby.stats.spendToday);
+                    }
+                    if (malby.stats.roas) {
+                        document.getElementById('malby-roas').textContent = malby.stats.roas.toFixed(2) + 'x';
+                    }
+                    if (malby.stats.cpa) {
+                        document.getElementById('malby-cpa').textContent = '$' + malby.stats.cpa.toFixed(0);
+                    }
+                }
+            }
+            
+            // Update activity feed with real data
+            if (data.activity && data.activity.length > 0) {
+                const feedEl = document.getElementById('activityFeed');
+                const agentColors = {
+                    jerry: 'linear-gradient(135deg, #f97316, #ea580c)',
+                    savanah: 'linear-gradient(135deg, #ec4899, #db2777)',
+                    dave: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+                    tanner: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                    leanna: 'linear-gradient(135deg, #a855f7, #9333ea)',
+                    malby: 'linear-gradient(135deg, #f97316, #ea580c)'
+                };
+                const agentInitials = {
+                    jerry: '🧠',
+                    savanah: 'S',
+                    dave: 'D',
+                    tanner: 'T',
+                    leanna: 'L',
+                    malby: 'M'
+                };
+                
+                feedEl.innerHTML = data.activity.slice(0, 10).map(item => `
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: ${agentColors[item.agent] || agentColors.jerry};">${agentInitials[item.agent] || '?'}</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">${item.agent.charAt(0).toUpperCase() + item.agent.slice(1)}</div>
+                            <div class="activity-action">${item.action}</div>
+                            <div class="activity-time">${item.time}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            // Update last sync time in header
+            if (data.lastUpdate) {
+                const updateTime = new Date(data.lastUpdate);
+                const now = new Date();
+                const diffMs = now - updateTime;
+                const diffMins = Math.floor(diffMs / 60000);
+                let timeStr = diffMins < 1 ? 'just now' : diffMins + ' min ago';
+                // Could add this to UI if desired
+            }
         }
         
-        // Add some visual polish with time updates
-        function updateTimes() {
-            const times = document.querySelectorAll('.activity-time');
-            // Could dynamically update relative times here
-        }
-        
+        // Initial load
         loadStatus();
+        // Refresh every 15 seconds
         setInterval(loadStatus, 15000);
     </script>
 </body>
