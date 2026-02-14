@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-14T21:17:01Z",
+  "lastUpdate": "2026-02-14T21:30:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Mission Control heartbeat — Valentine's Day 💕 1,015 purchases @ $27.43 CPA",
-    "todaysTasks": 31
+    "currentTask": "Mission Control heartbeat — Valentine's Day 💕 1,025 purchases @ $27.79 CPA",
+    "todaysTasks": 32
   },
   "agents": {
     "savanah": {
@@ -58,44 +58,50 @@
       "name": "Malby",
       "role": "Head of Media Buying",
       "status": "idle",
-      "currentTask": "Valentine's Day 💕 1,015 purchases, $27.43 CPA, 3.33x ROAS — BREAKING 1K! 🔥",
-      "lastActive": "2026-02-14T21:15:01Z",
+      "currentTask": "Valentine's Day 💕 1,025 purchases, $27.79 CPA, 3.2x ROAS — crushing it! 🔥",
+      "lastActive": "2026-02-14T21:30:00Z",
       "stats": {
-        "spendToday": 27837.85,
-        "roas": 3.33,
-        "cpa": 27.43,
-        "purchases": 1015
+        "spendToday": 28481.86,
+        "roas": 3.2,
+        "cpa": 27.79,
+        "purchases": 1025
       }
     }
   },
   "stats": {
     "totalAgents": 6,
     "activeAgents": 0,
-    "tasksToday": 50
+    "tasksToday": 51
   },
   "activity": [
     {
+      "agent": "malby",
+      "action": "📊 Meta sync: $28.5K spent, 1,025 purchases, $27.79 CPA, 3.2x ROAS — Valentine's Day 💕🔥",
+      "time": "just now",
+      "timestamp": "2026-02-14T21:30:00Z"
+    },
+    {
       "agent": "dave",
       "action": "📧 Klaviyo sync: 7 live flows, E10 sent 3PM, E11-E15 queued — Clean Slate momentum 💕",
-      "time": "just now",
+      "time": "13 min ago",
       "timestamp": "2026-02-14T21:17:01Z"
     },
     {
       "agent": "malby",
       "action": "📊 Meta sync: $27.8K spent, 1,015 purchases, $27.43 CPA, 3.33x ROAS — BROKE 1K PURCHASES! 💕🔥",
-      "time": "2 min ago",
+      "time": "15 min ago",
       "timestamp": "2026-02-14T21:15:01Z"
     },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat — agents resting, Valentine's Day 💕 774 purchases @ $28.50 CPA",
-      "time": "18 min ago",
+      "time": "31 min ago",
       "timestamp": "2026-02-14T20:59:14Z"
     },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat — 0 active agents, Valentine's Day cruising 💕 774 purchases @ $28.50 CPA",
-      "time": "34 min ago",
+      "time": "47 min ago",
       "timestamp": "2026-02-14T20:43:11Z"
     },
     {
@@ -131,68 +137,62 @@
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - Valentine's Day momentum 💕 714 purchases, $28.61 CPA, 3.26x ROAS",
-      "time": "2h 30m ago",
+      "time": "2h 45m ago",
       "timestamp": "2026-02-14T18:45:00Z"
     },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - Valentine's Day 🔥 714 purchases, $28.61 CPA, 3.26x ROAS 💕",
-      "time": "2h 43m ago",
+      "time": "2h 58m ago",
       "timestamp": "2026-02-14T18:32:00Z"
     },
     {
       "agent": "malby",
       "action": "📊 Meta sync: $20.4K spent, 714 purchases, $28.61 CPA, 3.26x ROAS — Clean Slate creatives on fire! 🔥💕",
-      "time": "2h 45m ago",
+      "time": "3h ago",
       "timestamp": "2026-02-14T18:30:00Z"
     },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - 1 active agent, Valentine's Day 💕 $19.4K spent, 3.02x ROAS",
-      "time": "3h ago",
+      "time": "3h 14m ago",
       "timestamp": "2026-02-14T18:16:00Z"
     },
     {
       "agent": "dave",
       "action": "📧 Klaviyo sync: 7 live flows, 2 campaigns sent today (E08+E09), Clean Slate E10-E15 queued",
-      "time": "3h ago",
+      "time": "3h 15m ago",
       "timestamp": "2026-02-14T18:15:00Z"
     },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - 1 active agent, Valentine's Day 🔥 $19.4K spent, 622 purchases",
-      "time": "3h 14m ago",
+      "time": "3h 29m ago",
       "timestamp": "2026-02-14T18:01:00Z"
     },
     {
       "agent": "malby",
       "action": "📊 Meta sync: $19.4K spent, 622 purchases, $31.13 CPA, 3.02x ROAS — Chino's 000_Ads_v7 crushing it at $18 CPA 🔥",
-      "time": "3h 15m ago",
+      "time": "3h 30m ago",
       "timestamp": "2026-02-14T18:00:00Z"
     },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - 1 active agent, Valentine's Day still rolling 💕",
-      "time": "3h 30m ago",
+      "time": "3h 45m ago",
       "timestamp": "2026-02-14T17:45:00Z"
     },
     {
       "agent": "jerry",
       "action": "🛍️ Shopify API connected! $542K balance, 240K customers, $43K Valentine's revenue",
-      "time": "3h 35m ago",
+      "time": "3h 50m ago",
       "timestamp": "2026-02-14T17:40:00Z"
     },
     {
       "agent": "malby",
       "action": "📊 Meta sync: $18.3K spent, 584 purchases, $31.32 CPA, 2.99x ROAS - Valentine's momentum holding",
-      "time": "3h 45m ago",
-      "timestamp": "2026-02-14T17:30:00Z"
-    },
-    {
-      "agent": "dave",
-      "action": "📧 Klaviyo sync: 7 live flows, E09 'Shift Happens!' sent at 10:01 AM, E10 queued",
       "time": "4h ago",
-      "timestamp": "2026-02-14T17:15:00Z"
+      "timestamp": "2026-02-14T17:30:00Z"
     }
   ],
   "shopify": {
@@ -205,7 +205,7 @@
     "lastSync": "2026-02-14T17:40:00Z"
   },
   "meta": {
-    "lastMetaSync": "2026-02-14T21:15:01Z",
+    "lastMetaSync": "2026-02-14T21:30:00Z",
     "lastKlaviyoSync": "2026-02-14T21:17:01Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "dataSources": [
@@ -220,10 +220,10 @@
       "status-heartbeat"
     ],
     "topAd": {
-      "name": "dalton_Nowlive_V6",
-      "spend": 3368,
-      "purchases": 184,
-      "cpa": 18.31
+      "name": "dustin_Goodbye Ad+Shirt1",
+      "spend": 619,
+      "purchases": 42,
+      "cpa": 14.74
     }
   }
 }
