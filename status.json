@@ -58,13 +58,13 @@
       "name": "Malby",
       "role": "Head of Media Buying",
       "status": "active",
-      "currentTask": "Valentine's Day scaling - 714 purchases, $28.61 CPA, 3.26x ROAS 🔥",
-      "lastActive": "2026-02-14T18:30:00Z",
+      "currentTask": "Valentine's Day 💕 774 purchases, $28.50 CPA, 3.27x ROAS — dalton_Nowlive crushing 🔥",
+      "lastActive": "2026-02-14T19:01:36Z",
       "stats": {
-        "spendToday": 20429,
-        "roas": 3.26,
-        "cpa": 28.61,
-        "purchases": 714
+        "spendToday": 22062.23,
+        "roas": 3.27,
+        "cpa": 28.50,
+        "purchases": 774
       }
     }
   },
@@ -74,6 +74,12 @@
     "tasksToday": 45
   },
   "activity": [
+    {
+      "agent": "malby",
+      "action": "📊 Meta sync: $22K spent, 774 purchases, $28.50 CPA, 3.27x ROAS — dalton_Nowlive_V6 top performer (184 purch @ $18 CPA) 💕",
+      "time": "just now",
+      "timestamp": "2026-02-14T19:01:36Z"
+    },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - Valentine's Day momentum 💕 714 purchases, $28.61 CPA, 3.26x ROAS",
@@ -151,12 +157,6 @@
       "action": "Status heartbeat - 4 agents active, system healthy",
       "time": "120 min ago",
       "timestamp": "2026-02-14T16:45:00Z"
-    },
-    {
-      "agent": "malby",
-      "action": "LIVE: $15.1K spent today, 466 purchases, $32.45 CPA, 2.86x ROAS",
-      "time": "135 min ago",
-      "timestamp": "2026-02-14T16:30:00Z"
     }
   ],
   "shopify": {
@@ -169,7 +169,7 @@
     "lastSync": "2026-02-14T17:40:00Z"
   },
   "meta": {
-    "lastMetaSync": "2026-02-14T18:30:00Z",
+    "lastMetaSync": "2026-02-14T19:01:36Z",
     "lastKlaviyoSync": "2026-02-14T18:15:00Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "dataSources": [
@@ -184,10 +184,10 @@
       "status-heartbeat"
     ],
     "topAd": {
-      "name": "000_Chino_Ads_v7",
-      "spend": 1643,
-      "purchases": 97,
-      "cpa": 16.94
+      "name": "dalton_Nowlive_V6",
+      "spend": 3368,
+      "purchases": 184,
+      "cpa": 18.31
     }
   }
 }
