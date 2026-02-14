@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-14T18:01:00Z",
+  "lastUpdate": "2026-02-14T18:15:00Z",
   "jerry": {
     "status": "active",
     "currentTask": "Mission Control maintenance & monitoring Valentine's Day performance",
@@ -22,12 +22,12 @@
       "name": "Dave",
       "role": "Head of Email/SMS",
       "status": "idle",
-      "currentTask": "Clean Slate launch sequence - E09 sent, E10 queued",
-      "lastActive": "2026-02-14T17:15:00Z",
+      "currentTask": "Clean Slate launch sequence — E09 sent today, E10-E15 queued",
+      "lastActive": "2026-02-14T18:15:00Z",
       "stats": {
         "activeFlows": 7,
         "openRate": 42,
-        "campaignsSent": 4
+        "campaignsSent": 5
       }
     },
     "tanner": {
@@ -74,6 +74,12 @@
     "tasksToday": 43
   },
   "activity": [
+    {
+      "agent": "dave",
+      "action": "📧 Klaviyo sync: 7 live flows, 2 campaigns sent today (E08+E09), Clean Slate E10-E15 queued",
+      "time": "just now",
+      "timestamp": "2026-02-14T18:15:00Z"
+    },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - 1 active agent, Valentine's Day 🔥 $19.4K spent, 622 purchases",
@@ -139,12 +145,6 @@
       "action": "Connected Mission Control to Klaviyo API - 8 live flows detected",
       "time": "94 min ago",
       "timestamp": "2026-02-14T16:27:00Z"
-    },
-    {
-      "agent": "dave",
-      "action": "8 flows live: Buy or Die, Post Purchase, Gold Bar, 000 Clean Slate flows active",
-      "time": "101 min ago",
-      "timestamp": "2026-02-14T16:20:00Z"
     }
   ],
   "shopify": {
@@ -158,10 +158,19 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-14T18:00:00Z",
-    "lastKlaviyoSync": "2026-02-14T17:15:00Z",
+    "lastKlaviyoSync": "2026-02-14T18:15:00Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
-    "dataSources": ["meta-ads-api", "klaviyo-api", "shopify-admin-api"],
-    "cronJobs": ["meta-ads-sync", "klaviyo-sync", "shopify-sync", "status-heartbeat"],
+    "dataSources": [
+      "meta-ads-api",
+      "klaviyo-api",
+      "shopify-admin-api"
+    ],
+    "cronJobs": [
+      "meta-ads-sync",
+      "klaviyo-sync",
+      "shopify-sync",
+      "status-heartbeat"
+    ],
     "topAd": {
       "name": "000_Chino_Ads_v7",
       "spend": 1567,
