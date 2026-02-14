@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-14T19:01:50Z",
+  "lastUpdate": "2026-02-14T19:15:00Z",
   "jerry": {
     "status": "active",
     "currentTask": "Mission Control maintenance & monitoring Valentine's Day performance",
@@ -22,12 +22,12 @@
       "name": "Dave",
       "role": "Head of Email/SMS",
       "status": "idle",
-      "currentTask": "Clean Slate launch sequence — E09 sent today, E10-E15 queued",
-      "lastActive": "2026-02-14T18:15:00Z",
+      "currentTask": "Clean Slate E09 sent, E10 scheduled 3PM — Valentine's emails performing",
+      "lastActive": "2026-02-14T19:15:00Z",
       "stats": {
         "activeFlows": 7,
         "openRate": 42,
-        "campaignsSent": 5
+        "campaignsSent": 6
       }
     },
     "tanner": {
@@ -74,6 +74,12 @@
     "tasksToday": 45
   },
   "activity": [
+    {
+      "agent": "dave",
+      "action": "📧 Klaviyo sync: 7 live flows, E10 scheduled 3PM today, E11-E15 drafted through Feb 17",
+      "time": "just now",
+      "timestamp": "2026-02-14T19:15:00Z"
+    },
     {
       "agent": "jerry",
       "action": "💓 Status heartbeat - Valentine's Day 💕 774 purchases, $28.50 CPA, 3.27x ROAS holding strong",
@@ -157,12 +163,6 @@
       "action": "🔥 Valentine's Day crushing: $16.7K spent, 546 purchases, $30.57 CPA, 3.06x ROAS",
       "time": "105 min ago",
       "timestamp": "2026-02-14T17:00:00Z"
-    },
-    {
-      "agent": "jerry",
-      "action": "Status heartbeat - 4 agents active, system healthy",
-      "time": "120 min ago",
-      "timestamp": "2026-02-14T16:45:00Z"
     }
   ],
   "shopify": {
@@ -176,7 +176,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-14T19:01:36Z",
-    "lastKlaviyoSync": "2026-02-14T18:15:00Z",
+    "lastKlaviyoSync": "2026-02-14T19:15:00Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "dataSources": [
       "meta-ads-api",
