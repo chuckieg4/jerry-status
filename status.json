@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-02-14T16:30:00Z",
+  "lastUpdate": "2026-02-14T16:45:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Setting up Mission Control real-time infrastructure & training sub-agents",
+    "currentTask": "Mission Control maintenance & monitoring Valentine's Day performance",
     "todaysTasks": 12
   },
   "agents": {
@@ -33,7 +33,7 @@
     "tanner": {
       "name": "Tanner",
       "role": "Head of CVR Optimization",
-      "status": "active",
+      "status": "idle",
       "currentTask": "Analyzing /bro page scroll depth data, planning buybox test",
       "lastActive": "2026-02-14T16:15:00Z",
       "stats": {
@@ -70,56 +70,62 @@
   },
   "stats": {
     "totalAgents": 6,
-    "activeAgents": 5,
+    "activeAgents": 4,
     "tasksToday": 34
   },
   "activity": [
     {
+      "agent": "jerry",
+      "action": "Status heartbeat - 4 agents active, system healthy",
+      "time": "just now",
+      "timestamp": "2026-02-14T16:45:00Z"
+    },
+    {
       "agent": "malby",
       "action": "LIVE: $15.1K spent today, 466 purchases, $32.45 CPA, 2.86x ROAS",
-      "time": "just now",
+      "time": "15 min ago",
       "timestamp": "2026-02-14T16:30:00Z"
     },
     {
       "agent": "jerry",
       "action": "Connected Mission Control to Meta Ads API - real-time data live",
-      "time": "2 min ago",
+      "time": "17 min ago",
       "timestamp": "2026-02-14T16:28:00Z"
     },
     {
       "agent": "jerry",
       "action": "Connected Mission Control to Klaviyo API - 8 live flows detected",
-      "time": "3 min ago",
+      "time": "18 min ago",
       "timestamp": "2026-02-14T16:27:00Z"
     },
     {
       "agent": "dave",
       "action": "8 flows live: Buy or Die, Post Purchase, Gold Bar, 000 Clean Slate flows active",
-      "time": "10 min ago",
+      "time": "25 min ago",
       "timestamp": "2026-02-14T16:20:00Z"
     },
     {
       "agent": "savanah",
       "action": "Briefed 3 new hook variations for destructive demo angle",
-      "time": "15 min ago",
+      "time": "30 min ago",
       "timestamp": "2026-02-14T16:15:00Z"
     },
     {
       "agent": "tanner",
       "action": "Started A/B test analysis for /bro page buybox placement",
-      "time": "20 min ago",
+      "time": "35 min ago",
       "timestamp": "2026-02-14T16:10:00Z"
     },
     {
       "agent": "jerry",
       "action": "Deployed Mission Control v2 dashboard",
-      "time": "30 min ago",
+      "time": "45 min ago",
       "timestamp": "2026-02-14T16:00:00Z"
     },
     {
       "agent": "jerry",
       "action": "Created specialist agent profiles: Savanah, Dave, Tanner, Leanna, Malby",
-      "time": "35 min ago",
+      "time": "50 min ago",
       "timestamp": "2026-02-14T15:55:00Z"
     }
   ],
