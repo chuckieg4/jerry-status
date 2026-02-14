@@ -3,328 +3,862 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jerry AI - Status Dashboard</title>
-    <meta http-equiv="refresh" content="30">
+    <title>UndrDog Mission Control</title>
+    <meta http-equiv="refresh" content="15">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0d1117;
-            color: #c9d1d9;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-        .container { max-width: 900px; margin: 0 auto; }
         
-        header {
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-card-hover: #1a1a25;
+            --border: #2a2a3a;
+            --text-primary: #ffffff;
+            --text-secondary: #8888aa;
+            --accent-orange: #f97316;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --status-active: #22c55e;
+            --status-idle: #eab308;
+            --status-offline: #6b7280;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(180deg, rgba(18,18,26,0.98) 0%, rgba(10,10,15,0.95) 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+        }
+        
+        .header-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #30363d;
         }
-        .avatar {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #f97316, #ea580c);
-            border-radius: 50%;
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
         }
-        h1 { font-size: 1.8rem; color: #fff; }
-        .subtitle { color: #8b949e; font-size: 0.9rem; }
         
-        .status-badge {
-            display: inline-flex;
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .header-stat {
+            text-align: center;
+        }
+        
+        .header-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+        
+        .header-stat-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .live-indicator {
+            display: flex;
             align-items: center;
             gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
             padding: 0.5rem 1rem;
             border-radius: 2rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--status-active);
         }
-        .status-badge.working {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-        .status-badge.idle {
-            background: rgba(234, 179, 8, 0.2);
-            color: #eab308;
-            border: 1px solid rgba(234, 179, 8, 0.3);
-        }
-        .status-badge.offline {
-            background: rgba(107, 114, 128, 0.2);
-            color: #6b7280;
-            border: 1px solid rgba(107, 114, 128, 0.3);
-        }
-        .pulse {
-            width: 10px;
-            height: 10px;
+        
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--status-active);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
-        .working .pulse { background: #22c55e; }
-        .idle .pulse { background: #eab308; }
-        .offline .pulse { background: #6b7280; }
         
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
         }
         
-        .section {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        /* Main Layout */
+        .main {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
         }
-        .section h2 {
-            font-size: 1rem;
-            color: #8b949e;
+        
+        /* Jerry Section (Lead Agent) */
+        .jerry-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .jerry-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .jerry-avatar {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-orange), #ea580c);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+        }
+        
+        .jerry-info h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .jerry-role {
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .jerry-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            color: var(--status-active);
+            margin-left: auto;
+        }
+        
+        .jerry-current {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .jerry-current-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .jerry-current-task {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        /* Agents Grid */
+        .agents-section h2 {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
-        .current-task {
-            background: rgba(249, 115, 22, 0.1);
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            border-radius: 0.5rem;
-            padding: 1rem;
-        }
-        .current-task h3 {
-            color: #f97316;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .current-task p { color: #c9d1d9; }
-        .current-task .meta {
-            color: #8b949e;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-        }
-        
-        .task-list { list-style: none; }
-        .task-item {
-            display: flex;
-            align-items: flex-start;
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #30363d;
-        }
-        .task-item:last-child { border-bottom: none; }
-        
-        .priority {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-weight: 600;
-            min-width: 60px;
-            text-align: center;
-        }
-        .priority.high {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-        .priority.med {
-            background: rgba(234, 179, 8, 0.2);
-            color: #eab308;
-        }
-        .priority.low {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
         }
         
-        .task-content { flex: 1; }
-        .task-content h4 { color: #fff; margin-bottom: 0.25rem; }
-        .task-content p { color: #8b949e; font-size: 0.9rem; }
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
         
-        .completed-item {
+        .agent-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--agent-color, var(--accent-orange));
+        }
+        
+        .agent-header {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.5rem 0;
-            color: #8b949e;
-        }
-        .completed-item .check {
-            color: #22c55e;
-            font-size: 1.1rem;
-        }
-        .completed-item .date {
-            margin-left: auto;
-            font-size: 0.8rem;
+            margin-bottom: 1rem;
         }
         
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+        .agent-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .agent-info {
+            flex: 1;
+        }
+        
+        .agent-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+        
+        .agent-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .agent-status {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.5rem;
+        }
+        
+        .agent-status.active {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--status-active);
+        }
+        
+        .agent-status.idle {
+            background: rgba(234, 179, 8, 0.15);
+            color: var(--status-idle);
+        }
+        
+        .agent-status.offline {
+            background: rgba(107, 114, 128, 0.15);
+            color: var(--status-offline);
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        
+        .agent-current {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .agent-current-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.35rem;
+        }
+        
+        .agent-current-task {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+        
+        .agent-stats {
+            display: flex;
             gap: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .agent-stat {
             text-align: center;
+            flex: 1;
         }
-        .stat h3 {
-            font-size: 2rem;
-            color: #f97316;
+        
+        .agent-stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
-        .stat p {
-            color: #8b949e;
+        
+        .agent-stat-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        /* Activity Feed */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .activity-feed {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            flex: 1;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .activity-feed h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .activity-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .activity-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .activity-agent {
+            font-weight: 600;
             font-size: 0.85rem;
         }
         
-        footer {
-            text-align: center;
-            color: #8b949e;
+        .activity-action {
             font-size: 0.8rem;
-            margin-top: 2rem;
+            color: var(--text-secondary);
+            margin-top: 0.15rem;
+            line-height: 1.4;
         }
-        footer span { color: #f97316; }
+        
+        .activity-time {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+        
+        /* Quick Actions */
+        .quick-actions {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.25rem;
+        }
+        
+        .quick-actions h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        .action-btn {
+            width: 100%;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            color: var(--accent-orange);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-btn:hover {
+            background: rgba(249, 115, 22, 0.2);
+            transform: translateY(-1px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                flex-direction: row;
+            }
+            .activity-feed, .quick-actions {
+                flex: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .header-stats {
+                gap: 1rem;
+            }
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                flex-direction: column;
+            }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a3a4a;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="avatar">🧠</div>
-            <div>
-                <h1>Jerry AI</h1>
-                <p class="subtitle">UndrDog DTC Brain • Last updated: <span id="lastUpdate">Loading...</span></p>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🐕</div>
+                <div>
+                    <h1>UndrDog Mission Control</h1>
+                    <p>AI Agent Team Dashboard</p>
+                </div>
             </div>
-        </header>
-        
-        <div id="statusBadge" class="status-badge working">
-            <span class="pulse"></span>
-            <span id="statusText">Working</span>
-        </div>
-        
-        <div class="section">
-            <h2>🔥 Currently Working On</h2>
-            <div class="current-task" id="currentTask">
-                <h3>Loading...</h3>
-                <p>Fetching current status...</p>
+            
+            <div class="header-stats">
+                <div class="header-stat">
+                    <div class="header-stat-value" id="totalAgents">6</div>
+                    <div class="header-stat-label">Agents</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value" id="activeAgents">4</div>
+                    <div class="header-stat-label">Active</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-value" id="tasksToday">24</div>
+                    <div class="header-stat-label">Tasks Today</div>
+                </div>
+            </div>
+            
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span>LIVE</span>
             </div>
         </div>
-        
-        <div class="section">
-            <h2>📋 Queue</h2>
-            <ul class="task-list" id="taskQueue">
-                <li class="task-item">
-                    <span class="priority high">HIGH</span>
-                    <div class="task-content">
-                        <h4>Loading...</h4>
-                        <p>Fetching queue...</p>
+    </header>
+    
+    <main class="main">
+        <div class="content">
+            <!-- Jerry - Lead Agent -->
+            <div class="jerry-section">
+                <div class="jerry-header">
+                    <div class="jerry-avatar">🧠</div>
+                    <div class="jerry-info">
+                        <h2>Jerry</h2>
+                        <div class="jerry-role">Lead Agent • DTC Strategist</div>
                     </div>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="section">
-            <h2>✅ Recently Completed</h2>
-            <div id="completedTasks">
-                <div class="completed-item">
-                    <span class="check">✓</span>
-                    <span>Loading...</span>
-                    <span class="date">--</span>
+                    <div class="jerry-status">
+                        <span class="live-dot"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="jerry-current">
+                    <div class="jerry-current-label">Currently Working On</div>
+                    <div class="jerry-current-task" id="jerryTask">Building Mission Control Dashboard & Training Sub-Agents</div>
+                </div>
+            </div>
+            
+            <!-- Specialist Agents -->
+            <div class="agents-section">
+                <h2>👥 Specialist Agents</h2>
+                <div class="agents-grid" id="agentsGrid">
+                    
+                    <!-- Savanah - Creative Director -->
+                    <div class="agent-card" style="--agent-color: #ec4899;">
+                        <div class="agent-header">
+                            <div class="agent-avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">S</div>
+                            <div class="agent-info">
+                                <div class="agent-name">Savanah</div>
+                                <div class="agent-role">Creative Director</div>
+                            </div>
+                            <div class="agent-status active">
+                                <span class="status-dot"></span>
+                                Active
+                            </div>
+                        </div>
+                        <div class="agent-current">
+                            <div class="agent-current-label">Working On</div>
+                            <div class="agent-current-task">Reviewing MTRX batch 4 creatives, briefing new hook variations</div>
+                        </div>
+                        <div class="agent-stats">
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">12</div>
+                                <div class="agent-stat-label">Briefs Today</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">3</div>
+                                <div class="agent-stat-label">Reviews</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">94%</div>
+                                <div class="agent-stat-label">Approval</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dave - Email/SMS -->
+                    <div class="agent-card" style="--agent-color: #3b82f6;">
+                        <div class="agent-header">
+                            <div class="agent-avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">D</div>
+                            <div class="agent-info">
+                                <div class="agent-name">Dave</div>
+                                <div class="agent-role">Head of Email/SMS</div>
+                            </div>
+                            <div class="agent-status active">
+                                <span class="status-dot"></span>
+                                Active
+                            </div>
+                        </div>
+                        <div class="agent-current">
+                            <div class="agent-current-label">Working On</div>
+                            <div class="agent-current-task">Optimizing Buy or Die flow, analyzing Valentine's campaign performance</div>
+                        </div>
+                        <div class="agent-stats">
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">8</div>
+                                <div class="agent-stat-label">Flows</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">42%</div>
+                                <div class="agent-stat-label">Open Rate</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">$12k</div>
+                                <div class="agent-stat-label">Rev/Day</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tanner - CRO -->
+                    <div class="agent-card" style="--agent-color: #22c55e;">
+                        <div class="agent-header">
+                            <div class="agent-avatar" style="background: linear-gradient(135deg, #22c55e, #16a34a);">T</div>
+                            <div class="agent-info">
+                                <div class="agent-name">Tanner</div>
+                                <div class="agent-role">Head of CVR Optimization</div>
+                            </div>
+                            <div class="agent-status active">
+                                <span class="status-dot"></span>
+                                Active
+                            </div>
+                        </div>
+                        <div class="agent-current">
+                            <div class="agent-current-label">Working On</div>
+                            <div class="agent-current-task">A/B testing /bro page buybox placement, analyzing scroll depth data</div>
+                        </div>
+                        <div class="agent-stats">
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">3.2%</div>
+                                <div class="agent-stat-label">CVR</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">+18%</div>
+                                <div class="agent-stat-label">Lift</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">4</div>
+                                <div class="agent-stat-label">Tests Live</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Leanna - Influencer -->
+                    <div class="agent-card" style="--agent-color: #a855f7;">
+                        <div class="agent-header">
+                            <div class="agent-avatar" style="background: linear-gradient(135deg, #a855f7, #9333ea);">L</div>
+                            <div class="agent-info">
+                                <div class="agent-name">Leanna</div>
+                                <div class="agent-role">Head of Influencer Management</div>
+                            </div>
+                            <div class="agent-status idle">
+                                <span class="status-dot"></span>
+                                Idle
+                            </div>
+                        </div>
+                        <div class="agent-current">
+                            <div class="agent-current-label">Last Task</div>
+                            <div class="agent-current-task">Outreach to fitness influencers for March campaign, tracking deliverables</div>
+                        </div>
+                        <div class="agent-stats">
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">24</div>
+                                <div class="agent-stat-label">Partners</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">8</div>
+                                <div class="agent-stat-label">Pending</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">2.4x</div>
+                                <div class="agent-stat-label">Avg ROI</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Malby - Media Buying -->
+                    <div class="agent-card" style="--agent-color: #f97316;">
+                        <div class="agent-header">
+                            <div class="agent-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">M</div>
+                            <div class="agent-info">
+                                <div class="agent-name">Malby</div>
+                                <div class="agent-role">Head of Media Buying</div>
+                            </div>
+                            <div class="agent-status active">
+                                <span class="status-dot"></span>
+                                Active
+                            </div>
+                        </div>
+                        <div class="agent-current">
+                            <div class="agent-current-label">Working On</div>
+                            <div class="agent-current-task">Scaling winning ASC creatives, adjusting bid caps for weekend push</div>
+                        </div>
+                        <div class="agent-stats">
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">$4.2k</div>
+                                <div class="agent-stat-label">Spend Today</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">2.8x</div>
+                                <div class="agent-stat-label">ROAS</div>
+                            </div>
+                            <div class="agent-stat">
+                                <div class="agent-stat-value">$42</div>
+                                <div class="agent-stat-label">CPA</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
         
-        <div class="section">
-            <h2>📊 Today's Stats</h2>
-            <div class="stats" id="stats">
-                <div class="stat">
-                    <h3 id="tasksCompleted">-</h3>
-                    <p>Tasks Completed</p>
-                </div>
-                <div class="stat">
-                    <h3 id="messagesProcessed">-</h3>
-                    <p>Messages</p>
-                </div>
-                <div class="stat">
-                    <h3 id="activeHours">-</h3>
-                    <p>Active Hours</p>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Activity Feed -->
+            <div class="activity-feed">
+                <h3>📡 Live Activity</h3>
+                <div id="activityFeed">
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">M</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">Malby</div>
+                            <div class="activity-action">Increased budget on MTRX_UD2_M1_STAT3 by 25%</div>
+                            <div class="activity-time">2 min ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">S</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">Savanah</div>
+                            <div class="activity-action">Approved 3 new hook variations for destructive demo angle</div>
+                            <div class="activity-time">8 min ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: linear-gradient(135deg, #22c55e, #16a34a);">T</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">Tanner</div>
+                            <div class="activity-action">Started A/B test: Buybox above fold vs. original</div>
+                            <div class="activity-time">15 min ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">D</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">Dave</div>
+                            <div class="activity-action">Sent Valentine's Day flash sale email to 45k subscribers</div>
+                            <div class="activity-time">32 min ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">🧠</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">Jerry</div>
+                            <div class="activity-action">Completed Mission Control dashboard build</div>
+                            <div class="activity-time">45 min ago</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-avatar" style="background: linear-gradient(135deg, #a855f7, #9333ea);">L</div>
+                        <div class="activity-content">
+                            <div class="activity-agent">Leanna</div>
+                            <div class="activity-action">Sent outreach to @FitnessMike (450k followers)</div>
+                            <div class="activity-time">1 hr ago</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h3>⚡ Quick Actions</h3>
+                <button class="action-btn" onclick="alert('Opening Slack...')">
+                    💬 Message Jerry
+                </button>
+                <button class="action-btn" onclick="alert('Generating report...')">
+                    📊 Daily Report
+                </button>
+                <button class="action-btn" onclick="alert('Assigning task...')">
+                    ➕ Assign Task
+                </button>
+            </div>
         </div>
-        
-        <footer>
-            <p>Auto-refreshes every 30 seconds • Built by <span>Jerry</span> 🐕</p>
-        </footer>
-    </div>
+    </main>
     
     <script>
+        // Load status data
         async function loadStatus() {
             try {
                 const response = await fetch('status.json?' + Date.now());
                 const data = await response.json();
                 updateDashboard(data);
             } catch (e) {
-                console.log('Loading from embedded data...');
+                console.log('Using default data');
             }
         }
         
         function updateDashboard(data) {
-            // Update last updated time
-            document.getElementById('lastUpdate').textContent = data.lastUpdate || new Date().toLocaleString();
-            
-            // Update status badge
-            const badge = document.getElementById('statusBadge');
-            const statusText = document.getElementById('statusText');
-            badge.className = 'status-badge ' + (data.status || 'idle');
-            statusText.textContent = data.statusText || 'Idle';
-            
-            // Update current task
-            const currentTask = document.getElementById('currentTask');
-            if (data.currentTask) {
-                currentTask.innerHTML = `
-                    <h3>${data.currentTask.title}</h3>
-                    <p>${data.currentTask.description}</p>
-                    <p class="meta">Started: ${data.currentTask.started || 'Just now'}</p>
-                `;
+            if (data.jerry) {
+                document.getElementById('jerryTask').textContent = data.jerry.currentTask || 'Awaiting tasks...';
             }
             
-            // Update queue
-            const queue = document.getElementById('taskQueue');
-            if (data.queue && data.queue.length > 0) {
-                queue.innerHTML = data.queue.map(task => `
-                    <li class="task-item">
-                        <span class="priority ${task.priority}">${task.priority.toUpperCase()}</span>
-                        <div class="task-content">
-                            <h4>${task.title}</h4>
-                            <p>${task.description}</p>
-                        </div>
-                    </li>
-                `).join('');
-            }
-            
-            // Update completed
-            const completed = document.getElementById('completedTasks');
-            if (data.completed && data.completed.length > 0) {
-                completed.innerHTML = data.completed.map(task => `
-                    <div class="completed-item">
-                        <span class="check">✓</span>
-                        <span>${task.title}</span>
-                        <span class="date">${task.date}</span>
-                    </div>
-                `).join('');
-            }
-            
-            // Update stats
             if (data.stats) {
-                document.getElementById('tasksCompleted').textContent = data.stats.tasksCompleted || 0;
-                document.getElementById('messagesProcessed').textContent = data.stats.messages || 0;
-                document.getElementById('activeHours').textContent = data.stats.activeHours || '0h';
+                document.getElementById('activeAgents').textContent = data.stats.activeAgents || 4;
+                document.getElementById('tasksToday').textContent = data.stats.tasksToday || 24;
             }
         }
         
-        // Initial load
+        // Add some visual polish with time updates
+        function updateTimes() {
+            const times = document.querySelectorAll('.activity-time');
+            // Could dynamically update relative times here
+        }
+        
         loadStatus();
+        setInterval(loadStatus, 15000);
     </script>
 </body>
 </html>

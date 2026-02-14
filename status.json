@@ -1,64 +1,97 @@
 {
-  "lastUpdate": "Feb 2, 2026 10:15 AM EST",
-  "status": "working",
-  "statusText": "Building Project Tracker",
-  "currentTask": {
-    "title": "Project Tracker Dashboard",
-    "description": "Creating a live status dashboard so Chuckie can always see what I'm working on",
-    "started": "10:13 AM"
+  "lastUpdate": "2026-02-14T16:17:00Z",
+  "jerry": {
+    "status": "active",
+    "currentTask": "Building Mission Control Dashboard & Training Sub-Agents",
+    "todaysTasks": 8
   },
-  "queue": [
-    {
-      "priority": "high",
-      "title": "Competitor Dashboard - Weekly Updates",
-      "description": "Set up automated weekly competitor intelligence reports"
+  "agents": {
+    "savanah": {
+      "name": "Savanah",
+      "role": "Creative Director",
+      "status": "active",
+      "currentTask": "Reviewing MTRX batch 4 creatives, briefing new hook variations",
+      "stats": {
+        "briefsToday": 12,
+        "reviews": 3,
+        "approvalRate": 94
+      }
     },
-    {
-      "priority": "high",
-      "title": "TikTok Shop - @hansum.anthony Outreach",
-      "description": "Follow up on affiliate recruitment (200-300k GMV potential)"
+    "dave": {
+      "name": "Dave",
+      "role": "Head of Email/SMS",
+      "status": "active",
+      "currentTask": "Optimizing Buy or Die flow, analyzing Valentine's campaign performance",
+      "stats": {
+        "activeFlows": 8,
+        "openRate": 42,
+        "dailyRevenue": 12000
+      }
     },
-    {
-      "priority": "med",
-      "title": "Landing Page Funnel Tests",
-      "description": "Track LP development across Akshay, Josh's guy, Oddit, Vasta"
+    "tanner": {
+      "name": "Tanner",
+      "role": "Head of CVR Optimization",
+      "status": "active",
+      "currentTask": "A/B testing /bro page buybox placement, analyzing scroll depth data",
+      "stats": {
+        "cvr": 3.2,
+        "lift": 18,
+        "testsLive": 4
+      }
     },
-    {
-      "priority": "med",
-      "title": "Creative Intelligence Engine",
-      "description": "Build system to auto-track ad performance and spot patterns"
+    "leanna": {
+      "name": "Leanna",
+      "role": "Head of Influencer Management",
+      "status": "idle",
+      "currentTask": "Outreach to fitness influencers for March campaign, tracking deliverables",
+      "stats": {
+        "partners": 24,
+        "pending": 8,
+        "avgRoi": 2.4
+      }
     },
-    {
-      "priority": "low",
-      "title": "Customer Voice Mining",
-      "description": "Extract insights from reviews, support tickets, comments"
+    "malby": {
+      "name": "Malby",
+      "role": "Head of Media Buying",
+      "status": "active",
+      "currentTask": "Scaling winning ASC creatives, adjusting bid caps for weekend push",
+      "stats": {
+        "spendToday": 4200,
+        "roas": 2.8,
+        "cpa": 42
+      }
     }
-  ],
-  "completed": [
-    {
-      "title": "Competitor War Room Dashboard built",
-      "date": "Today 10:05 AM"
-    },
-    {
-      "title": "NADS + Hollow Alpaca full analysis",
-      "date": "Today 10:00 AM"
-    },
-    {
-      "title": "Tier 1/2 competitor lists updated",
-      "date": "Today 10:00 AM"
-    },
-    {
-      "title": "Overnight Slack channel deep dive",
-      "date": "Yesterday"
-    },
-    {
-      "title": "Meta Ads API + Triple Whale connected",
-      "date": "Feb 1"
-    }
-  ],
+  },
   "stats": {
-    "tasksCompleted": 5,
-    "messages": 23,
-    "activeHours": "3h"
-  }
+    "totalAgents": 6,
+    "activeAgents": 5,
+    "tasksToday": 24
+  },
+  "activity": [
+    {
+      "agent": "malby",
+      "action": "Increased budget on MTRX_UD2_M1_STAT3 by 25%",
+      "time": "2 min ago"
+    },
+    {
+      "agent": "savanah",
+      "action": "Approved 3 new hook variations for destructive demo angle",
+      "time": "8 min ago"
+    },
+    {
+      "agent": "tanner",
+      "action": "Started A/B test: Buybox above fold vs. original",
+      "time": "15 min ago"
+    },
+    {
+      "agent": "dave",
+      "action": "Sent Valentine's Day flash sale email to 45k subscribers",
+      "time": "32 min ago"
+    },
+    {
+      "agent": "jerry",
+      "action": "Completed Mission Control dashboard build",
+      "time": "45 min ago"
+    }
+  ]
 }
