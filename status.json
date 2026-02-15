@@ -139,30 +139,30 @@
   },
   "cronJobs": [
     {
-      "name": "Daily KPI Sync",
-      "schedule": "3:00 AM EST",
+      "name": "Memory Backup to GitHub",
+      "schedule": "12:00 AM EST",
       "frequency": "daily",
-      "description": "Pull Triple Whale + Meta Ads data, update dashboard",
+      "description": "Sync all memory files to github.com/chuckieg4/jerry-memory",
       "lastRun": null,
-      "nextRun": "2026-02-16T03:00:00",
-      "status": "active"
-    },
-    {
-      "name": "Daily Memory Consolidation",
-      "schedule": "11:30 PM EST",
-      "frequency": "daily",
-      "description": "Review daily notes, update MEMORY.md, create tomorrow's file",
-      "lastRun": "2026-02-14T23:30:00",
-      "nextRun": "2026-02-15T23:30:00",
+      "nextRun": "2026-02-16T00:00:00",
       "status": "active"
     },
     {
       "name": "Shopify Token Refresh",
       "schedule": "2:00 AM EST",
       "frequency": "daily",
-      "description": "Refresh Shopify API token",
+      "description": "Refresh Shopify API token (expires daily)",
       "lastRun": "2026-02-15T02:00:00",
       "nextRun": "2026-02-16T02:00:00",
+      "status": "active"
+    },
+    {
+      "name": "Daily KPI Brief (Moby + Clarity)",
+      "schedule": "3:00 AM EST",
+      "frequency": "daily",
+      "description": "Query Moby for CVR/ATC%, Clarity for /bro health, deliver brief to Telegram",
+      "lastRun": null,
+      "nextRun": "2026-02-16T03:00:00",
       "status": "active"
     },
     {
@@ -170,8 +170,17 @@
       "schedule": "9:00 AM EST",
       "frequency": "daily",
       "description": "Check for Claude 4.6 availability",
-      "lastRun": "2026-02-14T09:00:00",
-      "nextRun": "2026-02-15T09:00:00",
+      "lastRun": "2026-02-15T09:00:00",
+      "nextRun": "2026-02-16T09:00:00",
+      "status": "active"
+    },
+    {
+      "name": "Daily Memory Consolidation",
+      "schedule": "11:30 PM EST",
+      "frequency": "daily",
+      "description": "Review daily notes, update MEMORY.md, prep tomorrow's file",
+      "lastRun": "2026-02-14T23:30:00",
+      "nextRun": "2026-02-15T23:30:00",
       "status": "active"
     },
     {
@@ -180,7 +189,7 @@
       "frequency": "weekly",
       "description": "Pull top creatives from Parker AI, update Savanah",
       "lastRun": null,
-      "nextRun": "2026-02-16T09:00:00",
+      "nextRun": "2026-02-17T09:00:00",
       "status": "active"
     }
   ],
