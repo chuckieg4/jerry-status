@@ -1391,28 +1391,28 @@
                     </div>
                 </div>
                 
-                <div class="detail-card full-width">
-                    <h3>📊 Conversion Rates (Last 30D vs Previous 30D)</h3>
+                <div class="detail-card full-width" style="border: 2px solid var(--accent-cyan); background: rgba(6, 182, 212, 0.05);">
+                    <h3>📊 Conversion Rates (Last 30D vs Previous 30D) <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Moby</span></h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="tanner-bro-cvr">2.8%</div>
                             <div class="kpi-label">/bro CVR</div>
-                            <div class="kpi-trend up">↑ 8% vs 2.6%</div>
+                            <div class="kpi-trend up" id="tanner-bro-cvr-trend">↑ 8% vs 2.6%</div>
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="tanner-home-cvr">1.2%</div>
                             <div class="kpi-label">Home Page CVR</div>
-                            <div class="kpi-trend">— flat vs 1.2%</div>
+                            <div class="kpi-trend" id="tanner-home-cvr-trend">— flat vs 1.2%</div>
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="tanner-site-cvr">2.1%</div>
                             <div class="kpi-label">Site-Wide CVR</div>
-                            <div class="kpi-trend up">↑ 5% vs 2.0%</div>
+                            <div class="kpi-trend up" id="tanner-site-cvr-trend">↑ 5% vs 2.0%</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">95%</div>
+                            <div class="kpi-value neutral" id="tanner-mobile">95%</div>
                             <div class="kpi-label">Mobile Traffic</div>
-                            <div class="kpi-trend">— flat</div>
+                            <div class="kpi-trend" id="tanner-mobile-trend">— flat</div>
                         </div>
                     </div>
                 </div>
@@ -2099,9 +2099,9 @@
             }
             
             // Update Web Analytics (Moby-sourced blended data)
-            if (data.webAnalytics && data.webAnalytics.metrics) {
-                const wa = data.webAnalytics.metrics;
-                const waDate = data.webAnalytics.date;
+            if (data.webAnalytics && data.webAnalytics.yesterday) {
+                const wa = data.webAnalytics.yesterday;
+                const waDate = wa.date;
                 
                 if (wa.cvr) {
                     document.getElementById('wa-cvr').textContent = wa.cvr.toFixed(2) + '%';
@@ -2125,6 +2125,57 @@
                     const dateObj = new Date(waDate + 'T00:00:00');
                     const formatted = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                     document.getElementById('wa-sessions-date').textContent = formatted;
+                }
+            }
+            
+            // Update 30D CVR data (Moby-sourced)
+            if (data.webAnalytics && data.webAnalytics.last30d) {
+                const cvr30 = data.webAnalytics.last30d;
+                
+                // Helper to format trend
+                function formatTrend(change, prevVal) {
+                    if (change > 0) return '↑ ' + change + '% vs ' + prevVal + '%';
+                    if (change < 0) return '↓ ' + Math.abs(change) + '% vs ' + prevVal + '%';
+                    return '— flat vs ' + prevVal + '%';
+                }
+                
+                // Helper to set trend class
+                function setTrendClass(el, change) {
+                    el.classList.remove('up', 'down');
+                    if (change > 0) el.classList.add('up');
+                    if (change < 0) el.classList.add('down');
+                }
+                
+                // /bro CVR
+                if (cvr30.broCvr !== undefined) {
+                    document.getElementById('tanner-bro-cvr').textContent = cvr30.broCvr.toFixed(1) + '%';
+                    const trendEl = document.getElementById('tanner-bro-cvr-trend');
+                    trendEl.textContent = formatTrend(cvr30.broCvrChange, cvr30.broCvrPrev);
+                    setTrendClass(trendEl, cvr30.broCvrChange);
+                }
+                
+                // Home CVR
+                if (cvr30.homeCvr !== undefined) {
+                    document.getElementById('tanner-home-cvr').textContent = cvr30.homeCvr.toFixed(1) + '%';
+                    const trendEl = document.getElementById('tanner-home-cvr-trend');
+                    trendEl.textContent = formatTrend(cvr30.homeCvrChange, cvr30.homeCvrPrev);
+                    setTrendClass(trendEl, cvr30.homeCvrChange);
+                }
+                
+                // Site-wide CVR
+                if (cvr30.siteWideCvr !== undefined) {
+                    document.getElementById('tanner-site-cvr').textContent = cvr30.siteWideCvr.toFixed(1) + '%';
+                    const trendEl = document.getElementById('tanner-site-cvr-trend');
+                    trendEl.textContent = formatTrend(cvr30.siteWideCvrChange, cvr30.siteWideCvrPrev);
+                    setTrendClass(trendEl, cvr30.siteWideCvrChange);
+                }
+                
+                // Mobile traffic
+                if (cvr30.mobileTraffic !== undefined) {
+                    document.getElementById('tanner-mobile').textContent = cvr30.mobileTraffic + '%';
+                    const trendEl = document.getElementById('tanner-mobile-trend');
+                    trendEl.textContent = formatTrend(cvr30.mobileTrafficChange, cvr30.mobileTrafficPrev);
+                    setTrendClass(trendEl, cvr30.mobileTrafficChange);
                 }
             }
         }

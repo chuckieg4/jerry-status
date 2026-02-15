@@ -218,17 +218,28 @@
   "webAnalytics": {
     "source": "Triple Whale Moby (Browser Automation)",
     "lastSync": "2026-02-15T11:30:00Z",
-    "date": "2026-02-14",
-    "metrics": {
+    "yesterday": {
+      "date": "2026-02-14",
       "sessions": 45110,
       "cvr": 4.33,
       "atcRate": 6.59,
       "orders": 1952,
       "atcSessions": 2971
     },
-    "derived": {
-      "atcToPurchaseRate": 65.7,
-      "revenuePerSession": 4.58
+    "last30d": {
+      "period": "Last 30D",
+      "broCvr": 2.8,
+      "broCvrPrev": 2.6,
+      "broCvrChange": 8,
+      "homeCvr": 1.2,
+      "homeCvrPrev": 1.2,
+      "homeCvrChange": 0,
+      "siteWideCvr": 2.1,
+      "siteWideCvrPrev": 2.0,
+      "siteWideCvrChange": 5,
+      "mobileTraffic": 95,
+      "mobileTrafficPrev": 95,
+      "mobileTrafficChange": 0
     }
   },
   "meta": {
