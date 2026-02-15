@@ -43,8 +43,8 @@
     "tanner": {
       "name": "Tanner",
       "role": "Head of CVR Optimization",
-      "status": "idle",
-      "currentTask": "Analyzing /bro page scroll depth data, planning buybox test",
+      "status": "active",
+      "currentTask": "Daily bug patrol: Homepage, /bro, PDP checks + Clarity anomaly monitoring",
       "lastActive": "2026-02-14T16:15:00Z",
       "stats": {
         "cvr": 3.2,
@@ -163,6 +163,15 @@
       "description": "Query Moby for CVR/ATC%, Clarity for /bro health, deliver brief to Telegram",
       "lastRun": null,
       "nextRun": "2026-02-16T03:00:00",
+      "status": "active"
+    },
+    {
+      "name": "Tanner Daily Bug Check",
+      "schedule": "8:00 AM EST",
+      "frequency": "daily",
+      "description": "Check homepage, /bro, PDP for JS errors, broken buttons, Clarity anomalies",
+      "lastRun": null,
+      "nextRun": "2026-02-16T08:00:00",
       "status": "active"
     },
     {
