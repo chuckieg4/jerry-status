@@ -666,6 +666,16 @@
             <span class="tab-info"><span>Penny</span><span class="tab-title">Finance</span></span>
             <span class="tab-status active"></span>
         </button>
+        <button class="nav-tab" onclick="showTab('memory')">
+            <span class="tab-emoji">🧠</span>
+            <span class="tab-info"><span>Memory</span><span class="tab-title">Knowledge Base</span></span>
+            <span class="tab-status active"></span>
+        </button>
+        <button class="nav-tab" onclick="showTab('cron')">
+            <span class="tab-emoji">⏰</span>
+            <span class="tab-info"><span>Cron</span><span class="tab-title">Scheduled Jobs</span></span>
+            <span class="tab-status active"></span>
+        </button>
     </nav>
     
     <main class="main">
@@ -1828,6 +1838,162 @@
                         <div class="info-item"><span class="icon">🎨</span> Creative Performance Metrics</div>
                         <div class="info-item"><span class="icon">📈</span> Scaling Decision Matrix</div>
                         <div class="info-item"><span class="icon">📋</span> Daily/Weekly Reporting</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Memory Panel -->
+        <div id="panel-memory" class="tab-panel">
+            <div class="agent-detail-header">
+                <div class="agent-detail-avatar" style="background: linear-gradient(135deg, #a855f7, #7c3aed);">🧠</div>
+                <div class="agent-detail-info">
+                    <h2>Memory & Knowledge Base</h2>
+                    <div class="agent-detail-role">What Jerry & Agents Know</div>
+                </div>
+            </div>
+            
+            <div class="agent-detail">
+                <div class="detail-card">
+                    <h3>📚 Jerry's Long-Term Memory</h3>
+                    <div class="info-list">
+                        <div class="info-item"><span class="icon">📄</span> <strong>MEMORY.md</strong> — 512 lines, 20.7 KB — Core knowledge, brand context, learnings</div>
+                        <div class="info-item"><span class="icon">📋</span> <strong>AGENTS.md</strong> — Operational playbook, how I work</div>
+                        <div class="info-item"><span class="icon">💭</span> <strong>SOUL.md</strong> — Personality, vibe, boundaries</div>
+                        <div class="info-item"><span class="icon">👤</span> <strong>USER.md</strong> — About Chuckie, preferences, context</div>
+                        <div class="info-item"><span class="icon">🔧</span> <strong>TOOLS.md</strong> — API keys, credentials, quick commands</div>
+                        <div class="info-item"><span class="icon">💓</span> <strong>HEARTBEAT.md</strong> — Proactive monitoring checklist</div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>📅 Daily Notes (Recent)</h3>
+                    <div class="info-list" id="memory-daily-notes">
+                        <div class="info-item"><span class="icon">📝</span> <strong>2026-02-15.md</strong> — 2.2 KB — Today's session log</div>
+                        <div class="info-item"><span class="icon">📝</span> <strong>2026-02-14.md</strong> — 18.3 KB — Valentine's Day mega-session</div>
+                        <div class="info-item"><span class="icon">📝</span> <strong>2026-02-13.md</strong> — 1.4 KB</div>
+                        <div class="info-item"><span class="icon">📝</span> <strong>2026-02-12.md</strong> — 1.6 KB</div>
+                        <div class="info-item"><span class="icon">📝</span> <strong>2026-02-11.md</strong> — 1.6 KB</div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>🤖 Agent Profiles & Training</h3>
+                    <div class="info-list" id="memory-agent-profiles">
+                        <div class="info-item"><span class="icon">🎨</span> <strong>Savanah</strong> — SAVANAH.md (43.5 KB) + PARKER-INTEL.md, CREATIVE-EXPERTS.md</div>
+                        <div class="info-item"><span class="icon">📧</span> <strong>Dave</strong> — DAVE.md (44.6 KB)</div>
+                        <div class="info-item"><span class="icon">📈</span> <strong>Tanner</strong> — TANNER.md (41.0 KB)</div>
+                        <div class="info-item"><span class="icon">🤝</span> <strong>Leanna</strong> — LEANNA.md (33.3 KB)</div>
+                        <div class="info-item"><span class="icon">📊</span> <strong>Malby</strong> — MALBY.md (42.1 KB)</div>
+                        <div class="info-item"><span class="icon">🪙</span> <strong>Penny</strong> — PENNY.md (5.1 KB)</div>
+                        <div class="info-item"><span class="icon">🏠</span> <strong>Rex</strong> — REALESTATE.md (11.4 KB)</div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>📑 System Docs</h3>
+                    <div class="info-list">
+                        <div class="info-item"><span class="icon">🎯</span> <strong>ACTION-PLAN-Q1-2026.md</strong> — 5.6 KB — Quarterly priorities</div>
+                        <div class="info-item"><span class="icon">📆</span> <strong>WEEKLY-RHYTHM.md</strong> — 5.0 KB — Weekly cadence</div>
+                        <div class="info-item"><span class="icon">☀️</span> <strong>MORNING-BRIEFING.md</strong> — 3.0 KB — Daily briefing template</div>
+                        <div class="info-item"><span class="icon">⚙️</span> <strong>AGENT_SYSTEM.md</strong> — 3.3 KB — How agents work together</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cron Panel -->
+        <div id="panel-cron" class="tab-panel">
+            <div class="agent-detail-header">
+                <div class="agent-detail-avatar" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">⏰</div>
+                <div class="agent-detail-info">
+                    <h2>Scheduled Jobs</h2>
+                    <div class="agent-detail-role">Automated Tasks Running in Background</div>
+                </div>
+            </div>
+            
+            <div class="agent-detail">
+                <div class="detail-card">
+                    <h3>📅 Daily Jobs</h3>
+                    <div class="info-list" id="cron-daily-jobs">
+                        <div class="info-item">
+                            <span class="icon">📊</span> 
+                            <div>
+                                <strong>Daily KPI Sync</strong> — 3:00 AM EST<br>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Pull Triple Whale + Meta Ads data, update dashboard</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">🔄</span> 
+                            <div>
+                                <strong>Shopify Token Refresh</strong> — 2:00 AM EST<br>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Refresh Shopify API token (expires every 24h)</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">🧠</span> 
+                            <div>
+                                <strong>Daily Memory Consolidation</strong> — 11:30 PM EST<br>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Review daily notes, update MEMORY.md, create tomorrow's file</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">🤖</span> 
+                            <div>
+                                <strong>Claude 4.6 Check</strong> — 9:00 AM EST<br>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Check for Claude 4.6 availability, notify if new</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>📆 Weekly Jobs</h3>
+                    <div class="info-list" id="cron-weekly-jobs">
+                        <div class="info-item">
+                            <span class="icon">🎨</span> 
+                            <div>
+                                <strong>Weekly Parker Creative Sync</strong> — Mondays 9:00 AM EST<br>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Pull top creatives from Parker AI, update Savanah's playbook</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>🔔 Alert Thresholds</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value negative">$40+</div>
+                            <div class="kpi-label">CPA Alert</div>
+                            <div class="kpi-trend">Notify if CPA exceeds</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value negative">&lt;2x</div>
+                            <div class="kpi-label">ROAS Alert</div>
+                            <div class="kpi-trend">Notify if ROAS drops below</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value negative">+25%</div>
+                            <div class="kpi-label">CPA Spike</div>
+                            <div class="kpi-trend">Notify on sudden increase</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value negative">±20%</div>
+                            <div class="kpi-label">Revenue Anomaly</div>
+                            <div class="kpi-trend">Notify on unusual swings</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-card">
+                    <h3>📡 Data Sources</h3>
+                    <div class="tag-list">
+                        <span class="tag green">Triple Whale API</span>
+                        <span class="tag blue">Meta Ads API</span>
+                        <span class="tag purple">Klaviyo API</span>
+                        <span class="tag orange">Shopify Admin API</span>
+                        <span class="tag pink">Parker AI (Manual)</span>
                     </div>
                 </div>
             </div>

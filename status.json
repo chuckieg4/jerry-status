@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-14T22:01:18Z",
+  "lastUpdate": "2026-02-15T12:49:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Mission Control heartbeat — Valentine's Day 💕 1,049 purchases @ $28.47 CPA",
-    "todaysTasks": 35
+    "currentTask": "Dashboard update — adding memory & cron visibility",
+    "todaysTasks": 3
   },
   "agents": {
     "savanah": {
@@ -16,18 +16,28 @@
         "briefsToday": 12,
         "reviews": 3,
         "approvalRate": 94
+      },
+      "memory": {
+        "profile": "agents/SAVANAH.md",
+        "sizeKB": 43.5,
+        "training": ["PARKER-INTEL.md", "CREATIVE-EXPERTS.md"]
       }
     },
     "dave": {
       "name": "Dave",
       "role": "Head of Email/SMS",
       "status": "idle",
-      "currentTask": "Clean Slate E10 sent 3PM, E11-E15 queued — Valentine's Day 💕 email/SMS driving revenue",
+      "currentTask": "Clean Slate E10 sent 3PM, E11-E15 queued",
       "lastActive": "2026-02-14T21:17:00Z",
       "stats": {
         "activeFlows": 7,
         "openRate": 42,
         "campaignsSent": 7
+      },
+      "memory": {
+        "profile": "agents/DAVE.md",
+        "sizeKB": 44.6,
+        "training": []
       }
     },
     "tanner": {
@@ -40,6 +50,11 @@
         "cvr": 3.2,
         "lift": 18,
         "testsLive": 4
+      },
+      "memory": {
+        "profile": "agents/TANNER.md",
+        "sizeKB": 41.0,
+        "training": []
       }
     },
     "leanna": {
@@ -52,148 +67,163 @@
         "partners": 24,
         "pending": 8,
         "avgRoi": 2.4
+      },
+      "memory": {
+        "profile": "agents/LEANNA.md",
+        "sizeKB": 33.3,
+        "training": []
       }
     },
     "malby": {
       "name": "Malby",
       "role": "Head of Media Buying",
       "status": "idle",
-      "currentTask": "Valentine's Day 💕 1,049 purchases, $28.47 CPA, 3.22x ROAS — crushing it! 🔥",
+      "currentTask": "Monitoring post-Valentine's performance",
       "lastActive": "2026-02-14T22:00:00Z",
       "stats": {
-        "spendToday": 29862.42,
-        "roas": 3.22,
-        "cpa": 28.47,
-        "purchases": 1049
+        "spendToday": 8369,
+        "roas": 2.5,
+        "cpa": 46.24,
+        "purchases": 181
+      },
+      "memory": {
+        "profile": "agents/MALBY.md",
+        "sizeKB": 42.1,
+        "training": []
+      }
+    },
+    "penny": {
+      "name": "Penny",
+      "role": "Accountant",
+      "status": "idle",
+      "currentTask": "Tracking P&L and margins",
+      "lastActive": "2026-02-14T17:18:00Z",
+      "stats": {},
+      "memory": {
+        "profile": "agents/PENNY.md",
+        "sizeKB": 5.1,
+        "training": []
+      }
+    },
+    "rex": {
+      "name": "Rex",
+      "role": "Real Estate Expert",
+      "status": "idle",
+      "currentTask": "Cape Coral property underwriting",
+      "lastActive": "2026-02-14T21:02:00Z",
+      "stats": {},
+      "memory": {
+        "profile": "agents/REALESTATE.md",
+        "sizeKB": 11.4,
+        "training": []
       }
     }
   },
+  "jerryMemory": {
+    "longTerm": {
+      "file": "MEMORY.md",
+      "lines": 512,
+      "sizeKB": 20.7,
+      "lastUpdated": "2026-02-15"
+    },
+    "dailyNotes": [
+      {"date": "2026-02-15", "file": "memory/2026-02-15.md", "sizeKB": 2.2},
+      {"date": "2026-02-14", "file": "memory/2026-02-14.md", "sizeKB": 18.3},
+      {"date": "2026-02-13", "file": "memory/2026-02-13.md", "sizeKB": 1.4},
+      {"date": "2026-02-12", "file": "memory/2026-02-12.md", "sizeKB": 1.6},
+      {"date": "2026-02-11", "file": "memory/2026-02-11.md", "sizeKB": 1.6}
+    ],
+    "workspaceFiles": [
+      "AGENTS.md", "SOUL.md", "USER.md", "IDENTITY.md", "TOOLS.md", "HEARTBEAT.md"
+    ]
+  },
+  "cronJobs": [
+    {
+      "name": "Daily KPI Sync",
+      "schedule": "3:00 AM EST",
+      "frequency": "daily",
+      "description": "Pull Triple Whale + Meta Ads data, update dashboard",
+      "lastRun": null,
+      "nextRun": "2026-02-16T03:00:00",
+      "status": "active"
+    },
+    {
+      "name": "Daily Memory Consolidation",
+      "schedule": "11:30 PM EST",
+      "frequency": "daily",
+      "description": "Review daily notes, update MEMORY.md, create tomorrow's file",
+      "lastRun": "2026-02-14T23:30:00",
+      "nextRun": "2026-02-15T23:30:00",
+      "status": "active"
+    },
+    {
+      "name": "Shopify Token Refresh",
+      "schedule": "2:00 AM EST",
+      "frequency": "daily",
+      "description": "Refresh Shopify API token",
+      "lastRun": "2026-02-15T02:00:00",
+      "nextRun": "2026-02-16T02:00:00",
+      "status": "active"
+    },
+    {
+      "name": "Claude 4.6 Check",
+      "schedule": "9:00 AM EST",
+      "frequency": "daily",
+      "description": "Check for Claude 4.6 availability",
+      "lastRun": "2026-02-14T09:00:00",
+      "nextRun": "2026-02-15T09:00:00",
+      "status": "active"
+    },
+    {
+      "name": "Weekly Parker Creative Sync",
+      "schedule": "Mondays 9:00 AM EST",
+      "frequency": "weekly",
+      "description": "Pull top creatives from Parker AI, update Savanah",
+      "lastRun": null,
+      "nextRun": "2026-02-16T09:00:00",
+      "status": "active"
+    }
+  ],
+  "systemDocs": [
+    {"name": "Q1 2026 Action Plan", "file": "agents/ACTION-PLAN-Q1-2026.md", "sizeKB": 5.6},
+    {"name": "Weekly Rhythm", "file": "agents/WEEKLY-RHYTHM.md", "sizeKB": 5.0},
+    {"name": "Morning Briefing Template", "file": "agents/MORNING-BRIEFING.md", "sizeKB": 3.0},
+    {"name": "Agent System Overview", "file": "agents/AGENT_SYSTEM.md", "sizeKB": 3.3}
+  ],
   "stats": {
-    "totalAgents": 6,
+    "totalAgents": 7,
     "activeAgents": 0,
-    "tasksToday": 54
+    "tasksToday": 3
   },
   "activity": [
     {
       "agent": "jerry",
-      "action": "💓 Status heartbeat — 0 active agents, Valentine's Day 💕 1,049 purchases @ $28.47 CPA",
+      "action": "📊 Dashboard update — added memory & cron visibility",
       "time": "just now",
-      "timestamp": "2026-02-14T22:01:18Z"
-    },
-    {
-      "agent": "malby",
-      "action": "📊 Meta sync: $29.9K spent, 1,049 purchases, $28.47 CPA, 3.22x ROAS — Valentine's Day 💕🔥",
-      "time": "1 min ago",
-      "timestamp": "2026-02-14T22:00:00Z"
+      "timestamp": "2026-02-15T12:49:00Z"
     },
     {
       "agent": "jerry",
-      "action": "💓 Status heartbeat — 0 active agents, Valentine's Day 💕 1,025 purchases @ $27.79 CPA",
-      "time": "30 min ago",
-      "timestamp": "2026-02-14T21:31:46Z"
-    },
-    {
-      "agent": "malby",
-      "action": "📊 Meta sync: $28.5K spent, 1,025 purchases, $27.79 CPA, 3.2x ROAS — Valentine's Day 💕🔥",
-      "time": "31 min ago",
-      "timestamp": "2026-02-14T21:30:00Z"
-    },
-    {
-      "agent": "dave",
-      "action": "📧 Klaviyo sync: 7 live flows, E10 sent 3PM, E11-E15 queued — Clean Slate momentum 💕",
-      "time": "44 min ago",
-      "timestamp": "2026-02-14T21:17:01Z"
-    },
-    {
-      "agent": "malby",
-      "action": "📊 Meta sync: $27.8K spent, 1,015 purchases, $27.43 CPA, 3.33x ROAS — BROKE 1K PURCHASES! 💕🔥",
-      "time": "46 min ago",
-      "timestamp": "2026-02-14T21:15:01Z"
+      "action": "⏰ Created Daily KPI Sync cron (3am)",
+      "time": "2 min ago",
+      "timestamp": "2026-02-15T12:47:00Z"
     },
     {
       "agent": "jerry",
-      "action": "💓 Status heartbeat — agents resting, Valentine's Day 💕 774 purchases @ $28.50 CPA",
-      "time": "1h ago",
-      "timestamp": "2026-02-14T20:59:14Z"
-    },
-    {
-      "agent": "jerry",
-      "action": "💓 Status heartbeat — 0 active agents, Valentine's Day cruising 💕 774 purchases @ $28.50 CPA",
-      "time": "1h 18m ago",
-      "timestamp": "2026-02-14T20:43:11Z"
-    },
-    {
-      "agent": "jerry",
-      "action": "💓 Status heartbeat — 0 active agents, Valentine's Day 💕 774 purchases, $28.50 CPA",
-      "time": "2h ago",
-      "timestamp": "2026-02-14T19:58:14Z"
-    },
-    {
-      "agent": "jerry",
-      "action": "💓 Status heartbeat — 774 purchases, $28.50 CPA, 3.27x ROAS 💕 Valentine's Day momentum",
-      "time": "2h 46m ago",
-      "timestamp": "2026-02-14T19:15:48Z"
-    },
-    {
-      "agent": "dave",
-      "action": "📧 Klaviyo sync: 7 live flows, E10 scheduled 3PM today, E11-E15 drafted through Feb 17",
-      "time": "2h 46m ago",
-      "timestamp": "2026-02-14T19:15:00Z"
-    },
-    {
-      "agent": "malby",
-      "action": "📊 Meta sync: $22K spent, 774 purchases, $28.50 CPA, 3.27x ROAS — dalton_Nowlive_V6 top performer (184 purch @ $18 CPA) 💕",
-      "time": "3h ago",
-      "timestamp": "2026-02-14T19:01:36Z"
-    },
-    {
-      "agent": "malby",
-      "action": "📊 Meta sync: $20.4K spent, 714 purchases, $28.61 CPA, 3.26x ROAS — Clean Slate creatives on fire! 🔥💕",
-      "time": "3h 31m ago",
-      "timestamp": "2026-02-14T18:30:00Z"
-    },
-    {
-      "agent": "dave",
-      "action": "📧 Klaviyo sync: 7 live flows, 2 campaigns sent today (E08+E09), Clean Slate E10-E15 queued",
-      "time": "3h 46m ago",
-      "timestamp": "2026-02-14T18:15:00Z"
-    },
-    {
-      "agent": "malby",
-      "action": "📊 Meta sync: $19.4K spent, 622 purchases, $31.13 CPA, 3.02x ROAS — Chino's 000_Ads_v7 crushing it at $18 CPA 🔥",
-      "time": "4h ago",
-      "timestamp": "2026-02-14T18:00:00Z"
+      "action": "📊 Morning KPI pull — $8.4K spend, 181 purchases, $46 CPA (early day)",
+      "time": "15 min ago",
+      "timestamp": "2026-02-15T12:34:00Z"
     }
   ],
-  "shopify": {
-    "balance": 542170.72,
-    "customers": 240565,
-    "todayOrders": 495,
-    "todayRevenue": 43113.80,
-    "aov": 87.09,
-    "tomorrowPayout": 66836.64,
-    "lastSync": "2026-02-14T17:40:00Z"
-  },
   "meta": {
-    "lastMetaSync": "2026-02-14T22:00:00Z",
+    "lastMetaSync": "2026-02-15T12:34:00Z",
     "lastKlaviyoSync": "2026-02-14T21:17:01Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "dataSources": [
+      "triple-whale-api",
       "meta-ads-api",
       "klaviyo-api",
       "shopify-admin-api"
-    ],
-    "cronJobs": [
-      "meta-ads-sync",
-      "klaviyo-sync",
-      "shopify-sync",
-      "status-heartbeat"
-    ],
-    "topAd": {
-      "name": "MTRX_UD3_M3_STAT6_4-5_V2",
-      "spend": 224.7,
-      "purchases": 6,
-      "cpa": 37.45
-    }
+    ]
   }
 }
