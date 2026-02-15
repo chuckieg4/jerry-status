@@ -220,26 +220,28 @@
     "lastSync": "2026-02-15T11:30:00Z",
     "yesterday": {
       "date": "2026-02-14",
-      "sessions": 45110,
       "cvr": 4.33,
-      "atcRate": 6.59,
-      "orders": 1952,
-      "atcSessions": 2971
+      "atcRate": 6.59
     },
-    "last30d": {
-      "period": "Last 30D",
-      "broCvr": 2.8,
-      "broCvrPrev": 2.6,
-      "broCvrChange": 8,
-      "homeCvr": 1.2,
-      "homeCvrPrev": 1.2,
-      "homeCvrChange": 0,
-      "siteWideCvr": 2.1,
-      "siteWideCvrPrev": 2.0,
-      "siteWideCvrChange": 5,
-      "mobileTraffic": 95,
-      "mobileTrafficPrev": 95,
-      "mobileTrafficChange": 0
+    "last7d": {
+      "period": "Last 7 Days",
+      "cvr": 6.35,
+      "atcRate": 8.52
+    }
+  },
+  "broPageHealth": {
+    "source": "Microsoft Clarity",
+    "lastSync": "2026-02-15T11:40:00Z",
+    "period": "Last 30D vs Previous 30D",
+    "sessionDuration": {
+      "current": 102,
+      "previous": 97,
+      "changePercent": 5.2
+    },
+    "scrollDepth": {
+      "current": 54.6,
+      "previous": 55.2,
+      "changePercent": -1.1
     }
   },
   "meta": {

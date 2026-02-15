@@ -1365,91 +1365,50 @@
             </div>
             
             <div class="agent-detail">
-                <div class="detail-card full-width" style="border: 2px solid var(--accent-green); background: rgba(34, 197, 94, 0.05);">
-                    <h3>🛒 Web Analytics Blended (Yesterday) <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Moby</span></h3>
+                <div class="detail-card" style="border: 2px solid var(--accent-green); background: rgba(34, 197, 94, 0.05);">
+                    <h3>📊 Yesterday Analytics <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Moby</span></h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
                             <div class="kpi-value positive" id="wa-cvr">4.33%</div>
                             <div class="kpi-label">CVR (Blended)</div>
-                            <div class="kpi-trend" id="wa-cvr-trend">Orders / Sessions</div>
+                            <div class="kpi-trend" id="wa-cvr-date">Feb 14</div>
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value positive" id="wa-atc">6.59%</div>
                             <div class="kpi-label">ATC Rate</div>
-                            <div class="kpi-trend" id="wa-atc-trend">ATC / Sessions</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="wa-sessions">45,110</div>
-                            <div class="kpi-label">Sessions</div>
-                            <div class="kpi-trend" id="wa-sessions-date">Feb 14</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="wa-orders">1,952</div>
-                            <div class="kpi-label">Orders</div>
-                            <div class="kpi-trend" id="wa-orders-trend">ATC→Purchase: 66%</div>
+                            <div class="kpi-trend" id="wa-atc-date">Feb 14</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="detail-card full-width" style="border: 2px solid var(--accent-cyan); background: rgba(6, 182, 212, 0.05);">
-                    <h3>📊 Conversion Rates (Last 30D vs Previous 30D) <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Moby</span></h3>
+                <div class="detail-card" style="border: 2px solid var(--accent-cyan); background: rgba(6, 182, 212, 0.05);">
+                    <h3>📈 Last 7 Days Analytics <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Moby</span></h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-bro-cvr">2.8%</div>
-                            <div class="kpi-label">/bro CVR</div>
-                            <div class="kpi-trend up" id="tanner-bro-cvr-trend">↑ 8% vs 2.6%</div>
+                            <div class="kpi-value neutral" id="wa-7d-cvr">6.35%</div>
+                            <div class="kpi-label">CVR (Blended)</div>
+                            <div class="kpi-trend">7-day avg</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-home-cvr">1.2%</div>
-                            <div class="kpi-label">Home Page CVR</div>
-                            <div class="kpi-trend" id="tanner-home-cvr-trend">— flat vs 1.2%</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-site-cvr">2.1%</div>
-                            <div class="kpi-label">Site-Wide CVR</div>
-                            <div class="kpi-trend up" id="tanner-site-cvr-trend">↑ 5% vs 2.0%</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-mobile">95%</div>
-                            <div class="kpi-label">Mobile Traffic</div>
-                            <div class="kpi-trend" id="tanner-mobile-trend">— flat</div>
+                            <div class="kpi-value neutral" id="wa-7d-atc">8.52%</div>
+                            <div class="kpi-label">ATC Rate</div>
+                            <div class="kpi-trend">7-day avg</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="detail-card">
-                    <h3>📉 /bro Page Health (Last 30D vs Previous 30D)</h3>
+                <div class="detail-card" style="border: 2px solid var(--accent-purple); background: rgba(168, 85, 247, 0.05);">
+                    <h3>📉 /bro Page Health (30D vs 30D) <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Clarity</span></h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value negative" id="tanner-bro-bounce">54.6%</div>
-                            <div class="kpi-label">Bounce Rate</div>
-                            <div class="kpi-trend">— flat vs 55.2%</div>
+                            <div class="kpi-value neutral" id="bro-session-duration">1:42</div>
+                            <div class="kpi-label">Session Duration</div>
+                            <div class="kpi-trend up" id="bro-session-trend">↑ 5% vs 1:37</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value negative" id="tanner-buybox">10%</div>
-                            <div class="kpi-label">Reach Buybox</div>
-                            <div class="kpi-trend">— flat vs 9.8%</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-bro-session">1:42</div>
-                            <div class="kpi-label">/bro Avg Session</div>
-                            <div class="kpi-trend up">↑ 6% vs 1:37</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="detail-card">
-                    <h3>🏠 Home Page Health (Last 30D vs Previous 30D)</h3>
-                    <div class="kpi-grid">
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-home-bounce">38%</div>
-                            <div class="kpi-label">Bounce Rate</div>
-                            <div class="kpi-trend up">↓ 5% vs 40%</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral" id="tanner-home-session">2:15</div>
-                            <div class="kpi-label">Avg Session</div>
-                            <div class="kpi-trend up">↑ 8% vs 2:05</div>
+                            <div class="kpi-value negative" id="bro-scroll-depth">54.6%</div>
+                            <div class="kpi-label">Scroll Depth %</div>
+                            <div class="kpi-trend down" id="bro-scroll-trend">↓ 1% vs 55.2%</div>
                         </div>
                     </div>
                 </div>
@@ -2098,7 +2057,7 @@
                 }
             }
             
-            // Update Web Analytics (Moby-sourced blended data)
+            // Update Yesterday Analytics (Moby-sourced)
             if (data.webAnalytics && data.webAnalytics.yesterday) {
                 const wa = data.webAnalytics.yesterday;
                 const waDate = wa.date;
@@ -2109,73 +2068,63 @@
                 if (wa.atcRate) {
                     document.getElementById('wa-atc').textContent = wa.atcRate.toFixed(2) + '%';
                 }
-                if (wa.sessions) {
-                    document.getElementById('wa-sessions').textContent = wa.sessions.toLocaleString();
-                }
-                if (wa.orders) {
-                    document.getElementById('wa-orders').textContent = wa.orders.toLocaleString();
-                    // Calculate ATC to Purchase rate
-                    if (wa.atcSessions) {
-                        const atcToPurchase = ((wa.orders / wa.atcSessions) * 100).toFixed(0);
-                        document.getElementById('wa-orders-trend').textContent = 'ATC→Purchase: ' + atcToPurchase + '%';
-                    }
-                }
                 if (waDate) {
-                    // Format date nicely
                     const dateObj = new Date(waDate + 'T00:00:00');
                     const formatted = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-                    document.getElementById('wa-sessions-date').textContent = formatted;
+                    document.getElementById('wa-cvr-date').textContent = formatted;
+                    document.getElementById('wa-atc-date').textContent = formatted;
                 }
             }
             
-            // Update 30D CVR data (Moby-sourced)
-            if (data.webAnalytics && data.webAnalytics.last30d) {
-                const cvr30 = data.webAnalytics.last30d;
+            // Update Last 7 Days Analytics (Moby-sourced)
+            if (data.webAnalytics && data.webAnalytics.last7d) {
+                const wa7 = data.webAnalytics.last7d;
+                
+                if (wa7.cvr) {
+                    document.getElementById('wa-7d-cvr').textContent = wa7.cvr.toFixed(2) + '%';
+                }
+                if (wa7.atcRate) {
+                    document.getElementById('wa-7d-atc').textContent = wa7.atcRate.toFixed(2) + '%';
+                }
+            }
+            
+            // Update /bro Page Health (Clarity-sourced)
+            if (data.broPageHealth) {
+                const bro = data.broPageHealth;
+                
+                // Helper to format time (seconds to M:SS)
+                function formatTime(seconds) {
+                    const mins = Math.floor(seconds / 60);
+                    const secs = seconds % 60;
+                    return mins + ':' + secs.toString().padStart(2, '0');
+                }
                 
                 // Helper to format trend
-                function formatTrend(change, prevVal) {
-                    if (change > 0) return '↑ ' + change + '% vs ' + prevVal + '%';
-                    if (change < 0) return '↓ ' + Math.abs(change) + '% vs ' + prevVal + '%';
-                    return '— flat vs ' + prevVal + '%';
+                function formatTrendVal(change, prevVal, isTime) {
+                    const prefix = change > 0 ? '↑' : change < 0 ? '↓' : '—';
+                    const changeStr = change !== 0 ? Math.abs(change).toFixed(1) + '% vs ' : 'flat vs ';
+                    const prevStr = isTime ? formatTime(prevVal) : prevVal.toFixed(1) + '%';
+                    return prefix + ' ' + changeStr + prevStr;
                 }
                 
-                // Helper to set trend class
-                function setTrendClass(el, change) {
-                    el.classList.remove('up', 'down');
-                    if (change > 0) el.classList.add('up');
-                    if (change < 0) el.classList.add('down');
+                // Session Duration
+                if (bro.sessionDuration) {
+                    document.getElementById('bro-session-duration').textContent = formatTime(bro.sessionDuration.current);
+                    const trendEl = document.getElementById('bro-session-trend');
+                    trendEl.textContent = formatTrendVal(bro.sessionDuration.changePercent, bro.sessionDuration.previous, true);
+                    trendEl.classList.remove('up', 'down');
+                    if (bro.sessionDuration.changePercent > 0) trendEl.classList.add('up');
+                    if (bro.sessionDuration.changePercent < 0) trendEl.classList.add('down');
                 }
                 
-                // /bro CVR
-                if (cvr30.broCvr !== undefined) {
-                    document.getElementById('tanner-bro-cvr').textContent = cvr30.broCvr.toFixed(1) + '%';
-                    const trendEl = document.getElementById('tanner-bro-cvr-trend');
-                    trendEl.textContent = formatTrend(cvr30.broCvrChange, cvr30.broCvrPrev);
-                    setTrendClass(trendEl, cvr30.broCvrChange);
-                }
-                
-                // Home CVR
-                if (cvr30.homeCvr !== undefined) {
-                    document.getElementById('tanner-home-cvr').textContent = cvr30.homeCvr.toFixed(1) + '%';
-                    const trendEl = document.getElementById('tanner-home-cvr-trend');
-                    trendEl.textContent = formatTrend(cvr30.homeCvrChange, cvr30.homeCvrPrev);
-                    setTrendClass(trendEl, cvr30.homeCvrChange);
-                }
-                
-                // Site-wide CVR
-                if (cvr30.siteWideCvr !== undefined) {
-                    document.getElementById('tanner-site-cvr').textContent = cvr30.siteWideCvr.toFixed(1) + '%';
-                    const trendEl = document.getElementById('tanner-site-cvr-trend');
-                    trendEl.textContent = formatTrend(cvr30.siteWideCvrChange, cvr30.siteWideCvrPrev);
-                    setTrendClass(trendEl, cvr30.siteWideCvrChange);
-                }
-                
-                // Mobile traffic
-                if (cvr30.mobileTraffic !== undefined) {
-                    document.getElementById('tanner-mobile').textContent = cvr30.mobileTraffic + '%';
-                    const trendEl = document.getElementById('tanner-mobile-trend');
-                    trendEl.textContent = formatTrend(cvr30.mobileTrafficChange, cvr30.mobileTrafficPrev);
-                    setTrendClass(trendEl, cvr30.mobileTrafficChange);
+                // Scroll Depth
+                if (bro.scrollDepth) {
+                    document.getElementById('bro-scroll-depth').textContent = bro.scrollDepth.current.toFixed(1) + '%';
+                    const trendEl = document.getElementById('bro-scroll-trend');
+                    trendEl.textContent = formatTrendVal(bro.scrollDepth.changePercent, bro.scrollDepth.previous, false);
+                    trendEl.classList.remove('up', 'down');
+                    if (bro.scrollDepth.changePercent > 0) trendEl.classList.add('up');
+                    if (bro.scrollDepth.changePercent < 0) trendEl.classList.add('down');
                 }
             }
         }
