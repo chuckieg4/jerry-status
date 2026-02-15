@@ -215,12 +215,29 @@
       "timestamp": "2026-02-15T12:34:00Z"
     }
   ],
+  "webAnalytics": {
+    "source": "Triple Whale Moby (Browser Automation)",
+    "lastSync": "2026-02-15T11:30:00Z",
+    "date": "2026-02-14",
+    "metrics": {
+      "sessions": 45110,
+      "cvr": 4.33,
+      "atcRate": 6.59,
+      "orders": 1952,
+      "atcSessions": 2971
+    },
+    "derived": {
+      "atcToPurchaseRate": 65.7,
+      "revenuePerSession": 4.58
+    }
+  },
   "meta": {
     "lastMetaSync": "2026-02-15T12:34:00Z",
     "lastKlaviyoSync": "2026-02-14T21:17:01Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
+    "lastMobySync": "2026-02-15T11:30:00Z",
     "dataSources": [
-      "triple-whale-api",
+      "triple-whale-moby",
       "meta-ads-api",
       "klaviyo-api",
       "shopify-admin-api"

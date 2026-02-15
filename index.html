@@ -1365,6 +1365,32 @@
             </div>
             
             <div class="agent-detail">
+                <div class="detail-card full-width" style="border: 2px solid var(--accent-green); background: rgba(34, 197, 94, 0.05);">
+                    <h3>🛒 Web Analytics Blended (Yesterday) <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Moby</span></h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="wa-cvr">4.33%</div>
+                            <div class="kpi-label">CVR (Blended)</div>
+                            <div class="kpi-trend" id="wa-cvr-trend">Orders / Sessions</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value positive" id="wa-atc">6.59%</div>
+                            <div class="kpi-label">ATC Rate</div>
+                            <div class="kpi-trend" id="wa-atc-trend">ATC / Sessions</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="wa-sessions">45,110</div>
+                            <div class="kpi-label">Sessions</div>
+                            <div class="kpi-trend" id="wa-sessions-date">Feb 14</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="wa-orders">1,952</div>
+                            <div class="kpi-label">Orders</div>
+                            <div class="kpi-trend" id="wa-orders-trend">ATC→Purchase: 66%</div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="detail-card full-width">
                     <h3>📊 Conversion Rates (Last 30D vs Previous 30D)</h3>
                     <div class="kpi-grid">
@@ -2069,6 +2095,36 @@
                 }
                 if (stats.purchases) {
                     document.getElementById('detail-malby-purchases').textContent = stats.purchases;
+                }
+            }
+            
+            // Update Web Analytics (Moby-sourced blended data)
+            if (data.webAnalytics && data.webAnalytics.metrics) {
+                const wa = data.webAnalytics.metrics;
+                const waDate = data.webAnalytics.date;
+                
+                if (wa.cvr) {
+                    document.getElementById('wa-cvr').textContent = wa.cvr.toFixed(2) + '%';
+                }
+                if (wa.atcRate) {
+                    document.getElementById('wa-atc').textContent = wa.atcRate.toFixed(2) + '%';
+                }
+                if (wa.sessions) {
+                    document.getElementById('wa-sessions').textContent = wa.sessions.toLocaleString();
+                }
+                if (wa.orders) {
+                    document.getElementById('wa-orders').textContent = wa.orders.toLocaleString();
+                    // Calculate ATC to Purchase rate
+                    if (wa.atcSessions) {
+                        const atcToPurchase = ((wa.orders / wa.atcSessions) * 100).toFixed(0);
+                        document.getElementById('wa-orders-trend').textContent = 'ATC→Purchase: ' + atcToPurchase + '%';
+                    }
+                }
+                if (waDate) {
+                    // Format date nicely
+                    const dateObj = new Date(waDate + 'T00:00:00');
+                    const formatted = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    document.getElementById('wa-sessions-date').textContent = formatted;
                 }
             }
         }
