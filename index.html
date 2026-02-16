@@ -2199,6 +2199,42 @@
                     mtdHeader.textContent = '📊 ' + monthName + ' MTD (Feb 1-' + endDay + ')';
                 }
             }
+            
+            // Update Penny's previous month data
+            if (data.penny && data.penny.previousMonth) {
+                const prev = data.penny.previousMonth;
+                
+                function formatK(num) {
+                    if (num >= 1000000) return '$' + (num / 1000000).toFixed(2) + 'M';
+                    if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+                    return '$' + num.toFixed(0);
+                }
+                
+                const prevRevEl = document.getElementById('penny-prev-revenue');
+                if (prevRevEl) prevRevEl.textContent = formatK(prev.sales);
+                
+                const prevAdspendEl = document.getElementById('penny-prev-adspend');
+                if (prevAdspendEl) prevAdspendEl.textContent = formatK(prev.adSpend);
+                
+                const prevNetEl = document.getElementById('penny-prev-net');
+                if (prevNetEl) prevNetEl.textContent = formatK(prev.netProfit);
+            }
+            
+            // Update Tanner's CVR from web analytics
+            if (data.webAnalytics && data.webAnalytics.yesterday) {
+                const cvr = data.webAnalytics.yesterday.cvr;
+                const cvrEl = document.getElementById('card-tanner-cvr');
+                if (cvrEl && cvr) cvrEl.textContent = cvr.toFixed(2) + '%';
+            }
+            
+            // Update Dave's stats from Klaviyo
+            if (data.klaviyo) {
+                const flowsEl = document.getElementById('card-dave-flows');
+                if (flowsEl) flowsEl.textContent = data.klaviyo.activeFlows + '/' + data.klaviyo.totalFlows;
+                
+                const openEl = document.getElementById('card-dave-open');
+                if (openEl && data.klaviyo.yesterday) openEl.textContent = data.klaviyo.yesterday.openRate.toFixed(0) + '%';
+            }
         }
         
         // Initial load
