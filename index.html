@@ -641,11 +641,6 @@
             <span class="tab-info"><span>Savanah</span><span class="tab-title">Creative Director</span></span>
             <span class="tab-status active"></span>
         </button>
-        <button class="nav-tab" onclick="showTab('working')">
-            <span class="tab-emoji">🔥</span>
-            <span class="tab-info"><span>What's Working</span><span class="tab-title">Top Creatives</span></span>
-            <span class="tab-status active"></span>
-        </button>
         <button class="nav-tab" onclick="showTab('dave')">
             <span class="tab-emoji">📧</span>
             <span class="tab-info"><span>Dave</span><span class="tab-title">Email & SMS</span></span>
@@ -1212,39 +1207,6 @@
                         <div class="info-item"><span class="icon">💬</span> Slack #creative-team</div>
                         <div class="info-item"><span class="icon">📝</span> Brief Templates</div>
                         <div class="info-item"><span class="icon">🎬</span> Top Performer References</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- What's Working Panel -->
-        <div id="panel-working" class="tab-panel">
-            <div class="agent-detail-header">
-                <div class="agent-detail-avatar" style="background: linear-gradient(135deg, #f97316, #dc2626);">🔥</div>
-                <div class="agent-detail-info">
-                    <h2>What's Working</h2>
-                    <div class="agent-detail-role">Top 5 Creatives • Last 7 Days</div>
-                </div>
-                <div class="agent-detail-status active">
-                    <span class="live-dot"></span>
-                    Live Data
-                </div>
-            </div>
-            
-            <div class="agent-detail">
-                <div class="detail-card" style="margin-bottom: 1rem;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <h3>🏆 Top Performers by CPA (Min $50 Spend)</h3>
-                        <span id="working-last-sync" style="color: var(--text-secondary); font-size: 0.8rem;">Last sync: Loading...</span>
-                    </div>
-                </div>
-                
-                <!-- Creative Cards Container -->
-                <div id="creatives-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 1.5rem;">
-                    <!-- Creative cards populated by JS -->
-                    <div class="detail-card" style="padding: 2rem; text-align: center; color: var(--text-secondary);">
-                        <p>Loading top creatives...</p>
-                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Data syncs daily at 9 AM EST</p>
                     </div>
                 </div>
             </div>
@@ -2239,89 +2201,6 @@
                 
                 const openEl = document.getElementById('card-dave-open');
                 if (openEl && data.klaviyo.yesterday) openEl.textContent = data.klaviyo.yesterday.openRate.toFixed(0) + '%';
-            }
-            
-            // Update What's Working (Top Creatives)
-            if (data.whatsWorking && data.whatsWorking.topCreatives) {
-                const creativesGrid = document.getElementById('creatives-grid');
-                const lastSyncEl = document.getElementById('working-last-sync');
-                
-                if (lastSyncEl && data.whatsWorking.lastSync) {
-                    const syncDate = new Date(data.whatsWorking.lastSync);
-                    lastSyncEl.textContent = 'Last sync: ' + syncDate.toLocaleDateString('en-US', { 
-                        month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
-                    });
-                }
-                
-                if (creativesGrid && data.whatsWorking.topCreatives.length > 0) {
-                    let html = '';
-                    
-                    data.whatsWorking.topCreatives.forEach((creative, index) => {
-                        const rank = index + 1;
-                        const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
-                        const typeIcon = creative.type === 'video' ? '🎬' : '🖼️';
-                        const cpaClass = creative.cpa < 35 ? 'positive' : creative.cpa < 45 ? 'neutral' : 'negative';
-                        const roasClass = creative.roas > 3 ? 'positive' : creative.roas > 2 ? 'neutral' : 'negative';
-                        
-                        html += `
-                            <div class="detail-card" style="overflow: hidden;">
-                                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                    <span style="font-size: 1.5rem;">${medal}</span>
-                                    <div style="flex: 1; min-width: 0;">
-                                        <div style="font-weight: 600; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                            ${creative.name || 'Unnamed Creative'}
-                                        </div>
-                                        <div style="color: var(--text-secondary); font-size: 0.8rem;">${typeIcon} ${creative.type === 'video' ? 'Video' : 'Static Image'}</div>
-                                    </div>
-                                </div>
-                                
-                                ${creative.thumbnail ? `
-                                <div style="margin-bottom: 1rem; border-radius: 8px; overflow: hidden; background: #1a1a25; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
-                                    ${creative.type === 'video' ? `
-                                        <video src="${creative.mediaUrl}" poster="${creative.thumbnail}" controls style="width: 100%; height: 100%; object-fit: contain;"></video>
-                                    ` : `
-                                        <img src="${creative.thumbnail}" alt="${creative.name}" style="width: 100%; height: 100%; object-fit: contain;">
-                                    `}
-                                </div>
-                                ` : ''}
-                                
-                                <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1rem;">
-                                    <div class="kpi-box" style="padding: 0.75rem;">
-                                        <div class="kpi-value ${cpaClass}" style="font-size: 1.25rem;">$${creative.cpa?.toFixed(2) || '—'}</div>
-                                        <div class="kpi-label" style="font-size: 0.7rem;">CPA</div>
-                                    </div>
-                                    <div class="kpi-box" style="padding: 0.75rem;">
-                                        <div class="kpi-value ${roasClass}" style="font-size: 1.25rem;">${creative.roas?.toFixed(2) || '—'}x</div>
-                                        <div class="kpi-label" style="font-size: 0.7rem;">ROAS</div>
-                                    </div>
-                                    <div class="kpi-box" style="padding: 0.75rem;">
-                                        <div class="kpi-value neutral" style="font-size: 1.25rem;">${creative.purchases || '—'}</div>
-                                        <div class="kpi-label" style="font-size: 0.7rem;">Purchases</div>
-                                    </div>
-                                </div>
-                                
-                                <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
-                                    <span>💰 $${creative.spend?.toFixed(0) || '—'} spent</span>
-                                    <span>👁️ ${creative.impressions ? (creative.impressions/1000).toFixed(1) + 'K' : '—'} impr</span>
-                                    <span>📊 ${creative.ctr?.toFixed(2) || '—'}% CTR</span>
-                                </div>
-                                
-                                ${creative.copy ? `
-                                <details style="margin-top: 0.5rem;">
-                                    <summary style="cursor: pointer; color: var(--accent-orange); font-size: 0.85rem; padding: 0.5rem 0;">
-                                        📝 View Copy
-                                    </summary>
-                                    <div style="background: rgba(255,255,255,0.05); border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); white-space: pre-wrap;">
-                                        ${creative.headline ? `<strong>${creative.headline}</strong>\n\n` : ''}${creative.copy}
-                                    </div>
-                                </details>
-                                ` : ''}
-                            </div>
-                        `;
-                    });
-                    
-                    creativesGrid.innerHTML = html;
-                }
             }
             
             // Update Cron Jobs list dynamically
