@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T14:37:09Z",
+  "lastUpdate": "2026-02-16T14:46:10Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -34,7 +34,7 @@
       "lastActive": "2026-02-14T21:17:00Z",
       "stats": {
         "activeFlows": 7,
-        "openRate": 42,
+        "openRate": 75.2,
         "campaignsSent": 7
       },
       "memory": {
@@ -86,11 +86,11 @@
       "stats": {
         "spendToday": 40485,
         "roas": 2.97,
-        "cpa": 21.23,
+        "cpa": 21.13,
         "purchases": 1275,
-        "spendYesterday": 40584,
-        "ncpa": 33.65,
-        "newCustomers": 1206,
+        "spendYesterday": 40586,
+        "ncpa": 33.48,
+        "newCustomers": 1212,
         "ncRoas": 2.52
       },
       "memory": {
@@ -323,7 +323,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-16T03:00:00Z",
-    "lastKlaviyoSync": "2026-02-16T14:37:09Z",
+    "lastKlaviyoSync": "2026-02-16T14:46:10Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
@@ -334,44 +334,48 @@
     ]
   },
   "metaAds": {
-    "lastSync": "2026-02-16T14:37:09Z",
+    "lastSync": "2026-02-16T14:46:10Z",
     "yesterday": {
       "date": "2026-02-15",
-      "spend": 40584,
+      "spend": 40586,
       "purchases": 1275,
-      "newCustomers": 1206,
-      "ncpa": 33.65,
-      "cpa": 21.23,
+      "newCustomers": 1212,
+      "ncpa": 33.48,
+      "cpa": 21.13,
       "roas": 2.97
     },
     "last7d": {
       "dateRange": "2026-02-09 to 2026-02-15",
-      "spend": 137055.26,
+      "spend": 137057.36,
       "purchases": 5396,
-      "ncpa": 40.26,
-      "roas": 3.652026
+      "ncpa": 40.25,
+      "roas": 3.65197
     }
   },
   "shopify": {
-    "lastSync": "2026-02-16T14:37:09Z",
+    "lastSync": "2026-02-16T14:46:10Z",
     "yesterday": {
       "date": "2026-02-15",
-      "orders": 1911,
-      "newCustomerOrders": 1206,
-      "revenue": 196393.47,
+      "orders": 1920,
+      "newCustomerOrders": 1212,
+      "revenue": 197318.40,
       "aov": 102.77
     },
-    "totalCustomers": 243905
+    "totalCustomers": 243917
   },
   "klaviyo": {
-    "lastSync": "2026-02-16T14:37:09Z",
+    "lastSync": "2026-02-16T14:46:10Z",
     "activeFlows": 7,
     "totalFlows": 32,
-    "openRate": 42,
-    "clickRate": 3,
+    "yesterday": {
+      "emailsSent": 49000,
+      "openRate": 75.2,
+      "clickRate": 3.3,
+      "revenue": 135699
+    },
     "lists": {
-      "newsletter": 51189,
-      "sms": 43392
+      "newsletter": 51195,
+      "sms": 0
     }
   }
 }
