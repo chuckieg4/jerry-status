@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-15T12:49:00Z",
+  "lastUpdate": "2026-02-16T03:00:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Dashboard update — adding memory & cron visibility",
-    "todaysTasks": 3
+    "currentTask": "Daily KPI Brief delivered",
+    "todaysTasks": 1
   },
   "agents": {
     "savanah": {
@@ -47,7 +47,7 @@
       "currentTask": "Daily bug patrol: Homepage, /bro, PDP checks + Clarity anomaly monitoring",
       "lastActive": "2026-02-14T16:15:00Z",
       "stats": {
-        "cvr": 3.2,
+        "cvr": 3.79,
         "lift": 18,
         "testsLive": 4
       },
@@ -81,7 +81,7 @@
       "currentTask": "Monitoring post-Valentine's performance",
       "lastActive": "2026-02-14T22:00:00Z",
       "stats": {
-        "spendToday": 8369,
+        "spendToday": 40485,
         "roas": 2.5,
         "cpa": 46.24,
         "purchases": 181
@@ -127,11 +127,11 @@
       "lastUpdated": "2026-02-15"
     },
     "dailyNotes": [
+      {"date": "2026-02-16", "file": "memory/2026-02-16.md", "sizeKB": 0.5},
       {"date": "2026-02-15", "file": "memory/2026-02-15.md", "sizeKB": 2.2},
       {"date": "2026-02-14", "file": "memory/2026-02-14.md", "sizeKB": 18.3},
       {"date": "2026-02-13", "file": "memory/2026-02-13.md", "sizeKB": 1.4},
-      {"date": "2026-02-12", "file": "memory/2026-02-12.md", "sizeKB": 1.6},
-      {"date": "2026-02-11", "file": "memory/2026-02-11.md", "sizeKB": 1.6}
+      {"date": "2026-02-12", "file": "memory/2026-02-12.md", "sizeKB": 1.6}
     ],
     "workspaceFiles": [
       "AGENTS.md", "SOUL.md", "USER.md", "IDENTITY.md", "TOOLS.md", "HEARTBEAT.md"
@@ -143,8 +143,8 @@
       "schedule": "12:00 AM EST",
       "frequency": "daily",
       "description": "Sync all memory files to github.com/chuckieg4/jerry-memory",
-      "lastRun": null,
-      "nextRun": "2026-02-16T00:00:00",
+      "lastRun": "2026-02-16T00:00:00",
+      "nextRun": "2026-02-17T00:00:00",
       "status": "active"
     },
     {
@@ -152,8 +152,8 @@
       "schedule": "2:00 AM EST",
       "frequency": "daily",
       "description": "Refresh Shopify API token (expires daily)",
-      "lastRun": "2026-02-15T02:00:00",
-      "nextRun": "2026-02-16T02:00:00",
+      "lastRun": "2026-02-16T02:00:00",
+      "nextRun": "2026-02-17T02:00:00",
       "status": "active"
     },
     {
@@ -161,8 +161,8 @@
       "schedule": "3:00 AM EST",
       "frequency": "daily",
       "description": "Query Moby for CVR/ATC%, Clarity for /bro health, deliver brief to Telegram",
-      "lastRun": null,
-      "nextRun": "2026-02-16T03:00:00",
+      "lastRun": "2026-02-16T03:00:00",
+      "nextRun": "2026-02-17T03:00:00",
       "status": "active"
     },
     {
@@ -188,8 +188,8 @@
       "schedule": "11:30 PM EST",
       "frequency": "daily",
       "description": "Review daily notes, update MEMORY.md, prep tomorrow's file",
-      "lastRun": "2026-02-14T23:30:00",
-      "nextRun": "2026-02-15T23:30:00",
+      "lastRun": "2026-02-15T23:30:00",
+      "nextRun": "2026-02-16T23:30:00",
       "status": "active"
     },
     {
@@ -210,63 +210,65 @@
   ],
   "stats": {
     "totalAgents": 7,
-    "activeAgents": 0,
-    "tasksToday": 3
+    "activeAgents": 1,
+    "tasksToday": 1
   },
   "activity": [
     {
       "agent": "jerry",
-      "action": "📊 Dashboard update — added memory & cron visibility",
+      "action": "📊 Daily KPI Brief delivered — CVR 3.79%, ATC 5.75%, Spend $40.5K",
       "time": "just now",
+      "timestamp": "2026-02-16T03:00:00Z"
+    },
+    {
+      "agent": "jerry",
+      "action": "📊 Dashboard update — added memory & cron visibility",
+      "time": "14h ago",
       "timestamp": "2026-02-15T12:49:00Z"
     },
     {
       "agent": "jerry",
       "action": "⏰ Created Daily KPI Sync cron (3am)",
-      "time": "2 min ago",
+      "time": "14h ago",
       "timestamp": "2026-02-15T12:47:00Z"
-    },
-    {
-      "agent": "jerry",
-      "action": "📊 Morning KPI pull — $8.4K spend, 181 purchases, $46 CPA (early day)",
-      "time": "15 min ago",
-      "timestamp": "2026-02-15T12:34:00Z"
     }
   ],
   "webAnalytics": {
     "source": "Triple Whale Moby (Browser Automation)",
-    "lastSync": "2026-02-15T11:30:00Z",
+    "lastSync": "2026-02-16T03:00:00Z",
     "yesterday": {
-      "date": "2026-02-14",
-      "cvr": 4.33,
-      "atcRate": 6.59
+      "date": "2026-02-15",
+      "cvr": 3.79,
+      "atcRate": 5.75,
+      "sessions": 41123
     },
     "last7d": {
-      "period": "Last 7 Days",
-      "cvr": 6.35,
-      "atcRate": 8.52
+      "period": "Feb 9-15, 2026",
+      "cvr": 5.83,
+      "atcRate": 8.01,
+      "sessions": 150589
     }
   },
   "broPageHealth": {
     "source": "Microsoft Clarity",
-    "lastSync": "2026-02-15T11:40:00Z",
-    "period": "Last 30D vs Previous 30D",
+    "lastSync": "2026-02-16T03:00:00Z",
+    "period": "Last 30D",
     "sessionDuration": {
-      "current": 102,
-      "previous": 97,
-      "changePercent": 5.2
+      "current": 60,
+      "unit": "seconds",
+      "totalTime": 144
     },
     "scrollDepth": {
-      "current": 54.6,
-      "previous": 55.2,
-      "changePercent": -1.1
-    }
+      "current": 20.2,
+      "note": "Site-wide average (3D snapshot)"
+    },
+    "sessions30d": 321371
   },
   "meta": {
-    "lastMetaSync": "2026-02-15T12:34:00Z",
+    "lastMetaSync": "2026-02-16T03:00:00Z",
     "lastKlaviyoSync": "2026-02-14T21:17:01Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
-    "lastMobySync": "2026-02-15T11:30:00Z",
+    "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
       "triple-whale-moby",
       "meta-ads-api",
