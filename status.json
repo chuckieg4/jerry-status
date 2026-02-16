@@ -56,7 +56,7 @@
       },
       "memory": {
         "profile": "agents/TANNER.md",
-        "sizeKB": 41.0,
+        "sizeKB": 41,
         "training": []
       }
     },
@@ -171,6 +171,15 @@
   },
   "cronJobs": [
     {
+      "name": "Mission Control Meta Sync",
+      "schedule": "2:30 AM EST",
+      "frequency": "daily",
+      "description": "Pull NCPA/ROAS from Triple Whale Moby, update status.json",
+      "lastRun": null,
+      "nextRun": "2026-02-17T02:30:00",
+      "status": "active"
+    },
+    {
       "name": "Memory Backup to GitHub",
       "schedule": "12:00 AM EST",
       "frequency": "daily",
@@ -183,7 +192,7 @@
       "name": "Shopify Token Refresh",
       "schedule": "2:00 AM EST",
       "frequency": "daily",
-      "description": "Refresh Shopify API token (expires daily)",
+      "description": "Refresh Shopify API token (expires every 24h)",
       "lastRun": "2026-02-16T02:00:00",
       "nextRun": "2026-02-17T02:00:00",
       "status": "active"
@@ -202,8 +211,8 @@
       "schedule": "8:00 AM EST",
       "frequency": "daily",
       "description": "Check homepage, /bro, PDP for JS errors, broken buttons, Clarity anomalies",
-      "lastRun": null,
-      "nextRun": "2026-02-16T08:00:00",
+      "lastRun": "2026-02-16T08:00:00",
+      "nextRun": "2026-02-17T08:00:00",
       "status": "active"
     },
     {
@@ -243,12 +252,12 @@
     {
       "name": "Weekly Rhythm",
       "file": "agents/WEEKLY-RHYTHM.md",
-      "sizeKB": 5.0
+      "sizeKB": 5
     },
     {
       "name": "Morning Briefing Template",
       "file": "agents/MORNING-BRIEFING.md",
-      "sizeKB": 3.0
+      "sizeKB": 3
     },
     {
       "name": "Agent System Overview",
