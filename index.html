@@ -1901,47 +1901,14 @@
                 <div class="detail-card">
                     <h3>📅 Daily Jobs</h3>
                     <div class="info-list" id="cron-daily-jobs">
-                        <div class="info-item">
-                            <span class="icon">📊</span> 
-                            <div>
-                                <strong>Daily KPI Sync</strong> — 3:00 AM EST<br>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Pull Triple Whale + Meta Ads data, update dashboard</span>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="icon">🔄</span> 
-                            <div>
-                                <strong>Shopify Token Refresh</strong> — 2:00 AM EST<br>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Refresh Shopify API token (expires every 24h)</span>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="icon">🧠</span> 
-                            <div>
-                                <strong>Daily Memory Consolidation</strong> — 11:30 PM EST<br>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Review daily notes, update MEMORY.md, create tomorrow's file</span>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <span class="icon">🤖</span> 
-                            <div>
-                                <strong>Claude 4.6 Check</strong> — 9:00 AM EST<br>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Check for Claude 4.6 availability, notify if new</span>
-                            </div>
-                        </div>
+                        <div class="info-item"><span style="color: var(--text-secondary);">Loading...</span></div>
                     </div>
                 </div>
                 
                 <div class="detail-card">
                     <h3>📆 Weekly Jobs</h3>
                     <div class="info-list" id="cron-weekly-jobs">
-                        <div class="info-item">
-                            <span class="icon">🎨</span> 
-                            <div>
-                                <strong>Weekly Parker Creative Sync</strong> — Mondays 9:00 AM EST<br>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;">Pull top creatives from Parker AI, update Savanah's playbook</span>
-                            </div>
-                        </div>
+                        <div class="info-item"><span style="color: var(--text-secondary);">Loading...</span></div>
                     </div>
                 </div>
                 
@@ -2234,6 +2201,47 @@
                 
                 const openEl = document.getElementById('card-dave-open');
                 if (openEl && data.klaviyo.yesterday) openEl.textContent = data.klaviyo.yesterday.openRate.toFixed(0) + '%';
+            }
+            
+            // Update Cron Jobs list dynamically
+            if (data.cronJobs && Array.isArray(data.cronJobs)) {
+                const dailyContainer = document.getElementById('cron-daily-jobs');
+                const weeklyContainer = document.getElementById('cron-weekly-jobs');
+                
+                const icons = {
+                    'Daily Memory Backup': '💾',
+                    'Shopify Token Refresh': '🔄',
+                    'Daily KPI Sync': '📊',
+                    'Tanner Bug Check': '🔍',
+                    'Claude 4.6 Check': '🤖',
+                    'Memory Consolidation': '🧠',
+                    'Parker Creative Sync': '🎨'
+                };
+                
+                let dailyHTML = '';
+                let weeklyHTML = '';
+                
+                data.cronJobs.forEach(job => {
+                    const icon = icons[job.name] || '⏰';
+                    const html = `
+                        <div class="info-item">
+                            <span class="icon">${icon}</span>
+                            <div>
+                                <strong>${job.name}</strong> — ${job.schedule}<br>
+                                <span style="color: var(--text-secondary); font-size: 0.85rem;">${job.description}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    if (job.frequency === 'weekly') {
+                        weeklyHTML += html;
+                    } else {
+                        dailyHTML += html;
+                    }
+                });
+                
+                if (dailyContainer) dailyContainer.innerHTML = dailyHTML || '<div class="info-item">No daily jobs configured</div>';
+                if (weeklyContainer) weeklyContainer.innerHTML = weeklyHTML || '<div class="info-item">No weekly jobs configured</div>';
             }
         }
         

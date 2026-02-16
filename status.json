@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T16:41:11Z",
+  "lastUpdate": "2026-02-16T16:47:04Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -31,7 +31,7 @@
       "role": "Head of Email/SMS",
       "status": "idle",
       "currentTask": "Clean Slate E10 sent 3PM, E11-E15 queued",
-      "lastActive": "2026-02-16T16:41:11Z",
+      "lastActive": "2026-02-16T16:47:04Z",
       "stats": {
         "activeFlows": 7,
         "openRate": 75.2,
@@ -49,7 +49,7 @@
       "role": "Head of CVR Optimization",
       "status": "active",
       "currentTask": "Daily bug patrol: Homepage, /bro, PDP checks + Clarity anomaly monitoring",
-      "lastActive": "2026-02-16T16:41:11Z",
+      "lastActive": "2026-02-16T16:47:04Z",
       "stats": {
         "cvr": 3.79,
         "lift": 18,
@@ -83,15 +83,15 @@
       "role": "Head of Media Buying",
       "status": "idle",
       "currentTask": "Monitoring post-Valentine's performance",
-      "lastActive": "2026-02-16T16:41:11Z",
+      "lastActive": "2026-02-16T16:47:04Z",
       "stats": {
         "spendToday": 40485,
         "roas": 2.97,
-        "cpa": 19.54,
+        "cpa": 19.47,
         "purchases": 1275,
         "spendYesterday": 40615,
-        "ncpa": 31.12,
-        "newCustomers": 1305,
+        "ncpa": 30.98,
+        "newCustomers": 1311,
         "ncRoas": 2.52
       },
       "memory": {
@@ -105,10 +105,10 @@
       "role": "Accountant",
       "status": "idle",
       "currentTask": "Tracking P&L and margins",
-      "lastActive": "2026-02-16T16:41:11Z",
+      "lastActive": "2026-02-16T16:47:04Z",
       "stats": {
         "mtdSales": 1160508,
-        "mtdNetProfit": 312812,
+        "mtdNetProfit": 312818,
         "mer": 20.9
       },
       "memory": {
@@ -176,76 +176,46 @@
   },
   "cronJobs": [
     {
-      "name": "Mission Control Meta Sync",
-      "schedule": "2:30 AM EST",
-      "frequency": "daily",
-      "description": "Pull NCPA/ROAS from Triple Whale Moby, update status.json",
-      "lastRun": null,
-      "nextRun": "2026-02-17T02:30:00",
-      "status": "active"
-    },
-    {
-      "name": "Memory Backup to GitHub",
+      "name": "Daily Memory Backup",
       "schedule": "12:00 AM EST",
       "frequency": "daily",
-      "description": "Sync all memory files to github.com/chuckieg4/jerry-memory",
-      "lastRun": "2026-02-16T00:00:00",
-      "nextRun": "2026-02-17T00:00:00",
-      "status": "active"
+      "description": "Sync memory files to GitHub"
     },
     {
       "name": "Shopify Token Refresh",
       "schedule": "2:00 AM EST",
       "frequency": "daily",
-      "description": "Refresh Shopify API token (expires every 24h)",
-      "lastRun": "2026-02-16T02:00:00",
-      "nextRun": "2026-02-17T02:00:00",
-      "status": "active"
+      "description": "Refresh Shopify API token (expires 24h)"
     },
     {
-      "name": "Daily KPI Brief (Moby + Clarity)",
+      "name": "Daily KPI Sync + Brief",
       "schedule": "3:00 AM EST",
       "frequency": "daily",
-      "description": "Query Moby for CVR/ATC%, Clarity for /bro health, deliver brief to Telegram",
-      "lastRun": "2026-02-16T03:00:00",
-      "nextRun": "2026-02-17T03:00:00",
-      "status": "active"
+      "description": "Pull all APIs, update dashboard, send Telegram brief"
     },
     {
-      "name": "Tanner Daily Bug Check",
+      "name": "Tanner Bug Check",
       "schedule": "8:00 AM EST",
       "frequency": "daily",
-      "description": "Check homepage, /bro, PDP for JS errors, broken buttons, Clarity anomalies",
-      "lastRun": "2026-02-16T08:00:00",
-      "nextRun": "2026-02-17T08:00:00",
-      "status": "active"
+      "description": "Check homepage, /bro, PDP for issues"
     },
     {
       "name": "Claude 4.6 Check",
       "schedule": "9:00 AM EST",
       "frequency": "daily",
-      "description": "Check for Claude 4.6 availability",
-      "lastRun": "2026-02-15T09:00:00",
-      "nextRun": "2026-02-16T09:00:00",
-      "status": "active"
+      "description": "Check for new model availability"
     },
     {
-      "name": "Daily Memory Consolidation",
+      "name": "Memory Consolidation",
       "schedule": "11:30 PM EST",
       "frequency": "daily",
-      "description": "Review daily notes, update MEMORY.md, prep tomorrow's file",
-      "lastRun": "2026-02-15T23:30:00",
-      "nextRun": "2026-02-16T23:30:00",
-      "status": "active"
+      "description": "Review daily notes, update MEMORY.md"
     },
     {
-      "name": "Weekly Parker Creative Sync",
+      "name": "Parker Creative Sync",
       "schedule": "Mondays 9:00 AM EST",
       "frequency": "weekly",
-      "description": "Pull top creatives from Parker AI, update Savanah",
-      "lastRun": null,
-      "nextRun": "2026-02-17T09:00:00",
-      "status": "active"
+      "description": "Pull top creatives from Parker AI"
     }
   ],
   "systemDocs": [
@@ -328,7 +298,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-16T03:00:00Z",
-    "lastKlaviyoSync": "2026-02-16T16:41:11Z",
+    "lastKlaviyoSync": "2026-02-16T16:47:04Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
@@ -337,60 +307,60 @@
       "klaviyo-api",
       "shopify-admin-api"
     ],
-    "lastTripleWhaleSync": "2026-02-16T16:41:11Z"
+    "lastTripleWhaleSync": "2026-02-16T16:47:04Z"
   },
   "metaAds": {
-    "lastSync": "2026-02-16T16:41:11Z",
+    "lastSync": "2026-02-16T16:47:04Z",
     "yesterday": {
       "date": "2026-02-15",
       "spend": 40615,
       "purchases": 1275,
-      "newCustomers": 1305,
-      "ncpa": 31.12,
-      "cpa": 19.54,
+      "newCustomers": 1311,
+      "ncpa": 30.98,
+      "cpa": 19.47,
       "roas": 2.97
     },
     "last7d": {
       "dateRange": "2026-02-09 to 2026-02-15",
-      "spend": 137086.43,
+      "spend": 137087.24,
       "purchases": 5396,
-      "ncpa": 40.46,
-      "roas": 3.651196
+      "ncpa": 40.43,
+      "roas": 3.651174
     }
   },
   "shopify": {
-    "lastSync": "2026-02-16T16:41:11Z",
+    "lastSync": "2026-02-16T16:47:04Z",
     "yesterday": {
       "date": "2026-02-15",
-      "orders": 2078,
-      "newCustomerOrders": 1305,
-      "revenue": 213556.06,
+      "orders": 2086,
+      "newCustomerOrders": 1311,
+      "revenue": 214378.22,
       "aov": 102.77
     },
-    "totalCustomers": 244059
+    "totalCustomers": 244066
   },
   "klaviyo": {
-    "lastSync": "2026-02-16T16:41:11Z",
+    "lastSync": "2026-02-16T16:47:04Z",
     "activeFlows": 7,
     "totalFlows": 32,
     "yesterday": {
       "emailsSent": 49000,
       "openRate": 75.2,
       "clickRate": 3.3,
-      "revenue": 135699
+      "revenue": 0
     },
     "lists": {
-      "newsletter": 51244,
+      "newsletter": 51249,
       "sms": 0
     }
   },
   "penny": {
-    "lastSync": "2026-02-16T16:41:11Z",
+    "lastSync": "2026-02-16T16:47:04Z",
     "mtd": {
       "period": "2026-02-01 to 2026-02-15",
       "sales": 1160508,
       "adSpend": 248960,
-      "netProfit": 312812,
+      "netProfit": 312818,
       "mer": 20.9,
       "netMargin": 26.9,
       "ncpa": 40.36
@@ -399,7 +369,7 @@
       "name": "January",
       "sales": 1590212,
       "adSpend": 580954,
-      "netProfit": 153545
+      "netProfit": 153542
     }
   }
 }
