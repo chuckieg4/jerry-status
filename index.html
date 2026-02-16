@@ -2153,6 +2153,52 @@
                     if (bro.scrollDepth.changePercent < 0) trendEl.classList.add('down');
                 }
             }
+            
+            // Update Penny MTD stats (Triple Whale-sourced)
+            if (data.penny && data.penny.mtd) {
+                const mtd = data.penny.mtd;
+                
+                // Format currency helper
+                function formatK(num) {
+                    if (num >= 1000000) return '$' + (num / 1000000).toFixed(2) + 'M';
+                    if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+                    return '$' + num.toFixed(0);
+                }
+                
+                // Update card values
+                const salesEl = document.getElementById('card-penny-mtd-rev');
+                if (salesEl) salesEl.textContent = formatK(mtd.sales);
+                
+                const merEl = document.getElementById('card-penny-mer');
+                if (merEl) merEl.textContent = mtd.mer.toFixed(1) + 'x';
+                
+                const netEl = document.getElementById('card-penny-net');
+                if (netEl) netEl.textContent = formatK(mtd.netProfit);
+                
+                // Update detail panel values
+                const mtdRevEl = document.getElementById('penny-mtd-revenue');
+                if (mtdRevEl) mtdRevEl.textContent = formatK(mtd.sales);
+                
+                const mtdAdspendEl = document.getElementById('penny-mtd-adspend');
+                if (mtdAdspendEl) mtdAdspendEl.textContent = formatK(mtd.adSpend);
+                
+                const mtdNetEl = document.getElementById('penny-mtd-net');
+                if (mtdNetEl) mtdNetEl.textContent = formatK(mtd.netProfit);
+                
+                const merDetailEl = document.getElementById('penny-mer');
+                if (merDetailEl) merDetailEl.textContent = mtd.mer.toFixed(2) + 'x';
+                
+                const netPctEl = document.getElementById('penny-net-pct');
+                if (netPctEl) netPctEl.textContent = mtd.netMargin.toFixed(1) + '%';
+                
+                // Update header showing MTD period
+                const mtdHeader = document.querySelector('#panel-penny .detail-card h3');
+                if (mtdHeader && mtdHeader.textContent.includes('MTD')) {
+                    const monthName = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
+                    const endDay = mtd.period.split(' to ')[1].split('-')[2];
+                    mtdHeader.textContent = '📊 ' + monthName + ' MTD (Feb 1-' + endDay + ')';
+                }
+            }
         }
         
         // Initial load

@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T14:46:10Z",
+  "lastUpdate": "2026-02-16T16:36:02Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -86,11 +86,11 @@
       "stats": {
         "spendToday": 40485,
         "roas": 2.97,
-        "cpa": 21.13,
+        "cpa": 19.59,
         "purchases": 1275,
-        "spendYesterday": 40586,
-        "ncpa": 33.48,
-        "newCustomers": 1212,
+        "spendYesterday": 40614,
+        "ncpa": 31.19,
+        "newCustomers": 1302,
         "ncRoas": 2.52
       },
       "memory": {
@@ -105,7 +105,11 @@
       "status": "idle",
       "currentTask": "Tracking P&L and margins",
       "lastActive": "2026-02-14T17:18:00Z",
-      "stats": {},
+      "stats": {
+        "mtdSales": 1160508,
+        "mtdNetProfit": 312820,
+        "mer": 20.9
+      },
       "memory": {
         "profile": "agents/PENNY.md",
         "sizeKB": 5.1,
@@ -323,7 +327,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-16T03:00:00Z",
-    "lastKlaviyoSync": "2026-02-16T14:46:10Z",
+    "lastKlaviyoSync": "2026-02-16T16:36:02Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
@@ -331,51 +335,64 @@
       "meta-ads-api",
       "klaviyo-api",
       "shopify-admin-api"
-    ]
+    ],
+    "lastTripleWhaleSync": "2026-02-16T16:36:02Z"
   },
   "metaAds": {
-    "lastSync": "2026-02-16T14:46:10Z",
+    "lastSync": "2026-02-16T16:36:02Z",
     "yesterday": {
       "date": "2026-02-15",
-      "spend": 40586,
+      "spend": 40614,
       "purchases": 1275,
-      "newCustomers": 1212,
-      "ncpa": 33.48,
-      "cpa": 21.13,
+      "newCustomers": 1302,
+      "ncpa": 31.19,
+      "cpa": 19.59,
       "roas": 2.97
     },
     "last7d": {
       "dateRange": "2026-02-09 to 2026-02-15",
-      "spend": 137057.36,
+      "spend": 137085.77,
       "purchases": 5396,
-      "ncpa": 40.25,
-      "roas": 3.65197
+      "ncpa": 40.46,
+      "roas": 3.651214
     }
   },
   "shopify": {
-    "lastSync": "2026-02-16T14:46:10Z",
+    "lastSync": "2026-02-16T16:36:02Z",
     "yesterday": {
       "date": "2026-02-15",
-      "orders": 1920,
-      "newCustomerOrders": 1212,
-      "revenue": 197318.40,
+      "orders": 2073,
+      "newCustomerOrders": 1302,
+      "revenue": 213042.21,
       "aov": 102.77
     },
-    "totalCustomers": 243917
+    "totalCustomers": 244053
   },
   "klaviyo": {
-    "lastSync": "2026-02-16T14:46:10Z",
+    "lastSync": "2026-02-16T16:36:02Z",
     "activeFlows": 7,
     "totalFlows": 32,
     "yesterday": {
       "emailsSent": 49000,
       "openRate": 75.2,
       "clickRate": 3.3,
-      "revenue": 135699
+      "revenue": 0
     },
     "lists": {
-      "newsletter": 51195,
+      "newsletter": 51242,
       "sms": 0
+    }
+  },
+  "penny": {
+    "lastSync": "2026-02-16T16:36:02Z",
+    "mtd": {
+      "period": "2026-02-01 to 2026-02-15",
+      "sales": 1160508,
+      "adSpend": 248949,
+      "netProfit": 312820,
+      "mer": 20.9,
+      "netMargin": 26.9,
+      "ncpa": 40.36
     }
   }
 }
