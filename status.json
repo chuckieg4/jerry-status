@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T03:00:00Z",
+  "lastUpdate": "2026-02-16T12:22:12Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -20,7 +20,10 @@
       "memory": {
         "profile": "agents/SAVANAH.md",
         "sizeKB": 43.5,
-        "training": ["PARKER-INTEL.md", "CREATIVE-EXPERTS.md"]
+        "training": [
+          "PARKER-INTEL.md",
+          "CREATIVE-EXPERTS.md"
+        ]
       }
     },
     "dave": {
@@ -82,9 +85,10 @@
       "lastActive": "2026-02-14T22:00:00Z",
       "stats": {
         "spendToday": 40485,
-        "roas": 2.5,
-        "cpa": 46.24,
-        "purchases": 181
+        "roas": 2.97,
+        "cpa": 31.80,
+        "purchases": 1275,
+        "spendYesterday": 40541
       },
       "memory": {
         "profile": "agents/MALBY.md",
@@ -127,14 +131,39 @@
       "lastUpdated": "2026-02-15"
     },
     "dailyNotes": [
-      {"date": "2026-02-16", "file": "memory/2026-02-16.md", "sizeKB": 0.5},
-      {"date": "2026-02-15", "file": "memory/2026-02-15.md", "sizeKB": 2.2},
-      {"date": "2026-02-14", "file": "memory/2026-02-14.md", "sizeKB": 18.3},
-      {"date": "2026-02-13", "file": "memory/2026-02-13.md", "sizeKB": 1.4},
-      {"date": "2026-02-12", "file": "memory/2026-02-12.md", "sizeKB": 1.6}
+      {
+        "date": "2026-02-16",
+        "file": "memory/2026-02-16.md",
+        "sizeKB": 0.5
+      },
+      {
+        "date": "2026-02-15",
+        "file": "memory/2026-02-15.md",
+        "sizeKB": 2.2
+      },
+      {
+        "date": "2026-02-14",
+        "file": "memory/2026-02-14.md",
+        "sizeKB": 18.3
+      },
+      {
+        "date": "2026-02-13",
+        "file": "memory/2026-02-13.md",
+        "sizeKB": 1.4
+      },
+      {
+        "date": "2026-02-12",
+        "file": "memory/2026-02-12.md",
+        "sizeKB": 1.6
+      }
     ],
     "workspaceFiles": [
-      "AGENTS.md", "SOUL.md", "USER.md", "IDENTITY.md", "TOOLS.md", "HEARTBEAT.md"
+      "AGENTS.md",
+      "SOUL.md",
+      "USER.md",
+      "IDENTITY.md",
+      "TOOLS.md",
+      "HEARTBEAT.md"
     ]
   },
   "cronJobs": [
@@ -203,10 +232,26 @@
     }
   ],
   "systemDocs": [
-    {"name": "Q1 2026 Action Plan", "file": "agents/ACTION-PLAN-Q1-2026.md", "sizeKB": 5.6},
-    {"name": "Weekly Rhythm", "file": "agents/WEEKLY-RHYTHM.md", "sizeKB": 5.0},
-    {"name": "Morning Briefing Template", "file": "agents/MORNING-BRIEFING.md", "sizeKB": 3.0},
-    {"name": "Agent System Overview", "file": "agents/AGENT_SYSTEM.md", "sizeKB": 3.3}
+    {
+      "name": "Q1 2026 Action Plan",
+      "file": "agents/ACTION-PLAN-Q1-2026.md",
+      "sizeKB": 5.6
+    },
+    {
+      "name": "Weekly Rhythm",
+      "file": "agents/WEEKLY-RHYTHM.md",
+      "sizeKB": 5.0
+    },
+    {
+      "name": "Morning Briefing Template",
+      "file": "agents/MORNING-BRIEFING.md",
+      "sizeKB": 3.0
+    },
+    {
+      "name": "Agent System Overview",
+      "file": "agents/AGENT_SYSTEM.md",
+      "sizeKB": 3.3
+    }
   ],
   "stats": {
     "totalAgents": 7,
@@ -275,5 +320,21 @@
       "klaviyo-api",
       "shopify-admin-api"
     ]
+  },
+  "metaAds": {
+    "lastSync": "2026-02-16T12:22:12Z",
+    "yesterday": {
+      "spend": 40541,
+      "purchases": 1275,
+      "cpa": 31.80,
+      "roas": 2.97
+    },
+    "last7d": {
+      "dateRange": "2026-02-09 to 2026-02-15",
+      "spend": 137011.05,
+      "purchases": 5396,
+      "cpa": 25.391225,
+      "roas": 3.653205
+    }
   }
 }
