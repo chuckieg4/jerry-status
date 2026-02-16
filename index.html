@@ -2048,10 +2048,11 @@
                     document.getElementById('card-malby-roas').textContent = stats.roas.toFixed(2) + 'x';
                     document.getElementById('detail-malby-roas').textContent = stats.roas.toFixed(2) + 'x';
                 }
-                if (stats.cpa) {
-                    document.getElementById('metaCPA').textContent = '$' + stats.cpa.toFixed(0);
-                    document.getElementById('card-malby-cpa').textContent = '$' + stats.cpa.toFixed(0);
-                    document.getElementById('detail-malby-cpa').textContent = '$' + stats.cpa.toFixed(2);
+                const ncpa = stats.ncpa || stats.cpa;
+                if (ncpa) {
+                    document.getElementById('metaCPA').textContent = '$' + ncpa.toFixed(0);
+                    document.getElementById('card-malby-cpa').textContent = '$' + ncpa.toFixed(0);
+                    document.getElementById('detail-malby-cpa').textContent = '$' + ncpa.toFixed(2);
                 }
                 if (stats.purchases) {
                     document.getElementById('detail-malby-purchases').textContent = stats.purchases;
