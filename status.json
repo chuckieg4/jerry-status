@@ -89,8 +89,9 @@
         "cpa": 21.83,
         "purchases": 1275,
         "spendYesterday": 40568,
-        "ncpa": 34.76,
-        "newCustomers": 1167
+        "ncpa": 40.73,
+        "newCustomers": 1167,
+        "ncRoas": 2.52
       },
       "memory": {
         "profile": "agents/MALBY.md",
@@ -330,9 +331,10 @@
       "spend": 40568,
       "purchases": 1275,
       "newCustomers": 1167,
-      "ncpa": 34.76,
+      "ncpa": 40.73,
       "cpa": 21.83,
-      "roas": 2.97
+      "roas": 2.97,
+      "ncRoas": 2.52
     },
     "last7d": {
       "dateRange": "2026-02-09 to 2026-02-15",
