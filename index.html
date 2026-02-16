@@ -2037,10 +2037,11 @@
             // Update header stats
             if (data.agents && data.agents.malby && data.agents.malby.stats) {
                 const stats = data.agents.malby.stats;
-                if (stats.spendToday) {
-                    document.getElementById('metaSpend').textContent = formatCurrency(stats.spendToday);
-                    document.getElementById('card-malby-spend').textContent = formatCurrency(stats.spendToday);
-                    document.getElementById('detail-malby-spend').textContent = '$' + stats.spendToday.toLocaleString();
+                const spend = stats.spendYesterday || stats.spendToday;
+                if (spend) {
+                    document.getElementById('metaSpend').textContent = formatCurrency(spend);
+                    document.getElementById('card-malby-spend').textContent = formatCurrency(spend);
+                    document.getElementById('detail-malby-spend').textContent = '$' + spend.toLocaleString();
                 }
                 if (stats.roas) {
                     document.getElementById('metaROAS').textContent = stats.roas.toFixed(2) + 'x';
@@ -2085,6 +2086,30 @@
                 }
                 if (wa7.atcRate) {
                     document.getElementById('wa-7d-atc').textContent = wa7.atcRate.toFixed(2) + '%';
+                }
+            }
+            
+            // Update Shopify Business Health
+            if (data.shopify) {
+                const shop = data.shopify;
+                if (shop.yesterday) {
+                    if (shop.yesterday.revenue) {
+                        const rev = shop.yesterday.revenue;
+                        document.getElementById('shopify-revenue').textContent = rev >= 1000 ? '$' + (rev/1000).toFixed(1) + 'K' : '$' + rev.toFixed(0);
+                        document.getElementById('card-tanner-revenue').textContent = rev >= 1000 ? '$' + (rev/1000).toFixed(1) + 'K' : '$' + rev.toFixed(0);
+                    }
+                    if (shop.yesterday.orders) {
+                        document.getElementById('shopify-orders').textContent = shop.yesterday.orders.toLocaleString();
+                        document.getElementById('card-tanner-orders').textContent = shop.yesterday.orders.toLocaleString();
+                    }
+                    if (shop.yesterday.aov) {
+                        document.getElementById('shopify-aov').textContent = '$' + shop.yesterday.aov.toFixed(2);
+                        document.getElementById('card-tanner-aov').textContent = '$' + shop.yesterday.aov.toFixed(0);
+                    }
+                }
+                if (shop.totalCustomers) {
+                    const cust = shop.totalCustomers;
+                    document.getElementById('shopify-customers').textContent = cust >= 1000 ? (cust/1000).toFixed(0) + 'K' : cust;
                 }
             }
             

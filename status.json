@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T12:22:12Z",
+  "lastUpdate": "2026-02-16T12:37:25Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -88,7 +88,7 @@
         "roas": 2.97,
         "cpa": 31.80,
         "purchases": 1275,
-        "spendYesterday": 40541
+        "spendYesterday": 40547
       },
       "memory": {
         "profile": "agents/MALBY.md",
@@ -322,19 +322,30 @@
     ]
   },
   "metaAds": {
-    "lastSync": "2026-02-16T12:22:12Z",
+    "lastSync": "2026-02-16T12:37:25Z",
     "yesterday": {
-      "spend": 40541,
+      "date": "2026-02-15",
+      "spend": 40547,
       "purchases": 1275,
       "cpa": 31.80,
       "roas": 2.97
     },
     "last7d": {
       "dateRange": "2026-02-09 to 2026-02-15",
-      "spend": 137011.05,
+      "spend": 137017.87,
       "purchases": 5396,
-      "cpa": 25.391225,
-      "roas": 3.653205
+      "cpa": 25.392489,
+      "roas": 3.653023
     }
+  },
+  "shopify": {
+    "lastSync": "2026-02-16T12:37:25Z",
+    "yesterday": {
+      "date": "2026-02-15",
+      "orders": 1696,
+      "revenue": 174297.92,
+      "aov": 102.77
+    },
+    "totalCustomers": 243791
   }
 }
