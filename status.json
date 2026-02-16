@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-16T13:35:39Z",
+  "lastUpdate": "2026-02-16T14:37:09Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -86,11 +86,11 @@
       "stats": {
         "spendToday": 40485,
         "roas": 2.97,
-        "cpa": 21.83,
+        "cpa": 21.23,
         "purchases": 1275,
-        "spendYesterday": 40568,
-        "ncpa": 40.73,
-        "newCustomers": 1167,
+        "spendYesterday": 40584,
+        "ncpa": 33.65,
+        "newCustomers": 1206,
         "ncRoas": 2.52
       },
       "memory": {
@@ -323,7 +323,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-16T03:00:00Z",
-    "lastKlaviyoSync": "2026-02-14T21:17:01Z",
+    "lastKlaviyoSync": "2026-02-16T14:37:09Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
@@ -334,34 +334,44 @@
     ]
   },
   "metaAds": {
-    "lastSync": "2026-02-16T13:35:39Z",
+    "lastSync": "2026-02-16T14:37:09Z",
     "yesterday": {
       "date": "2026-02-15",
-      "spend": 40568,
+      "spend": 40584,
       "purchases": 1275,
-      "newCustomers": 1167,
-      "ncpa": 40.73,
-      "cpa": 21.83,
-      "roas": 2.97,
-      "ncRoas": 2.52
+      "newCustomers": 1206,
+      "ncpa": 33.65,
+      "cpa": 21.23,
+      "roas": 2.97
     },
     "last7d": {
       "dateRange": "2026-02-09 to 2026-02-15",
-      "spend": 137038.96,
+      "spend": 137055.26,
       "purchases": 5396,
-      "ncpa": 40.44,
-      "roas": 3.652461
+      "ncpa": 40.26,
+      "roas": 3.652026
     }
   },
   "shopify": {
-    "lastSync": "2026-02-16T13:35:39Z",
+    "lastSync": "2026-02-16T14:37:09Z",
     "yesterday": {
       "date": "2026-02-15",
-      "orders": 1858,
-      "newCustomerOrders": 1167,
-      "revenue": 190946.66,
+      "orders": 1911,
+      "newCustomerOrders": 1206,
+      "revenue": 196393.47,
       "aov": 102.77
     },
-    "totalCustomers": 243834
+    "totalCustomers": 243905
+  },
+  "klaviyo": {
+    "lastSync": "2026-02-16T14:37:09Z",
+    "activeFlows": 7,
+    "totalFlows": 32,
+    "openRate": 42,
+    "clickRate": 3,
+    "lists": {
+      "newsletter": 51189,
+      "sms": 43392
+    }
   }
 }
