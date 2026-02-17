@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UndrDog Growth Engine</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+            padding: 40px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header p { color: #888; font-size: 1.2rem; }
+        
+        /* Funnel Flow */
+        .funnel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+        .stage {
+            background: linear-gradient(135deg, #1a1a1a, #252525);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 24px;
+            width: 180px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .stage:hover {
+            transform: translateY(-5px);
+            border-color: #22c55e;
+            box-shadow: 0 10px 40px rgba(34, 197, 94, 0.2);
+        }
+        .stage-number {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #22c55e;
+            color: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .stage-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .stage-name { font-weight: 600; margin-bottom: 8px; }
+        .stage-metric { color: #888; font-size: 0.85rem; }
+        .arrow {
+            color: #22c55e;
+            font-size: 1.5rem;
+        }
+        
+        /* Sections */
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #333;
+        }
+        .section-icon { font-size: 2rem; }
+        .section-title { font-size: 1.5rem; font-weight: 600; }
+        
+        /* Grid */
+        .grid { display: grid; gap: 20px; }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        
+        /* Cards */
+        .card {
+            background: #252525;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card ul { padding-left: 20px; color: #aaa; }
+        .card li { margin-bottom: 6px; }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stat {
+            background: #252525;
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #22c55e;
+        }
+        .stat-label { color: #888; font-size: 0.9rem; }
+        
+        /* Flow Diagram */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .flow-day {
+            background: #22c55e;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+        .flow-content { color: #ccc; }
+        
+        /* Drop Calendar */
+        .drop-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .drop-table th, .drop-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        .drop-table th {
+            color: #888;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .status-live { color: #22c55e; }
+        .status-planning { color: #eab308; }
+        .status-planned { color: #888; }
+        
+        /* Page Layout Wireframe */
+        .wireframe {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            font-family: monospace;
+        }
+        .wireframe-section {
+            border: 1px dashed #444;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+        .wireframe-section:last-child { margin-bottom: 0; }
+        .wireframe-label {
+            color: #22c55e;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+        .wireframe-content { color: #666; font-size: 0.85rem; }
+        
+        /* Metrics Table */
+        .metrics-table {
+            width: 100%;
+        }
+        .metrics-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        .metrics-table td:last-child {
+            text-align: right;
+            color: #22c55e;
+            font-weight: 600;
+        }
+        
+        /* Profit Engine Callout */
+        .profit-engine {
+            background: linear-gradient(135deg, #22c55e20, #16a34a20);
+            border: 2px solid #22c55e;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .profit-engine h2 {
+            font-size: 2rem;
+            color: #22c55e;
+            margin-bottom: 12px;
+        }
+        .profit-engine p { color: #aaa; max-width: 600px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐕 UNDRDOG GROWTH ENGINE</h1>
+        <p>Customer Acquisition & Retention Flywheel</p>
+    </div>
+    
+    <!-- Main Funnel Flow -->
+    <div class="funnel">
+        <div class="stage">
+            <div class="stage-number">1</div>
+            <div class="stage-icon">📱</div>
+            <div class="stage-name">Meta Ads</div>
+            <div class="stage-metric">78% of traffic</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+            <div class="stage-number">2</div>
+            <div class="stage-icon">📄</div>
+            <div class="stage-name">Sales Page</div>
+            <div class="stage-metric">/pages/bro</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+            <div class="stage-number">3</div>
+            <div class="stage-icon">👕</div>
+            <div class="stage-name">PDP</div>
+            <div class="stage-metric">Product Detail</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+            <div class="stage-number">4</div>
+            <div class="stage-icon">🛒</div>
+            <div class="stage-name">Cart</div>
+            <div class="stage-metric">Upsells</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+            <div class="stage-number">5</div>
+            <div class="stage-icon">💳</div>
+            <div class="stage-name">Checkout</div>
+            <div class="stage-metric">Shop Pay</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+            <div class="stage-number">6</div>
+            <div class="stage-icon">🎁</div>
+            <div class="stage-name">Post-Purchase</div>
+            <div class="stage-metric">One-Click Upsell</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="stage">
+            <div class="stage-number">7</div>
+            <div class="stage-icon">📧</div>
+            <div class="stage-name">Email/SMS</div>
+            <div class="stage-metric">Klaviyo Flows</div>
+        </div>
+    </div>
+    
+    <!-- Profit Engine Callout -->
+    <div class="profit-engine">
+        <h2>🔄 MONTHLY DROPS = PROFIT ENGINE</h2>
+        <p>Day-to-day ads may break even. Monthly limited drops with existing customers = pure profit. This is the flywheel.</p>
+    </div>
+    
+    <!-- Key Metrics -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">📊</div>
+            <div class="section-title">Key Metrics</div>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">$36</div>
+                <div class="stat-label">Avg CPA</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">2.3x</div>
+                <div class="stat-label">ROAS</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">240K+</div>
+                <div class="stat-label">Customers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">$1.48M</div>
+                <div class="stat-label">Ad Spend</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">44.2%</div>
+                <div class="stat-label">Buy for Health</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Traffic Sources -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">🎯</div>
+            <div class="section-title">Stage 1: Traffic Acquisition</div>
+        </div>
+        <div class="grid grid-2">
+            <div class="card">
+                <div class="card-title">📱 Traffic Sources</div>
+                <table class="metrics-table">
+                    <tr><td>Facebook</td><td>42.3%</td></tr>
+                    <tr><td>Instagram</td><td>36.2%</td></tr>
+                    <tr><td>SMS</td><td>5.7%</td></tr>
+                    <tr><td>Email</td><td>4.0%</td></tr>
+                    <tr><td>TikTok</td><td>0.9%</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <div class="card-title">🔥 Top Creative Types</div>
+                <ul>
+                    <li>Destructive Demos (flamethrower, knife)</li>
+                    <li>Health Authority (Dr. Chris)</li>
+                    <li>Anti-Polyester messaging</li>
+                    <li>StinkFREE ($7.65 CPA winner)</li>
+                    <li>Fit Transformation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sales Page -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">📄</div>
+            <div class="section-title">Stage 2: Long Form Sales Page (/bro)</div>
+        </div>
+        <div class="grid grid-2">
+            <div class="wireframe">
+                <div class="wireframe-section">
+                    <div class="wireframe-label">HERO</div>
+                    <div class="wireframe-content">Bold headline + "Made from plants. Not plastic." + CTA</div>
+                </div>
+                <div class="wireframe-section">
+                    <div class="wireframe-label">PROBLEM AGITATION</div>
+                    <div class="wireframe-content">Polyester = plastic revelation, microplastics studies</div>
+                </div>
+                <div class="wireframe-section">
+                    <div class="wireframe-label">SOLUTION</div>
+                    <div class="wireframe-content">DuraFlow™ tech: Hemp 51% + Bamboo 31% + Cotton 18%</div>
+                </div>
+                <div class="wireframe-section">
+                    <div class="wireframe-label">SOCIAL PROOF</div>
+                    <div class="wireframe-content">Reviews, testimonials, "240,000+ men"</div>
+                </div>
+                <div class="wireframe-section" style="border-color: #22c55e;">
+                    <div class="wireframe-label" style="color: #22c55e;">★ BUYBOX (MOVE HIGHER!)</div>
+                    <div class="wireframe-content">Color + Size + Quantity Tiers + ATC</div>
+                </div>
+                <div class="wireframe-section">
+                    <div class="wireframe-label">FOUNDER STORY</div>
+                    <div class="wireframe-content">Chuckie's journey (move below buybox)</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">⚠️ CRO Issues Identified</div>
+                <ul>
+                    <li><strong>54.58%</strong> leave before 5% scroll</li>
+                    <li>Only <strong>10%</strong> reach the buybox</li>
+                    <li>Founder story = biggest drop-off zone</li>
+                </ul>
+                <br>
+                <div class="card-title">✅ Fixes Needed</div>
+                <ul>
+                    <li>Price + urgency above fold</li>
+                    <li>Move founder story BELOW buybox</li>
+                    <li>Sticky mobile ATC bar</li>
+                    <li>Test short-form LP variant</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Post-Purchase Flow -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">📧</div>
+            <div class="section-title">Stage 7: Post-Purchase Email/SMS Flow</div>
+        </div>
+        <div class="flow">
+            <div class="flow-item">
+                <div class="flow-day">DAY 0</div>
+                <div class="flow-content">Order Confirmation + Tracking</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 1</div>
+                <div class="flow-content">Welcome to the Pack (brand story, care instructions)</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 3</div>
+                <div class="flow-content">Shipping Update</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 5</div>
+                <div class="flow-content">Product Arrives (styling tips, review request trigger)</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 7</div>
+                <div class="flow-content">Review Request (10% off next order)</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 14</div>
+                <div class="flow-content">The UndrDog Difference (hemp history, reinforce decision)</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 21</div>
+                <div class="flow-content">Referral Push (Give $10, Get $10)</div>
+            </div>
+            <div class="flow-item">
+                <div class="flow-day">DAY 30</div>
+                <div class="flow-content">Limited Drop Preview (VIP early access)</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Monthly Drops -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">🗓️</div>
+            <div class="section-title">Stage 8: Monthly Limited Drops (Profit Engine)</div>
+        </div>
+        <table class="drop-table">
+            <tr>
+                <th>Month</th>
+                <th>Drop Name</th>
+                <th>Units</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>Feb 2026</td>
+                <td>000 Clean Slate (No-Dye)</td>
+                <td>25,000</td>
+                <td class="status-live">✅ LIVE</td>
+            </tr>
+            <tr>
+                <td>Mar 2026</td>
+                <td>Polos</td>
+                <td>TBD</td>
+                <td class="status-planning">🟡 Planning</td>
+            </tr>
+            <tr>
+                <td>Apr 2026</td>
+                <td>Boxer Briefs</td>
+                <td>TBD</td>
+                <td class="status-planning">🟡 Planning</td>
+            </tr>
+            <tr>
+                <td>May 2026</td>
+                <td>Dark Blue</td>
+                <td>TBD</td>
+                <td class="status-planned">📋 Planned</td>
+            </tr>
+            <tr>
+                <td>Jun 2026</td>
+                <td>Gray</td>
+                <td>TBD</td>
+                <td class="status-planned">📋 Planned</td>
+            </tr>
+        </table>
+        <br>
+        <div class="card">
+            <div class="card-title">📢 Drop Sequence</div>
+            <ul>
+                <li><strong>Week -2:</strong> Teaser ("Something's coming...")</li>
+                <li><strong>Week -1:</strong> Reveal (color/product, date)</li>
+                <li><strong>Day -1:</strong> VIP Early Access (24hr head start)</li>
+                <li><strong>Drop Day:</strong> Public launch + scarcity messaging</li>
+                <li><strong>Week +1:</strong> Last Chance ("Almost gone")</li>
+                <li><strong>Post:</strong> Sold Out waitlist (lead capture)</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Optimization Priorities -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-icon">🎯</div>
+            <div class="section-title">Optimization Priorities</div>
+        </div>
+        <div class="grid grid-3">
+            <div class="card">
+                <div class="card-title">⚡ Immediate (This Week)</div>
+                <ul>
+                    <li>Move buybox higher on /bro</li>
+                    <li>Add sticky ATC on mobile</li>
+                    <li>Audit abandoned cart timing</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">📅 Short-Term (This Month)</div>
+                <ul>
+                    <li>A/B test short-form LP</li>
+                    <li>Implement post-purchase upsell</li>
+                    <li>Launch referral program</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-title">🚀 Long-Term (This Quarter)</div>
+                <ul>
+                    <li>Build VIP membership tier</li>
+                    <li>Subscription model testing</li>
+                    <li>Expand SMS automation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; color: #666; margin-top: 60px; padding: 20px;">
+        <p>UndrDog Growth Engine v1.0 | Updated: Feb 17, 2026</p>
+    </div>
+</body>
+</html>
