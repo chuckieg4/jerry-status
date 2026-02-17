@@ -190,16 +190,34 @@
       "description": "Refresh Shopify API token (expires 24h)"
     },
     {
-      "name": "Daily KPI Sync + Brief",
+      "name": "Mission Control Meta Sync",
+      "schedule": "2:30 AM EST",
+      "frequency": "daily",
+      "description": "Pull Meta Ads data, update status.json"
+    },
+    {
+      "name": "Daily KPI Brief + Moby",
       "schedule": "3:00 AM EST",
       "frequency": "daily",
-      "description": "Pull all APIs, update dashboard, send Telegram brief"
+      "description": "Full KPI sync + Moby CVR/ATC + Telegram brief"
     },
     {
       "name": "Tanner Bug Check",
       "schedule": "8:00 AM EST",
       "frequency": "daily",
-      "description": "Check homepage, /bro, PDP for issues"
+      "description": "Check homepage, /bro, PDP for issues + Clarity anomalies"
+    },
+    {
+      "name": "Leanna Influencer Targets",
+      "schedule": "8:00 AM EST",
+      "frequency": "daily",
+      "description": "Research 10 new influencer targets, post to Slack"
+    },
+    {
+      "name": "Claude 4.6 Check",
+      "schedule": "9:00 AM EST",
+      "frequency": "daily",
+      "description": "Check if new model available"
     },
     {
       "name": "Parker Creative Sync",
@@ -212,6 +230,12 @@
       "schedule": "11:30 PM EST",
       "frequency": "daily",
       "description": "Review daily notes, update MEMORY.md"
+    },
+    {
+      "name": "Weekly Parker Sync",
+      "schedule": "Mon 9:00 AM EST",
+      "frequency": "weekly",
+      "description": "Pull full creative scripts from Parker AI"
     }
   ],
   "systemDocs": [
