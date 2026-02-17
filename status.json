@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T08:00:20Z",
+  "lastUpdate": "2026-02-17T09:04:48.598Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -34,7 +34,7 @@
       "lastActive": "2026-02-17T08:00:20Z",
       "stats": {
         "activeFlows": 7,
-        "openRate": 42.0,
+        "openRate": 42,
         "campaignsSent": 7,
         "clickRate": 1.2
       },
@@ -85,14 +85,13 @@
       "currentTask": "Monitoring post-Valentine's performance",
       "lastActive": "2026-02-17T08:00:20Z",
       "stats": {
-        "spendToday": 40485,
-        "roas": 2.53,
-        "cpa": 21.49,
+        "spendYesterday": 19262,
         "purchases": 525,
-        "spendYesterday": 19257,
-        "ncpa": 35.46,
-        "newCustomers": 543,
-        "ncRoas": 2.52
+        "cpa": 36.69,
+        "roas": 2.53,
+        "spend7d": 149948,
+        "cpa7d": 25.92,
+        "roas7d": 3.58
       },
       "memory": {
         "profile": "agents/MALBY.md",
@@ -242,6 +241,12 @@
   "activity": [
     {
       "agent": "jerry",
+      "action": "📊 Daily KPI Brief — 7D: $150K spend, 5,786 purchases, $25.92 CPA, 3.58x ROAS",
+      "time": "just now",
+      "timestamp": "2026-02-17T09:04:48.598Z"
+    },
+    {
+      "agent": "jerry",
       "action": "📊 Daily KPI Brief delivered — CVR 3.69%, NCPA $35.46",
       "time": "just now",
       "timestamp": "2026-02-17T08:00:00Z"
@@ -298,7 +303,7 @@
     "sessions3d": 50244
   },
   "meta": {
-    "lastMetaSync": "2026-02-16T03:00:00Z",
+    "lastMetaSync": "2026-02-17T09:04:48.598Z",
     "lastKlaviyoSync": "2026-02-17T08:00:20Z",
     "lastShopifySync": "2026-02-14T17:40:00Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
@@ -311,22 +316,20 @@
     "lastTripleWhaleSync": "2026-02-17T08:00:20Z"
   },
   "metaAds": {
-    "lastSync": "2026-02-17T08:00:20Z",
+    "lastSync": "2026-02-17T09:04:48.598Z",
     "yesterday": {
       "date": "2026-02-16",
-      "spend": 19257,
+      "spend": 19262,
       "purchases": 525,
-      "newCustomers": 543,
-      "ncpa": 35.46,
-      "cpa": 21.49,
+      "cpa": 36.69,
       "roas": 2.53
     },
     "last7d": {
       "dateRange": "2026-02-10 to 2026-02-16",
-      "spend": 149944.12,
+      "spend": 149948,
       "purchases": 5786,
-      "ncpa": 42.76,
-      "roas": 3.585032
+      "cpa": 25.92,
+      "roas": 3.58
     }
   },
   "shopify": {
@@ -346,7 +349,7 @@
     "totalFlows": 32,
     "yesterday": {
       "emailsSent": 91982,
-      "openRate": 42.0,
+      "openRate": 42,
       "clickRate": 1.2,
       "revenue": 70065
     },
