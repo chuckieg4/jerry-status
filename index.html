@@ -40,10 +40,6 @@
             background: linear-gradient(180deg, rgba(18,18,26,0.98) 0%, rgba(10,10,15,0.95) 100%);
             border-bottom: 1px solid var(--border);
             padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px);
         }
         
         .header-content {
@@ -168,8 +164,8 @@
                 overflow-x: visible;
                 overflow-y: auto;
                 position: sticky;
-                top: 80px;
-                height: calc(100vh - 80px);
+                top: 0;
+                height: 100vh;
                 gap: 0.35rem;
             }
         }
