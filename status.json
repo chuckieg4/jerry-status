@@ -373,7 +373,7 @@
     }
   },
   "whatsWorking": {
-    "lastSync": "2026-02-16T21:48:52Z",
+    "lastSync": "2026-02-17T00:48:35Z",
     "period": "last_7d",
     "topCreatives": [
       {
@@ -382,16 +382,17 @@
         "fullName": "1.17.26 | IMG | C8.H13 > 1.2.26_bret_Comic_6 - 122259513272179579 *L-1.26.26",
         "type": "image",
         "creativeId": "932264942473917",
-        "thumbnail": "https://external-mia5-1.xx.fbcdn.net/emg1/v/t13/17719850160194772204?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLvR1IAbfepFifBJakli1eeQxztCHNOtweusOmLDC1AaiNKclCZeXHLwMggsrQg9T0O7GZVa2rpQZFaYRWPBWnPrfhI9PGgZdrxBSCuNJc4UTEawKotBPVr8zaYS_YaKRCSJdej1tquyWf4ouxKSxjK&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AAT1rw8EAAAA&_nc_gid=LoEJ8dZ8xNTAU4Gy4KSBYw&_nc_oc=AdlF31jf5wdb-wQm0L6rFvRfbNpDTJYpxIr6LhidV1x8DI0XZahMKdnWFReNIgHj2pFDIC-P2WxkuwV5AjxhpTVJ&ccb=13-1&oh=06_Q3-8AcrRF8Tc4cDpiLlKOiDrHqIZ8C9EO-hxWN7JhRj_YIXy&oe=69955BDA&_nc_sid=58080a",
-        "imageUrl": "https://scontent-mia5-1.xx.fbcdn.net/v/t45.1600-4/624640773_25690566177252776_8890877628631578192_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=ngZD8zBwwv4Q7kNvwHbN4aV&_nc_oc=AdnjZl2GTaKwRVsGykJWvMbY5EzgMJpbbs6Xhqk_6HZMaE47Vw7Twy7B-ZlHVS2QgYpb46Xo4nx6Ca5dKRMPsEcg&_nc_zt=1&_nc_ht=scontent-mia5-1.xx&edm=AAT1rw8EAAAA&_nc_gid=LoEJ8dZ8xNTAU4Gy4KSBYw&_nc_tpa=Q5bMBQFrRjdJkmq9Vz5LsnzGRXls67aHY1XN_EatBnihskO25kf_DHf1lrNSCK3DlCEY4phckH5f04KGiA&oh=00_AftZIXnGlM3xRPP-NSk5io41AbYmkLmWPkCECxzHH_lLSA&oe=699963E2",
+        "thumbnail": "https://external-mia5-1.xx.fbcdn.net/emg1/v/t13/17719850160194772204?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLvR1IAbfepFifBJakli1eeQxztCHNOtweusOmLDC1AaiNKclCZeXHLwMggsrQg9T0O7GZVa2rpQZFaYRWPBWnPrfhI9PGgZdrxBSCuNJc4UTEawKotBPVr8zaYS_YaKRCSJdej1tquyWf4ouxKSxjK&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AAT1rw8EAAAA&_nc_gid=1p8Ll5XI9FSb3lFphi1kYA&_nc_oc=AdlF31jf5wdb-wQm0L6rFvRfbNpDTJYpxIr6LhidV1x8DI0XZahMKdnWFReNIgHj2pFDIC-P2WxkuwV5AjxhpTVJ&ccb=13-1&oh=06_Q3-8AQEcy2V9eJqo4b5sP0qQc8Zmg_fyrNloALzKplPML5PG&oe=6995941A&_nc_sid=58080a",
+        "imageUrl": "https://scontent-mia5-1.xx.fbcdn.net/v/t45.1600-4/624640773_25690566177252776_8890877628631578192_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=ngZD8zBwwv4Q7kNvwHbN4aV&_nc_oc=AdnjZl2GTaKwRVsGykJWvMbY5EzgMJpbbs6Xhqk_6HZMaE47Vw7Twy7B-ZlHVS2QgYpb46Xo4nx6Ca5dKRMPsEcg&_nc_zt=1&_nc_ht=scontent-mia5-1.xx&edm=AAT1rw8EAAAA&_nc_gid=1p8Ll5XI9FSb3lFphi1kYA&_nc_tpa=Q5bMBQEOxGfulagkd4DVa9nuXh0_omstc8YyKXLcZYjXdGPuNqUU7zQaeoYPbiVCPls69UbmEqjA2GvSYw&oh=00_AfsOxweJXy4GqxZbCnlLPR4oFBX0Xvlo2anwNLR5KRYRDg&oe=69999C22",
         "videoUrl": "",
-        "spend": 15974.37,
+        "previewUrl": "",
+        "spend": 15974.9,
         "purchases": 361,
-        "cpa": 44.250332,
-        "roas": 1.966885,
-        "impressions": 1001732,
-        "cpm": 15.94675,
-        "ctr": 2.590214
+        "cpa": 44.251801,
+        "roas": 1.96682,
+        "impressions": 1001750,
+        "cpm": 15.946993,
+        "ctr": 2.590167
       },
       {
         "adId": "120238225594490698",
@@ -399,16 +400,17 @@
         "fullName": "12.25.25 | VID | C8.H13 > 12.19.25_dalton_FounderCaptionsOnly_V1 - 122255556476179579 *L-1.7.26",
         "type": "video",
         "creativeId": "1954434262119430",
-        "thumbnail": "https://scontent-mia3-1.xx.fbcdn.net/v/t15.5256-10/604053867_1378717687074618_5668604785534345683_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=3jIoBf-a6gsQ7kNvwEvR9aX&_nc_oc=Adk7PTW8Lx1WHq71LFPXhw5ZaPVq-z-Yhba5nQG5n40fPRXuI8uLW7Ijb8R7H-c3zrknoQUSXIcLjlXMBIpAJIdO&_nc_zt=23&_nc_ht=scontent-mia3-1.xx&edm=AAT1rw8EAAAA&_nc_gid=Gdqx7zVzZqYUWKQFkFG9fQ&_nc_tpa=Q5bMBQFCe0FSUCYYvrk_wLucDIW6A_fqCJ_Ju4vUIWSd2jXEMjFMcZPEvQvCT2UcXe7YdYwuDtgUkWqjcA&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfufuqzznoXOZhPe5itxEGWROL11cWkHoHscnJl2fccxCw&oe=69997875",
+        "thumbnail": "https://scontent-mia3-1.xx.fbcdn.net/v/t15.5256-10/604053867_1378717687074618_5668604785534345683_n.jpg?_nc_cat=106&ccb=1-7&_nc_ohc=3jIoBf-a6gsQ7kNvwEvR9aX&_nc_oc=Adk7PTW8Lx1WHq71LFPXhw5ZaPVq-z-Yhba5nQG5n40fPRXuI8uLW7Ijb8R7H-c3zrknoQUSXIcLjlXMBIpAJIdO&_nc_zt=23&_nc_ht=scontent-mia3-1.xx&edm=AAT1rw8EAAAA&_nc_gid=j6Zn0Bo0VXPwvB47wzobGA&_nc_tpa=Q5bMBQHUtkCCu7IXV52wZmT7G6jwUqyfqNJFgrFyppl6Vrh1_YBL9BMUp81zZN4UtqQaVYCBKEMMzzlxjg&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&ur=d2b52d&_nc_sid=58080a&oh=00_AfvoboW3fm3RFJFQJkqXEO3aWWbvFhQaTBvUo_K1a-VHHg&oe=69997875",
         "imageUrl": "",
         "videoUrl": "",
-        "spend": 12978.3,
+        "previewUrl": "https://business.facebook.com/ads/api/preview_iframe.php?d=AQJJtD0jZaMnA1aOGyMmpV-Aj7QdqSAMDNO0RmOPSeMumYueKfL5jBCmSUINxW6IEs3tSvvlqFCmTCtj7SdSbz3Xvf-6RRNjmmd_r4NzQaI6Te1N8jIHobgNbJ5iQScdOi2ksPt6ZiZU2JNR92cHwPXVxP4ZO_s72vwtyBLLAzNSQRGMHjnpA1rMx6zmN28s8HEU5Fl-qptgN9bwjbwwSufgDo-VITEImSWU_xW-oEQ4baa7rYH_5_Amn1RcQ5Ocj4Ikkv38dcZGrFsmFTnWDeMAsIW95wdB_eAnMh4ZVfLkPChYV8nMIcIQUWjfKa3rCf80rMg-g5Ksxbe9CB5yWowMVL0THCjuTOs97Bx6Qj4y_3_STkJWqk1roqjuJ-GIVk-JK9dqx9redu_9ghxGhGb6qkiQ-PCxw-QI0GGLjFDpg4PFdPG2U08HSMmVmXDWnGY&amp;t=AQJVgF2P3xeVsPu1Yfg",
+        "spend": 12978.67,
         "purchases": 241,
-        "cpa": 53.851867,
-        "roas": 1.535212,
-        "impressions": 570308,
-        "cpm": 22.756651,
-        "ctr": 3.015914
+        "cpa": 53.853402,
+        "roas": 1.535168,
+        "impressions": 570317,
+        "cpm": 22.75694,
+        "ctr": 3.016042
       },
       {
         "adId": "120238186309730698",
@@ -416,16 +418,17 @@
         "fullName": "1.23.26 | VID | C8.H13 > 1.22.26_dalton_layflat_V2 - 122260485140179579 *L-2.2.26",
         "type": "video",
         "creativeId": "1416421393272732",
-        "thumbnail": "https://external-mia5-1.xx.fbcdn.net/emg1/v/t13/14490038382367425501?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLyak9pnqpfxpdweCXGUadfYnHQtcQ2ENk7gr3Ghqq2QRORuNcrOQgNK_ov0EncRunrM-O5kjvMr3GW9t7XXDd5zUTYWYbgvWP12bi9dPhKQHqfglFYnfJWdvFKxrFdzL0Ocl-v3IDcvgJJ5CM8lfnu&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AAT1rw8EAAAA&_nc_gid=604O6lHKFRV_Onkc_KaS8w&_nc_oc=AdmCLWfi5sVhhEXldMHA8ZLU-SphMDP5vTF6tAQ93Psi8A8yroqwRrWQ6Y6yJS5_trwcs6jWE7lNlfdFZ4_oEIys&ccb=13-1&oh=06_Q3-8ATy8PfPMcLMPSwbLl0Cfc2IhsMjWNwGx1OXit2TmuAmV&oe=699580F1&_nc_sid=58080a",
-        "imageUrl": "https://scontent-mia3-3.xx.fbcdn.net/v/t45.1600-4/627385094_10174009378220014_1762361615128082366_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=sEn5e5pmEmoQ7kNvwGG2osa&_nc_oc=AdlmvIwYCpvGU4Oo0YV4o6El6vPmXkJofh3pLS9ST5d05rF8MxBMyBCYjohTRSlWGVdJXq6tnLjnPgqUTQ1HEnnG&_nc_zt=1&_nc_ht=scontent-mia3-3.xx&edm=AAT1rw8EAAAA&_nc_gid=604O6lHKFRV_Onkc_KaS8w&_nc_tpa=Q5bMBQFWJ-duQ_F68-mI2ASYMTZZCxpmXly_X0kdKfQyJHiD9A_YFrDQJYtzhyjpTfWKKWJjeENwTHhBfQ&oh=00_AfsQBrxCArsyWZTI8rIFNjLRB2t8Ao4et71AjTE9BEjUKQ&oe=69995B6C",
+        "thumbnail": "https://external-mia5-1.xx.fbcdn.net/emg1/v/t13/14490038382367425501?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLyak9pnqpfxpdweCXGUadfYnHQtcQ2ENk7gr3Ghqq2QRORuNcrOQgNK_ov0EncRunrM-O5kjvMr3GW9t7XXDd5zUTYWYbgvWP12bi9dPhKQHqfglFYnfJWdvFKxrFdzL0Ocl-v3IDcvgJJ5CM8lfnu&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AAT1rw8EAAAA&_nc_gid=K9HKu8l6tW4jBuZvy9e5MA&_nc_oc=AdmCLWfi5sVhhEXldMHA8ZLU-SphMDP5vTF6tAQ93Psi8A8yroqwRrWQ6Y6yJS5_trwcs6jWE7lNlfdFZ4_oEIys&ccb=13-1&oh=06_Q3-8AVXpr4jvWeeODOxmP8tRs2K0MU3IyzLeFHmeTtDJfUNm&oe=699580F1&_nc_sid=58080a",
+        "imageUrl": "https://scontent-mia3-3.xx.fbcdn.net/v/t45.1600-4/627385094_10174009378220014_1762361615128082366_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=8vGvf6hIUEYQ7kNvwESN5Fu&_nc_oc=AdkLXhU8TfkYhkI5rHwSbc7c_qLnzZVeoYgtx3A1zpHEe3sZ5B6ntqWoNGLVwAA8INcsfNlacSq9PiZ9cJrpGY9j&_nc_zt=1&_nc_ht=scontent-mia3-3.xx&edm=AAT1rw8EAAAA&_nc_gid=K9HKu8l6tW4jBuZvy9e5MA&_nc_tpa=Q5bMBQFbWR-bEa5i6lgR_3ahveIGy_3P9N2Kllt2Muvz9jwt9gbyYKCc9U_C7H-gqzfqgLD-eJ4ZUbfxPQ&oh=00_AfvkTO3lBrodSRmvU0NjP0IcTpoBFZGA0YNLC_IiFy822A&oe=699993AC",
         "videoUrl": "",
-        "spend": 11674.64,
+        "previewUrl": "https://business.facebook.com/ads/api/preview_iframe.php?d=AQI7HUQsflmjateiHAtlV-WzRBnF0mTEWQeLwJ3x0AIxQPK2EnAxy17cJkL1GI8A5LikcZsAn0oUhzwlL4Vr3aCyzotWNbwNfSAVdJu0MUA4m26nDLmMhrPpNWoyszn6z_5h2zm36pYFA44JZdO31m6clQhvU_ni6thI-RE6BSkPQyqfudysv18M1xZheyPj6Qlnc0n1e4srfwJFaEmct_6FpWie14-VgLy0IFhGtaH5HzuCq1FNgw1GNj1paOywOMbiKfnKc0RQhy0aEWHNa0dSDvbVO1d9eCupvtTQ8sftryksoZYs6x1XtdvPFzZG6KXIYBFF9_ofMmP5_tUWmtEZFubibXhEaB374DePGw0pztr2sP6W7XD9cg_cILPHu3kpu0xAnJsJzBffG8Ru3xj3KXKS_76p3XtL3J2mPJAd-5SfnmRA0Yyf5LCbOcd7xOM&amp;t=AQKjVihBI737KnjxcwI",
+        "spend": 11674.94,
         "purchases": 244,
-        "cpa": 47.846885,
-        "roas": 1.849825,
-        "impressions": 629923,
-        "cpm": 18.53344,
-        "ctr": 2.030248
+        "cpa": 47.848115,
+        "roas": 1.849777,
+        "impressions": 629941,
+        "cpm": 18.533386,
+        "ctr": 2.030349
       },
       {
         "adId": "120238186309440698",
@@ -433,16 +436,17 @@
         "fullName": "9.20.25 | IMG | C8.H13 > 9.12.25_MTRX_NewCTA - 122240688170179579 *L-9.29.25",
         "type": "image",
         "creativeId": "1433006661833273",
-        "thumbnail": "https://external-mia5-1.xx.fbcdn.net/emg1/v/t13/1582164294331212932?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIrfOe-v2AtEshG0doplrLmDsXK53wH5RwBONMA4pVCEeFxwtaFlczD-w4g1d02p-VIvIj8s_6vmkjX7pKd7r-zL4uewGPI3Wfp1og7pwROo04ZtGCMG1BzOcMLpnRk6EpYYmll4-tkt8s5M0Ul6MJ1&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AAT1rw8EAAAA&_nc_gid=1f7EtPNBfoGOZtKmb6UDbw&_nc_oc=AdmZlBTwTpvLMBoiq0taGxaL4qNyKS0C9suLWr8aOWtwjatVNHuNP-qBI7ejD3pjSTZFDNmqAgKIl1Xvt9L3HJZJ&ccb=13-1&oh=06_Q3-8AU-GbmpflhY-q4Xc8uBRj4IUFG7W2dygRVwCSyBe_k7b&oe=6995718D&_nc_sid=58080a",
-        "imageUrl": "https://scontent-mia3-3.xx.fbcdn.net/v/t45.1600-4/551528117_1843276539871217_117311043239345867_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=oyarMWPeSWgQ7kNvwFEe9Ld&_nc_oc=Adm8JAEe7LdyZm0BK4n1Aa1EtEUIFYAOd7f2ieq12V7ZhuA0uz_SPcyvC124oK0PYARgJhc9XDuLf5Ha_C6zvCQJ&_nc_zt=1&_nc_ht=scontent-mia3-3.xx&edm=AAT1rw8EAAAA&_nc_gid=1f7EtPNBfoGOZtKmb6UDbw&_nc_tpa=Q5bMBQFSeHMfTGFtopTVCKvWbYR1WX2Qr4F-pcwr_HYr9j5A4-PjRGe3dm_qj_EotFmG82a3PfBToYgq3Q&oh=00_AftLFEKEei6Ztv41Xyx7OiiWjnglxNl6LWM83b6hqwHS4A&oe=69997AC2",
+        "thumbnail": "https://external-mia5-1.xx.fbcdn.net/emg1/v/t13/1582164294331212932?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIrfOe-v2AtEshG0doplrLmDsXK53wH5RwBONMA4pVCEeFxwtaFlczD-w4g1d02p-VIvIj8s_6vmkjX7pKd7r-zL4uewGPI3Wfp1og7pwROo04ZtGCMG1BzOcMLpnRk6EpYYmll4-tkt8s5M0Ul6MJ1&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p64x64_q75_tt6&edm=AAT1rw8EAAAA&_nc_gid=6eIt-KjSI9AS3Ukq0QFQbg&_nc_oc=AdmZlBTwTpvLMBoiq0taGxaL4qNyKS0C9suLWr8aOWtwjatVNHuNP-qBI7ejD3pjSTZFDNmqAgKIl1Xvt9L3HJZJ&ccb=13-1&oh=06_Q3-8AYC-vjO7uV1CUMut2EANsYFv-sUIMILM4KRUgaofeeG2&oe=6995A9CD&_nc_sid=58080a",
+        "imageUrl": "https://scontent-mia3-3.xx.fbcdn.net/v/t45.1600-4/551528117_1843276539871217_117311043239345867_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=d5bd00&_nc_ohc=oyarMWPeSWgQ7kNvwFEe9Ld&_nc_oc=Adm8JAEe7LdyZm0BK4n1Aa1EtEUIFYAOd7f2ieq12V7ZhuA0uz_SPcyvC124oK0PYARgJhc9XDuLf5Ha_C6zvCQJ&_nc_zt=1&_nc_ht=scontent-mia3-3.xx&edm=AAT1rw8EAAAA&_nc_gid=6eIt-KjSI9AS3Ukq0QFQbg&_nc_tpa=Q5bMBQEJchjxp8ZhsYrwAOW8Yv9LpEd1QICKvXOMuiVRPjkI3ytrZu0I1NHV0r65kOmg-IUhKvzpndDedA&oh=00_Afu4O4bJeNqlRHvRIk6g7J2zcdWFy8qA83Y-JIEBiYDuBA&oe=69997AC2",
         "videoUrl": "",
-        "spend": 7767.31,
+        "previewUrl": "",
+        "spend": 7767.93,
         "purchases": 195,
-        "cpa": 39.832359,
-        "roas": 2.161914,
-        "impressions": 273153,
-        "cpm": 28.435748,
-        "ctr": 2.41513
+        "cpa": 39.835538,
+        "roas": 2.161742,
+        "impressions": 273158,
+        "cpm": 28.437498,
+        "ctr": 2.415086
       }
     ]
   }
