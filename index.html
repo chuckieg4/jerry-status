@@ -2051,8 +2051,51 @@
                 const data = await response.json();
                 updateDashboard(data);
             } catch (e) {
-                console.log('Using default data');
+                console.error('Error loading status:', e);
             }
+        }
+        
+        // Update cron jobs separately to ensure it runs
+        function updateCronJobs(data) {
+            if (!data || !data.cronJobs || !Array.isArray(data.cronJobs)) return;
+            
+            const dailyContainer = document.getElementById('cron-daily-jobs');
+            const weeklyContainer = document.getElementById('cron-weekly-jobs');
+            
+            const icons = {
+                'Daily Memory Backup': '💾',
+                'Shopify Token Refresh': '🔄',
+                'Daily KPI Sync + Brief': '📊',
+                'Tanner Bug Check': '🔍',
+                'Claude 4.6 Check': '🤖',
+                'Memory Consolidation': '🧠',
+                'Parker Creative Sync': '🎨'
+            };
+            
+            let dailyHTML = '';
+            let weeklyHTML = '';
+            
+            data.cronJobs.forEach(job => {
+                const icon = icons[job.name] || '⏰';
+                const html = `
+                    <div class="info-item">
+                        <span class="icon">${icon}</span>
+                        <div>
+                            <strong>${job.name}</strong> — ${job.schedule}<br>
+                            <span style="color: var(--text-secondary); font-size: 0.85rem;">${job.description}</span>
+                        </div>
+                    </div>
+                `;
+                
+                if (job.frequency === 'weekly') {
+                    weeklyHTML += html;
+                } else {
+                    dailyHTML += html;
+                }
+            });
+            
+            if (dailyContainer) dailyContainer.innerHTML = dailyHTML || '<div class="info-item">No daily jobs configured</div>';
+            if (weeklyContainer) weeklyContainer.innerHTML = weeklyHTML || '<div class="info-item">No weekly jobs configured</div>';
         }
         
         function formatCurrency(num) {
@@ -2061,6 +2104,9 @@
         }
         
         function updateDashboard(data) {
+            // Update cron jobs first (separate function for reliability)
+            try { updateCronJobs(data); } catch(e) { console.error('Cron update error:', e); }
+            
             // Update header stats
             if (data.agents && data.agents.malby && data.agents.malby.stats) {
                 const stats = data.agents.malby.stats;
@@ -2263,46 +2309,6 @@
                 if (openEl && data.klaviyo.yesterday) openEl.textContent = data.klaviyo.yesterday.openRate.toFixed(0) + '%';
             }
             
-            // Update Cron Jobs list dynamically
-            if (data.cronJobs && Array.isArray(data.cronJobs)) {
-                const dailyContainer = document.getElementById('cron-daily-jobs');
-                const weeklyContainer = document.getElementById('cron-weekly-jobs');
-                
-                const icons = {
-                    'Daily Memory Backup': '💾',
-                    'Shopify Token Refresh': '🔄',
-                    'Daily KPI Sync': '📊',
-                    'Tanner Bug Check': '🔍',
-                    'Claude 4.6 Check': '🤖',
-                    'Memory Consolidation': '🧠',
-                    'Parker Creative Sync': '🎨'
-                };
-                
-                let dailyHTML = '';
-                let weeklyHTML = '';
-                
-                data.cronJobs.forEach(job => {
-                    const icon = icons[job.name] || '⏰';
-                    const html = `
-                        <div class="info-item">
-                            <span class="icon">${icon}</span>
-                            <div>
-                                <strong>${job.name}</strong> — ${job.schedule}<br>
-                                <span style="color: var(--text-secondary); font-size: 0.85rem;">${job.description}</span>
-                            </div>
-                        </div>
-                    `;
-                    
-                    if (job.frequency === 'weekly') {
-                        weeklyHTML += html;
-                    } else {
-                        dailyHTML += html;
-                    }
-                });
-                
-                if (dailyContainer) dailyContainer.innerHTML = dailyHTML || '<div class="info-item">No daily jobs configured</div>';
-                if (weeklyContainer) weeklyContainer.innerHTML = weeklyHTML || '<div class="info-item">No weekly jobs configured</div>';
-            }
         }
         
         // Initial load
