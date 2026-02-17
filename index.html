@@ -84,7 +84,27 @@
         
         .header-stats {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
+        }
+        
+        .header-stat-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .header-stat-group-label {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-align: center;
+            opacity: 0.7;
+        }
+        
+        .header-stat-row {
+            display: flex;
+            gap: 1.25rem;
         }
         
         .header-stat {
@@ -92,13 +112,13 @@
         }
         
         .header-stat-value {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--accent-orange);
         }
         
         .header-stat-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -659,17 +679,39 @@
             </div>
             
             <div class="header-stats">
-                <div class="header-stat">
-                    <div class="header-stat-value" id="metaSpend">$15.1k</div>
-                    <div class="header-stat-label">Meta Spend</div>
+                <div class="header-stat-group">
+                    <div class="header-stat-group-label">YESTERDAY</div>
+                    <div class="header-stat-row">
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="ydayAdSpend">$19k</div>
+                            <div class="header-stat-label">Ad Spend</div>
+                        </div>
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="ydaySales">$84k</div>
+                            <div class="header-stat-label">Sales</div>
+                        </div>
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="ydayMER">4.4x</div>
+                            <div class="header-stat-label">MER</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="header-stat">
-                    <div class="header-stat-value" id="metaROAS">2.86x</div>
-                    <div class="header-stat-label">ROAS</div>
-                </div>
-                <div class="header-stat">
-                    <div class="header-stat-value" id="metaCPA">$32</div>
-                    <div class="header-stat-label">NCPA</div>
+                <div class="header-stat-group">
+                    <div class="header-stat-group-label">MTD</div>
+                    <div class="header-stat-row">
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="mtdAdSpend">$271k</div>
+                            <div class="header-stat-label">Ad Spend</div>
+                        </div>
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="mtdSales">$1.2M</div>
+                            <div class="header-stat-label">Sales</div>
+                        </div>
+                        <div class="header-stat">
+                            <div class="header-stat-value" id="mtdMER">4.6x</div>
+                            <div class="header-stat-label">MER</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -872,17 +914,13 @@
                         </div>
                     </div>
                     <div class="agent-kpis">
-                        <div class="agent-kpi">
-                            <div class="agent-kpi-value">24</div>
-                            <div class="agent-kpi-label">Partners</div>
+                        <div class="agent-kpi" style="flex: 2;">
+                            <div class="agent-kpi-value" id="card-leanna-outreach">--</div>
+                            <div class="agent-kpi-label">Outreach Total</div>
                         </div>
                         <div class="agent-kpi">
-                            <div class="agent-kpi-value">8</div>
-                            <div class="agent-kpi-label">Pending</div>
-                        </div>
-                        <div class="agent-kpi">
-                            <div class="agent-kpi-value">2.4x</div>
-                            <div class="agent-kpi-label">Avg ROI</div>
+                            <div class="agent-kpi-value" id="card-leanna-change" style="color: var(--accent-green);">+0</div>
+                            <div class="agent-kpi-label">vs Yesterday</div>
                         </div>
                     </div>
                 </div>
@@ -1550,25 +1588,20 @@
             
             <div class="agent-detail">
                 <div class="detail-card">
-                    <h3>📊 Key Metrics</h3>
+                    <h3>📊 Outreach Tracking <span style="font-size: 0.7rem; color: var(--text-secondary); font-weight: normal;">via Google Sheet</span></h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">24</div>
-                            <div class="kpi-label">Active Partners</div>
+                            <div class="kpi-value neutral" id="leanna-total-outreach">--</div>
+                            <div class="kpi-label">Total Outreach</div>
                         </div>
                         <div class="kpi-box">
-                            <div class="kpi-value neutral">8</div>
-                            <div class="kpi-label">Pending Deals</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value positive">2.4x</div>
-                            <div class="kpi-label">Avg ROI</div>
-                        </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value neutral">$150</div>
-                            <div class="kpi-label">Avg UGC Cost</div>
+                            <div class="kpi-value positive" id="leanna-outreach-change">+0</div>
+                            <div class="kpi-label">vs Yesterday</div>
                         </div>
                     </div>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem;">
+                        📋 <a href="https://docs.google.com/spreadsheets/d/1WsanGHxhXitOVULO-7Yx3NzapMpCyqaW8EBjaRiKZAA/edit#gid=421917733" target="_blank">View Full Tracking Sheet</a>
+                    </p>
                 </div>
                 
                 <div class="detail-card">
@@ -2110,29 +2143,74 @@
             // Update cron jobs first (separate function for reliability)
             try { updateCronJobs(data); } catch(e) { console.error('Cron update error:', e); }
             
-            // Update header stats
+            // Update header stats (TW Blended - Yesterday + MTD)
+            function formatK(num) {
+                if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
+                if (num >= 1000) return '$' + Math.round(num / 1000) + 'k';
+                return '$' + Math.round(num);
+            }
+            
+            // Yesterday stats from shopify/metaAds
+            if (data.shopify && data.shopify.yesterday) {
+                const yday = data.shopify.yesterday;
+                const ydaySpend = data.metaAds?.yesterday?.spend || 0;
+                const ydaySales = yday.revenue || 0;
+                const ydayMER = ydaySales > 0 && ydaySpend > 0 ? (ydaySales / ydaySpend).toFixed(1) : '--';
+                
+                const el1 = document.getElementById('ydayAdSpend');
+                const el2 = document.getElementById('ydaySales');
+                const el3 = document.getElementById('ydayMER');
+                if (el1) el1.textContent = formatK(ydaySpend);
+                if (el2) el2.textContent = formatK(ydaySales);
+                if (el3) el3.textContent = ydayMER + 'x';
+            }
+            
+            // MTD stats from penny/TW
+            if (data.penny && data.penny.mtd) {
+                const mtd = data.penny.mtd;
+                const mtdSpend = mtd.adSpend || 0;
+                const mtdSales = mtd.sales || 0;
+                const mtdMER = mtdSales > 0 && mtdSpend > 0 ? (mtdSales / mtdSpend).toFixed(1) : '--';
+                
+                const el1 = document.getElementById('mtdAdSpend');
+                const el2 = document.getElementById('mtdSales');
+                const el3 = document.getElementById('mtdMER');
+                if (el1) el1.textContent = formatK(mtdSpend);
+                if (el2) el2.textContent = formatK(mtdSales);
+                if (el3) el3.textContent = mtdMER + 'x';
+            }
+            
+            // Update Malby card stats (keep for detail views)
             if (data.agents && data.agents.malby && data.agents.malby.stats) {
                 const stats = data.agents.malby.stats;
                 const spend = stats.spendYesterday || stats.spendToday;
                 if (spend) {
-                    document.getElementById('metaSpend').textContent = formatCurrency(spend);
-                    document.getElementById('card-malby-spend').textContent = formatCurrency(spend);
-                    document.getElementById('detail-malby-spend').textContent = '$' + spend.toLocaleString();
+                    document.getElementById('card-malby-spend')?.textContent && (document.getElementById('card-malby-spend').textContent = formatCurrency(spend));
+                    document.getElementById('detail-malby-spend')?.textContent && (document.getElementById('detail-malby-spend').textContent = '$' + spend.toLocaleString());
                 }
                 if (stats.roas) {
-                    document.getElementById('metaROAS').textContent = stats.roas.toFixed(2) + 'x';
-                    document.getElementById('card-malby-roas').textContent = stats.roas.toFixed(2) + 'x';
-                    document.getElementById('detail-malby-roas').textContent = stats.roas.toFixed(2) + 'x';
+                    document.getElementById('card-malby-roas')?.textContent && (document.getElementById('card-malby-roas').textContent = stats.roas.toFixed(2) + 'x');
+                    document.getElementById('detail-malby-roas')?.textContent && (document.getElementById('detail-malby-roas').textContent = stats.roas.toFixed(2) + 'x');
                 }
                 const ncpa = stats.ncpa || stats.cpa;
                 if (ncpa) {
-                    document.getElementById('metaCPA').textContent = '$' + ncpa.toFixed(0);
-                    document.getElementById('card-malby-cpa').textContent = '$' + ncpa.toFixed(0);
-                    document.getElementById('detail-malby-cpa').textContent = '$' + ncpa.toFixed(2);
+                    document.getElementById('card-malby-cpa')?.textContent && (document.getElementById('card-malby-cpa').textContent = '$' + ncpa.toFixed(0));
+                    document.getElementById('detail-malby-cpa')?.textContent && (document.getElementById('detail-malby-cpa').textContent = '$' + ncpa.toFixed(2));
                 }
                 if (stats.purchases) {
-                    document.getElementById('detail-malby-purchases').textContent = stats.purchases;
+                    document.getElementById('detail-malby-purchases')?.textContent && (document.getElementById('detail-malby-purchases').textContent = stats.purchases);
                 }
+            }
+            
+            // Update Leanna outreach stats
+            if (data.leanna) {
+                const outreach = data.leanna.totalOutreach || 0;
+                const change = data.leanna.changeFromYesterday || 0;
+                
+                document.getElementById('card-leanna-outreach')?.textContent && (document.getElementById('card-leanna-outreach').textContent = outreach);
+                document.getElementById('card-leanna-change')?.textContent && (document.getElementById('card-leanna-change').textContent = (change >= 0 ? '+' : '') + change);
+                document.getElementById('leanna-total-outreach')?.textContent && (document.getElementById('leanna-total-outreach').textContent = outreach);
+                document.getElementById('leanna-outreach-change')?.textContent && (document.getElementById('leanna-outreach-change').textContent = (change >= 0 ? '+' : '') + change);
             }
             
             // Update Yesterday Analytics (Moby-sourced)
