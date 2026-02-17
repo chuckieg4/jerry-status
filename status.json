@@ -178,64 +178,58 @@
   },
   "cronJobs": [
     {
-      "name": "Daily Memory Backup",
+      "name": "Daily Memory Backup to GitHub",
       "schedule": "12:00 AM EST",
       "frequency": "daily",
       "description": "Sync memory files to GitHub"
     },
     {
-      "name": "Shopify Token Refresh",
+      "name": "Daily Shopify Token Refresh (2am)",
       "schedule": "2:00 AM EST",
       "frequency": "daily",
       "description": "Refresh Shopify API token (expires 24h)"
     },
     {
-      "name": "Mission Control Meta Sync",
-      "schedule": "2:30 AM EST",
-      "frequency": "daily",
-      "description": "Pull Meta Ads data, update status.json"
-    },
-    {
-      "name": "Daily KPI Brief + Moby",
+      "name": "Daily KPI Brief (3am) - Moby Integration",
       "schedule": "3:00 AM EST",
       "frequency": "daily",
       "description": "Full KPI sync + Moby CVR/ATC + Telegram brief"
     },
     {
-      "name": "Tanner Bug Check",
+      "name": "Tanner Daily Bug Check",
       "schedule": "8:00 AM EST",
       "frequency": "daily",
-      "description": "Check homepage, /bro, PDP for issues + Clarity anomalies"
+      "description": "Check homepage, /bro, PDP for issues + Clarity"
     },
     {
-      "name": "Leanna Influencer Targets",
+      "name": "Daily Influencer Targets (Leanna)",
       "schedule": "8:00 AM EST",
       "frequency": "daily",
       "description": "Research 10 new influencer targets, post to Slack"
     },
     {
-      "name": "Claude 4.6 Check",
+      "name": "Claude 4.6 Availability Check",
       "schedule": "9:00 AM EST",
       "frequency": "daily",
       "description": "Check if new model available"
     },
     {
-      "name": "Parker Creative Sync",
+      "name": "Daily Parker Creative Sync",
       "schedule": "9:00 AM EST",
       "frequency": "daily",
       "description": "Sync top 5 creatives to What's Working tab"
     },
     {
-      "name": "Memory Consolidation",
+      "name": "Weekly Parker Creative Sync",
+      "schedule": "Mon 9:00 AM EST",
+      "frequency": "weekly",
+      "description": "Sync top 5 creatives to What's Working tab"
+    },
+    {
+      "name": "Daily Memory Consolidation",
       "schedule": "11:30 PM EST",
       "frequency": "daily",
       "description": "Review daily notes, update MEMORY.md"
-    },
-    {
-      "name": "Weekly Parker Sync",
-      "schedule": "Mon 9:00 AM EST",
-      "frequency": "weekly",
-      "description": "Pull full creative scripts from Parker AI"
     }
   ],
   "systemDocs": [
@@ -340,7 +334,8 @@
       "klaviyo-api",
       "shopify-admin-api"
     ],
-    "lastTripleWhaleSync": "2026-02-17T08:00:20Z"
+    "lastTripleWhaleSync": "2026-02-17T08:00:20Z",
+    "lastCronSync": "2026-02-17T15:28:21.162Z"
   },
   "metaAds": {
     "lastSync": "2026-02-17T09:04:48.598Z",
