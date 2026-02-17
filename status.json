@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-17T17:10:24Z",
+  "lastUpdate": "2026-02-17T17:53:08Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -31,7 +31,7 @@
       "role": "Head of Email/SMS",
       "status": "idle",
       "currentTask": "Clean Slate E10 sent 3PM, E11-E15 queued",
-      "lastActive": "2026-02-17T17:10:24Z",
+      "lastActive": "2026-02-17T17:53:08Z",
       "stats": {
         "activeFlows": 7,
         "openRate": 42.0,
@@ -49,7 +49,7 @@
       "role": "Head of CVR Optimization",
       "status": "active",
       "currentTask": "Daily bug patrol: Homepage, /bro, PDP checks + Clarity anomaly monitoring",
-      "lastActive": "2026-02-17T17:10:24Z",
+      "lastActive": "2026-02-17T17:53:08Z",
       "stats": {
         "cvr": 3.69,
         "lift": 18,
@@ -83,18 +83,18 @@
       "role": "Head of Media Buying",
       "status": "idle",
       "currentTask": "Monitoring post-Valentine's performance",
-      "lastActive": "2026-02-17T17:10:24Z",
+      "lastActive": "2026-02-17T17:53:08Z",
       "stats": {
-        "spendYesterday": 19308,
+        "spendYesterday": 19309,
         "purchases": 525,
-        "cpa": 16.39,
+        "cpa": 15.48,
         "roas": 2.53,
         "spend7d": 149948,
         "cpa7d": 25.92,
         "roas7d": 3.58,
         "revenueYesterday": 83843,
-        "newCustomers": 708,
-        "ncpa": 27.27
+        "newCustomers": 739,
+        "ncpa": 26.12
       },
       "memory": {
         "profile": "agents/MALBY.md",
@@ -107,7 +107,7 @@
       "role": "Accountant",
       "status": "idle",
       "currentTask": "Tracking P&L and margins",
-      "lastActive": "2026-02-17T17:10:24Z",
+      "lastActive": "2026-02-17T17:53:08Z",
       "stats": {
         "mtdSales": 1274998,
         "mtdNetProfit": 331959,
@@ -323,7 +323,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-17T09:04:48.598Z",
-    "lastKlaviyoSync": "2026-02-17T17:10:24Z",
+    "lastKlaviyoSync": "2026-02-17T17:53:08Z",
     "lastShopifySync": "2026-02-17T14:05:50.729Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
@@ -332,44 +332,44 @@
       "klaviyo-api",
       "shopify-admin-api"
     ],
-    "lastTripleWhaleSync": "2026-02-17T17:10:24Z",
+    "lastTripleWhaleSync": "2026-02-17T17:53:08Z",
     "lastCronSync": "2026-02-17T15:30:55.576Z",
     "lastFullSync": "2026-02-17T15:31:19.561Z"
   },
   "metaAds": {
-    "lastSync": "2026-02-17T17:10:24Z",
+    "lastSync": "2026-02-17T17:53:08Z",
     "yesterday": {
       "date": "2026-02-16",
-      "spend": 19308,
+      "spend": 19309,
       "purchases": 525,
-      "newCustomers": 708,
-      "ncpa": 27.27,
-      "cpa": 16.39,
+      "newCustomers": 739,
+      "ncpa": 26.12,
+      "cpa": 15.48,
       "roas": 2.53
     },
     "last7d": {
       "dateRange": "2026-02-10 to 2026-02-16",
-      "spend": 149995.74,
+      "spend": 149997.26,
       "purchases": 5786,
-      "ncpa": 43.13,
-      "roas": 3.583798
+      "ncpa": 43.75,
+      "roas": 3.583761
     }
   },
   "shopify": {
-    "lastSync": "2026-02-17T17:10:24Z",
+    "lastSync": "2026-02-17T17:53:08Z",
     "yesterday": {
       "date": "2026-02-16",
-      "orders": 1178,
-      "newCustomerOrders": 708,
-      "revenue": 171329,
-      "blendedAdSpend": 43667,
-      "mer": 3.92,
+      "orders": 1247,
+      "newCustomerOrders": 739,
+      "revenue": 83843,
+      "blendedAdSpend": 21762,
+      "mer": 3.85,
       "aov": 96.41
     },
-    "totalCustomers": 244730
+    "totalCustomers": 244759
   },
   "klaviyo": {
-    "lastSync": "2026-02-17T17:10:24Z",
+    "lastSync": "2026-02-17T17:53:08Z",
     "activeFlows": 7,
     "totalFlows": 32,
     "yesterday": {
@@ -379,16 +379,16 @@
       "revenue": 70065
     },
     "lists": {
-      "newsletter": 51522,
-      "sms": 0
+      "newsletter": 51541,
+      "sms": 43744
     }
   },
   "penny": {
-    "lastSync": "2026-02-17T17:10:24Z",
+    "lastSync": "2026-02-17T17:53:08Z",
     "mtd": {
       "period": "2026-02-01 to 2026-02-16",
       "sales": 1274998,
-      "adSpend": 270760,
+      "adSpend": 270759,
       "netProfit": 331959,
       "mer": 21.2,
       "netMargin": 26.0,
