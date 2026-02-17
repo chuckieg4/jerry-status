@@ -2223,37 +2223,22 @@
                 
                 // Helper to format time (seconds to M:SS)
                 function formatTime(seconds) {
+                    if (seconds == null) return '--';
                     const mins = Math.floor(seconds / 60);
                     const secs = seconds % 60;
                     return mins + ':' + secs.toString().padStart(2, '0');
                 }
                 
-                // Helper to format trend
-                function formatTrendVal(change, prevVal, isTime) {
-                    const prefix = change > 0 ? '↑' : change < 0 ? '↓' : '—';
-                    const changeStr = change !== 0 ? Math.abs(change).toFixed(1) + '% vs ' : 'flat vs ';
-                    const prevStr = isTime ? formatTime(prevVal) : prevVal.toFixed(1) + '%';
-                    return prefix + ' ' + changeStr + prevStr;
-                }
-                
                 // Session Duration
-                if (bro.sessionDuration) {
-                    document.getElementById('bro-session-duration').textContent = formatTime(bro.sessionDuration.current);
-                    const trendEl = document.getElementById('bro-session-trend');
-                    trendEl.textContent = formatTrendVal(bro.sessionDuration.changePercent, bro.sessionDuration.previous, true);
-                    trendEl.classList.remove('up', 'down');
-                    if (bro.sessionDuration.changePercent > 0) trendEl.classList.add('up');
-                    if (bro.sessionDuration.changePercent < 0) trendEl.classList.add('down');
+                if (bro.sessionDuration && bro.sessionDuration.current != null) {
+                    const el = document.getElementById('bro-session-duration');
+                    if (el) el.textContent = formatTime(bro.sessionDuration.current);
                 }
                 
                 // Scroll Depth
-                if (bro.scrollDepth) {
-                    document.getElementById('bro-scroll-depth').textContent = bro.scrollDepth.current.toFixed(1) + '%';
-                    const trendEl = document.getElementById('bro-scroll-trend');
-                    trendEl.textContent = formatTrendVal(bro.scrollDepth.changePercent, bro.scrollDepth.previous, false);
-                    trendEl.classList.remove('up', 'down');
-                    if (bro.scrollDepth.changePercent > 0) trendEl.classList.add('up');
-                    if (bro.scrollDepth.changePercent < 0) trendEl.classList.add('down');
+                if (bro.scrollDepth && bro.scrollDepth.current != null) {
+                    const el = document.getElementById('bro-scroll-depth');
+                    if (el) el.textContent = bro.scrollDepth.current.toFixed(1) + '%';
                 }
             }
             
