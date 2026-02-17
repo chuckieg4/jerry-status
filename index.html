@@ -991,13 +991,13 @@
                 <div class="kpi-grid">
                     <div class="kpi-box">
                         <div class="kpi-value positive" id="shopify-revenue">--</div>
-                        <div class="kpi-label">Yesterday's Revenue</div>
-                        <div class="kpi-trend">From 3am sync</div>
+                        <div class="kpi-label">Revenue</div>
+                        <div class="kpi-trend">Yesterday</div>
                     </div>
                     <div class="kpi-box">
                         <div class="kpi-value neutral" id="shopify-orders">--</div>
-                        <div class="kpi-label">Yesterday's Orders</div>
-                        <div class="kpi-trend">From 3am sync</div>
+                        <div class="kpi-label">Orders</div>
+                        <div class="kpi-trend">Yesterday</div>
                     </div>
                     <div class="kpi-box">
                         <div class="kpi-value neutral" id="shopify-aov">--</div>
@@ -1010,14 +1010,19 @@
                         <div class="kpi-trend">First-time buyers</div>
                     </div>
                     <div class="kpi-box">
-                        <div class="kpi-value positive" id="shopify-customers">--</div>
-                        <div class="kpi-label">Total Customers</div>
-                        <div class="kpi-trend up">All time</div>
+                        <div class="kpi-value neutral" id="shopify-mer">--</div>
+                        <div class="kpi-label">MER</div>
+                        <div class="kpi-trend">Revenue ÷ Ad Spend</div>
                     </div>
                     <div class="kpi-box">
                         <div class="kpi-value neutral" id="shopify-ncpa">--</div>
                         <div class="kpi-label">NCPA</div>
                         <div class="kpi-trend">Meta ÷ New Customers</div>
+                    </div>
+                    <div class="kpi-box">
+                        <div class="kpi-value positive" id="shopify-customers">--</div>
+                        <div class="kpi-label">Total Customers</div>
+                        <div class="kpi-trend">All time</div>
                     </div>
                 </div>
             </div>
@@ -1210,7 +1215,7 @@
             
             <div class="agent-detail">
                 <div class="detail-card full-width">
-                    <h3>📊 Key Metrics (Last 7 Days)</h3>
+                    <h3>📊 Creative Performance (Last 7 Days)</h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
                             <div class="kpi-value positive" id="sav-ncpa-detail">--</div>
@@ -1224,13 +1229,18 @@
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="sav-spend-detail">--</div>
-                            <div class="kpi-label">Ad Spend (7D)</div>
-                            <div class="kpi-trend">Meta Ads total</div>
+                            <div class="kpi-label">Ad Spend</div>
+                            <div class="kpi-trend">7-day total</div>
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="sav-purchases-detail">--</div>
-                            <div class="kpi-label">Purchases (7D)</div>
-                            <div class="kpi-trend">From Meta Pixel</div>
+                            <div class="kpi-label">Purchases</div>
+                            <div class="kpi-trend">7-day total</div>
+                        </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="sav-cpa-detail">--</div>
+                            <div class="kpi-label">CPA</div>
+                            <div class="kpi-trend">Spend ÷ Purchases</div>
                         </div>
                     </div>
                 </div>
@@ -1317,9 +1327,9 @@
                     <h3>📊 Email/SMS Performance (Yesterday)</h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
-                            <div class="kpi-value neutral" id="dave-detail-flows">--</div>
-                            <div class="kpi-label">Active Flows</div>
-                            <div class="kpi-trend">Automated sequences</div>
+                            <div class="kpi-value positive" id="dave-detail-revenue">--</div>
+                            <div class="kpi-label">Email Revenue</div>
+                            <div class="kpi-trend">Yesterday</div>
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="dave-detail-emails">--</div>
@@ -1336,17 +1346,17 @@
                             <div class="kpi-label">Click Rate</div>
                             <div class="kpi-trend">Yesterday</div>
                         </div>
-                        <div class="kpi-box">
-                            <div class="kpi-value positive" id="dave-detail-revenue">--</div>
-                            <div class="kpi-label">Email Revenue</div>
-                            <div class="kpi-trend">Yesterday</div>
-                        </div>
                     </div>
                 </div>
                 
                 <div class="detail-card full-width">
-                    <h3>📋 List Health</h3>
+                    <h3>📋 List & Flow Health</h3>
                     <div class="kpi-grid">
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="dave-detail-flows">--</div>
+                            <div class="kpi-label">Active Flows</div>
+                            <div class="kpi-trend">Automated sequences</div>
+                        </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="dave-detail-newsletter">--</div>
                             <div class="kpi-label">Newsletter Subs</div>
@@ -1675,6 +1685,11 @@
                             <div class="kpi-label">Net Profit</div>
                             <div class="kpi-trend">From Triple Whale</div>
                         </div>
+                        <div class="kpi-box">
+                            <div class="kpi-value neutral" id="penny-prev-mer">--</div>
+                            <div class="kpi-label">MER</div>
+                            <div class="kpi-trend">Sales ÷ Ad Spend</div>
+                        </div>
                     </div>
                 </div>
                 
@@ -1706,18 +1721,18 @@
                 </div>
                 
                 <!-- Health Indicators -->
-                <div class="detail-card">
+                <div class="detail-card full-width">
                     <h3>🩺 Financial Health (MTD)</h3>
                     <div class="kpi-grid">
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="penny-mer">--</div>
                             <div class="kpi-label">MER</div>
-                            <div class="kpi-trend">Sales ÷ Ad Spend</div>
+                            <div class="kpi-trend">Sales ÷ Ad Spend (target >3x)</div>
                         </div>
                         <div class="kpi-box">
                             <div class="kpi-value neutral" id="penny-net-pct">--</div>
                             <div class="kpi-label">Net Margin %</div>
-                            <div class="kpi-trend">Net ÷ Sales</div>
+                            <div class="kpi-trend">Net ÷ Sales (target >10%)</div>
                         </div>
                     </div>
                 </div>
@@ -2316,6 +2331,13 @@
                 
                 const prevNetEl = document.getElementById('penny-prev-net');
                 if (prevNetEl) prevNetEl.textContent = formatPrevK(prev.netProfit);
+                
+                // Calculate previous month MER
+                const prevMerEl = document.getElementById('penny-prev-mer');
+                if (prevMerEl && prev.sales && prev.adSpend) {
+                    const prevMer = prev.sales / prev.adSpend;
+                    prevMerEl.textContent = prevMer.toFixed(2) + 'x';
+                }
             }
             
             // Update Tanner's CVR from web analytics
@@ -2404,14 +2426,25 @@
                 
                 const purchasesDetailEl = document.getElementById('sav-purchases-detail');
                 if (purchasesDetailEl && meta7d.purchases) purchasesDetailEl.textContent = meta7d.purchases.toLocaleString();
+                
+                // Calculate CPA (spend / purchases)
+                const cpaDetailEl = document.getElementById('sav-cpa-detail');
+                if (cpaDetailEl && meta7d.spend && meta7d.purchases) {
+                    const cpa = meta7d.spend / meta7d.purchases;
+                    cpaDetailEl.textContent = '$' + cpa.toFixed(2);
+                }
             }
             
-            // Update Shopify new customers and NCPA
+            // Update Shopify new customers, MER, and NCPA
             if (data.shopify && data.shopify.yesterday) {
                 const yday = data.shopify.yesterday;
                 
                 const newCustEl = document.getElementById('shopify-new-customers');
                 if (newCustEl && yday.newCustomerOrders) newCustEl.textContent = yday.newCustomerOrders.toLocaleString();
+                
+                // MER from shopify data
+                const merEl = document.getElementById('shopify-mer');
+                if (merEl && yday.mer) merEl.textContent = yday.mer.toFixed(2) + 'x';
                 
                 // Calculate NCPA if we have Meta spend
                 if (data.metaAds && data.metaAds.yesterday && yday.newCustomerOrders > 0) {
