@@ -2150,12 +2150,12 @@
                 return '$' + Math.round(num);
             }
             
-            // Yesterday stats from shopify/metaAds
+            // Yesterday stats from TW (blended)
             if (data.shopify && data.shopify.yesterday) {
                 const yday = data.shopify.yesterday;
-                const ydaySpend = data.metaAds?.yesterday?.spend || 0;
+                const ydaySpend = yday.blendedAdSpend || data.metaAds?.yesterday?.spend || 0;
                 const ydaySales = yday.revenue || 0;
-                const ydayMER = ydaySales > 0 && ydaySpend > 0 ? (ydaySales / ydaySpend).toFixed(1) : '--';
+                const ydayMER = yday.mer || (ydaySales > 0 && ydaySpend > 0 ? (ydaySales / ydaySpend).toFixed(1) : '--');
                 
                 const el1 = document.getElementById('ydayAdSpend');
                 const el2 = document.getElementById('ydaySales');
