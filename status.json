@@ -25,7 +25,7 @@
           "CREATIVE-EXPERTS.md"
         ]
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMTQ5NjAyNDQ4Ml5BMl5BanBnXkFtZTcwOTQ0NDg3NA@@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/seth.png"
     },
     "evan": {
       "name": "Evan",
@@ -44,7 +44,7 @@
         "sizeKB": 44.6,
         "training": []
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMzkyODQ3NTctMjMwNC00MmNhLWE4NzQtNjYzMWI2MTU3YTk0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/evan.png"
     },
     "mclovin": {
       "name": "McLovin",
@@ -62,7 +62,7 @@
         "sizeKB": 41,
         "training": []
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMTYxMjg1Mjk3Nl5BMl5BanBnXkFtZTcwODI2NzgyMQ@@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/mclovin.png"
     },
     "jules": {
       "name": "Jules",
@@ -80,7 +80,7 @@
         "sizeKB": 33.3,
         "training": []
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMjMzNzYwMDM1M15BMl5BanBnXkFtZTcwMjM4ODU0Mw@@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/jules.png"
     },
     "slater": {
       "name": "Slater",
@@ -105,7 +105,7 @@
         "sizeKB": 42.1,
         "training": []
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMjUxMjAyODU4Ml5BMl5BanBnXkFtZTcwOTkwNDE3OQ@@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/slater.png"
     },
     "becca": {
       "name": "Becca",
@@ -123,7 +123,7 @@
         "sizeKB": 5.1,
         "training": []
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMTg3MTU5Njk5N15BMl5BanBnXkFtZTcwNzI4NjU3Mw@@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/becca.png"
     },
     "michaels": {
       "name": "Michaels",
@@ -137,7 +137,7 @@
         "sizeKB": 11.4,
         "training": []
       },
-      "avatar": "https://m.media-amazon.com/images/M/MV5BMjE4MzY3NTU3N15BMl5BanBnXkFtZTcwNTcwNDQ3OQ@@._V1_FMjpg_UX1000_.jpg"
+      "avatar": "avatars/michaels.png"
     }
   },
   "jerryMemory": {
