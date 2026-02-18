@@ -397,8 +397,8 @@
       "adSpend": 287200,
       "netProfit": 351317,
       "mer": 21.3,
-      "netMargin": 26.0,
-      "ncpa": 40.30
+      "netMargin": 26,
+      "ncpa": 40.3
     },
     "previousMonth": {
       "name": "January",
@@ -504,9 +504,9 @@
     ]
   },
   "leanna": {
-    "totalOutreach": 0,
-    "changeFromYesterday": 0,
-    "lastUpdated": "2026-02-17T15:39:03.215Z",
+    "totalOutreach": 10,
+    "changeFromYesterday": 10,
+    "lastUpdated": "2026-02-18T13:05:39.254Z",
     "sheetUrl": "https://docs.google.com/spreadsheets/d/1WsanGHxhXitOVULO-7Yx3NzapMpCyqaW8EBjaRiKZAA/edit#gid=421917733"
   }
 }
