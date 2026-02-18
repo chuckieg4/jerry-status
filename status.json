@@ -25,7 +25,7 @@
           "CREATIVE-EXPERTS.md"
         ]
       },
-      "avatar": "avatars/seth.png"
+      "avatar": "avatars/seth.jpg"
     },
     "evan": {
       "name": "Evan",
@@ -44,7 +44,7 @@
         "sizeKB": 44.6,
         "training": []
       },
-      "avatar": "avatars/evan.png"
+      "avatar": "avatars/evan.jpg"
     },
     "mclovin": {
       "name": "McLovin",
@@ -62,7 +62,7 @@
         "sizeKB": 41,
         "training": []
       },
-      "avatar": "avatars/mclovin.png"
+      "avatar": "avatars/mclovin.jpg"
     },
     "jules": {
       "name": "Jules",
@@ -80,7 +80,7 @@
         "sizeKB": 33.3,
         "training": []
       },
-      "avatar": "avatars/jules.png"
+      "avatar": "avatars/jules.jpg"
     },
     "slater": {
       "name": "Slater",
@@ -105,7 +105,7 @@
         "sizeKB": 42.1,
         "training": []
       },
-      "avatar": "avatars/slater.png"
+      "avatar": "avatars/slater.jpg"
     },
     "becca": {
       "name": "Becca",
@@ -123,7 +123,7 @@
         "sizeKB": 5.1,
         "training": []
       },
-      "avatar": "avatars/becca.png"
+      "avatar": "avatars/becca.jpg"
     },
     "michaels": {
       "name": "Michaels",
@@ -137,7 +137,7 @@
         "sizeKB": 11.4,
         "training": []
       },
-      "avatar": "avatars/michaels.png"
+      "avatar": "avatars/michaels.jpg"
     }
   },
   "jerryMemory": {
