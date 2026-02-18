@@ -44,14 +44,15 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--black);
-            border-top: 1px solid var(--gray-800);
-            padding: 12px 20px;
+            background: linear-gradient(180deg, rgba(33,33,33,0.95) 0%, var(--black) 100%);
+            border-top: 2px solid var(--orange);
+            padding: 16px 20px;
             z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 16px;
+            backdrop-filter: blur(10px);
         }
         
         .sticky-cta .price {
@@ -67,22 +68,25 @@
         }
         
         .btn {
-            background: var(--white);
-            color: var(--black);
+            background: var(--orange);
+            color: var(--white);
             padding: 14px 32px;
             font-size: 16px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
         }
         
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+            background: #d9561f;
+            box-shadow: 0 10px 30px rgba(236, 97, 42, 0.4);
         }
         
         .btn-large {
