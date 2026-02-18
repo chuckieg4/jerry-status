@@ -6,8 +6,8 @@
     "todaysTasks": 1
   },
   "agents": {
-    "savanah": {
-      "name": "Savanah",
+    "seth": {
+      "name": "Seth",
       "role": "Creative Director",
       "status": "idle",
       "currentTask": "Reviewing MTRX batch 4 creatives, briefing new hook variations",
@@ -18,7 +18,7 @@
         "approvalRate": 94
       },
       "memory": {
-        "profile": "agents/SAVANAH.md",
+        "profile": "agents/SETH.md",
         "sizeKB": 44,
         "training": [
           "PARKER-INTEL.md",
@@ -26,8 +26,8 @@
         ]
       }
     },
-    "dave": {
-      "name": "Dave",
+    "evan": {
+      "name": "Evan",
       "role": "Head of Email/SMS",
       "status": "idle",
       "currentTask": "Clean Slate E10 sent 3PM, E11-E15 queued",
@@ -39,13 +39,13 @@
         "clickRate": 1.5
       },
       "memory": {
-        "profile": "agents/DAVE.md",
+        "profile": "agents/EVAN.md",
         "sizeKB": 44.6,
         "training": []
       }
     },
-    "tanner": {
-      "name": "Tanner",
+    "mclovin": {
+      "name": "McLovin",
       "role": "Head of CVR Optimization",
       "status": "active",
       "currentTask": "Daily bug patrol: Homepage, /bro, PDP checks + Clarity anomaly monitoring",
@@ -56,13 +56,13 @@
         "testsLive": 4
       },
       "memory": {
-        "profile": "agents/TANNER.md",
+        "profile": "agents/MCLOVIN.md",
         "sizeKB": 41,
         "training": []
       }
     },
-    "leanna": {
-      "name": "Leanna",
+    "jules": {
+      "name": "Jules",
       "role": "Head of Influencer Management",
       "status": "idle",
       "currentTask": "Waiting for influencer responses from outreach batch",
@@ -73,13 +73,13 @@
         "avgRoi": 2.4
       },
       "memory": {
-        "profile": "agents/LEANNA.md",
+        "profile": "agents/JULES.md",
         "sizeKB": 33.3,
         "training": []
       }
     },
-    "malby": {
-      "name": "Malby",
+    "slater": {
+      "name": "Slater",
       "role": "Head of Media Buying",
       "status": "idle",
       "currentTask": "Monitoring post-Valentine's performance",
@@ -97,13 +97,13 @@
         "ncpa": 42.04
       },
       "memory": {
-        "profile": "agents/MALBY.md",
+        "profile": "agents/SLATER.md",
         "sizeKB": 42.1,
         "training": []
       }
     },
-    "penny": {
-      "name": "Penny",
+    "becca": {
+      "name": "Becca",
       "role": "Accountant",
       "status": "idle",
       "currentTask": "Tracking P&L and margins",
@@ -114,20 +114,20 @@
         "mer": 21.3
       },
       "memory": {
-        "profile": "agents/PENNY.md",
+        "profile": "agents/BECCA.md",
         "sizeKB": 5.1,
         "training": []
       }
     },
-    "rex": {
-      "name": "Rex",
+    "fogell": {
+      "name": "Fogell",
       "role": "Real Estate Expert",
       "status": "idle",
       "currentTask": "Cape Coral property underwriting",
       "lastActive": "2026-02-14T21:02:00Z",
       "stats": {},
       "memory": {
-        "profile": "agents/REALESTATE.md",
+        "profile": "agents/FOGELL.md",
         "sizeKB": 11.4,
         "training": []
       }
