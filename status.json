@@ -24,7 +24,8 @@
           "PARKER-INTEL.md",
           "CREATIVE-EXPERTS.md"
         ]
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMTQ5NjAyNDQ4Ml5BMl5BanBnXkFtZTcwOTQ0NDg3NA@@._V1_FMjpg_UX1000_.jpg"
     },
     "evan": {
       "name": "Evan",
@@ -42,7 +43,8 @@
         "profile": "agents/EVAN.md",
         "sizeKB": 44.6,
         "training": []
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMzkyODQ3NTctMjMwNC00MmNhLWE4NzQtNjYzMWI2MTU3YTk0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
     },
     "mclovin": {
       "name": "McLovin",
@@ -59,7 +61,8 @@
         "profile": "agents/MCLOVIN.md",
         "sizeKB": 41,
         "training": []
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMTYxMjg1Mjk3Nl5BMl5BanBnXkFtZTcwODI2NzgyMQ@@._V1_FMjpg_UX1000_.jpg"
     },
     "jules": {
       "name": "Jules",
@@ -76,7 +79,8 @@
         "profile": "agents/JULES.md",
         "sizeKB": 33.3,
         "training": []
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMjMzNzYwMDM1M15BMl5BanBnXkFtZTcwMjM4ODU0Mw@@._V1_FMjpg_UX1000_.jpg"
     },
     "slater": {
       "name": "Slater",
@@ -100,7 +104,8 @@
         "profile": "agents/SLATER.md",
         "sizeKB": 42.1,
         "training": []
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMjUxMjAyODU4Ml5BMl5BanBnXkFtZTcwOTkwNDE3OQ@@._V1_FMjpg_UX1000_.jpg"
     },
     "becca": {
       "name": "Becca",
@@ -117,20 +122,22 @@
         "profile": "agents/BECCA.md",
         "sizeKB": 5.1,
         "training": []
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMTg3MTU5Njk5N15BMl5BanBnXkFtZTcwNzI4NjU3Mw@@._V1_FMjpg_UX1000_.jpg"
     },
-    "fogell": {
-      "name": "Fogell",
+    "michaels": {
+      "name": "Michaels",
       "role": "Real Estate Expert",
       "status": "idle",
       "currentTask": "Cape Coral property underwriting",
       "lastActive": "2026-02-14T21:02:00Z",
       "stats": {},
       "memory": {
-        "profile": "agents/FOGELL.md",
+        "profile": "agents/MICHAELS.md",
         "sizeKB": 11.4,
         "training": []
-      }
+      },
+      "avatar": "https://m.media-amazon.com/images/M/MV5BMjE4MzY3NTU3N15BMl5BanBnXkFtZTcwNTcwNDQ3OQ@@._V1_FMjpg_UX1000_.jpg"
     }
   },
   "jerryMemory": {
