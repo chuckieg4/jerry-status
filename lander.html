@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UndrDog Hemp | The Last Shirt You'll Ever Need</title>
+    <meta name="description" content="The world's toughest, most breathable tee. Made from plants, not plastic. Backed for life.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-400: #a3a3a3;
+            --gray-600: #525252;
+            --gray-800: #262626;
+            --green: #22c55e;
+            --red: #ef4444;
+            --gold: #eab308;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--black);
+            border-top: 1px solid var(--gray-800);
+            padding: 12px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .sticky-cta .price {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .sticky-cta .price span {
+            color: var(--gray-400);
+            text-decoration: line-through;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        
+        .btn {
+            background: var(--white);
+            color: var(--black);
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+        }
+        
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 18px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 20px 120px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--black) 0%, #111 100%);
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--gray-800);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        
+        .hero h1 .highlight {
+            color: var(--green);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 24px);
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        
+        .hero-proof {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .hero-proof-item {
+            text-align: center;
+        }
+        
+        .hero-proof-item .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--white);
+        }
+        
+        .hero-proof-item .label {
+            font-size: 13px;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Warning Section */
+        .warning {
+            background: #1a0a0a;
+            border-left: 4px solid var(--red);
+            padding: 60px 20px;
+        }
+        
+        .warning-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .warning h2 {
+            font-size: clamp(24px, 5vw, 36px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--red);
+        }
+        
+        .warning p {
+            font-size: 18px;
+            color: var(--gray-200);
+            margin-bottom: 16px;
+        }
+        
+        .warning .source {
+            font-size: 14px;
+            color: var(--gray-400);
+            font-style: italic;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+        
+        .problem h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .problem-card {
+            background: var(--gray-800);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .problem-card .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .problem-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .problem-card p {
+            color: var(--gray-400);
+            font-size: 15px;
+        }
+        
+        /* Solution Section */
+        .solution {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, #0a1a0a 0%, var(--black) 100%);
+            text-align: center;
+        }
+        
+        .solution-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--green);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        
+        .solution h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        
+        .solution-subtitle {
+            font-size: 20px;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        
+        .formula {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        
+        .formula-item {
+            background: var(--gray-800);
+            padding: 24px 32px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .formula-item .percent {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--green);
+        }
+        
+        .formula-item .material {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 8px 0 4px;
+        }
+        
+        .formula-item .benefit {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+        
+        .formula-plus {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gray-600);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+        
+        .benefits h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 24px;
+        }
+        
+        .benefit-item .icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gray-800);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 16px;
+        }
+        
+        .benefit-item h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .benefit-item p {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            padding: 80px 20px;
+            background: var(--gray-800);
+        }
+        
+        .comparison h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .comparison-table {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--black);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--gray-800);
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-cell {
+            padding: 20px;
+            text-align: center;
+            font-size: 15px;
+        }
+        
+        .comparison-row.header {
+            background: var(--gray-800);
+        }
+        
+        .comparison-row.header .comparison-cell {
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .comparison-cell.feature {
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-cell .yes {
+            color: var(--green);
+            font-weight: 700;
+        }
+        
+        .comparison-cell .no {
+            color: var(--red);
+        }
+        
+        /* Fit Section */
+        .fit {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+        
+        .fit-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .fit h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        
+        .fit-subtitle {
+            font-size: 20px;
+            color: var(--gray-400);
+            margin-bottom: 48px;
+        }
+        
+        .fit-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            text-align: left;
+        }
+        
+        .fit-feature {
+            background: var(--gray-800);
+            padding: 24px;
+            border-radius: 12px;
+        }
+        
+        .fit-feature h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--green);
+        }
+        
+        .fit-feature p {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+        
+        /* Founder Section - KEEP IT SHORT */
+        .founder {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--gray-800) 0%, var(--black) 100%);
+        }
+        
+        .founder-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .founder h2 {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+        
+        .founder-quote {
+            font-size: 18px;
+            color: var(--gray-200);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .founder-name {
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .founder-title {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 20px;
+            background: var(--black);
+        }
+        
+        .testimonials h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background: var(--gray-800);
+            padding: 32px;
+            border-radius: 16px;
+        }
+        
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--gray-200);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .testimonial-verified {
+            color: var(--green);
+            font-size: 12px;
+        }
+        
+        /* Guarantee */
+        .guarantee {
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--black) 0%, #0a1a0a 100%);
+            text-align: center;
+        }
+        
+        .guarantee-badge {
+            width: 120px;
+            height: 120px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+        }
+        
+        .guarantee-badge span {
+            font-size: 48px;
+        }
+        
+        .guarantee h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .guarantee p {
+            font-size: 18px;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 20px;
+            background: var(--black);
+            text-align: center;
+        }
+        
+        .pricing h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .pricing-subtitle {
+            color: var(--gray-400);
+            font-size: 18px;
+            margin-bottom: 48px;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto 48px;
+        }
+        
+        .pricing-card {
+            background: var(--gray-800);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            background: linear-gradient(180deg, #1a2a1a 0%, var(--gray-800) 100%);
+            border: 2px solid var(--green);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--green);
+            color: var(--black);
+            padding: 4px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .pricing-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-card .price {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-card .price-per {
+            color: var(--gray-400);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .pricing-card .savings {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--green);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        
+        .pricing-card ul li {
+            padding: 8px 0;
+            color: var(--gray-200);
+            font-size: 14px;
+        }
+        
+        .pricing-card ul li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 700;
+            margin-right: 12px;
+        }
+        
+        .price-compare {
+            background: var(--gray-800);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .price-compare h4 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--gray-400);
+        }
+        
+        .price-compare .vs {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .price-compare .option {
+            text-align: center;
+        }
+        
+        .price-compare .option .amount {
+            font-size: 32px;
+            font-weight: 800;
+        }
+        
+        .price-compare .option .label {
+            font-size: 14px;
+            color: var(--gray-400);
+        }
+        
+        .price-compare .option.theirs .amount {
+            color: var(--red);
+            text-decoration: line-through;
+        }
+        
+        .price-compare .option.ours .amount {
+            color: var(--green);
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 80px 20px;
+            background: var(--gray-800);
+        }
+        
+        .faq h2 {
+            font-size: clamp(28px, 6vw, 42px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--black);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 24px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--gray-400);
+        }
+        
+        .faq-answer {
+            padding: 0 24px 24px;
+            color: var(--gray-400);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 20px 150px;
+            background: linear-gradient(180deg, var(--black) 0%, #111 100%);
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: clamp(32px, 7vw, 48px);
+            font-weight: 900;
+            margin-bottom: 24px;
+        }
+        
+        .final-cta p {
+            font-size: 20px;
+            color: var(--gray-400);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 40px 20px 100px;
+            text-align: center;
+            border-top: 1px solid var(--gray-800);
+        }
+        
+        footer p {
+            color: var(--gray-400);
+            font-size: 14px;
+        }
+        
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            .hero-proof {
+                gap: 24px;
+            }
+            
+            .formula {
+                flex-direction: column;
+            }
+            
+            .formula-plus {
+                transform: rotate(90deg);
+            }
+            
+            .comparison-cell {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+            
+            .sticky-cta {
+                flex-direction: column;
+                gap: 12px;
+                padding: 16px;
+            }
+            
+            .sticky-cta .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta">
+        <div class="price">$37.35 <span>$41.50</span></div>
+        <a href="https://undrdog.com/products/black-blank-tee" class="btn">Get Your UndrDog Tee →</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <span class="hero-badge">🔬 Patent-Pending DuraFlow™ Technology</span>
+            <h1>Your Shirt Is <span class="highlight">Plastic</span>.<br>This One Isn't.</h1>
+            <p class="hero-subtitle">The world's toughest, most breathable tee. Made from hemp, bamboo & cotton. Zero polyester. Backed for life.</p>
+            
+            <div class="hero-proof">
+                <div class="hero-proof-item">
+                    <div class="number">250K+</div>
+                    <div class="label">Men Switched</div>
+                </div>
+                <div class="hero-proof-item">
+                    <div class="number">4.6★</div>
+                    <div class="label">Rating</div>
+                </div>
+                <div class="hero-proof-item">
+                    <div class="number">6x</div>
+                    <div class="label">Sold Out</div>
+                </div>
+            </div>
+            
+            <a href="https://undrdog.com/products/black-blank-tee" class="btn btn-large">Try It Risk-Free →</a>
+        </div>
+    </section>
+
+    <!-- Warning Section (Health Hook) -->
+    <section class="warning">
+        <div class="warning-content">
+            <h2>⚠️ Studies Found Microplastics in Human Testes</h2>
+            <p>In 2024, researchers tested human testicle tissue. Every single sample contained microplastics — including PET, the same plastic in polyester shirts.</p>
+            <p>Check the tag on your shirt right now. If it says "polyester," you're wearing plastic. 16 hours a day. On your skin.</p>
+            <p class="source">Source: Zhang et al. (2024) — PubMed ID 38745431</p>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>The Shirt Industry Has a Dirty Secret</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">🧪</div>
+                    <h3>Polyester = Plastic</h3>
+                    <p>Most "performance" shirts are 60-90% polyester. That's PET plastic — the same stuff in water bottles.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">💀</div>
+                    <h3>Microplastic Shedding</h3>
+                    <p>Every time you sweat, stretch, or wash polyester, it releases microplastics onto your skin and into your body.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">🗑️</div>
+                    <h3>Designed to Fail</h3>
+                    <p>Fast fashion shirts stretch, sag, stink, and fall apart in months. You keep buying. They keep winning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <span class="solution-badge">✓ Patent-Pending</span>
+            <h2>Introducing DuraFlow™</h2>
+            <p class="solution-subtitle">The first performance fabric made entirely from plants. No plastic. No compromises.</p>
+            
+            <div class="formula">
+                <div class="formula-item">
+                    <div class="percent">51%</div>
+                    <div class="material">Hemp</div>
+                    <div class="benefit">Extreme Durability</div>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-item">
+                    <div class="percent">31%</div>
+                    <div class="material">Bamboo</div>
+                    <div class="benefit">Natural Airflow</div>
+                </div>
+                <span class="formula-plus">+</span>
+                <div class="formula-item">
+                    <div class="percent">18%</div>
+                    <div class="material">Organic Cotton</div>
+                    <div class="benefit">Soft Comfort</div>
+                </div>
+            </div>
+            
+            <a href="https://undrdog.com/products/black-blank-tee" class="btn btn-large">Get Yours Now →</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2>What DuraFlow™ Actually Does</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">💪</div>
+                    <h3>Doesn't Rip</h3>
+                    <p>Hemp is 4x stronger than cotton. This shirt survives everything.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">❄️</div>
+                    <h3>Doesn't Trap Heat</h3>
+                    <p>Bamboo micro-gaps create constant airflow. Stays cool all day.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">👃</div>
+                    <h3>Doesn't Stink</h3>
+                    <p>Natural antimicrobial properties. No more 3 PM pit smell.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">📏</div>
+                    <h3>Doesn't Stretch</h3>
+                    <p>Keeps its shape wash after wash. No saggy neckline.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🧼</div>
+                    <h3>Doesn't Shrink</h3>
+                    <p>Pre-shrunk and tested. Same fit on day 1,000.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">♻️</div>
+                    <h3>Doesn't Poison</h3>
+                    <p>Zero polyester, PFAS, or microplastics. Just plants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fit Section -->
+    <section class="fit">
+        <div class="fit-content">
+            <h2>The Alpha Frame Fit</h2>
+            <p class="fit-subtitle">Engineered to make an average build look solid. Not skinny. Not baggy. Just right.</p>
+            <div class="fit-features">
+                <div class="fit-feature">
+                    <h3>Hugs the Arms</h3>
+                    <p>Sleeves grip your biceps. Makes arms look bigger, chest fuller.</p>
+                </div>
+                <div class="fit-feature">
+                    <h3>Hides the Gut</h3>
+                    <p>Slightly looser midsection. Conceals the dad bod, man-boobs.</p>
+                </div>
+                <div class="fit-feature">
+                    <h3>Curved Hem</h3>
+                    <p>Makes you look taller and more proportional. Stays tucked or untucked.</p>
+                </div>
+                <div class="fit-feature">
+                    <h3>Midweight Fabric</h3>
+                    <p>Holds shape all day. No sagging by 3 PM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2>UndrDog vs. The "Premium" Brands</h2>
+            <div class="comparison-table">
+                <div class="comparison-row header">
+                    <div class="comparison-cell feature">Feature</div>
+                    <div class="comparison-cell">UndrDog</div>
+                    <div class="comparison-cell">Others</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">100% Plant-Based</div>
+                    <div class="comparison-cell"><span class="yes">✓ Yes</span></div>
+                    <div class="comparison-cell"><span class="no">✗ No (Polyester)</span></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Zero Microplastics</div>
+                    <div class="comparison-cell"><span class="yes">✓ Yes</span></div>
+                    <div class="comparison-cell"><span class="no">✗ No</span></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Lifetime Guarantee</div>
+                    <div class="comparison-cell"><span class="yes">✓ Forever</span></div>
+                    <div class="comparison-cell"><span class="no">✗ 30-90 days</span></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">Odor Resistant</div>
+                    <div class="comparison-cell"><span class="yes">✓ Natural</span></div>
+                    <div class="comparison-cell"><span class="no">Chemical coating</span></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-cell feature">PFAS-Free</div>
+                    <div class="comparison-cell"><span class="yes">✓ Yes</span></div>
+                    <div class="comparison-cell"><span class="no">? Unknown</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section (SHORT) -->
+    <section class="founder">
+        <div class="founder-content">
+            <h2>Why I Rebuilt This Company From Scratch</h2>
+            <p class="founder-quote">"I was making shirts with polyester. Then my wife and I started trying for a family. I dug into the research on male fertility and found studies that made me sick. I scrapped everything. Spent almost a year and $300K rebuilding with zero plastic. I couldn't sell something I wouldn't wear myself."</p>
+            <p class="founder-name">— Chuckie</p>
+            <p class="founder-title">Founder, UndrDog Hemp</p>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What 250,000+ Men Are Saying</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Finally, a shirt that doesn't smell like death by noon. I work construction and this thing stays fresh. Game changer."</p>
+                    <p class="testimonial-author">Mike R.</p>
+                    <p class="testimonial-verified">✓ Verified Buyer</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The fit is insane. Hugs my arms but hides my gut. My wife asked if I've been working out. I haven't. It's the shirt."</p>
+                    <p class="testimonial-author">James T.</p>
+                    <p class="testimonial-verified">✓ Verified Buyer</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I was skeptical about the price. Then I did the math — I've spent $200+ on shirts that fell apart. This one's lasting. Worth every penny."</p>
+                    <p class="testimonial-author">David L.</p>
+                    <p class="testimonial-verified">✓ Verified Buyer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-badge">
+                <span>♾️</span>
+            </div>
+            <h2>Lifetime Guarantee. For Real.</h2>
+            <p>If your UndrDog tee ever rips, tears, stretches, or fails for any reason — we replace it. Free. Forever. No questions, no receipts, no BS. That's how confident we are.</p>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing">
+        <div class="container">
+            <h2>Choose Your Pack</h2>
+            <p class="pricing-subtitle">Every order includes free shipping and our unconditional lifetime guarantee.</p>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>1 Tee</h3>
+                    <div class="price">$37</div>
+                    <div class="price-per">10% off</div>
+                    <div class="savings">Save $4</div>
+                    <ul>
+                        <li>1 DuraFlow™ Hemp Tee</li>
+                        <li>Lifetime Guarantee</li>
+                        <li>Free replacement forever</li>
+                    </ul>
+                    <a href="https://undrdog.com/products/black-blank-tee" class="btn">Get 1 Tee →</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>3-Pack</h3>
+                    <div class="price">$99</div>
+                    <div class="price-per">$33 per tee · 20% off</div>
+                    <div class="savings">Save $25</div>
+                    <ul>
+                        <li>3 DuraFlow™ Hemp Tees</li>
+                        <li>Lifetime Guarantee</li>
+                        <li>Free shipping</li>
+                        <li>Best price per tee</li>
+                    </ul>
+                    <a href="https://undrdog.com/products/black-blank-tee" class="btn">Get 3-Pack →</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>6-Pack</h3>
+                    <div class="price">$174</div>
+                    <div class="price-per">$29 per tee · 30% off</div>
+                    <div class="savings">Save $75</div>
+                    <ul>
+                        <li>6 DuraFlow™ Hemp Tees</li>
+                        <li>Lifetime Guarantee</li>
+                        <li>Free shipping</li>
+                        <li>Full wardrobe covered</li>
+                    </ul>
+                    <a href="https://undrdog.com/products/black-blank-tee" class="btn">Get 6-Pack →</a>
+                </div>
+            </div>
+            
+            <div class="price-compare">
+                <h4>The Real Math</h4>
+                <div class="vs">
+                    <div class="option theirs">
+                        <div class="amount">$200+</div>
+                        <div class="label">Disposable shirts/year</div>
+                    </div>
+                    <div style="font-size: 24px; color: var(--gray-600);">vs</div>
+                    <div class="option ours">
+                        <div class="amount">$37</div>
+                        <div class="label">Once. For life.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2>Questions? We Got Answers.</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How does the lifetime guarantee work?</div>
+                    <div class="faq-answer">If your shirt ever fails for any reason — rips, tears, stretches, whatever — just email us and we'll send you a new one. Free. No receipt needed. No time limit. We mean it.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What's the fit like?</div>
+                    <div class="faq-answer">We call it the "Alpha Frame" fit. It hugs your arms and chest (makes you look built) but is slightly looser in the midsection (hides the gut). Most guys say it's the best-fitting shirt they've ever owned. When in doubt, size up for a relaxed fit.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Is it really plastic-free?</div>
+                    <div class="faq-answer">100%. Zero polyester, zero nylon, zero synthetic fibers. Just 51% hemp, 31% bamboo, and 18% organic cotton. No PFAS. No microplastics. We spent $300K reformulating to make this happen.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I wash it?</div>
+                    <div class="faq-answer">Machine wash cold, tumble dry low. That's it. No special care needed. It actually gets softer with every wash while maintaining its strength and shape.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How long does shipping take?</div>
+                    <div class="faq-answer">Orders ship within 1-2 business days. Delivery typically takes 3-5 business days in the US. You'll get tracking info as soon as it ships.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Ditch the Plastic?</h2>
+            <p>Join 250,000+ men who made the switch to the last shirt they'll ever need.</p>
+            <a href="https://undrdog.com/products/black-blank-tee" class="btn btn-large">Get Your UndrDog Tee →</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 UndrDog Hemp. Made from plants, not plastic. Backed for life.</p>
+    </footer>
+
+    <script>
+        // Simple FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const answer = q.nextElementSibling;
+                const isOpen = answer.style.display === 'block';
+                
+                // Close all
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                document.querySelectorAll('.faq-question').forEach(q => q.style.opacity = '1');
+                
+                // Toggle clicked
+                if (!isOpen) {
+                    answer.style.display = 'block';
+                }
+            });
+        });
+        
+        // Hide sticky CTA when at bottom
+        const stickyCta = document.querySelector('.sticky-cta');
+        const finalCta = document.querySelector('.final-cta');
+        
+        window.addEventListener('scroll', () => {
+            const finalCtaTop = finalCta.getBoundingClientRect().top;
+            if (finalCtaTop < window.innerHeight) {
+                stickyCta.style.opacity = '0';
+                stickyCta.style.pointerEvents = 'none';
+            } else {
+                stickyCta.style.opacity = '1';
+                stickyCta.style.pointerEvents = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
