@@ -345,6 +345,13 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: white;
+            overflow: hidden;
+        }
+        
+        .agent-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .agent-info { flex: 1; }
@@ -787,7 +794,7 @@
                 <!-- Jerry Card -->
                 <div class="agent-card" style="--agent-color: #f97316;" onclick="showTab('jerry')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">🧠</div>
+                        <div class="agent-avatar" id="jerry-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">🧠</div>
                         <div class="agent-info">
                             <div class="agent-name">Jerry</div>
                             <div class="agent-role">Lead Agent • DTC Strategist</div>
@@ -816,7 +823,7 @@
                 <!-- Seth Card -->
                 <div class="agent-card" style="--agent-color: #ec4899;" onclick="showTab('seth')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #ec4899, #db2777);">🎨</div>
+                        <div class="agent-avatar" id="seth-avatar"><img src="" alt="Seth"></div>
                         <div class="agent-info">
                             <div class="agent-name">Seth</div>
                             <div class="agent-role">Creative Director</div>
@@ -845,7 +852,7 @@
                 <!-- Evan Card -->
                 <div class="agent-card" style="--agent-color: #3b82f6;" onclick="showTab('evan')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">📧</div>
+                        <div class="agent-avatar" id="evan-avatar"><img src="" alt="Evan"></div>
                         <div class="agent-info">
                             <div class="agent-name">Evan</div>
                             <div class="agent-role">Head of Email/SMS</div>
@@ -874,7 +881,7 @@
                 <!-- McLovin Card -->
                 <div class="agent-card" style="--agent-color: #22c55e;" onclick="showTab('mclovin')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #22c55e, #16a34a);">📈</div>
+                        <div class="agent-avatar" id="mclovin-avatar"><img src="" alt="McLovin"></div>
                         <div class="agent-info">
                             <div class="agent-name">McLovin</div>
                             <div class="agent-role">Head of CRO</div>
@@ -903,7 +910,7 @@
                 <!-- Jules Card -->
                 <div class="agent-card" style="--agent-color: #a855f7;" onclick="showTab('jules')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #a855f7, #9333ea);">🤝</div>
+                        <div class="agent-avatar" id="jules-avatar"><img src="" alt="Jules"></div>
                         <div class="agent-info">
                             <div class="agent-name">Jules</div>
                             <div class="agent-role">Head of Influencer</div>
@@ -928,7 +935,7 @@
                 <!-- Slater Card -->
                 <div class="agent-card" style="--agent-color: #f97316;" onclick="showTab('slater')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #f97316, #ea580c);">📊</div>
+                        <div class="agent-avatar" id="slater-avatar"><img src="" alt="Slater"></div>
                         <div class="agent-info">
                             <div class="agent-name">Slater</div>
                             <div class="agent-role">Head of Media Buying</div>
@@ -957,7 +964,7 @@
                 <!-- Becca Card -->
                 <div class="agent-card" style="--agent-color: #10b981;" onclick="showTab('becca')">
                     <div class="agent-header">
-                        <div class="agent-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">🪙</div>
+                        <div class="agent-avatar" id="becca-avatar"><img src="" alt="Becca"></div>
                         <div class="agent-info">
                             <div class="agent-name">Becca</div>
                             <div class="agent-role">Accountant</div>
@@ -2437,6 +2444,26 @@
                     const ncpaEl = document.getElementById('shopify-ncpa');
                     if (ncpaEl) ncpaEl.textContent = '$' + ncpa.toFixed(2);
                 }
+            }
+            
+            // Load agent avatars from status.json
+            if (data.agents) {
+                const agentIds = ['seth', 'evan', 'mclovin', 'jules', 'slater', 'becca', 'michaels'];
+                agentIds.forEach(id => {
+                    if (data.agents[id] && data.agents[id].avatar) {
+                        const avatarEl = document.getElementById(id + '-avatar');
+                        if (avatarEl) {
+                            const img = avatarEl.querySelector('img');
+                            if (img) {
+                                img.src = data.agents[id].avatar;
+                                img.style.width = '100%';
+                                img.style.height = '100%';
+                                img.style.objectFit = 'cover';
+                                img.style.borderRadius = '12px';
+                            }
+                        }
+                    }
+                });
             }
             
         }
