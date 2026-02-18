@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-18T11:30:46Z",
+  "lastUpdate": "2026-02-18T11:40:58Z",
   "jerry": {
     "status": "active",
     "currentTask": "Daily KPI Brief delivered",
@@ -31,7 +31,7 @@
       "role": "Head of Email/SMS",
       "status": "idle",
       "currentTask": "Clean Slate E10 sent 3PM, E11-E15 queued",
-      "lastActive": "2026-02-18T11:30:46Z",
+      "lastActive": "2026-02-18T11:40:58Z",
       "stats": {
         "activeFlows": 7,
         "openRate": 71.2,
@@ -49,7 +49,7 @@
       "role": "Head of CVR Optimization",
       "status": "active",
       "currentTask": "Daily bug patrol: Homepage, /bro, PDP checks + Clarity anomaly monitoring",
-      "lastActive": "2026-02-18T11:30:46Z",
+      "lastActive": "2026-02-18T11:40:58Z",
       "stats": {
         "cvr": 3.69,
         "lift": 18,
@@ -83,17 +83,17 @@
       "role": "Head of Media Buying",
       "status": "idle",
       "currentTask": "Monitoring post-Valentine's performance",
-      "lastActive": "2026-02-18T11:30:46Z",
+      "lastActive": "2026-02-18T11:40:58Z",
       "stats": {
-        "spendYesterday": 14547,
+        "spendYesterday": 14548,
         "purchases": 485,
-        "cpa": 17.23,
+        "cpa": 17.21,
         "roas": 3.16,
-        "spend7d": 158671.1,
+        "spend7d": 158672.48,
         "cpa7d": 0,
-        "roas7d": 3.611364,
+        "roas7d": 3.611333,
         "revenueYesterday": 83843,
-        "newCustomers": 466,
+        "newCustomers": 467,
         "ncpa": 42.04
       },
       "memory": {
@@ -107,10 +107,10 @@
       "role": "Accountant",
       "status": "idle",
       "currentTask": "Tracking P&L and margins",
-      "lastActive": "2026-02-18T11:30:46Z",
+      "lastActive": "2026-02-18T11:40:58Z",
       "stats": {
         "mtdSales": 1349993,
-        "mtdNetProfit": 351331,
+        "mtdNetProfit": 351317,
         "mer": 21.3
       },
       "memory": {
@@ -325,7 +325,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-17T09:04:48.598Z",
-    "lastKlaviyoSync": "2026-02-18T11:30:46Z",
+    "lastKlaviyoSync": "2026-02-18T11:40:58Z",
     "lastShopifySync": "2026-02-17T14:05:50.729Z",
     "lastMobySync": "2026-02-16T03:00:00Z",
     "dataSources": [
@@ -334,46 +334,48 @@
       "klaviyo-api",
       "shopify-admin-api"
     ],
-    "lastTripleWhaleSync": "2026-02-18T11:30:46Z",
+    "lastTripleWhaleSync": "2026-02-18T11:40:58Z",
     "lastCronSync": "2026-02-17T15:30:55.576Z",
     "lastFullSync": "2026-02-18T08:03:41Z"
   },
   "metaAds": {
-    "lastSync": "2026-02-18T11:30:46Z",
+    "lastSync": "2026-02-18T11:40:58Z",
     "yesterday": {
       "date": "2026-02-17",
-      "spend": 14547,
+      "spend": 14548,
       "purchases": 485,
-      "newCustomers": 466,
+      "newCustomers": 467,
       "ncpa": 42.04,
-      "cpa": 17.23,
+      "ncroas": 2.37,
+      "cpa": 17.21,
       "roas": 3.16
     },
     "last7d": {
       "dateRange": "2026-02-11 to 2026-02-17",
-      "spend": 158671.1,
+      "spend": 158672.48,
       "purchases": 6157,
       "ncpa": 37.51,
-      "roas": 3.611364,
+      "ncroas": 2.72,
+      "roas": 3.611333,
       "revenue": 1046103,
       "orders": 0
     }
   },
   "shopify": {
-    "lastSync": "2026-02-18T11:30:46Z",
+    "lastSync": "2026-02-18T11:40:58Z",
     "yesterday": {
       "date": "2026-02-17",
       "orders": 0,
-      "newCustomerOrders": 466,
+      "newCustomerOrders": 467,
       "revenue": 83843,
       "blendedAdSpend": 21775,
       "mer": 3.85,
       "aov": 98.96
     },
-    "totalCustomers": 245101
+    "totalCustomers": 245104
   },
   "klaviyo": {
-    "lastSync": "2026-02-18T11:30:46Z",
+    "lastSync": "2026-02-18T11:40:58Z",
     "activeFlows": 7,
     "totalFlows": 32,
     "yesterday": {
@@ -383,17 +385,17 @@
       "revenue": 56502
     },
     "lists": {
-      "newsletter": 51723,
+      "newsletter": 51724,
       "sms": 0
     }
   },
   "penny": {
-    "lastSync": "2026-02-18T11:30:46Z",
+    "lastSync": "2026-02-18T11:40:58Z",
     "mtd": {
       "period": "2026-02-01 to 2026-02-17",
       "sales": 1349993,
-      "adSpend": 287194,
-      "netProfit": 351331,
+      "adSpend": 287200,
+      "netProfit": 351317,
       "mer": 21.3,
       "netMargin": 26.0,
       "ncpa": 40.30
@@ -402,7 +404,7 @@
       "name": "January",
       "sales": 1590212,
       "adSpend": 580954,
-      "netProfit": 153543
+      "netProfit": 153525
     }
   },
   "whatsWorking": {
