@@ -2121,9 +2121,9 @@
                 if (el3) el3.textContent = ydayMER + 'x';
             }
             
-            // MTD stats from becca/TW
-            if (data.becca && data.becca.mtd) {
-                const mtd = data.becca.mtd;
+            // MTD stats from penny/TW (financial data lives in penny object)
+            if (data.penny && data.penny.mtd) {
+                const mtd = data.penny.mtd;
                 const mtdSpend = mtd.adSpend || 0;
                 const mtdSales = mtd.sales || 0;
                 const mtdMER = mtdSales > 0 && mtdSpend > 0 ? (mtdSales / mtdSpend).toFixed(1) : '--';
@@ -2209,7 +2209,7 @@
                         document.getElementById('shopify-revenue').textContent = rev >= 1000 ? '$' + (rev/1000).toFixed(1) + 'K' : '$' + rev.toFixed(0);
                         document.getElementById('card-mclovin-revenue').textContent = rev >= 1000 ? '$' + (rev/1000).toFixed(1) + 'K' : '$' + rev.toFixed(0);
                     }
-                    if (shop.yesterday.orders) {
+                    if (shop.yesterday.orders !== undefined && shop.yesterday.orders !== null) {
                         document.getElementById('shopify-orders').textContent = shop.yesterday.orders.toLocaleString();
                         document.getElementById('card-mclovin-orders').textContent = shop.yesterday.orders.toLocaleString();
                     }
@@ -2249,9 +2249,9 @@
                 }
             }
             
-            // Update Becca MTD stats (Triple Whale-sourced)
-            if (data.becca && data.becca.mtd) {
-                const mtd = data.becca.mtd;
+            // Update Becca MTD stats (Triple Whale-sourced from penny object)
+            if (data.penny && data.penny.mtd) {
+                const mtd = data.penny.mtd;
                 
                 // Format currency helper
                 function formatBeccaK(num) {
