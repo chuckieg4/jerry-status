@@ -47,7 +47,6 @@
             padding: 24px;
         }
 
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
@@ -111,7 +110,6 @@
             color: var(--text-secondary);
         }
 
-        /* Summary Cards Row */
         .summary-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -183,7 +181,6 @@
             color: var(--accent-red);
         }
 
-        /* Section */
         .section {
             margin-bottom: 40px;
         }
@@ -214,7 +211,6 @@
             font-size: 16px;
         }
 
-        /* KPI Grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -228,17 +224,11 @@
             border: 1px solid var(--border-color);
             cursor: pointer;
             transition: all 0.2s ease;
-            position: relative;
         }
 
         .kpi-card:hover {
             background: var(--bg-card-hover);
             border-color: var(--accent-blue);
-        }
-
-        .kpi-card.active {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 1px var(--accent-blue);
         }
 
         .kpi-label {
@@ -276,16 +266,6 @@
             color: var(--text-muted);
         }
 
-        .kpi-sparkline {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            opacity: 0.3;
-        }
-
-        /* Channel Cards */
         .channel-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -331,11 +311,9 @@
         }
 
         .channel-icon.meta { background: linear-gradient(135deg, #0668E1, #0866FF); }
-        .channel-icon.google { background: linear-gradient(135deg, #EA4335, #FBBC05); }
-        .channel-icon.tiktok { background: linear-gradient(135deg, #000, #25F4EE); }
-        .channel-icon.snap { background: linear-gradient(135deg, #FFFC00, #FFF500); color: #000; }
-        .channel-icon.applovin { background: linear-gradient(135deg, #ff6b35, #f7931e); }
-        .channel-icon.microsoft { background: linear-gradient(135deg, #00BCF2, #00A4EF); }
+        .channel-icon.email { background: linear-gradient(135deg, #EA4335, #FBBC05); }
+        .channel-icon.sms { background: linear-gradient(135deg, #10b981, #059669); }
+        .channel-icon.aftersell { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
 
         .channel-metrics {
             display: grid;
@@ -359,7 +337,59 @@
             font-weight: 600;
         }
 
-        /* Chart Modal */
+        .funnel-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .funnel-step {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .funnel-step:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .funnel-step::after {
+            content: '→';
+            position: absolute;
+            right: -14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 20px;
+        }
+
+        .funnel-step:last-child::after {
+            display: none;
+        }
+
+        .funnel-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .funnel-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .funnel-rate {
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--accent-green);
+        }
+
         .chart-modal {
             display: none;
             position: fixed;
@@ -421,61 +451,6 @@
             height: 400px;
         }
 
-        /* Funnel Section */
-        .funnel-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
-        }
-
-        .funnel-step {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            position: relative;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .funnel-step:hover {
-            background: var(--bg-card-hover);
-        }
-
-        .funnel-step::after {
-            content: '→';
-            position: absolute;
-            right: -14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 20px;
-        }
-
-        .funnel-step:last-child::after {
-            display: none;
-        }
-
-        .funnel-value {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .funnel-label {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .funnel-rate {
-            margin-top: 10px;
-            font-size: 13px;
-            color: var(--accent-green);
-        }
-
-        /* Responsive */
         @media (max-width: 1200px) {
             .summary-row {
                 grid-template-columns: repeat(2, 1fr);
@@ -502,7 +477,6 @@
             }
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -511,18 +485,10 @@
         .kpi-card, .channel-card, .summary-card, .funnel-step {
             animation: fadeIn 0.4s ease forwards;
         }
-
-        .kpi-grid .kpi-card:nth-child(1) { animation-delay: 0.05s; }
-        .kpi-grid .kpi-card:nth-child(2) { animation-delay: 0.1s; }
-        .kpi-grid .kpi-card:nth-child(3) { animation-delay: 0.15s; }
-        .kpi-grid .kpi-card:nth-child(4) { animation-delay: 0.2s; }
-        .kpi-grid .kpi-card:nth-child(5) { animation-delay: 0.25s; }
-        .kpi-grid .kpi-card:nth-child(6) { animation-delay: 0.3s; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header class="header">
             <div class="logo">
                 <div class="logo-icon">👑</div>
@@ -532,13 +498,14 @@
                 </div>
             </div>
             <div class="header-controls">
-                <select class="month-selector" id="monthSelector">
+                <select class="month-selector" id="monthSelector" onchange="updateDashboard()">
                     <option value="jan2026" selected>January 2026</option>
                     <option value="dec2025">December 2025</option>
                     <option value="nov2025">November 2025</option>
                     <option value="oct2025">October 2025</option>
                     <option value="sep2025">September 2025</option>
                     <option value="aug2025">August 2025</option>
+                    <option value="jul2025">July 2025</option>
                 </select>
                 <div class="updated-badge">📊 Data from Google Sheets</div>
             </div>
@@ -547,24 +514,24 @@
         <!-- Summary Row -->
         <div class="summary-row">
             <div class="summary-card green" onclick="showChart('revenue')">
-                <div class="summary-label">Net Sales</div>
-                <div class="summary-value">$18.6M</div>
-                <span class="summary-change positive">↑ 100% MoM</span>
+                <div class="summary-label">Total Revenue</div>
+                <div class="summary-value" id="totalRevenue">$18.5M</div>
+                <span class="summary-change" id="revenueChange">↓ -6% MoM</span>
             </div>
             <div class="summary-card blue" onclick="showChart('newCustomers')">
-                <div class="summary-label">New Customers</div>
-                <div class="summary-value">75,100</div>
-                <span class="summary-change negative">↓ -11% MoM</span>
+                <div class="summary-label">New Customer Revenue</div>
+                <div class="summary-value" id="ncRevenue">$6.33M</div>
+                <span class="summary-change" id="ncRevenueChange">↓ -13% MoM</span>
             </div>
             <div class="summary-card purple" onclick="showChart('mer')">
                 <div class="summary-label">MER %</div>
-                <div class="summary-value">43.3%</div>
-                <span class="summary-change positive">↑ 0.3pp MoM</span>
+                <div class="summary-value" id="mer">43%</div>
+                <span class="summary-change" id="merChange">— 0pp MoM</span>
             </div>
             <div class="summary-card orange" onclick="showChart('ncRoas')">
-                <div class="summary-label">Blended ncROAS</div>
-                <div class="summary-value">0.74x</div>
-                <span class="summary-change negative">↓ -7% MoM</span>
+                <div class="summary-label">ncROAS</div>
+                <div class="summary-value" id="ncRoas">0.66x</div>
+                <span class="summary-change" id="ncRoasChange">↓ -12% MoM</span>
             </div>
         </div>
 
@@ -573,56 +540,56 @@
             <div class="section-header">
                 <div class="section-title">
                     <div class="section-icon" style="background: var(--gradient-green);">💰</div>
-                    Revenue Metrics
+                    Revenue & Efficiency
                 </div>
             </div>
             <div class="kpi-grid">
-                <div class="kpi-card" onclick="showChart('newCustomerRev')">
-                    <div class="kpi-label">New Customer Revenue</div>
-                    <div class="kpi-value">$5.99M</div>
+                <div class="kpi-card" onclick="showChart('shopifyRev')">
+                    <div class="kpi-label">Shopify Revenue</div>
+                    <div class="kpi-value" id="shopifyRevenue">$16.9M</div>
                     <div class="kpi-meta">
-                        <span class="kpi-change down">↓ -15%</span>
-                        <span class="kpi-period">vs Dec</span>
+                        <span class="kpi-change" id="shopifyRevenueChange">↓ -7%</span>
+                        <span class="kpi-period">vs prev</span>
                     </div>
                 </div>
                 <div class="kpi-card" onclick="showChart('repeatRev')">
                     <div class="kpi-label">Repeat Customer Rev</div>
-                    <div class="kpi-value">$12.6M</div>
+                    <div class="kpi-value" id="repeatRevenue">$13.3M</div>
                     <div class="kpi-meta">
-                        <span class="kpi-change down">↓ -5%</span>
-                        <span class="kpi-period">vs Dec</span>
+                        <span class="kpi-change" id="repeatRevenueChange">↓ -1%</span>
+                        <span class="kpi-period">vs prev</span>
                     </div>
                 </div>
-                <div class="kpi-card" onclick="showChart('refunds')">
-                    <div class="kpi-label">Refunds</div>
-                    <div class="kpi-value">$248K</div>
+                <div class="kpi-card" onclick="showChart('returns')">
+                    <div class="kpi-label">Returns</div>
+                    <div class="kpi-value" id="returns">$815K</div>
                     <div class="kpi-meta">
-                        <span class="kpi-change up">↑ 1.33%</span>
+                        <span class="kpi-change" id="returnsChange">↑ 4.4%</span>
                         <span class="kpi-period">of gross</span>
                     </div>
                 </div>
-                <div class="kpi-card" onclick="showChart('newVsRepeat')">
-                    <div class="kpi-label">New Customer %</div>
-                    <div class="kpi-value">32.17%</div>
-                    <div class="kpi-meta">
-                        <span class="kpi-change down">↓ -2.7pp</span>
-                        <span class="kpi-period">vs Dec</span>
-                    </div>
-                </div>
                 <div class="kpi-card" onclick="showChart('cac')">
-                    <div class="kpi-label">New Customer CAC</div>
-                    <div class="kpi-value">$107.33</div>
+                    <div class="kpi-label">ncCAC</div>
+                    <div class="kpi-value" id="ncCac">$122.20</div>
                     <div class="kpi-meta">
-                        <span class="kpi-change up">↑ +$9</span>
-                        <span class="kpi-period">vs Dec</span>
+                        <span class="kpi-change" id="ncCacChange">↑ +$16</span>
+                        <span class="kpi-period">vs prev</span>
                     </div>
                 </div>
                 <div class="kpi-card" onclick="showChart('aov')">
-                    <div class="kpi-label">New Customer AOV</div>
-                    <div class="kpi-value">$79.82</div>
+                    <div class="kpi-label">AOV</div>
+                    <div class="kpi-value" id="aov">$63</div>
                     <div class="kpi-meta">
-                        <span class="kpi-change down">↓ -$3</span>
-                        <span class="kpi-period">vs Dec</span>
+                        <span class="kpi-change" id="aovChange">↑ +$1</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+                <div class="kpi-card" onclick="showChart('netProfit')">
+                    <div class="kpi-label">Net Profit</div>
+                    <div class="kpi-value" id="netProfit">$2.13M</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="netProfitChange">↓ -15%</span>
+                        <span class="kpi-period" id="netProfitPct">12%</span>
                     </div>
                 </div>
             </div>
@@ -633,222 +600,200 @@
             <div class="section-header">
                 <div class="section-title">
                     <div class="section-icon" style="background: var(--gradient-blue);">🎯</div>
-                    Conversion Funnel (January)
+                    Conversion Funnel
                 </div>
             </div>
             <div class="funnel-grid">
                 <div class="funnel-step" onclick="showChart('sessions')">
-                    <div class="funnel-value">2.44M</div>
-                    <div class="funnel-label">Sessions</div>
+                    <div class="funnel-value" id="sessions">1.49M</div>
+                    <div class="funnel-label">Sessions (/tiktok)</div>
                 </div>
                 <div class="funnel-step" onclick="showChart('atc')">
-                    <div class="funnel-value">74,143</div>
-                    <div class="funnel-label">Add to Cart</div>
-                    <div class="funnel-rate">3.04% ATC Rate</div>
+                    <div class="funnel-value" id="atcRate">4.49%</div>
+                    <div class="funnel-label">ATC Rate</div>
                 </div>
-                <div class="funnel-step" onclick="showChart('purchases')">
-                    <div class="funnel-value">79,003</div>
-                    <div class="funnel-label">Purchases</div>
-                    <div class="funnel-rate">106.5% ATC→Purch</div>
+                <div class="funnel-step" onclick="showChart('checkout')">
+                    <div class="funnel-value" id="checkoutRate">5.13%</div>
+                    <div class="funnel-label">Checkout Rate</div>
+                </div>
+                <div class="funnel-step" onclick="showChart('checkoutCvr')">
+                    <div class="funnel-value" id="checkoutCvr">37.59%</div>
+                    <div class="funnel-label">Checkout CVR</div>
                 </div>
                 <div class="funnel-step" onclick="showChart('cvr')">
-                    <div class="funnel-value">3.24%</div>
-                    <div class="funnel-label">CVR</div>
-                </div>
-                <div class="funnel-step" onclick="showChart('cps')">
-                    <div class="funnel-value">$1.81</div>
-                    <div class="funnel-label">Cost per Session</div>
+                    <div class="funnel-value" id="overallCvr">1.84%</div>
+                    <div class="funnel-label">Overall CVR</div>
                 </div>
             </div>
         </section>
 
-        <!-- Ad Channels Section -->
+        <!-- Pre-Click Section -->
         <section class="section">
             <div class="section-header">
                 <div class="section-title">
                     <div class="section-icon" style="background: var(--gradient-purple);">📣</div>
-                    Ad Channel Performance
+                    Ad Performance (Meta)
+                </div>
+            </div>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Ad Spend</div>
+                    <div class="kpi-value" id="adSpend">$6.75M</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="adSpendChange">↓ -5%</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">CPM</div>
+                    <div class="kpi-value" id="cpm">$27.34</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="cpmChange">↓ -17%</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">CTR (Link)</div>
+                    <div class="kpi-value" id="ctr">0.83%</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="ctrChange">↓ -17%</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">CPC (Link)</div>
+                    <div class="kpi-value" id="cpc">$3.29</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="cpcChange">— $0</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Hook Cost (3s)</div>
+                    <div class="kpi-value" id="hookCost">$0.11</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="hookCostChange">↓ -8%</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Outbound Clicks</div>
+                    <div class="kpi-value" id="outboundClicks">847K</div>
+                    <div class="kpi-meta">
+                        <span class="kpi-change" id="outboundClicksChange">↓ -16%</span>
+                        <span class="kpi-period">vs prev</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Purchase Section -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-title">
+                    <div class="section-icon" style="background: var(--gradient-orange);">📧</div>
+                    Post-Purchase & Retention
                 </div>
             </div>
             <div class="channel-grid">
-                <!-- Meta -->
-                <div class="channel-card" onclick="showChart('meta')">
+                <div class="channel-card">
                     <div class="channel-header">
                         <div class="channel-name">
-                            <div class="channel-icon meta">📘</div>
-                            Meta
+                            <div class="channel-icon email">📧</div>
+                            Email
                         </div>
                     </div>
                     <div class="channel-metrics">
                         <div class="channel-metric">
-                            <div class="channel-metric-label">Spend</div>
-                            <div class="channel-metric-value">$5.72M</div>
+                            <div class="channel-metric-label">Revenue</div>
+                            <div class="channel-metric-value" id="emailRevenue">$217K</div>
                         </div>
                         <div class="channel-metric">
-                            <div class="channel-metric-label">ncRevenue</div>
-                            <div class="channel-metric-value">$3.29M</div>
+                            <div class="channel-metric-label">Flow Open</div>
+                            <div class="channel-metric-value" id="emailFlowOpen">39.7%</div>
                         </div>
                         <div class="channel-metric">
-                            <div class="channel-metric-label">ncROAS</div>
-                            <div class="channel-metric-value" style="color: var(--accent-red);">0.58x</div>
+                            <div class="channel-metric-label">Campaign Open</div>
+                            <div class="channel-metric-value" id="emailCampOpen">44.0%</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Google -->
-                <div class="channel-card" onclick="showChart('google')">
+                <div class="channel-card">
                     <div class="channel-header">
                         <div class="channel-name">
-                            <div class="channel-icon google">🔍</div>
-                            Google
+                            <div class="channel-icon sms">💬</div>
+                            SMS
                         </div>
                     </div>
                     <div class="channel-metrics">
                         <div class="channel-metric">
-                            <div class="channel-metric-label">Spend</div>
-                            <div class="channel-metric-value">$559K</div>
+                            <div class="channel-metric-label">Revenue</div>
+                            <div class="channel-metric-value" id="smsRevenue">$664K</div>
                         </div>
                         <div class="channel-metric">
-                            <div class="channel-metric-label">ncRevenue</div>
-                            <div class="channel-metric-value">$1.10M</div>
+                            <div class="channel-metric-label">Signup Rate</div>
+                            <div class="channel-metric-value" id="smsSignup">12.0%</div>
                         </div>
                         <div class="channel-metric">
-                            <div class="channel-metric-label">ncROAS</div>
-                            <div class="channel-metric-value" style="color: var(--accent-green);">1.97x</div>
+                            <div class="channel-metric-label">Popup Engage</div>
+                            <div class="channel-metric-value" id="popupEngage">61.7%</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- TikTok -->
-                <div class="channel-card" onclick="showChart('tiktok')">
+                <div class="channel-card">
                     <div class="channel-header">
                         <div class="channel-name">
-                            <div class="channel-icon tiktok">🎵</div>
-                            TikTok
+                            <div class="channel-icon aftersell">🛒</div>
+                            Aftersell
                         </div>
                     </div>
                     <div class="channel-metrics">
                         <div class="channel-metric">
-                            <div class="channel-metric-label">Spend</div>
-                            <div class="channel-metric-value">$226K</div>
+                            <div class="channel-metric-label">Revenue</div>
+                            <div class="channel-metric-value" id="aftersellRevenue">$133K</div>
                         </div>
                         <div class="channel-metric">
-                            <div class="channel-metric-label">ncRevenue</div>
-                            <div class="channel-metric-value">$160K</div>
+                            <div class="channel-metric-label">Visitors</div>
+                            <div class="channel-metric-value" id="aftersellVisitors">39.9K</div>
                         </div>
                         <div class="channel-metric">
-                            <div class="channel-metric-label">ncROAS</div>
-                            <div class="channel-metric-value" style="color: var(--accent-red);">0.70x</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Snapchat -->
-                <div class="channel-card" onclick="showChart('snapchat')">
-                    <div class="channel-header">
-                        <div class="channel-name">
-                            <div class="channel-icon snap">👻</div>
-                            Snapchat
-                        </div>
-                    </div>
-                    <div class="channel-metrics">
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">Spend</div>
-                            <div class="channel-metric-value">$247K</div>
-                        </div>
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">ncRevenue</div>
-                            <div class="channel-metric-value">$340K</div>
-                        </div>
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">ncROAS</div>
-                            <div class="channel-metric-value" style="color: var(--accent-green);">1.38x</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Applovin -->
-                <div class="channel-card" onclick="showChart('applovin')">
-                    <div class="channel-header">
-                        <div class="channel-name">
-                            <div class="channel-icon applovin">🦁</div>
-                            Applovin
-                        </div>
-                    </div>
-                    <div class="channel-metrics">
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">Spend</div>
-                            <div class="channel-metric-value">$779K</div>
-                        </div>
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">ncRevenue</div>
-                            <div class="channel-metric-value">$619K</div>
-                        </div>
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">ncROAS</div>
-                            <div class="channel-metric-value" style="color: var(--accent-red);">0.79x</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Microsoft -->
-                <div class="channel-card" onclick="showChart('microsoft')">
-                    <div class="channel-header">
-                        <div class="channel-name">
-                            <div class="channel-icon microsoft">🪟</div>
-                            Microsoft
-                        </div>
-                    </div>
-                    <div class="channel-metrics">
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">Spend</div>
-                            <div class="channel-metric-value">$3.6K</div>
-                        </div>
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">ncRevenue</div>
-                            <div class="channel-metric-value">$3.6K</div>
-                        </div>
-                        <div class="channel-metric">
-                            <div class="channel-metric-label">ncROAS</div>
-                            <div class="channel-metric-value" style="color: var(--accent-green);">1.17x</div>
+                            <div class="channel-metric-label">$/Visitor</div>
+                            <div class="channel-metric-value" id="aftersellPerVisitor">$3.33</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Products Section -->
+        <!-- Fixed Expenses Section -->
         <section class="section">
             <div class="section-header">
                 <div class="section-title">
-                    <div class="section-icon" style="background: var(--gradient-orange);">📦</div>
-                    Product Performance
+                    <div class="section-icon" style="background: linear-gradient(135deg, #6b7280, #4b5563);">💼</div>
+                    Fixed Expenses
                 </div>
             </div>
             <div class="kpi-grid">
-                <div class="kpi-card" onclick="showChart('beefOrgan')">
-                    <div class="kpi-label">Beef Organ Supplement</div>
-                    <div class="kpi-value">$16.6M</div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Software</div>
+                    <div class="kpi-value" id="software">$135K</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">People</div>
+                    <div class="kpi-value" id="people">$322K</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Fixed</div>
+                    <div class="kpi-value" id="totalFixed">$457K</div>
                     <div class="kpi-meta">
-                        <span class="kpi-change down">↓ -12%</span>
-                        <span class="kpi-period">vs Dec</span>
+                        <span class="kpi-period" id="fixedPct">2.45% of rev</span>
                     </div>
                 </div>
-                <div class="kpi-card" onclick="showChart('creatine')">
-                    <div class="kpi-label">Goddess Creatine</div>
-                    <div class="kpi-value">$798K</div>
-                    <div class="kpi-meta">
-                        <span class="kpi-change down">↓ -14%</span>
-                        <span class="kpi-period">vs Dec</span>
-                    </div>
-                </div>
-                <div class="kpi-card" onclick="showChart('pq7')">
-                    <div class="kpi-label">PQ7</div>
-                    <div class="kpi-value">$1.19M</div>
-                    <div class="kpi-meta">
-                        <span class="kpi-change up">New</span>
-                        <span class="kpi-period">Launch</span>
-                    </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">COGS %</div>
+                    <div class="kpi-value" id="cogs">33%</div>
                 </div>
             </div>
         </section>
@@ -868,109 +813,512 @@
     </div>
 
     <script>
-        // Sample trend data - would be populated from Google Sheets
-        const trendData = {
-            revenue: {
-                title: 'Net Sales Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [16783307, 15701954, 14821323, 14984738, 19743972, 18635496],
-                format: 'currency'
+        // Monthly data from Google Sheets
+        const monthlyData = {
+            jul2025: {
+                label: 'July 2025',
+                adSpend: 6390291.88,
+                hookCost: 0.07,
+                cpm: 23.87,
+                ctr: 1.36,
+                cpc: 1.76,
+                outboundClicks: 1721221,
+                sessions: 1757729,
+                scrollDepth: 22.03,
+                sessionDuration: 42,
+                atcRate: 4.17,
+                checkoutRate: 4.68,
+                checkoutCvr: 40.73,
+                overallCvr: 1.73,
+                popupEngage: 62.63,
+                smsSignup: 12.95,
+                emailSignup: 0,
+                ncRoas: 0.59,
+                ncCac: 79.2,
+                mer: 44,
+                aftersellRevenue: 27787.88,
+                aftersellVisitors: 3606,
+                aftersellPerVisitor: 7.71,
+                emailRevenue: 28239.53,
+                emailFlowOpen: 47.30,
+                emailFlowClick: 1.28,
+                emailCampOpen: 65.50,
+                emailCampClick: 0.35,
+                smsRevenue: 447507.27,
+                totalRevenue: 17131838,
+                shopifyRevenue: 15041249,
+                shopifyNewRev: 4113582,
+                shopifyRepeatRev: 11927221,
+                amazonRevenue: 2090589,
+                amazonNewRev: 1222997,
+                amazonRepeatRev: 867592,
+                returns: 322992,
+                returnsPct: 2,
+                aov: 45,
+                netProfit: 1853812,
+                netProfitPct: 12,
+                cogs: 35,
+                software: 113552.56,
+                people: 250065.12,
+                totalFixed: 363617.68,
+                fixedPct: 2.11
             },
-            newCustomers: {
-                title: 'New Customers Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [83500, 82304, 73907, 84854, 85364, 75100],
-                format: 'number'
+            aug2025: {
+                label: 'August 2025',
+                adSpend: 5984730.73,
+                hookCost: 0.10,
+                cpm: 26.30,
+                ctr: 1.52,
+                cpc: 1.73,
+                outboundClicks: 1607776,
+                sessions: 1731489,
+                scrollDepth: 18.37,
+                sessionDuration: 43,
+                atcRate: 4.12,
+                checkoutRate: 4.70,
+                checkoutCvr: 39.71,
+                overallCvr: 1.52,
+                popupEngage: 100.91,
+                smsSignup: 10.50,
+                emailSignup: 0,
+                ncRoas: 0.55,
+                ncCac: 85.5,
+                mer: 43,
+                aftersellRevenue: 176289.15,
+                aftersellVisitors: 44533,
+                aftersellPerVisitor: 3.96,
+                emailRevenue: 46302.86,
+                emailFlowOpen: 46.80,
+                emailFlowClick: 1.24,
+                emailCampOpen: 62.00,
+                emailCampClick: 0.45,
+                smsRevenue: 387842.34,
+                totalRevenue: 17945174,
+                shopifyRevenue: 16101818,
+                shopifyNewRev: 3972308,
+                shopifyRepeatRev: 13152137,
+                amazonRevenue: 1843356,
+                amazonNewRev: 962108,
+                amazonRepeatRev: 881248,
+                returns: 325951,
+                returnsPct: 2,
+                aov: 46,
+                netProfit: 2042323,
+                netProfitPct: 12,
+                cogs: 36,
+                software: 79162.90,
+                people: 234626.01,
+                totalFixed: 313788.91,
+                fixedPct: 1.74
             },
-            mer: {
-                title: 'MER % Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [45.8, 51.4, 42.6, 43.3, 43.0, 43.3],
-                format: 'percent'
+            sep2025: {
+                label: 'September 2025',
+                adSpend: 6932805.79,
+                hookCost: 0.11,
+                cpm: 28.64,
+                ctr: 2.12,
+                cpc: 1.35,
+                outboundClicks: 2081877,
+                sessions: 2700151,
+                scrollDepth: 11.22,
+                sessionDuration: 36,
+                atcRate: 3.29,
+                checkoutRate: 3.76,
+                checkoutCvr: 37.18,
+                overallCvr: 0.98,
+                popupEngage: 167.46,
+                smsSignup: 7.60,
+                emailSignup: 0,
+                ncRoas: 0.54,
+                ncCac: 118.0,
+                mer: 47,
+                aftersellRevenue: 199541.99,
+                aftersellVisitors: 55158,
+                aftersellPerVisitor: 3.62,
+                emailRevenue: 74528.18,
+                emailFlowOpen: 46.90,
+                emailFlowClick: 1.25,
+                emailCampOpen: 61.30,
+                emailCampClick: 0.67,
+                smsRevenue: 515662.69,
+                totalRevenue: 18865612,
+                shopifyRevenue: 17067502,
+                shopifyNewRev: 4666269,
+                shopifyRepeatRev: 13478023,
+                amazonRevenue: 1798110,
+                amazonNewRev: 889421,
+                amazonRepeatRev: 908689,
+                returns: 330121,
+                returnsPct: 2,
+                aov: 50,
+                netProfit: 1217134,
+                netProfitPct: 7,
+                cogs: 36,
+                software: 163248.39,
+                people: 271117.90,
+                totalFixed: 434366.29,
+                fixedPct: 2.28
             },
-            ncRoas: {
-                title: 'Blended ncROAS Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [0.72, 0.79, 0.84, 0.74, 0.79, 0.74],
-                format: 'roas'
+            oct2025: {
+                label: 'October 2025',
+                adSpend: 6843052.10,
+                hookCost: 0.11,
+                cpm: 25.26,
+                ctr: 1.35,
+                cpc: 1.87,
+                outboundClicks: 1469462,
+                sessions: 2439166,
+                scrollDepth: 7.09,
+                sessionDuration: 25,
+                atcRate: 3.22,
+                checkoutRate: 3.68,
+                checkoutCvr: 39.44,
+                overallCvr: 1.06,
+                popupEngage: 122.44,
+                smsSignup: 8.57,
+                emailSignup: 7.29,
+                ncRoas: 0.59,
+                ncCac: 120.1,
+                mer: 48,
+                aftersellRevenue: 197032.89,
+                aftersellVisitors: 54062,
+                aftersellPerVisitor: 3.64,
+                emailRevenue: 140441.17,
+                emailFlowOpen: 49.60,
+                emailFlowClick: 1.50,
+                emailCampOpen: 64.30,
+                emailCampClick: 0.30,
+                smsRevenue: 566924.62,
+                totalRevenue: 18548512,
+                shopifyRevenue: 16698008,
+                shopifyNewRev: 5066052,
+                shopifyRepeatRev: 12669688,
+                amazonRevenue: 1850504,
+                amazonNewRev: 1298874,
+                amazonRepeatRev: 641458,
+                returns: 311381,
+                returnsPct: 2,
+                aov: 52,
+                netProfit: 1175983,
+                netProfitPct: 7,
+                cogs: 35,
+                software: 135703.98,
+                people: 264405.03,
+                totalFixed: 400109.01,
+                fixedPct: 2.15
             },
-            cvr: {
-                title: 'Conversion Rate Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [1.87, 1.91, 1.94, 2.37, 2.86, 3.24],
-                format: 'percent'
+            nov2025: {
+                label: 'November 2025',
+                adSpend: 7684215.32,
+                hookCost: 0.14,
+                cpm: 30.92,
+                ctr: 1.03,
+                cpc: 2.99,
+                outboundClicks: 1342647,
+                sessions: 1919027,
+                scrollDepth: 15.61,
+                sessionDuration: 40,
+                atcRate: 4.38,
+                checkoutRate: 5.01,
+                checkoutCvr: 37.64,
+                overallCvr: 1.67,
+                popupEngage: 99.42,
+                smsSignup: 11.79,
+                emailSignup: 14.88,
+                ncRoas: 0.71,
+                ncCac: 110.90,
+                mer: 53,
+                aftersellRevenue: 206532.25,
+                aftersellVisitors: 61699,
+                aftersellPerVisitor: 3.35,
+                emailRevenue: 245328.83,
+                emailFlowOpen: 47.20,
+                emailFlowClick: 1.71,
+                emailCampOpen: 55.10,
+                emailCampClick: 0.31,
+                smsRevenue: 840545.66,
+                totalRevenue: 18179148,
+                shopifyRevenue: 16391337,
+                shopifyNewRev: 6598759,
+                shopifyRepeatRev: 10967875,
+                amazonRevenue: 1787811,
+                amazonNewRev: 1201569,
+                amazonRepeatRev: 687759,
+                returns: 461958,
+                returnsPct: 2.6,
+                aov: 56,
+                netProfit: 287124,
+                netProfitPct: 2,
+                cogs: 35,
+                software: 130380.35,
+                people: 289685.17,
+                totalFixed: 420065.52,
+                fixedPct: 2.30
             },
-            atc: {
-                title: 'ATC Rate Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [4.17, 4.17, 4.35, 5.00, 4.64, 3.04],
-                format: 'percent'
+            dec2025: {
+                label: 'December 2025',
+                adSpend: 7126457.85,
+                hookCost: 0.12,
+                cpm: 32.92,
+                ctr: 1.00,
+                cpc: 3.29,
+                outboundClicks: 1012492,
+                sessions: 1565920,
+                scrollDepth: 22.21,
+                sessionDuration: 48,
+                atcRate: 5.14,
+                checkoutRate: 5.84,
+                checkoutCvr: 39.07,
+                overallCvr: 2.24,
+                popupEngage: 68.92,
+                smsSignup: 11.52,
+                emailSignup: 14.87,
+                ncRoas: 0.75,
+                ncCac: 106.60,
+                mer: 43,
+                aftersellRevenue: 179734.75,
+                aftersellVisitors: 56519,
+                aftersellPerVisitor: 3.18,
+                emailRevenue: 271769.50,
+                emailFlowOpen: 40.50,
+                emailFlowClick: 1.96,
+                emailCampOpen: 43.60,
+                emailCampClick: 0.62,
+                smsRevenue: 780714.88,
+                totalRevenue: 19645672,
+                shopifyRevenue: 18081089,
+                shopifyNewRev: 6322378,
+                shopifyRepeatRev: 13376473,
+                amazonRevenue: 1564583,
+                amazonNewRev: 1137102,
+                amazonRepeatRev: 525832,
+                returns: 805885,
+                returnsPct: 4.1,
+                aov: 62,
+                netProfit: 2512716,
+                netProfitPct: 13,
+                cogs: 33,
+                software: 123120.35,
+                people: 295521.04,
+                totalFixed: 418641.39,
+                fixedPct: 2.12
             },
-            sessions: {
-                title: 'Sessions Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [4475100, 4309447, 3802655, 3583712, 3104260, 2438475],
-                format: 'number'
-            },
-            cps: {
-                title: 'Cost per Session Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [1.68, 1.74, 1.83, 1.77, 1.77, 1.81],
-                format: 'currency_small'
-            },
-            meta: {
-                title: 'Meta Performance Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [0.55, 0.68, 0.71, 0.58, 0.59, 0.58],
-                format: 'roas'
-            },
-            google: {
-                title: 'Google Performance Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [1.70, 1.82, 1.96, 1.97, 2.35, 1.97],
-                format: 'roas'
-            },
-            cac: {
-                title: 'Customer Acquisition Cost Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [106.09, 97.97, 98.48, 107.33, 143.08, 107.33],
-                format: 'currency_small'
-            },
-            aov: {
-                title: 'Average Order Value Trend',
-                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
-                data: [75.87, 77.69, 83.08, 79.82, 125, 79.82],
-                format: 'currency_small'
+            jan2026: {
+                label: 'January 2026',
+                adSpend: 6750772.43,
+                hookCost: 0.11,
+                cpm: 27.34,
+                ctr: 0.83,
+                cpc: 3.29,
+                outboundClicks: 847396,
+                sessions: 1494044,
+                scrollDepth: 21.87,
+                sessionDuration: 46,
+                atcRate: 4.49,
+                checkoutRate: 5.13,
+                checkoutCvr: 37.59,
+                overallCvr: 1.84,
+                popupEngage: 61.65,
+                smsSignup: 12.00,
+                emailSignup: 15.61,
+                ncRoas: 0.66,
+                ncCac: 122.20,
+                mer: 43,
+                aftersellRevenue: 132754.80,
+                aftersellVisitors: 39883,
+                aftersellPerVisitor: 3.33,
+                emailRevenue: 216958.46,
+                emailFlowOpen: 39.70,
+                emailFlowClick: 1.84,
+                emailCampOpen: 44.00,
+                emailCampClick: 0.70,
+                smsRevenue: 663680.85,
+                totalRevenue: 18501822,
+                shopifyRevenue: 16903263,
+                shopifyNewRev: 5179263,
+                shopifyRepeatRev: 13297892,
+                amazonRevenue: 1598559,
+                amazonNewRev: 1151022,
+                amazonRepeatRev: 588474,
+                returns: 815304,
+                returnsPct: 4.40,
+                aov: 63,
+                netProfit: 2125967,
+                netProfitPct: 12,
+                cogs: 33,
+                software: 135220.59,
+                people: 322064.30,
+                totalFixed: 457284.89,
+                fixedPct: 2.45
             }
         };
 
-        let chartInstance = null;
+        const monthOrder = ['jul2025', 'aug2025', 'sep2025', 'oct2025', 'nov2025', 'dec2025', 'jan2026'];
 
-        function formatValue(value, format) {
-            switch(format) {
-                case 'currency':
-                    return '$' + (value / 1000000).toFixed(2) + 'M';
-                case 'currency_small':
-                    return '$' + value.toFixed(2);
-                case 'percent':
-                    return value.toFixed(2) + '%';
-                case 'roas':
-                    return value.toFixed(2) + 'x';
-                case 'number':
-                    return value.toLocaleString();
-                default:
-                    return value;
+        function formatCurrency(value, decimals = 0) {
+            if (value >= 1000000) {
+                return '$' + (value / 1000000).toFixed(2) + 'M';
+            } else if (value >= 1000) {
+                return '$' + (value / 1000).toFixed(0) + 'K';
+            } else {
+                return '$' + value.toFixed(decimals);
             }
         }
 
+        function formatNumber(value) {
+            if (value >= 1000000) {
+                return (value / 1000000).toFixed(2) + 'M';
+            } else if (value >= 1000) {
+                return (value / 1000).toFixed(0) + 'K';
+            }
+            return value.toLocaleString();
+        }
+
+        function getChange(current, previous, type = 'percent') {
+            if (!previous || previous === 0) return { text: '—', positive: true };
+            
+            const diff = current - previous;
+            const pctChange = ((current - previous) / previous) * 100;
+            
+            if (type === 'currency') {
+                const sign = diff >= 0 ? '+' : '';
+                return {
+                    text: `${diff >= 0 ? '↑' : '↓'} ${sign}$${Math.abs(diff).toFixed(0)}`,
+                    positive: diff <= 0 // Lower is better for costs
+                };
+            } else if (type === 'pp') {
+                const sign = diff >= 0 ? '+' : '';
+                return {
+                    text: `${diff >= 0 ? '↑' : '↓'} ${sign}${diff.toFixed(1)}pp`,
+                    positive: diff >= 0
+                };
+            } else {
+                return {
+                    text: `${pctChange >= 0 ? '↑' : '↓'} ${pctChange >= 0 ? '+' : ''}${pctChange.toFixed(0)}%`,
+                    positive: pctChange >= 0
+                };
+            }
+        }
+
+        function updateDashboard() {
+            const selectedMonth = document.getElementById('monthSelector').value;
+            const data = monthlyData[selectedMonth];
+            const monthIdx = monthOrder.indexOf(selectedMonth);
+            const prevMonth = monthIdx > 0 ? monthlyData[monthOrder[monthIdx - 1]] : null;
+
+            // Summary cards
+            document.getElementById('totalRevenue').textContent = formatCurrency(data.totalRevenue);
+            const ncRevTotal = data.shopifyNewRev + data.amazonNewRev;
+            document.getElementById('ncRevenue').textContent = formatCurrency(ncRevTotal);
+            document.getElementById('mer').textContent = data.mer + '%';
+            document.getElementById('ncRoas').textContent = data.ncRoas.toFixed(2) + 'x';
+
+            // Update change indicators
+            if (prevMonth) {
+                const prevNcRev = prevMonth.shopifyNewRev + prevMonth.amazonNewRev;
+                updateChangeIndicator('revenueChange', getChange(data.totalRevenue, prevMonth.totalRevenue));
+                updateChangeIndicator('ncRevenueChange', getChange(ncRevTotal, prevNcRev));
+                updateChangeIndicator('merChange', getChange(data.mer, prevMonth.mer, 'pp'));
+                updateChangeIndicator('ncRoasChange', getChange(data.ncRoas, prevMonth.ncRoas));
+            }
+
+            // Revenue section
+            document.getElementById('shopifyRevenue').textContent = formatCurrency(data.shopifyRevenue);
+            document.getElementById('repeatRevenue').textContent = formatCurrency(data.shopifyRepeatRev);
+            document.getElementById('returns').textContent = formatCurrency(data.returns);
+            document.getElementById('returnsChange').textContent = '↑ ' + data.returnsPct.toFixed(1) + '%';
+            document.getElementById('ncCac').textContent = '$' + data.ncCac.toFixed(2);
+            document.getElementById('aov').textContent = '$' + data.aov;
+            document.getElementById('netProfit').textContent = formatCurrency(data.netProfit);
+            document.getElementById('netProfitPct').textContent = data.netProfitPct + '%';
+
+            if (prevMonth) {
+                updateChangeIndicator('shopifyRevenueChange', getChange(data.shopifyRevenue, prevMonth.shopifyRevenue));
+                updateChangeIndicator('repeatRevenueChange', getChange(data.shopifyRepeatRev, prevMonth.shopifyRepeatRev));
+                updateChangeIndicator('ncCacChange', getChange(data.ncCac, prevMonth.ncCac, 'currency'));
+                updateChangeIndicator('aovChange', getChange(data.aov, prevMonth.aov, 'currency'));
+                updateChangeIndicator('netProfitChange', getChange(data.netProfit, prevMonth.netProfit));
+            }
+
+            // Funnel
+            document.getElementById('sessions').textContent = formatNumber(data.sessions);
+            document.getElementById('atcRate').textContent = data.atcRate.toFixed(2) + '%';
+            document.getElementById('checkoutRate').textContent = data.checkoutRate.toFixed(2) + '%';
+            document.getElementById('checkoutCvr').textContent = data.checkoutCvr.toFixed(2) + '%';
+            document.getElementById('overallCvr').textContent = data.overallCvr.toFixed(2) + '%';
+
+            // Ad Performance
+            document.getElementById('adSpend').textContent = formatCurrency(data.adSpend);
+            document.getElementById('cpm').textContent = '$' + data.cpm.toFixed(2);
+            document.getElementById('ctr').textContent = data.ctr.toFixed(2) + '%';
+            document.getElementById('cpc').textContent = '$' + data.cpc.toFixed(2);
+            document.getElementById('hookCost').textContent = '$' + data.hookCost.toFixed(2);
+            document.getElementById('outboundClicks').textContent = formatNumber(data.outboundClicks);
+
+            if (prevMonth) {
+                updateChangeIndicator('adSpendChange', getChange(data.adSpend, prevMonth.adSpend));
+                updateChangeIndicator('cpmChange', getChange(data.cpm, prevMonth.cpm));
+                updateChangeIndicator('ctrChange', getChange(data.ctr, prevMonth.ctr));
+                updateChangeIndicator('cpcChange', getChange(data.cpc, prevMonth.cpc, 'currency'));
+                updateChangeIndicator('hookCostChange', getChange(data.hookCost, prevMonth.hookCost));
+                updateChangeIndicator('outboundClicksChange', getChange(data.outboundClicks, prevMonth.outboundClicks));
+            }
+
+            // Post Purchase
+            document.getElementById('emailRevenue').textContent = formatCurrency(data.emailRevenue);
+            document.getElementById('emailFlowOpen').textContent = data.emailFlowOpen.toFixed(1) + '%';
+            document.getElementById('emailCampOpen').textContent = data.emailCampOpen.toFixed(1) + '%';
+            document.getElementById('smsRevenue').textContent = formatCurrency(data.smsRevenue);
+            document.getElementById('smsSignup').textContent = data.smsSignup.toFixed(1) + '%';
+            document.getElementById('popupEngage').textContent = data.popupEngage.toFixed(1) + '%';
+            document.getElementById('aftersellRevenue').textContent = formatCurrency(data.aftersellRevenue);
+            document.getElementById('aftersellVisitors').textContent = formatNumber(data.aftersellVisitors);
+            document.getElementById('aftersellPerVisitor').textContent = '$' + data.aftersellPerVisitor.toFixed(2);
+
+            // Fixed Expenses
+            document.getElementById('software').textContent = formatCurrency(data.software);
+            document.getElementById('people').textContent = formatCurrency(data.people);
+            document.getElementById('totalFixed').textContent = formatCurrency(data.totalFixed);
+            document.getElementById('fixedPct').textContent = data.fixedPct.toFixed(2) + '% of rev';
+            document.getElementById('cogs').textContent = data.cogs + '%';
+        }
+
+        function updateChangeIndicator(elementId, change) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            el.textContent = change.text;
+            el.className = 'summary-change ' + (change.positive ? 'positive' : 'negative');
+            if (el.classList.contains('kpi-change')) {
+                el.className = 'kpi-change ' + (change.positive ? 'up' : 'down');
+            }
+        }
+
+        let chartInstance = null;
+
         function showChart(metric) {
-            const data = trendData[metric] || trendData.revenue;
             const modal = document.getElementById('chartModal');
             const titleEl = document.getElementById('chartTitle');
             const ctx = document.getElementById('trendChart').getContext('2d');
 
-            titleEl.textContent = data.title;
+            const chartConfigs = {
+                revenue: { title: 'Total Revenue Trend', key: 'totalRevenue', format: 'currency' },
+                newCustomers: { title: 'New Customer Revenue Trend', key: 'shopifyNewRev', format: 'currency' },
+                mer: { title: 'MER % Trend', key: 'mer', format: 'percent' },
+                ncRoas: { title: 'ncROAS Trend', key: 'ncRoas', format: 'roas' },
+                sessions: { title: 'Sessions Trend', key: 'sessions', format: 'number' },
+                cvr: { title: 'Overall CVR Trend', key: 'overallCvr', format: 'percent' },
+                atc: { title: 'ATC Rate Trend', key: 'atcRate', format: 'percent' },
+                cac: { title: 'ncCAC Trend', key: 'ncCac', format: 'currency_small' },
+                aov: { title: 'AOV Trend', key: 'aov', format: 'currency_small' },
+                netProfit: { title: 'Net Profit Trend', key: 'netProfit', format: 'currency' }
+            };
+
+            const config = chartConfigs[metric] || chartConfigs.revenue;
+            titleEl.textContent = config.title;
             modal.classList.add('active');
+
+            const labels = monthOrder.map(m => monthlyData[m].label.split(' ')[0]);
+            const values = monthOrder.map(m => monthlyData[m][config.key]);
 
             if (chartInstance) {
                 chartInstance.destroy();
@@ -979,10 +1327,10 @@
             chartInstance = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: data.labels,
+                    labels: labels,
                     datasets: [{
-                        label: data.title,
-                        data: data.data,
+                        label: config.title,
+                        data: values,
                         borderColor: '#3b82f6',
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
                         borderWidth: 3,
@@ -999,9 +1347,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            display: false
-                        },
+                        legend: { display: false },
                         tooltip: {
                             backgroundColor: '#1a1a24',
                             titleColor: '#fff',
@@ -1012,37 +1358,25 @@
                             displayColors: false,
                             callbacks: {
                                 label: function(context) {
-                                    return formatValue(context.raw, data.format);
+                                    const val = context.raw;
+                                    if (config.format === 'currency') return formatCurrency(val);
+                                    if (config.format === 'currency_small') return '$' + val.toFixed(2);
+                                    if (config.format === 'percent') return val.toFixed(2) + '%';
+                                    if (config.format === 'roas') return val.toFixed(2) + 'x';
+                                    return val.toLocaleString();
                                 }
                             }
                         }
                     },
                     scales: {
                         x: {
-                            grid: {
-                                color: '#2d2d3a',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                color: '#6b7280'
-                            }
+                            grid: { color: '#2d2d3a', drawBorder: false },
+                            ticks: { color: '#6b7280' }
                         },
                         y: {
-                            grid: {
-                                color: '#2d2d3a',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                color: '#6b7280',
-                                callback: function(value) {
-                                    return formatValue(value, data.format);
-                                }
-                            }
+                            grid: { color: '#2d2d3a', drawBorder: false },
+                            ticks: { color: '#6b7280' }
                         }
-                    },
-                    interaction: {
-                        intersect: false,
-                        mode: 'index'
                     }
                 }
             });
@@ -1052,19 +1386,16 @@
             document.getElementById('chartModal').classList.remove('active');
         }
 
-        // Close modal on outside click
         document.getElementById('chartModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeChart();
-            }
+            if (e.target === this) closeChart();
         });
 
-        // Close on Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeChart();
-            }
+            if (e.key === 'Escape') closeChart();
         });
+
+        // Initialize dashboard
+        updateDashboard();
     </script>
 </body>
 </html>
