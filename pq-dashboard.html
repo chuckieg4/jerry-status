@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primal Queen - KPI Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -15,6 +16,7 @@
             --text-muted: #7d8590;
             --green: #3fb950;
             --red: #f85149;
+            --blue: #58a6ff;
             
             --preclick: #ff6b35;
             --postclick: #ffc107;
@@ -51,19 +53,10 @@
             gap: 12px;
         }
         
-        .logo-icon {
-            font-size: 32px;
-        }
+        .logo-icon { font-size: 32px; }
         
-        .logo h1 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-        
-        .logo span {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+        .logo h1 { font-size: 24px; font-weight: 600; }
+        .logo span { font-size: 13px; color: var(--text-muted); }
         
         .controls {
             display: flex;
@@ -89,10 +82,7 @@
             color: var(--text-muted);
         }
         
-        /* Section Styles */
-        .section {
-            margin-bottom: 28px;
-        }
+        .section { margin-bottom: 28px; }
         
         .section-header {
             display: flex;
@@ -116,7 +106,6 @@
         .section-header.variable { background: rgba(233, 30, 99, 0.15); border-left: 4px solid var(--variable); }
         .section-header.fixed { background: rgba(96, 125, 139, 0.15); border-left: 4px solid var(--fixed); }
         
-        /* KPI Grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -129,11 +118,13 @@
             border-radius: 8px;
             padding: 14px;
             transition: all 0.2s;
+            cursor: pointer;
         }
         
         .kpi-card:hover {
-            border-color: #58a6ff;
-            transform: translateY(-1px);
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
         }
         
         .kpi-label {
@@ -162,7 +153,6 @@
         .kpi-change.down { color: var(--red); }
         .kpi-change.neutral { color: var(--text-muted); }
         
-        /* Efficiency cards - larger */
         .efficiency-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -175,19 +165,19 @@
             border-radius: 12px;
             padding: 24px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
         }
         
-        .efficiency-card .kpi-label {
-            font-size: 13px;
-            margin-bottom: 8px;
+        .efficiency-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
         }
         
-        .efficiency-card .kpi-value {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
+        .efficiency-card .kpi-label { font-size: 13px; margin-bottom: 8px; }
+        .efficiency-card .kpi-value { font-size: 36px; margin-bottom: 8px; }
         
-        /* Business Level - two columns */
         .business-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -200,16 +190,9 @@
             align-items: center;
         }
         
-        .business-grid .kpi-left {
-            flex: 1;
-        }
+        .business-grid .kpi-left { flex: 1; }
+        .business-grid .kpi-value { font-size: 20px; margin-bottom: 0; }
         
-        .business-grid .kpi-value {
-            font-size: 20px;
-            margin-bottom: 0;
-        }
-        
-        /* Source badge */
         .source {
             font-size: 9px;
             color: var(--text-muted);
@@ -220,11 +203,100 @@
             display: inline-block;
         }
         
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+        
+        .modal-close:hover {
+            background: var(--border);
+        }
+        
+        .chart-container {
+            height: 350px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        
+        .modal-stat {
+            background: rgba(255,255,255,0.03);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .modal-stat-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        
+        .modal-stat-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
         @media (max-width: 768px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
             .efficiency-grid { grid-template-columns: 1fr; }
             .business-grid { grid-template-columns: 1fr; }
             .header { flex-direction: column; gap: 16px; }
+            .modal-stats { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -256,31 +328,31 @@
         <section class="section">
             <div class="section-header preclick">📣 Pre-Click</div>
             <div class="kpi-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('adSpend', 'Ad Spend', 'M')">
                     <div class="kpi-label">Ad Spend</div>
                     <div class="kpi-value" id="adSpend">$6.75M</div>
                     <div class="kpi-change" id="adSpendChange">↓ -5% vs prev</div>
                     <span class="source">Triple Whale</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('hookCost', 'Hook Cost (3s)', '$')">
                     <div class="kpi-label">Hook Cost (3s)</div>
                     <div class="kpi-value" id="hookCost">$0.11</div>
                     <div class="kpi-change" id="hookCostChange">↓ -8% vs prev</div>
                     <span class="source">Meta</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('cpm', 'CPM - Meta', '$')">
                     <div class="kpi-label">CPM - Meta</div>
                     <div class="kpi-value" id="cpm">$27.34</div>
                     <div class="kpi-change" id="cpmChange">↓ -17% vs prev</div>
                     <span class="source">Meta</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('ctr', 'CTR (Link) - Meta', '%')">
                     <div class="kpi-label">CTR (Link) - Meta</div>
                     <div class="kpi-value" id="ctr">0.83%</div>
                     <div class="kpi-change" id="ctrChange">↓ -17% vs prev</div>
                     <span class="source">Meta</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('cpc', 'CPC (Link) - Meta', '$')">
                     <div class="kpi-label">CPC (Link) - Meta</div>
                     <div class="kpi-value" id="cpc">$3.29</div>
                     <div class="kpi-change" id="cpcChange">— vs prev</div>
@@ -293,49 +365,49 @@
         <section class="section">
             <div class="section-header postclick">🎯 Post-Click</div>
             <div class="kpi-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('outboundClicks', 'Outbound Clicks', 'N')">
                     <div class="kpi-label">Outbound Clicks</div>
                     <div class="kpi-value" id="outboundClicks">847K</div>
                     <div class="kpi-change" id="outboundClicksChange">↓ -16% vs prev</div>
                     <span class="source">Meta</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('sessions', 'Sessions on /tiktok', 'N')">
                     <div class="kpi-label">Sessions on /tiktok</div>
                     <div class="kpi-value" id="sessions">1.49M</div>
                     <div class="kpi-change" id="sessionsChange">↓ -5% vs prev</div>
                     <span class="source">This report</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('scrollDepth', 'Scroll Depth /tiktok', '%')">
                     <div class="kpi-label">Scroll Depth /tiktok</div>
                     <div class="kpi-value" id="scrollDepth">21.87%</div>
                     <div class="kpi-change" id="scrollDepthChange">↓ -0.3pp vs prev</div>
                     <span class="source">Clarity</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('sessionDuration', 'Session Duration (sec)', 'num')">
                     <div class="kpi-label">Session Duration (sec)</div>
                     <div class="kpi-value" id="sessionDuration">46</div>
                     <div class="kpi-change" id="sessionDurationChange">↓ -2 vs prev</div>
                     <span class="source">Clarity</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('atcRate', 'ATC Rate', '%')">
                     <div class="kpi-label">ATC Rate</div>
                     <div class="kpi-value" id="atcRate">4.49%</div>
                     <div class="kpi-change" id="atcRateChange">↓ -0.7pp vs prev</div>
                     <span class="source">Shopify</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('checkoutRate', 'Reached Checkout Rate', '%')">
                     <div class="kpi-label">Reached Checkout Rate</div>
                     <div class="kpi-value" id="checkoutRate">5.13%</div>
                     <div class="kpi-change" id="checkoutRateChange">↓ -0.7pp vs prev</div>
                     <span class="source">Shopify</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('checkoutCvr', 'Checkout CVR', '%')">
                     <div class="kpi-label">Checkout CVR</div>
                     <div class="kpi-value" id="checkoutCvr">37.59%</div>
                     <div class="kpi-change" id="checkoutCvrChange">↓ -1.5pp vs prev</div>
                     <span class="source">Shopify</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('overallCvr', 'Overall CVR from /tiktok', '%')">
                     <div class="kpi-label">Overall CVR from /tiktok</div>
                     <div class="kpi-value" id="overallCvr">1.84%</div>
                     <div class="kpi-change" id="overallCvrChange">↓ -0.4pp vs prev</div>
@@ -348,19 +420,19 @@
         <section class="section">
             <div class="section-header optins">📝 Opt-Ins</div>
             <div class="kpi-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('popupEngage', 'Popup Engagement Rate', '%')">
                     <div class="kpi-label">Popup Engagement Rate</div>
                     <div class="kpi-value" id="popupEngage">61.65%</div>
                     <div class="kpi-change" id="popupEngageChange">↓ -7pp vs prev</div>
                     <span class="source">Postscript</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('smsSignup', 'Popup SMS Signup Rate', '%')">
                     <div class="kpi-label">Popup SMS Signup Rate</div>
                     <div class="kpi-value" id="smsSignup">12.00%</div>
                     <div class="kpi-change" id="smsSignupChange">↑ +0.5pp vs prev</div>
                     <span class="source">Postscript</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('emailSignup', 'Popup Email Signup Rate', '%')">
                     <div class="kpi-label">Popup Email Signup Rate</div>
                     <div class="kpi-value" id="emailSignup">15.61%</div>
                     <div class="kpi-change" id="emailSignupChange">↑ +0.7pp vs prev</div>
@@ -373,19 +445,19 @@
         <section class="section">
             <div class="section-header efficiency">⚡ Efficiency</div>
             <div class="efficiency-grid">
-                <div class="efficiency-card">
+                <div class="efficiency-card" onclick="showChart('ncRoas', 'ncROAS', 'x')">
                     <div class="kpi-label">ncROAS</div>
                     <div class="kpi-value" id="ncRoas">0.66x</div>
                     <div class="kpi-change" id="ncRoasChange">↓ -12% vs prev</div>
                     <span class="source">Triple Whale</span>
                 </div>
-                <div class="efficiency-card">
+                <div class="efficiency-card" onclick="showChart('ncCac', 'ncCAC', '$')">
                     <div class="kpi-label">ncCAC</div>
                     <div class="kpi-value" id="ncCac">$122.20</div>
                     <div class="kpi-change" id="ncCacChange">↑ +$16 vs prev</div>
                     <span class="source">Triple Whale</span>
                 </div>
-                <div class="efficiency-card">
+                <div class="efficiency-card" onclick="showChart('mer', 'MER %', 'pct')">
                     <div class="kpi-label">MER %</div>
                     <div class="kpi-value" id="mer">43%</div>
                     <div class="kpi-change" id="merChange">— vs prev</div>
@@ -398,55 +470,55 @@
         <section class="section">
             <div class="section-header postpurchase">📦 Post Purchase</div>
             <div class="kpi-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('aftersellRevenue', 'Aftersell Revenue', 'K')">
                     <div class="kpi-label">Aftersell Revenue</div>
                     <div class="kpi-value" id="aftersellRevenue">$133K</div>
                     <div class="kpi-change" id="aftersellRevenueChange">↓ -26% vs prev</div>
                     <span class="source">Aftersell</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('aftersellVisitors', 'Aftersell Visitors', 'N')">
                     <div class="kpi-label">Aftersell Visitors</div>
                     <div class="kpi-value" id="aftersellVisitors">39,883</div>
                     <div class="kpi-change" id="aftersellVisitorsChange">↓ -29% vs prev</div>
                     <span class="source">Aftersell</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('perVisitor', '$/Visitor (BO Funnel)', '$')">
                     <div class="kpi-label">$/Visitor (BO Funnel)</div>
                     <div class="kpi-value" id="perVisitor">$3.33</div>
                     <div class="kpi-change" id="perVisitorChange">↑ +5% vs prev</div>
                     <span class="source">Calculation</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('emailRevenue', 'Email Revenue', 'K')">
                     <div class="kpi-label">Email Revenue</div>
                     <div class="kpi-value" id="emailRevenue">$217K</div>
                     <div class="kpi-change" id="emailRevenueChange">↓ -20% vs prev</div>
                     <span class="source">Triple Whale</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('emailFlowOpen', 'Email Flow Open Rate', '%')">
                     <div class="kpi-label">Email Flow Open Rate</div>
                     <div class="kpi-value" id="emailFlowOpen">39.70%</div>
                     <div class="kpi-change" id="emailFlowOpenChange">↓ -0.8pp vs prev</div>
                     <span class="source">Klaviyo</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('emailFlowClick', 'Email Flow Click Rate', '%')">
                     <div class="kpi-label">Email Flow Click Rate</div>
                     <div class="kpi-value" id="emailFlowClick">1.84%</div>
                     <div class="kpi-change" id="emailFlowClickChange">↓ -0.1pp vs prev</div>
                     <span class="source">Klaviyo</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('emailCampOpen', 'Email Campaign Open Rate', '%')">
                     <div class="kpi-label">Email Campaign Open Rate</div>
                     <div class="kpi-value" id="emailCampOpen">44.00%</div>
                     <div class="kpi-change" id="emailCampOpenChange">↑ +0.4pp vs prev</div>
                     <span class="source">Klaviyo</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('emailCampClick', 'Email Campaign Click Rate', '%')">
                     <div class="kpi-label">Email Campaign Click Rate</div>
                     <div class="kpi-value" id="emailCampClick">0.70%</div>
                     <div class="kpi-change" id="emailCampClickChange">↑ +0.1pp vs prev</div>
                     <span class="source">Klaviyo</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('smsRevenue', 'SMS Revenue', 'K')">
                     <div class="kpi-label">SMS Revenue</div>
                     <div class="kpi-value" id="smsRevenue">$664K</div>
                     <div class="kpi-change" id="smsRevenueChange">↓ -15% vs prev</div>
@@ -459,77 +531,77 @@
         <section class="section">
             <div class="section-header business">📊 Business Level</div>
             <div class="business-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('totalRevenue', 'Total Revenue', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Total Revenue</div>
                         <div class="kpi-change" id="totalRevenueChange">↓ -6% vs prev</div>
                     </div>
                     <div class="kpi-value" id="totalRevenue">$18.50M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('shopifyRevenue', 'Shopify Revenue', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Shopify Revenue</div>
                         <div class="kpi-change" id="shopifyRevenueChange">↓ -7% vs prev</div>
                     </div>
                     <div class="kpi-value" id="shopifyRevenue">$16.90M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('shopifyNewRev', 'Shopify New Customer Rev', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Shopify New Customer Rev</div>
                         <div class="kpi-change" id="shopifyNewChange">↓ -18% vs prev</div>
                     </div>
                     <div class="kpi-value" id="shopifyNewRev">$5.18M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('shopifyRepeatRev', 'Shopify Repeat Customer Rev', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Shopify Repeat Customer Rev</div>
                         <div class="kpi-change" id="shopifyRepeatChange">↓ -1% vs prev</div>
                     </div>
                     <div class="kpi-value" id="shopifyRepeatRev">$13.30M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('amazonRevenue', 'Amazon Revenue', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Amazon Revenue</div>
                         <div class="kpi-change" id="amazonRevenueChange">↑ +2% vs prev</div>
                     </div>
                     <div class="kpi-value" id="amazonRevenue">$1.60M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('amazonNewRev', 'Amazon New Customer Rev', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Amazon New Customer Rev</div>
                         <div class="kpi-change" id="amazonNewChange">↑ +1% vs prev</div>
                     </div>
                     <div class="kpi-value" id="amazonNewRev">$1.15M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('amazonRepeatRev', 'Amazon Repeat Customer Rev', 'K')">
                     <div class="kpi-left">
                         <div class="kpi-label">Amazon Repeat Customer Rev</div>
                         <div class="kpi-change" id="amazonRepeatChange">↑ +12% vs prev</div>
                     </div>
                     <div class="kpi-value" id="amazonRepeatRev">$588K</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('returns', 'Returns', 'K')">
                     <div class="kpi-left">
                         <div class="kpi-label">Returns</div>
                         <div class="kpi-change" id="returnsChange">↑ +1% vs prev</div>
                     </div>
                     <div class="kpi-value" id="returns">$815K</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('aov', 'AOV', '$int')">
                     <div class="kpi-left">
                         <div class="kpi-label">AOV</div>
                         <div class="kpi-change" id="aovChange">↑ +$1 vs prev</div>
                     </div>
                     <div class="kpi-value" id="aov">$63</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('netProfit', 'Net Profit', 'M')">
                     <div class="kpi-left">
                         <div class="kpi-label">Net Profit</div>
                         <div class="kpi-change" id="netProfitChange">↓ -15% vs prev</div>
                     </div>
                     <div class="kpi-value" id="netProfit">$2.13M</div>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('netProfitPct', 'Net Profit %', 'pct')">
                     <div class="kpi-left">
                         <div class="kpi-label">Net Profit %</div>
                         <div class="kpi-change" id="netProfitPctChange">↓ -1pp vs prev</div>
@@ -543,19 +615,19 @@
         <section class="section">
             <div class="section-header variable">💸 Variable Expenses</div>
             <div class="kpi-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('cogs', 'COGS %', 'pct')">
                     <div class="kpi-label">COGS %</div>
                     <div class="kpi-value" id="cogs">33%</div>
                     <div class="kpi-change" id="cogsChange">— vs prev</div>
                     <span class="source">Triple Whale</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('returns', 'Returns $', 'K')">
                     <div class="kpi-label">Returns $</div>
                     <div class="kpi-value" id="returnsDollar">$815K</div>
                     <div class="kpi-change" id="returnsDollarChange">↑ +1% vs prev</div>
                     <span class="source">Triple Whale</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('returnsPct', 'Returns %', '%')">
                     <div class="kpi-label">Returns %</div>
                     <div class="kpi-value" id="returnsPct">4.40%</div>
                     <div class="kpi-change" id="returnsPctChange">↑ +0.3pp vs prev</div>
@@ -568,25 +640,25 @@
         <section class="section">
             <div class="section-header fixed">🏢 Fixed Expenses</div>
             <div class="kpi-grid">
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('software', 'Software', 'K')">
                     <div class="kpi-label">Software</div>
                     <div class="kpi-value" id="software">$135K</div>
                     <div class="kpi-change" id="softwareChange">↑ +10% vs prev</div>
                     <span class="source">Monthly KPIs</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('people', 'People', 'K')">
                     <div class="kpi-label">People</div>
                     <div class="kpi-value" id="people">$322K</div>
                     <div class="kpi-change" id="peopleChange">↑ +9% vs prev</div>
                     <span class="source">Monthly KPIs</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('totalFixed', 'Total Fixed', 'K')">
                     <div class="kpi-label">Total Fixed</div>
                     <div class="kpi-value" id="totalFixed">$457K</div>
                     <div class="kpi-change" id="totalFixedChange">↑ +9% vs prev</div>
                     <span class="source">Monthly KPIs</span>
                 </div>
-                <div class="kpi-card">
+                <div class="kpi-card" onclick="showChart('fixedPct', '% of Revenue', '%')">
                     <div class="kpi-label">% of Revenue</div>
                     <div class="kpi-value" id="fixedPct">2.45%</div>
                     <div class="kpi-change" id="fixedPctChange">↑ +0.3pp vs prev</div>
@@ -596,9 +668,24 @@
         </section>
     </div>
 
+    <!-- Chart Modal -->
+    <div class="modal" id="chartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">KPI Trend</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+            <div class="modal-stats" id="modalStats"></div>
+        </div>
+    </div>
+
     <script>
         const data = {
             jul2025: {
+                label: 'Jul 2025',
                 adSpend: 6390291.88, hookCost: 0.07, cpm: 23.87, ctr: 1.36, cpc: 1.76,
                 outboundClicks: 1721221, sessions: 1757729, scrollDepth: 22.03, sessionDuration: 42,
                 atcRate: 4.17, checkoutRate: 4.68, checkoutCvr: 40.73, overallCvr: 1.73,
@@ -615,6 +702,7 @@
                 software: 113552.56, people: 250065.12, totalFixed: 363617.68, fixedPct: 2.11
             },
             aug2025: {
+                label: 'Aug 2025',
                 adSpend: 5984730.73, hookCost: 0.10, cpm: 26.30, ctr: 1.52, cpc: 1.73,
                 outboundClicks: 1607776, sessions: 1731489, scrollDepth: 18.37, sessionDuration: 43,
                 atcRate: 4.12, checkoutRate: 4.70, checkoutCvr: 39.71, overallCvr: 1.52,
@@ -631,6 +719,7 @@
                 software: 79162.90, people: 234626.01, totalFixed: 313788.91, fixedPct: 1.74
             },
             sep2025: {
+                label: 'Sep 2025',
                 adSpend: 6932805.79, hookCost: 0.11, cpm: 28.64, ctr: 2.12, cpc: 1.35,
                 outboundClicks: 2081877, sessions: 2700151, scrollDepth: 11.22, sessionDuration: 36,
                 atcRate: 3.29, checkoutRate: 3.76, checkoutCvr: 37.18, overallCvr: 0.98,
@@ -647,6 +736,7 @@
                 software: 163248.39, people: 271117.90, totalFixed: 434366.29, fixedPct: 2.28
             },
             oct2025: {
+                label: 'Oct 2025',
                 adSpend: 6843052.10, hookCost: 0.11, cpm: 25.26, ctr: 1.35, cpc: 1.87,
                 outboundClicks: 1469462, sessions: 2439166, scrollDepth: 7.09, sessionDuration: 25,
                 atcRate: 3.22, checkoutRate: 3.68, checkoutCvr: 39.44, overallCvr: 1.06,
@@ -663,6 +753,7 @@
                 software: 135703.98, people: 264405.03, totalFixed: 400109.01, fixedPct: 2.15
             },
             nov2025: {
+                label: 'Nov 2025',
                 adSpend: 7684215.32, hookCost: 0.14, cpm: 30.92, ctr: 1.03, cpc: 2.99,
                 outboundClicks: 1342647, sessions: 1919027, scrollDepth: 15.61, sessionDuration: 40,
                 atcRate: 4.38, checkoutRate: 5.01, checkoutCvr: 37.64, overallCvr: 1.67,
@@ -679,6 +770,7 @@
                 software: 130380.35, people: 289685.17, totalFixed: 420065.52, fixedPct: 2.30
             },
             dec2025: {
+                label: 'Dec 2025',
                 adSpend: 7126457.85, hookCost: 0.12, cpm: 32.92, ctr: 1.00, cpc: 3.29,
                 outboundClicks: 1012492, sessions: 1565920, scrollDepth: 22.21, sessionDuration: 48,
                 atcRate: 5.14, checkoutRate: 5.84, checkoutCvr: 39.07, overallCvr: 2.24,
@@ -695,6 +787,7 @@
                 software: 123120.35, people: 295521.04, totalFixed: 418641.39, fixedPct: 2.12
             },
             jan2026: {
+                label: 'Jan 2026',
                 adSpend: 6750772.43, hookCost: 0.11, cpm: 27.34, ctr: 0.83, cpc: 3.29,
                 outboundClicks: 847396, sessions: 1494044, scrollDepth: 21.87, sessionDuration: 46,
                 atcRate: 4.49, checkoutRate: 5.13, checkoutCvr: 37.59, overallCvr: 1.84,
@@ -713,14 +806,18 @@
         };
 
         const months = ['jul2025', 'aug2025', 'sep2025', 'oct2025', 'nov2025', 'dec2025', 'jan2026'];
+        let chartInstance = null;
 
         function fmt(v, type) {
             if (type === 'M') return '$' + (v / 1e6).toFixed(2) + 'M';
             if (type === 'K') return '$' + (v / 1e3).toFixed(0) + 'K';
             if (type === 'N') return v >= 1e6 ? (v / 1e6).toFixed(2) + 'M' : (v / 1e3).toFixed(0) + 'K';
             if (type === '$') return '$' + v.toFixed(2);
+            if (type === '$int') return '$' + v;
             if (type === '%') return v.toFixed(2) + '%';
-            if (type === 'P') return v + '%';
+            if (type === 'pct') return v + '%';
+            if (type === 'x') return v.toFixed(2) + 'x';
+            if (type === 'num') return v;
             return v.toLocaleString();
         }
 
@@ -728,24 +825,125 @@
             if (!prev) return { text: '—', cls: 'neutral' };
             const diff = curr - prev;
             const pct = ((curr - prev) / prev) * 100;
-            
-            if (type === '$') {
-                const sign = diff >= 0 ? '+' : '';
-                return { text: `${diff >= 0 ? '↑' : '↓'} ${sign}$${Math.abs(diff).toFixed(0)} vs prev`, cls: diff >= 0 ? 'up' : 'down' };
-            }
-            if (type === 'pp') {
-                const sign = diff >= 0 ? '+' : '';
-                return { text: `${diff >= 0 ? '↑' : '↓'} ${sign}${diff.toFixed(1)}pp vs prev`, cls: diff >= 0 ? 'up' : 'down' };
-            }
+            if (type === '$') return { text: `${diff >= 0 ? '↑' : '↓'} ${diff >= 0 ? '+' : ''}$${Math.abs(diff).toFixed(0)} vs prev`, cls: diff >= 0 ? 'up' : 'down' };
+            if (type === 'pp') return { text: `${diff >= 0 ? '↑' : '↓'} ${diff >= 0 ? '+' : ''}${diff.toFixed(1)}pp vs prev`, cls: diff >= 0 ? 'up' : 'down' };
             return { text: `${pct >= 0 ? '↑' : '↓'} ${pct >= 0 ? '+' : ''}${pct.toFixed(0)}% vs prev`, cls: pct >= 0 ? 'up' : 'down' };
         }
 
-        function set(id, val) { document.getElementById(id).textContent = val; }
+        function set(id, val) { const el = document.getElementById(id); if(el) el.textContent = val; }
         function setChg(id, obj) { 
             const el = document.getElementById(id);
+            if (!el) return;
             el.textContent = obj.text;
             el.className = 'kpi-change ' + obj.cls;
         }
+
+        function showChart(key, title, format) {
+            const modal = document.getElementById('chartModal');
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            
+            document.getElementById('modalTitle').textContent = title + ' — Month over Month';
+            
+            const labels = months.map(m => data[m].label);
+            const values = months.map(m => data[m][key]);
+            
+            // Calculate stats
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const avg = values.reduce((a, b) => a + b, 0) / values.length;
+            const current = values[values.length - 1];
+            
+            // Update stats
+            document.getElementById('modalStats').innerHTML = `
+                <div class="modal-stat">
+                    <div class="modal-stat-label">Current</div>
+                    <div class="modal-stat-value">${fmt(current, format)}</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-label">Average</div>
+                    <div class="modal-stat-value">${fmt(avg, format)}</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-label">Min</div>
+                    <div class="modal-stat-value">${fmt(min, format)}</div>
+                </div>
+                <div class="modal-stat">
+                    <div class="modal-stat-label">Max</div>
+                    <div class="modal-stat-value">${fmt(max, format)}</div>
+                </div>
+            `;
+            
+            if (chartInstance) chartInstance.destroy();
+            
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: values,
+                        borderColor: '#58a6ff',
+                        backgroundColor: 'rgba(88, 166, 255, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: '#58a6ff',
+                        pointBorderColor: '#0d1117',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#161b22',
+                            titleColor: '#e6edf3',
+                            bodyColor: '#7d8590',
+                            borderColor: '#30363d',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: ctx => fmt(ctx.raw, format)
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: '#21262d', drawBorder: false },
+                            ticks: { color: '#7d8590', font: { size: 12 } }
+                        },
+                        y: {
+                            grid: { color: '#21262d', drawBorder: false },
+                            ticks: { 
+                                color: '#7d8590', 
+                                font: { size: 12 },
+                                callback: v => fmt(v, format)
+                            }
+                        }
+                    },
+                    interaction: { intersect: false, mode: 'index' }
+                }
+            });
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('chartModal').classList.remove('active');
+        }
+
+        document.getElementById('chartModal').addEventListener('click', e => {
+            if (e.target.id === 'chartModal') closeModal();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
 
         function updateDashboard() {
             const m = document.getElementById('monthSelector').value;
