@@ -1,9 +1,9 @@
 {
-  "lastUpdate": "2026-02-20T08:00:23Z",
+  "lastUpdate": "2026-02-20T19:00:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Daily KPI Brief delivered",
-    "todaysTasks": 1
+    "currentTask": "Weekly ad analysis complete — $18.10 CPA winner found",
+    "todaysTasks": 2
   },
   "agents": {
     "seth": {
@@ -298,6 +298,12 @@
   "activity": [
     {
       "agent": "jerry",
+      "action": "📊 Weekly Ad Report: Dustin headline ads at $18.10 CPA (32% better than avg)",
+      "time": "just now",
+      "timestamp": "2026-02-20T19:00:00Z"
+    },
+    {
+      "agent": "jerry",
       "action": "📊 Daily KPI Brief delivered — CVR 2.97%, NCPA $42.88",
       "time": "just now",
       "timestamp": "2026-02-20T08:03:00Z"
@@ -331,12 +337,6 @@
       "action": "📊 Daily KPI Brief delivered — CVR 3.69%, NCPA $35.46",
       "time": "just now",
       "timestamp": "2026-02-17T08:00:00Z"
-    },
-    {
-      "agent": "jerry",
-      "action": "📊 Daily KPI Brief delivered — CVR 3.79%, ATC 5.75%, Spend $40.5K",
-      "time": "just now",
-      "timestamp": "2026-02-16T03:00:00Z"
     }
   ],
   "webAnalytics": {
@@ -405,11 +405,11 @@
     },
     "last7d": {
       "dateRange": "2026-02-13 to 2026-02-19",
-      "spend": 180054.69,
+      "spend": 180127.56,
       "purchases": 6752,
       "ncpa": 37.30,
       "ncroas": 2.74,
-      "roas": 3.4975,
+      "roas": 3.50,
       "revenue": 1150899,
       "orders": 11465
     }
