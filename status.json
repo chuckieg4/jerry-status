@@ -1,8 +1,8 @@
 {
-  "lastUpdate": "2026-02-21T08:03:00Z",
+  "lastUpdate": "2026-02-22T08:03:00Z",
   "jerry": {
     "status": "active",
-    "currentTask": "Weekly ad analysis complete — $18.10 CPA winner found",
+    "currentTask": "Daily KPI Brief delivered",
     "todaysTasks": 2
   },
   "agents": {
@@ -141,40 +141,40 @@
     },
     "malby": {
       "stats": {
-        "spendYesterday": 14117,
-        "purchases": 294,
-        "ncpa": 44.85,
-        "cpa": 32.37,
-        "roas": 1.93,
-        "newCustomers": 335,
-        "revenueYesterday": 58533,
-        "spend7d": 170072.67,
-        "cpa7d": 14.37152864627345,
-        "roas7d": 2.764136
+        "spendYesterday": 15995,
+        "purchases": 323,
+        "ncpa": 50.50,
+        "cpa": 31.92,
+        "roas": 1.73,
+        "newCustomers": 413,
+        "revenueYesterday": 35821,
+        "spend7d": 140106.87,
+        "cpa7d": 19.386587795765877,
+        "roas7d": 2.516683
       },
-      "lastActive": "2026-02-21T08:00:23Z"
+      "lastActive": "2026-02-22T08:00:34Z"
     },
     "dave": {
       "stats": {
         "activeFlows": 5,
-        "openRate": 243.3,
-        "clickRate": 8.5
+        "openRate": 229.2,
+        "clickRate": 10.6
       },
-      "lastActive": "2026-02-21T08:00:23Z"
+      "lastActive": "2026-02-22T08:00:34Z"
     },
     "penny": {
       "stats": {
-        "mtdSales": 1515674,
-        "mtdNetProfit": 366946,
-        "mer": 22.6
+        "mtdSales": 1557075,
+        "mtdNetProfit": 364435,
+        "mer": 23.2
       },
-      "lastActive": "2026-02-21T08:00:23Z"
+      "lastActive": "2026-02-22T08:00:34Z"
     },
     "tanner": {
       "stats": {
         "cvr": 2.39
       },
-      "lastActive": "2026-02-21T08:00:23Z"
+      "lastActive": "2026-02-22T08:00:34Z"
     }
   },
   "jerryMemory": {
@@ -298,6 +298,12 @@
   "activity": [
     {
       "agent": "jerry",
+      "action": "📊 Daily KPI Brief delivered — NCPA $50.50, ncROAS 1.82x (Moby unresponsive)",
+      "time": "just now",
+      "timestamp": "2026-02-22T08:03:00Z"
+    },
+    {
+      "agent": "jerry",
       "action": "📊 Daily KPI Brief delivered — CVR 2.39%, NCPA $44.85",
       "time": "just now",
       "timestamp": "2026-02-21T08:03:00Z"
@@ -377,7 +383,7 @@
   },
   "meta": {
     "lastMetaSync": "2026-02-17T09:04:48.598Z",
-    "lastKlaviyoSync": "2026-02-21T08:00:23Z",
+    "lastKlaviyoSync": "2026-02-22T08:00:34Z",
     "lastShopifySync": "2026-02-17T14:05:50.729Z",
     "lastMobySync": "2026-02-21T08:03:00Z",
     "dataSources": [
@@ -386,78 +392,78 @@
       "klaviyo-api",
       "shopify-admin-api"
     ],
-    "lastTripleWhaleSync": "2026-02-21T08:00:23Z",
+    "lastTripleWhaleSync": "2026-02-22T08:00:34Z",
     "lastCronSync": "2026-02-17T15:30:55.576Z",
     "lastFullSync": "2026-02-21T08:03:00Z",
     "lastClaritySync": "2026-02-21T08:03:00Z"
   },
   "metaAds": {
-    "lastSync": "2026-02-21T08:00:23Z",
+    "lastSync": "2026-02-22T08:00:34Z",
     "yesterday": {
-      "date": "2026-02-20",
-      "spend": 14117,
-      "purchases": 294,
-      "newCustomers": 335,
-      "ncpa": 44.85,
-      "ncroas": 2.19,
-      "cpa": 32.37,
-      "roas": 1.93
+      "date": "2026-02-21",
+      "spend": 15995,
+      "purchases": 323,
+      "newCustomers": 413,
+      "ncpa": 50.50,
+      "ncroas": 1.82,
+      "cpa": 31.92,
+      "roas": 1.73
     },
     "last7d": {
-      "dateRange": "2026-02-14 to 2026-02-20",
-      "spend": 170072.67,
-      "purchases": 5073,
-      "ncpa": 37.61,
-      "ncroas": 2.71,
-      "roas": 2.764136,
-      "revenue": 1186765,
-      "orders": 11834
+      "dateRange": "2026-02-15 to 2026-02-21",
+      "spend": 140106.87,
+      "purchases": 3794,
+      "ncpa": 42.35,
+      "ncroas": 2.35,
+      "roas": 2.516683,
+      "revenue": 703355,
+      "orders": 7227
     }
   },
   "shopify": {
-    "lastSync": "2026-02-21T08:00:23Z",
+    "lastSync": "2026-02-22T08:00:34Z",
     "yesterday": {
-      "date": "2026-02-20",
-      "orders": 628,
-      "newCustomerOrders": 335,
-      "revenue": 58533,
-      "blendedAdSpend": 20720,
-      "mer": 2.82,
-      "aov": 86.97
+      "date": "2026-02-21",
+      "orders": 405,
+      "newCustomerOrders": 413,
+      "revenue": 35821,
+      "blendedAdSpend": 16060,
+      "mer": 2.23,
+      "aov": 90.78
     },
-    "totalCustomers": 247026
+    "totalCustomers": 247774
   },
   "klaviyo": {
-    "lastSync": "2026-02-21T08:00:23Z",
+    "lastSync": "2026-02-22T08:00:34Z",
     "activeFlows": 5,
     "totalFlows": 32,
     "yesterday": {
-      "emailsSent": 3523,
-      "openRate": 243.3,
-      "clickRate": 8.5,
+      "emailsSent": 2927,
+      "openRate": 229.2,
+      "clickRate": 10.6,
       "revenue": 0
     },
     "lists": {
-      "newsletter": 52493,
+      "newsletter": 52742,
       "sms": 0
     }
   },
   "penny": {
-    "lastSync": "2026-02-21T08:00:23Z",
+    "lastSync": "2026-02-22T08:00:34Z",
     "mtd": {
-      "period": "2026-02-01 to 2026-02-20",
-      "sales": 1515674,
-      "adSpend": 342520,
-      "netProfit": 366946,
-      "mer": 22.6,
-      "netMargin": 24.2,
-      "ncpa": 41.07
+      "period": "2026-02-01 to 2026-02-21",
+      "sales": 1557075,
+      "adSpend": 360831,
+      "netProfit": 364435,
+      "mer": 23.2,
+      "netMargin": 23.4,
+      "ncpa": 41.30
     },
     "previousMonth": {
       "name": "January",
       "sales": 1590212,
       "adSpend": 580954,
-      "netProfit": 153543
+      "netProfit": 153525
     }
   },
   "whatsWorking": {
