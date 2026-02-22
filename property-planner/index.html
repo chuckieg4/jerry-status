@@ -398,18 +398,151 @@
             width: 100%;
             height: 6px;
             -webkit-appearance: none;
-            background: #333;
-            border-radius: 3px;
-            outline: none;
         }
         
-        .slider-group input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            background: #ff6b6b;
-            border-radius: 50%;
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(74, 222, 128, 0.9);
+            color: #000;
+            font-size: 1.5rem;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-menu-btn.open {
+            background: #dc2626;
+            color: white;
+        }
+        
+        /* Mobile Overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 99;
+        }
+        
+        .mobile-overlay.show {
+            display: block;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .app-layout {
+                flex-direction: column;
+            }
+            
+            .left-nav {
+                display: none;
+            }
+            
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -320px;
+                width: 300px;
+                height: 100vh;
+                z-index: 100;
+                transition: left 0.3s ease;
+                padding-top: 80px;
+            }
+            
+            .sidebar.open {
+                left: 0;
+            }
+            
+            .canvas-container {
+                width: 100%;
+                height: 100vh;
+            }
+            
+            .instructions {
+                display: none;
+            }
+            
+            .zoom-controls {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .zoom-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .add-shape-btn {
+                padding: 16px;
+                font-size: 1rem;
+            }
+            
+            .shape-delete {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
+            }
+            
+            .dimension-input input {
+                width: 80px;
+                padding: 10px;
+                font-size: 1rem;
+            }
+            
+            .boundary-controls {
+                margin-top: 15px;
+                padding: 12px;
+            }
+            
+            .slider-group input[type="range"] {
+                height: 12px;
+            }
+            
+            .slider-group input[type="range"]::-webkit-slider-thumb {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .total-coverage {
+                margin-top: 15px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            .sidebar {
+                width: 85vw;
+                left: -90vw;
+            }
+            
+            .dimension-input {
+                flex-direction: column;
+            }
+            
+            .dimension-input input {
+                width: 100%;
+            }
         }
         
         .save-boundary-btn {
@@ -430,6 +563,9 @@
     </style>
 </head>
 <body>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+    
     <div class="app-layout">
         <nav class="left-nav">
             <div class="nav-header">🏡 Naples Property</div>
@@ -1184,6 +1320,86 @@
             isResizing = false;
             isPanning = false;
             resizeCorner = null;
+        });
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            const btn = document.getElementById('mobileMenuBtn');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+            btn.classList.toggle('open');
+            btn.textContent = btn.classList.contains('open') ? '✕' : '☰';
+        }
+        
+        // Touch support for mobile
+        let touchStartPos = null;
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const pos = {
+                x: touch.clientX - canvas.getBoundingClientRect().left,
+                y: touch.clientY - canvas.getBoundingClientRect().top
+            };
+            touchStartPos = pos;
+            
+            const shapeIndex = getShapeAtPos(pos);
+            
+            if (shapeIndex >= 0) {
+                selectedShape = shapeIndex;
+                isDragging = true;
+                
+                const bounds = getPropertyBounds();
+                const shape = shapes[shapeIndex];
+                const shapeX = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
+                const shapeY = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
+                
+                dragOffset = {
+                    x: pos.x - shapeX,
+                    y: pos.y - shapeY
+                };
+                
+                updateShapesList();
+            } else {
+                selectedShape = null;
+                updateShapesList();
+            }
+            
+            draw();
+        }, { passive: false });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            const pos = {
+                x: touch.clientX - canvas.getBoundingClientRect().left,
+                y: touch.clientY - canvas.getBoundingClientRect().top
+            };
+            
+            if (isDragging && selectedShape !== null) {
+                const bounds = getPropertyBounds();
+                const shape = shapes[selectedShape];
+                
+                shape.x = ((pos.x - dragOffset.x - bounds.x) / bounds.width) * PROPERTY_WIDTH_FT;
+                shape.y = ((pos.y - dragOffset.y - bounds.y) / bounds.height) * PROPERTY_DEPTH_FT;
+                
+                shape.x = Math.max(0, Math.min(PROPERTY_WIDTH_FT - shape.width, shape.x));
+                shape.y = Math.max(0, Math.min(PROPERTY_DEPTH_FT - shape.height, shape.y));
+                
+                draw();
+            }
+        }, { passive: false });
+        
+        canvas.addEventListener('touchend', (e) => {
+            if (isDragging) {
+                saveState();
+                updateShapesList();
+            }
+            isDragging = false;
+            touchStartPos = null;
         });
         
         // Initial setup
