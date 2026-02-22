@@ -365,7 +365,8 @@
                     <li>Click buttons to add structures</li>
                     <li>Drag shapes to move them</li>
                     <li>Drag corners to resize</li>
-                    <li>Click shape to select & edit dimensions</li>
+                    <li>Click shape to select & edit</li>
+                    <li>Press <strong>B</strong> to toggle boundary line</li>
                     <li>Use +/− to zoom, scroll to pan</li>
                 </ul>
             </div>
@@ -382,16 +383,17 @@
         const PROPERTY_DEPTH_FT = 180;
         const PROPERTY_SQFT = 118800;
         
-        // Property boundary as percentage of image (matched to white outline)
+        // Property boundary as percentage of image (tight to white outline)
         const BOUNDARY = {
-            left: 0.063,    // left edge at road
-            top: 0.268,     // top edge 
-            right: 0.976,   // right edge
-            bottom: 0.812   // bottom edge
+            left: 0.064,    // left edge at road
+            top: 0.283,     // top edge of white line
+            right: 0.974,   // right edge of white line
+            bottom: 0.803   // bottom edge of white line
         };
         
         let shapes = [];
         let selectedShape = null;
+        let showBoundary = true; // Press 'B' to toggle red boundary line
         let dragOffset = { x: 0, y: 0 };
         let isDragging = false;
         let isResizing = false;
@@ -471,9 +473,15 @@
             // Draw property image
             ctx.drawImage(propertyImage, offsetX, offsetY, imgWidth * zoom, imgHeight * zoom);
             
-            // Property boundary (the white line in the image is the actual boundary)
-            // Just get bounds for calculations, no extra overlay needed
+            // Property boundary - show semi-transparent overlay to verify alignment
             const bounds = getPropertyBounds();
+            
+            // Draw thin border to verify alignment (toggle with 'B' key)
+            if (showBoundary) {
+                ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            }
             
             // Draw shapes
             shapes.forEach((shape, index) => {
@@ -810,6 +818,19 @@
             panY = 0;
             draw();
         }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'b' || e.key === 'B') {
+                showBoundary = !showBoundary;
+                draw();
+            }
+            if (e.key === 'Delete' || e.key === 'Backspace') {
+                if (selectedShape !== null) {
+                    deleteShape(selectedShape);
+                }
+            }
+        });
         
         // Initial setup
         resizeCanvas();
