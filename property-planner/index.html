@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naples Property Planner - 2.73 Acres</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .header h1 span {
+            color: #4ade80;
+            font-weight: 400;
+        }
+        
+        .property-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .stat {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 6px;
+        }
+        
+        .stat-value {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .container {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: #16213e;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+        }
+        
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        
+        .add-shape-btn {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .add-shape-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .btn-barn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+        }
+        
+        .btn-garage {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+        }
+        
+        .btn-shed {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+        }
+        
+        .btn-custom {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+        }
+        
+        .btn-fence {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+            color: white;
+        }
+        
+        .shapes-list {
+            margin-top: 25px;
+        }
+        
+        .shape-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .shape-item:hover {
+            border-color: #4ade80;
+        }
+        
+        .shape-item.selected {
+            border-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        
+        .shape-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .shape-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .shape-delete {
+            background: #dc2626;
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .shape-dims {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        
+        .shape-dims strong {
+            color: #4ade80;
+        }
+        
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #0f0f1a;
+        }
+        
+        #propertyCanvas {
+            cursor: crosshair;
+        }
+        
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            max-width: 350px;
+        }
+        
+        .instructions h3 {
+            color: #4ade80;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .instructions ul {
+            list-style: none;
+            color: #ccc;
+        }
+        
+        .instructions li {
+            margin-bottom: 4px;
+        }
+        
+        .instructions li::before {
+            content: "•";
+            color: #4ade80;
+            margin-right: 8px;
+        }
+        
+        .total-coverage {
+            margin-top: 25px;
+            background: linear-gradient(135deg, #1e3a5f 0%, #16213e 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .total-coverage .label {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .total-coverage .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        
+        .total-coverage .percent {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 3px;
+        }
+        
+        .dimension-input {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .dimension-input input {
+            width: 70px;
+            padding: 6px 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #1a1a2e;
+            color: white;
+            font-size: 0.85rem;
+        }
+        
+        .dimension-input label {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        
+        .dimension-input .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .zoom-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .zoom-btn:hover {
+            background: rgba(74, 222, 128, 0.3);
+        }
+        
+        .color-picker {
+            margin-top: 8px;
+        }
+        
+        .color-picker input {
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏡 Naples Property Planner <span>2.73 Acres</span></h1>
+        <div class="property-stats">
+            <div class="stat">Width: <span class="stat-value" id="propWidth">~580 ft</span></div>
+            <div class="stat">Depth: <span class="stat-value" id="propDepth">~205 ft</span></div>
+            <div class="stat">Total: <span class="stat-value">118,919 sq ft</span></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <div class="section-title">Add Structures</div>
+            
+            <button class="add-shape-btn btn-barn" onclick="addShape('Barn', 60, 40, '#dc2626')">
+                🏚️ Barn (60×40 ft)
+            </button>
+            <button class="add-shape-btn btn-garage" onclick="addShape('Garage', 30, 24, '#2563eb')">
+                🚗 Garage (30×24 ft)
+            </button>
+            <button class="add-shape-btn btn-shed" onclick="addShape('Shed', 20, 16, '#059669')">
+                🛖 Shed (20×16 ft)
+            </button>
+            <button class="add-shape-btn btn-fence" onclick="addShape('Paddock', 100, 80, '#d97706')">
+                🐴 Paddock (100×80 ft)
+            </button>
+            <button class="add-shape-btn btn-custom" onclick="addShape('Custom', 40, 30, '#7c3aed')">
+                ➕ Custom Shape
+            </button>
+            
+            <div class="total-coverage">
+                <div class="label">TOTAL COVERAGE</div>
+                <div class="value" id="totalSqFt">0 sq ft</div>
+                <div class="percent" id="totalPercent">0% of property</div>
+            </div>
+            
+            <div class="shapes-list">
+                <div class="section-title">Placed Structures</div>
+                <div id="shapesList"></div>
+            </div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="propertyCanvas"></canvas>
+            
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomIn()">+</button>
+                <button class="zoom-btn" onclick="zoomOut()">−</button>
+                <button class="zoom-btn" onclick="resetView()">⟲</button>
+            </div>
+            
+            <div class="instructions">
+                <h3>How to Use</h3>
+                <ul>
+                    <li>Click buttons to add structures</li>
+                    <li>Drag shapes to move them</li>
+                    <li>Drag corners to resize</li>
+                    <li>Click shape to select & edit dimensions</li>
+                    <li>Use +/− to zoom, scroll to pan</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('propertyCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Property dimensions (2.73 acres = 118,919 sq ft)
+        // Estimated from aerial: roughly 580 x 205 ft (2.73 acres)
+        const PROPERTY_WIDTH_FT = 580;
+        const PROPERTY_DEPTH_FT = 205;
+        const PROPERTY_SQFT = 118919;
+        
+        // Property boundary as percentage of image (estimated from the white outline)
+        const BOUNDARY = {
+            left: 0.067,    // ~6.7% from left
+            top: 0.285,     // ~28.5% from top
+            right: 0.975,   // ~97.5% from left
+            bottom: 0.815   // ~81.5% from top
+        };
+        
+        let shapes = [];
+        let selectedShape = null;
+        let dragOffset = { x: 0, y: 0 };
+        let isDragging = false;
+        let isResizing = false;
+        let resizeCorner = null;
+        let zoom = 1;
+        let panX = 0, panY = 0;
+        let isPanning = false;
+        let lastPan = { x: 0, y: 0 };
+        
+        const propertyImage = new Image();
+        propertyImage.src = 'property.webp';
+        
+        let imageLoaded = false;
+        let imgWidth, imgHeight, scale;
+        
+        propertyImage.onload = () => {
+            imageLoaded = true;
+            resizeCanvas();
+        };
+        
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+            
+            if (imageLoaded) {
+                // Calculate scale to fit image
+                const scaleX = canvas.width / propertyImage.width;
+                const scaleY = canvas.height / propertyImage.height;
+                scale = Math.min(scaleX, scaleY) * 0.95;
+                
+                imgWidth = propertyImage.width * scale;
+                imgHeight = propertyImage.height * scale;
+            }
+            
+            draw();
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        
+        function getPropertyBounds() {
+            const offsetX = (canvas.width - imgWidth * zoom) / 2 + panX;
+            const offsetY = (canvas.height - imgHeight * zoom) / 2 + panY;
+            
+            return {
+                x: offsetX + BOUNDARY.left * imgWidth * zoom,
+                y: offsetY + BOUNDARY.top * imgHeight * zoom,
+                width: (BOUNDARY.right - BOUNDARY.left) * imgWidth * zoom,
+                height: (BOUNDARY.bottom - BOUNDARY.top) * imgHeight * zoom
+            };
+        }
+        
+        function ftToPixels(ft, isWidth = true) {
+            const bounds = getPropertyBounds();
+            if (isWidth) {
+                return (ft / PROPERTY_WIDTH_FT) * bounds.width;
+            }
+            return (ft / PROPERTY_DEPTH_FT) * bounds.height;
+        }
+        
+        function pixelsToFt(px, isWidth = true) {
+            const bounds = getPropertyBounds();
+            if (isWidth) {
+                return (px / bounds.width) * PROPERTY_WIDTH_FT;
+            }
+            return (px / bounds.height) * PROPERTY_DEPTH_FT;
+        }
+        
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (!imageLoaded) return;
+            
+            const offsetX = (canvas.width - imgWidth * zoom) / 2 + panX;
+            const offsetY = (canvas.height - imgHeight * zoom) / 2 + panY;
+            
+            // Draw property image
+            ctx.drawImage(propertyImage, offsetX, offsetY, imgWidth * zoom, imgHeight * zoom);
+            
+            // Draw property boundary highlight
+            const bounds = getPropertyBounds();
+            ctx.strokeStyle = 'rgba(74, 222, 128, 0.8)';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([10, 5]);
+            ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            ctx.setLineDash([]);
+            
+            // Draw shapes
+            shapes.forEach((shape, index) => {
+                const x = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
+                const y = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
+                const w = (shape.width / PROPERTY_WIDTH_FT) * bounds.width;
+                const h = (shape.height / PROPERTY_DEPTH_FT) * bounds.height;
+                
+                // Fill
+                ctx.fillStyle = shape.color + '80';
+                ctx.fillRect(x, y, w, h);
+                
+                // Border
+                ctx.strokeStyle = shape.color;
+                ctx.lineWidth = selectedShape === index ? 4 : 2;
+                ctx.strokeRect(x, y, w, h);
+                
+                // Label
+                ctx.fillStyle = 'white';
+                ctx.font = `bold ${Math.max(12, 14 * zoom)}px sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.fillText(shape.name, x + w/2, y + h/2 - 8);
+                
+                ctx.font = `${Math.max(10, 12 * zoom)}px sans-serif`;
+                ctx.fillText(`${Math.round(shape.width)}×${Math.round(shape.height)} ft`, x + w/2, y + h/2 + 10);
+                ctx.fillText(`${Math.round(shape.width * shape.height).toLocaleString()} sq ft`, x + w/2, y + h/2 + 26);
+                
+                // Resize handles if selected
+                if (selectedShape === index) {
+                    const handleSize = 10;
+                    ctx.fillStyle = '#4ade80';
+                    
+                    // Corners
+                    [[x, y], [x + w, y], [x, y + h], [x + w, y + h]].forEach(([hx, hy]) => {
+                        ctx.fillRect(hx - handleSize/2, hy - handleSize/2, handleSize, handleSize);
+                    });
+                }
+            });
+            
+            // Draw scale reference
+            ctx.fillStyle = 'rgba(0,0,0,0.7)';
+            ctx.fillRect(canvas.width - 180, canvas.height - 50, 170, 40);
+            
+            const scale50ft = ftToPixels(50, true);
+            ctx.fillStyle = '#4ade80';
+            ctx.fillRect(canvas.width - 170, canvas.height - 35, scale50ft, 8);
+            
+            ctx.fillStyle = 'white';
+            ctx.font = '12px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('50 ft', canvas.width - 170 + scale50ft/2, canvas.height - 18);
+        }
+        
+        function addShape(name, width, height, color) {
+            const shape = {
+                name: name,
+                x: PROPERTY_WIDTH_FT / 2 - width / 2,
+                y: PROPERTY_DEPTH_FT / 2 - height / 2,
+                width: width,
+                height: height,
+                color: color
+            };
+            shapes.push(shape);
+            selectedShape = shapes.length - 1;
+            updateShapesList();
+            updateTotalCoverage();
+            draw();
+        }
+        
+        function updateShapesList() {
+            const list = document.getElementById('shapesList');
+            list.innerHTML = shapes.map((shape, index) => `
+                <div class="shape-item ${selectedShape === index ? 'selected' : ''}" onclick="selectShape(${index})">
+                    <div class="shape-header">
+                        <span class="shape-name" style="color: ${shape.color}">${shape.name}</span>
+                        <button class="shape-delete" onclick="deleteShape(${index}); event.stopPropagation();">×</button>
+                    </div>
+                    <div class="shape-dims">
+                        <strong>${Math.round(shape.width)}×${Math.round(shape.height)} ft</strong> = 
+                        ${Math.round(shape.width * shape.height).toLocaleString()} sq ft
+                    </div>
+                    <div class="dimension-input">
+                        <div class="input-group">
+                            <label>Width (ft)</label>
+                            <input type="number" value="${Math.round(shape.width)}" 
+                                   onchange="updateShapeDim(${index}, 'width', this.value)" 
+                                   onclick="event.stopPropagation()">
+                        </div>
+                        <div class="input-group">
+                            <label>Depth (ft)</label>
+                            <input type="number" value="${Math.round(shape.height)}" 
+                                   onchange="updateShapeDim(${index}, 'height', this.value)"
+                                   onclick="event.stopPropagation()">
+                        </div>
+                    </div>
+                    <div class="color-picker" onclick="event.stopPropagation()">
+                        <input type="color" value="${shape.color}" 
+                               onchange="updateShapeColor(${index}, this.value)">
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function selectShape(index) {
+            selectedShape = index;
+            updateShapesList();
+            draw();
+        }
+        
+        function deleteShape(index) {
+            shapes.splice(index, 1);
+            if (selectedShape >= shapes.length) selectedShape = shapes.length - 1;
+            if (selectedShape < 0) selectedShape = null;
+            updateShapesList();
+            updateTotalCoverage();
+            draw();
+        }
+        
+        function updateShapeDim(index, dim, value) {
+            shapes[index][dim] = parseFloat(value) || 1;
+            updateShapesList();
+            updateTotalCoverage();
+            draw();
+        }
+        
+        function updateShapeColor(index, color) {
+            shapes[index].color = color;
+            updateShapesList();
+            draw();
+        }
+        
+        function updateTotalCoverage() {
+            const total = shapes.reduce((sum, s) => sum + s.width * s.height, 0);
+            document.getElementById('totalSqFt').textContent = Math.round(total).toLocaleString() + ' sq ft';
+            document.getElementById('totalPercent').textContent = 
+                (total / PROPERTY_SQFT * 100).toFixed(2) + '% of property';
+        }
+        
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        
+        function getShapeAtPos(pos) {
+            const bounds = getPropertyBounds();
+            
+            for (let i = shapes.length - 1; i >= 0; i--) {
+                const shape = shapes[i];
+                const x = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
+                const y = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
+                const w = (shape.width / PROPERTY_WIDTH_FT) * bounds.width;
+                const h = (shape.height / PROPERTY_DEPTH_FT) * bounds.height;
+                
+                if (pos.x >= x && pos.x <= x + w && pos.y >= y && pos.y <= y + h) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        function getResizeCorner(pos, shapeIndex) {
+            if (shapeIndex < 0) return null;
+            
+            const bounds = getPropertyBounds();
+            const shape = shapes[shapeIndex];
+            const x = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
+            const y = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
+            const w = (shape.width / PROPERTY_WIDTH_FT) * bounds.width;
+            const h = (shape.height / PROPERTY_DEPTH_FT) * bounds.height;
+            
+            const handleSize = 15;
+            const corners = [
+                { name: 'nw', x: x, y: y },
+                { name: 'ne', x: x + w, y: y },
+                { name: 'sw', x: x, y: y + h },
+                { name: 'se', x: x + w, y: y + h }
+            ];
+            
+            for (const corner of corners) {
+                if (Math.abs(pos.x - corner.x) < handleSize && Math.abs(pos.y - corner.y) < handleSize) {
+                    return corner.name;
+                }
+            }
+            return null;
+        }
+        
+        canvas.addEventListener('mousedown', (e) => {
+            const pos = getMousePos(e);
+            
+            if (e.button === 1 || e.shiftKey) {
+                isPanning = true;
+                lastPan = pos;
+                return;
+            }
+            
+            const corner = selectedShape !== null ? getResizeCorner(pos, selectedShape) : null;
+            
+            if (corner) {
+                isResizing = true;
+                resizeCorner = corner;
+                return;
+            }
+            
+            const shapeIndex = getShapeAtPos(pos);
+            
+            if (shapeIndex >= 0) {
+                selectedShape = shapeIndex;
+                isDragging = true;
+                
+                const bounds = getPropertyBounds();
+                const shape = shapes[shapeIndex];
+                const shapeX = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
+                const shapeY = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
+                
+                dragOffset = {
+                    x: pos.x - shapeX,
+                    y: pos.y - shapeY
+                };
+                
+                updateShapesList();
+            } else {
+                selectedShape = null;
+                updateShapesList();
+            }
+            
+            draw();
+        });
+        
+        canvas.addEventListener('mousemove', (e) => {
+            const pos = getMousePos(e);
+            
+            if (isPanning) {
+                panX += pos.x - lastPan.x;
+                panY += pos.y - lastPan.y;
+                lastPan = pos;
+                draw();
+                return;
+            }
+            
+            if (isDragging && selectedShape !== null) {
+                const bounds = getPropertyBounds();
+                const shape = shapes[selectedShape];
+                
+                shape.x = ((pos.x - dragOffset.x - bounds.x) / bounds.width) * PROPERTY_WIDTH_FT;
+                shape.y = ((pos.y - dragOffset.y - bounds.y) / bounds.height) * PROPERTY_DEPTH_FT;
+                
+                // Clamp to property
+                shape.x = Math.max(0, Math.min(PROPERTY_WIDTH_FT - shape.width, shape.x));
+                shape.y = Math.max(0, Math.min(PROPERTY_DEPTH_FT - shape.height, shape.y));
+                
+                draw();
+            }
+            
+            if (isResizing && selectedShape !== null) {
+                const bounds = getPropertyBounds();
+                const shape = shapes[selectedShape];
+                
+                const ftX = ((pos.x - bounds.x) / bounds.width) * PROPERTY_WIDTH_FT;
+                const ftY = ((pos.y - bounds.y) / bounds.height) * PROPERTY_DEPTH_FT;
+                
+                if (resizeCorner.includes('e')) {
+                    shape.width = Math.max(10, ftX - shape.x);
+                }
+                if (resizeCorner.includes('w')) {
+                    const newWidth = shape.x + shape.width - ftX;
+                    if (newWidth >= 10) {
+                        shape.x = ftX;
+                        shape.width = newWidth;
+                    }
+                }
+                if (resizeCorner.includes('s')) {
+                    shape.height = Math.max(10, ftY - shape.y);
+                }
+                if (resizeCorner.includes('n')) {
+                    const newHeight = shape.y + shape.height - ftY;
+                    if (newHeight >= 10) {
+                        shape.y = ftY;
+                        shape.height = newHeight;
+                    }
+                }
+                
+                updateShapesList();
+                updateTotalCoverage();
+                draw();
+            }
+            
+            // Update cursor
+            if (selectedShape !== null && getResizeCorner(pos, selectedShape)) {
+                canvas.style.cursor = 'nwse-resize';
+            } else if (getShapeAtPos(pos) >= 0) {
+                canvas.style.cursor = 'move';
+            } else {
+                canvas.style.cursor = 'crosshair';
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            if (isDragging) updateShapesList();
+            isDragging = false;
+            isResizing = false;
+            isPanning = false;
+            resizeCorner = null;
+        });
+        
+        canvas.addEventListener('mouseleave', () => {
+            isDragging = false;
+            isResizing = false;
+            isPanning = false;
+        });
+        
+        canvas.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            zoom = Math.max(0.5, Math.min(3, zoom * delta));
+            draw();
+        });
+        
+        function zoomIn() {
+            zoom = Math.min(3, zoom * 1.2);
+            draw();
+        }
+        
+        function zoomOut() {
+            zoom = Math.max(0.5, zoom / 1.2);
+            draw();
+        }
+        
+        function resetView() {
+            zoom = 1;
+            panX = 0;
+            panY = 0;
+            draw();
+        }
+        
+        // Initial setup
+        resizeCanvas();
+    </script>
+</body>
+</html>
