@@ -425,6 +425,9 @@
                 <div class="boundary-toggle">
                     <label><input type="checkbox" id="showBoundaryCheck" checked onchange="toggleBoundary()"> Show red boundary</label>
                 </div>
+                <div class="boundary-toggle">
+                    <label><input type="checkbox" id="showSetbacksCheck" checked onchange="toggleSetbacks()"> Show setback lines (yellow)</label>
+                </div>
                 <div class="boundary-sliders">
                     <div class="slider-group">
                         <label>Left: <span id="leftVal">6.4%</span></label>
@@ -521,6 +524,7 @@
         let shapes = [];
         let selectedShape = null;
         let showBoundary = true; // Press 'B' to toggle red boundary line
+        let showSetbacks = true; // Press 'S' to toggle setback lines
         let dragOffset = { x: 0, y: 0 };
         let isDragging = false;
         let isResizing = false;
@@ -608,6 +612,47 @@
                 ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
                 ctx.lineWidth = 2;
                 ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
+            }
+            
+            // Draw setback lines (building zone)
+            if (showSetbacks) {
+                const sideSetback = 30; // 30 ft from each side
+                const rearSetback = 75; // 75 ft from rear (bottom)
+                
+                const sideOffsetPx = (sideSetback / PROPERTY_WIDTH_FT) * bounds.width;
+                const rearOffsetPx = (rearSetback / PROPERTY_DEPTH_FT) * bounds.height;
+                
+                ctx.strokeStyle = 'rgba(255, 200, 0, 0.7)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([8, 6]);
+                
+                // Left setback (30 ft from left)
+                ctx.beginPath();
+                ctx.moveTo(bounds.x + sideOffsetPx, bounds.y);
+                ctx.lineTo(bounds.x + sideOffsetPx, bounds.y + bounds.height);
+                ctx.stroke();
+                
+                // Right setback (30 ft from right)
+                ctx.beginPath();
+                ctx.moveTo(bounds.x + bounds.width - sideOffsetPx, bounds.y);
+                ctx.lineTo(bounds.x + bounds.width - sideOffsetPx, bounds.y + bounds.height);
+                ctx.stroke();
+                
+                // Rear setback (75 ft from bottom)
+                ctx.beginPath();
+                ctx.moveTo(bounds.x, bounds.y + bounds.height - rearOffsetPx);
+                ctx.lineTo(bounds.x + bounds.width, bounds.y + bounds.height - rearOffsetPx);
+                ctx.stroke();
+                
+                ctx.setLineDash([]);
+                
+                // Label the setbacks
+                ctx.fillStyle = 'rgba(255, 200, 0, 0.9)';
+                ctx.font = '11px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('30 ft', bounds.x + sideOffsetPx/2, bounds.y + bounds.height/2);
+                ctx.fillText('30 ft', bounds.x + bounds.width - sideOffsetPx/2, bounds.y + bounds.height/2);
+                ctx.fillText('75 ft setback', bounds.x + bounds.width/2, bounds.y + bounds.height - rearOffsetPx/2);
             }
             
             // Draw shapes
@@ -950,6 +995,12 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'b' || e.key === 'B') {
                 showBoundary = !showBoundary;
+                document.getElementById('showBoundaryCheck').checked = showBoundary;
+                draw();
+            }
+            if (e.key === 's' || e.key === 'S') {
+                showSetbacks = !showSetbacks;
+                document.getElementById('showSetbacksCheck').checked = showSetbacks;
                 draw();
             }
             if (e.key === 'Delete' || e.key === 'Backspace') {
@@ -958,6 +1009,11 @@
                 }
             }
         });
+        
+        function toggleSetbacks() {
+            showSetbacks = document.getElementById('showSetbacksCheck').checked;
+            draw();
+        }
         
         // Initial setup
         resizeCanvas();
