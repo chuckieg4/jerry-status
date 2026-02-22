@@ -18,71 +18,71 @@
             min-height: 100vh;
         }
         
-        .top-nav {
+        .app-layout {
             display: flex;
-            background: #0f0f1a;
-            border-bottom: 1px solid #333;
-            padding: 0 20px;
+            height: 100vh;
         }
         
-        .nav-tab {
-            padding: 15px 25px;
+        .left-nav {
+            width: 180px;
+            background: #0a0a12;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        
+        .nav-header {
+            padding: 20px 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #4ade80;
+            border-bottom: 1px solid #222;
+        }
+        
+        .nav-item {
+            padding: 14px 15px;
             color: #888;
             text-decoration: none;
-            font-size: 0.95rem;
-            border-bottom: 3px solid transparent;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
             transition: all 0.2s;
         }
         
-        .nav-tab:hover {
+        .nav-item:hover {
             color: #fff;
             background: rgba(255,255,255,0.05);
         }
         
-        .nav-tab.active {
+        .nav-item.active {
             color: #4ade80;
-            border-bottom-color: #4ade80;
+            border-left-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
         }
         
-        .header {
-            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
-            padding: 15px 20px;
+        .nav-footer {
+            margin-top: auto;
+            padding: 15px;
+            border-top: 1px solid #222;
+        }
+        
+        .nav-stat {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .main-content {
+            flex: 1;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
-        
-        .header h1 {
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-        
-        .header h1 span {
-            color: #4ade80;
-            font-weight: 400;
-        }
-        
-        .property-stats {
-            display: flex;
-            gap: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .stat {
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 6px;
-        }
-        
-        .stat-value {
-            color: #4ade80;
-            font-weight: 600;
+            flex-direction: column;
+            overflow: hidden;
         }
         
         .container {
             display: flex;
-            height: calc(100vh - 70px);
+            flex: 1;
+            overflow: hidden;
         }
         
         .sidebar {
@@ -269,6 +269,25 @@
             margin-top: 3px;
         }
         
+        .existing-structures {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #333;
+            text-align: left;
+        }
+        
+        .existing-label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .existing-item {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        
         .dimension-input {
             display: flex;
             gap: 8px;
@@ -411,37 +430,26 @@
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <a href="index.html" class="nav-tab active">🗺️ Property Planner</a>
-        <a href="barn-blueprint-5k.html" class="nav-tab">📐 Blueprint</a>
-        <a href="barn-mockups.html" class="nav-tab">🖼️ Mockups</a>
-        <a href="todo.html" class="nav-tab">✅ To Do</a>
-    </nav>
-    
-    <div class="header">
-        <h1>🏡 Naples Property Planner <span>2.73 Acres</span></h1>
-        <div class="property-stats">
-            <div class="stat">Width: <span class="stat-value" id="propWidth">660 ft</span></div>
-            <div class="stat">Depth: <span class="stat-value" id="propDepth">180 ft</span></div>
-            <div class="stat">Total: <span class="stat-value">118,800 sq ft</span></div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="sidebar">
+    <div class="app-layout">
+        <nav class="left-nav">
+            <div class="nav-header">🏡 Naples Property</div>
+            <a href="index.html" class="nav-item active">🗺️ Planner</a>
+            <a href="barn-blueprint-5k.html" class="nav-item">📐 Blueprint</a>
+            <a href="barn-mockups.html" class="nav-item">🖼️ Mockups</a>
+            <a href="todo.html" class="nav-item">✅ To Do</a>
+            <div class="nav-footer">
+                <div class="nav-stat">660' × 180'</div>
+                <div class="nav-stat">2.73 Acres</div>
+            </div>
+        </nav>
+        
+        <div class="main-content">
+            <div class="container">
+                <div class="sidebar">
             <div class="section-title">Add Structures</div>
             
-            <button class="add-shape-btn btn-barn" onclick="addShape('BARN 5K', 100, 50, '#f59e0b')">
-                🏗️ BARN 5K (100×50 ft)
-            </button>
-            <button class="add-shape-btn btn-barn" onclick="addShape('BARN 7K', 100, 70, '#dc2626')">
-                🏗️ BARN 7K (100×70 ft)
-            </button>
-            <button class="add-shape-btn btn-barn" onclick="window.open('barn-blueprint-5k.html', '_blank')" style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);">
-                📐 5K Blueprint ($550-650K)
-            </button>
-            <button class="add-shape-btn btn-barn" onclick="window.open('barn-blueprint.html', '_blank')" style="background: linear-gradient(135deg, #4ade80 0%, #22d3ee 100%);">
-                📐 7K Blueprint ($750-850K)
+            <button class="add-shape-btn btn-barn" onclick="addShape('THE BARN', 100, 50, '#f59e0b')">
+                🏗️ The Barn (100×50 ft)
             </button>
             <button class="add-shape-btn btn-garage" onclick="addShape('Garage', 30, 24, '#2563eb')">
                 🚗 Garage (30×24 ft)
@@ -460,6 +468,11 @@
                 <div class="label">TOTAL COVERAGE</div>
                 <div class="value" id="totalSqFt">0 sq ft</div>
                 <div class="percent" id="totalPercent">0% of property</div>
+                <div class="existing-structures">
+                    <div class="existing-label">Existing Structures:</div>
+                    <div class="existing-item">🏠 Main House: ~4,000 sq ft</div>
+                    <div class="existing-item">🏡 Guest House: ~1,200 sq ft</div>
+                </div>
             </div>
             
             <div class="boundary-controls">
@@ -834,7 +847,13 @@
         }
         
         function updateTotalCoverage() {
-            const total = shapes.reduce((sum, s) => sum + s.width * s.height, 0);
+            const MAIN_HOUSE_SQFT = 4000;
+            const GUEST_HOUSE_SQFT = 1200;
+            const EXISTING_SQFT = MAIN_HOUSE_SQFT + GUEST_HOUSE_SQFT;
+            
+            const newStructures = shapes.reduce((sum, s) => sum + s.width * s.height, 0);
+            const total = newStructures + EXISTING_SQFT;
+            
             document.getElementById('totalSqFt').textContent = Math.round(total).toLocaleString() + ' sq ft';
             document.getElementById('totalPercent').textContent = 
                 (total / PROPERTY_SQFT * 100).toFixed(2) + '% of property';
@@ -1157,5 +1176,7 @@
         loadState();
         resizeCanvas();
     </script>
+        </div>
+    </div>
 </body>
 </html>

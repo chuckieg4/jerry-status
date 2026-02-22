@@ -18,39 +18,55 @@
             min-height: 100vh;
         }
         
-        .top-nav {
+        .app-layout {
             display: flex;
-            background: #0f0f1a;
-            border-bottom: 1px solid #333;
-            padding: 0 20px;
+            min-height: 100vh;
         }
         
-        .nav-tab {
-            padding: 15px 25px;
+        .left-nav {
+            width: 180px;
+            background: #0a0a12;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+        
+        .nav-header {
+            padding: 20px 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #f59e0b;
+            border-bottom: 1px solid #222;
+        }
+        
+        .nav-item {
+            padding: 14px 15px;
             color: #888;
             text-decoration: none;
-            font-size: 0.95rem;
-            border-bottom: 3px solid transparent;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
             transition: all 0.2s;
         }
         
-        .nav-tab:hover {
+        .nav-item:hover {
             color: #fff;
             background: rgba(255,255,255,0.05);
         }
         
-        .nav-tab.active {
+        .nav-item.active {
             color: #f59e0b;
-            border-bottom-color: #f59e0b;
+            border-left-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
         }
         
-        .header, .comparison, .stats-bar, .floors-container, .design-notes, .cost-breakdown, .back-link {
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        
-        .header {
-            padding-top: 20px;
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
         }
         
         .header {
@@ -344,14 +360,17 @@
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <a href="index.html" class="nav-tab">🗺️ Property Planner</a>
-        <a href="barn-blueprint-5k.html" class="nav-tab active">📐 Blueprint</a>
-        <a href="barn-mockups.html" class="nav-tab">🖼️ Mockups</a>
-        <a href="todo.html" class="nav-tab">✅ To Do</a>
-    </nav>
-    
-    <div class="header">
+    <div class="app-layout">
+        <nav class="left-nav">
+            <div class="nav-header">🏡 Naples Property</div>
+            <a href="index.html" class="nav-item">🗺️ Planner</a>
+            <a href="barn-blueprint-5k.html" class="nav-item active">📐 Blueprint</a>
+            <a href="barn-mockups.html" class="nav-item">🖼️ Mockups</a>
+            <a href="todo.html" class="nav-item">✅ To Do</a>
+        </nav>
+        
+        <div class="main-content">
+            <div class="header">
         <h1>🏗️ THE BARN — Compact Build</h1>
         <div class="subtitle">50' × 100' Clearspan Metal Building (5,000 sq ft footprint)</div>
     </div>
@@ -577,9 +596,10 @@
     </div>
     
     <div class="back-link">
-        <a href="index.html">← Property Planner</a>
         <a href="barn-mockups.html">🖼️ View Room Mockups</a>
         <a href="barn-blueprint.html">View 7K Build →</a>
+    </div>
+        </div>
     </div>
 </body>
 </html>

@@ -18,30 +18,51 @@
             min-height: 100vh;
         }
         
-        .top-nav {
+        .app-layout {
             display: flex;
-            background: #0f0f1a;
-            border-bottom: 1px solid #333;
-            padding: 0 20px;
+            min-height: 100vh;
         }
         
-        .nav-tab {
-            padding: 15px 25px;
+        .left-nav {
+            width: 180px;
+            background: #0a0a12;
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        
+        .nav-header {
+            padding: 20px 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #4ade80;
+            border-bottom: 1px solid #222;
+        }
+        
+        .nav-item {
+            padding: 14px 15px;
             color: #888;
             text-decoration: none;
-            font-size: 0.95rem;
-            border-bottom: 3px solid transparent;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
             transition: all 0.2s;
         }
         
-        .nav-tab:hover {
+        .nav-item:hover {
             color: #fff;
             background: rgba(255,255,255,0.05);
         }
         
-        .nav-tab.active {
+        .nav-item.active {
             color: #4ade80;
-            border-bottom-color: #4ade80;
+            border-left-color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+        }
+        
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
         }
         
         .container {
@@ -253,14 +274,17 @@
     </style>
 </head>
 <body>
-    <nav class="top-nav">
-        <a href="index.html" class="nav-tab">🗺️ Property Planner</a>
-        <a href="barn-blueprint-5k.html" class="nav-tab">📐 Blueprint</a>
-        <a href="barn-mockups.html" class="nav-tab">🖼️ Mockups</a>
-        <a href="todo.html" class="nav-tab active">✅ To Do</a>
-    </nav>
-    
-    <div class="container">
+    <div class="app-layout">
+        <nav class="left-nav">
+            <div class="nav-header">🏡 Naples Property</div>
+            <a href="index.html" class="nav-item">🗺️ Planner</a>
+            <a href="barn-blueprint-5k.html" class="nav-item">📐 Blueprint</a>
+            <a href="barn-mockups.html" class="nav-item">🖼️ Mockups</a>
+            <a href="todo.html" class="nav-item active">✅ To Do</a>
+        </nav>
+        
+        <div class="main-content">
+            <div class="container">
         <h1>✅ Naples Property — To Do</h1>
         
         <div class="stats">
@@ -307,13 +331,26 @@
             } else {
                 // Default starter tasks
                 tasks = [
-                    { id: 1, text: "Verify property zoning with Collier County", category: "permits", completed: false },
-                    { id: 2, text: "Check if variance needed for 5,000+ sq ft accessory building", category: "permits", completed: false },
-                    { id: 3, text: "Get DEP report for wetlands assessment", category: "permits", completed: false },
-                    { id: 4, text: "Finalize barn layout and dimensions", category: "design", completed: false },
-                    { id: 5, text: "Get quotes from metal building contractors", category: "construction", completed: false },
-                    { id: 6, text: "Research golf simulator options (TrackMan vs Foresight)", category: "equipment", completed: false },
-                    { id: 7, text: "Price out cold plunge tubs", category: "equipment", completed: false },
+                    { id: 1, text: "Privacy bushes?", category: "construction", completed: false },
+                    { id: 2, text: "Light up driveway & walkways & trees", category: "construction", completed: false },
+                    { id: 3, text: "Garage storage", category: "construction", completed: false },
+                    { id: 4, text: "Walls painted", category: "construction", completed: false },
+                    { id: 5, text: "Front gate (superiorfenceandrail.com)", category: "construction", completed: false },
+                    { id: 6, text: "Landscaping", category: "construction", completed: false },
+                    { id: 7, text: "Furniture", category: "equipment", completed: false },
+                    { id: 8, text: "Filing cabinet", category: "equipment", completed: false },
+                    { id: 9, text: "Whiteboard for wall", category: "equipment", completed: false },
+                    { id: 10, text: "Curtains", category: "equipment", completed: false },
+                    { id: 11, text: "Glass garage doors", category: "construction", completed: false },
+                    { id: 12, text: "220 in garage for sauna", category: "construction", completed: false },
+                    { id: 13, text: "Tesla charger in garage", category: "construction", completed: false },
+                    { id: 14, text: "New gym mat", category: "equipment", completed: false },
+                    { id: 15, text: "Tortoise 🐢", category: "equipment", completed: false },
+                    { id: 16, text: "Patio furniture", category: "equipment", completed: false },
+                    { id: 17, text: "House and garage speaker system", category: "equipment", completed: false },
+                    { id: 18, text: "Tesla power walls", category: "construction", completed: false },
+                    { id: 19, text: "Tesla solar panels", category: "construction", completed: false },
+                    { id: 20, text: "Mini golf course (popstroke style, leaderboard)", category: "design", completed: false },
                 ];
             }
             renderTasks();
@@ -400,5 +437,7 @@
         // Initialize
         loadTasks();
     </script>
+        </div>
+    </div>
 </body>
 </html>
