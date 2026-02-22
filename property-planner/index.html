@@ -382,12 +382,12 @@
         const PROPERTY_DEPTH_FT = 180;
         const PROPERTY_SQFT = 118800;
         
-        // Property boundary as percentage of image (estimated from the white outline)
+        // Property boundary as percentage of image (matched to white outline)
         const BOUNDARY = {
-            left: 0.067,    // ~6.7% from left
-            top: 0.285,     // ~28.5% from top
-            right: 0.975,   // ~97.5% from left
-            bottom: 0.815   // ~81.5% from top
+            left: 0.063,    // left edge at road
+            top: 0.268,     // top edge 
+            right: 0.976,   // right edge
+            bottom: 0.812   // bottom edge
         };
         
         let shapes = [];
@@ -471,13 +471,9 @@
             // Draw property image
             ctx.drawImage(propertyImage, offsetX, offsetY, imgWidth * zoom, imgHeight * zoom);
             
-            // Draw property boundary highlight
+            // Property boundary (the white line in the image is the actual boundary)
+            // Just get bounds for calculations, no extra overlay needed
             const bounds = getPropertyBounds();
-            ctx.strokeStyle = 'rgba(74, 222, 128, 0.8)';
-            ctx.lineWidth = 3;
-            ctx.setLineDash([10, 5]);
-            ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
-            ctx.setLineDash([]);
             
             // Draw shapes
             shapes.forEach((shape, index) => {
