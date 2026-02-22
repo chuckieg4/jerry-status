@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Naples Property — To Do</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -18,10 +14,7 @@
             min-height: 100vh;
         }
         
-        .app-layout {
-            display: flex;
-            min-height: 100vh;
-        }
+        .app-layout { display: flex; min-height: 100vh; }
         
         .left-nav {
             width: 180px;
@@ -49,27 +42,12 @@
             transition: all 0.2s;
         }
         
-        .nav-item:hover {
-            color: #fff;
-            background: rgba(255,255,255,0.05);
-        }
+        .nav-item:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .nav-item.active { color: #4ade80; border-left-color: #4ade80; background: rgba(74, 222, 128, 0.1); }
         
-        .nav-item.active {
-            color: #4ade80;
-            border-left-color: #4ade80;
-            background: rgba(74, 222, 128, 0.1);
-        }
+        .main-content { flex: 1; overflow-y: auto; }
         
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         
         .header-row {
             display: flex;
@@ -80,48 +58,31 @@
             gap: 15px;
         }
         
-        h1 {
-            font-size: 2rem;
-            color: #4ade80;
-        }
-        
-        .sync-controls {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .sync-btn {
-            padding: 8px 14px;
-            border: 1px solid #333;
-            border-radius: 8px;
-            background: #12121a;
-            color: #888;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .sync-btn:hover {
-            border-color: #4ade80;
-            color: #4ade80;
-        }
-        
-        .sync-btn.synced {
-            border-color: #4ade80;
-            color: #4ade80;
-        }
+        h1 { font-size: 2rem; color: #4ade80; }
         
         .sync-status {
-            font-size: 0.75rem;
-            color: #666;
-            text-align: right;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: #12121a;
+            border: 1px solid #333;
+            font-size: 0.85rem;
         }
         
-        .add-task {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+        .sync-status.synced { border-color: #4ade80; color: #4ade80; }
+        .sync-status.syncing { border-color: #f59e0b; color: #f59e0b; }
+        .sync-status.error { border-color: #ef4444; color: #ef4444; }
+        
+        .sync-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
         }
+        
+        .add-task { display: flex; gap: 10px; margin-bottom: 30px; }
         
         .add-task input {
             flex: 1;
@@ -133,10 +94,7 @@
             font-size: 1rem;
         }
         
-        .add-task input:focus {
-            outline: none;
-            border-color: #4ade80;
-        }
+        .add-task input:focus { outline: none; border-color: #4ade80; }
         
         .add-task button {
             padding: 15px 30px;
@@ -147,19 +105,9 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
         }
         
-        .add-task button:hover {
-            background: #22c55e;
-        }
-        
-        .categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
+        .categories { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
         
         .category-btn {
             padding: 8px 16px;
@@ -169,61 +117,27 @@
             color: #888;
             font-size: 0.85rem;
             cursor: pointer;
-            transition: all 0.2s;
         }
         
-        .category-btn:hover {
-            border-color: #4ade80;
-            color: #4ade80;
-        }
+        .category-btn:hover { border-color: #4ade80; color: #4ade80; }
+        .category-btn.active { background: #4ade80; border-color: #4ade80; color: #000; }
         
-        .category-btn.active {
-            background: #4ade80;
-            border-color: #4ade80;
-            color: #000;
-        }
-        
-        .task-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .task-list { display: flex; flex-direction: column; gap: 10px; }
         
         .task-item {
             background: #12121a;
             border-radius: 12px;
             border: 1px solid #222;
-            transition: all 0.2s;
             overflow: hidden;
             user-select: none;
         }
         
-        .task-item:hover {
-            border-color: #333;
-        }
-        
-        .task-item.expanded {
-            border-color: #4ade80;
-        }
-        
-        .task-item.dragging {
-            opacity: 0.5;
-            border-color: #4ade80;
-            transform: scale(1.02);
-        }
-        
-        .task-item.drag-over {
-            border-color: #f59e0b;
-            border-width: 2px;
-        }
-        
-        .task-item.completed .task-header {
-            opacity: 0.5;
-        }
-        
-        .task-item.completed .task-text {
-            text-decoration: line-through;
-        }
+        .task-item:hover { border-color: #333; }
+        .task-item.expanded { border-color: #4ade80; }
+        .task-item.dragging { opacity: 0.5; border-color: #4ade80; transform: scale(1.02); }
+        .task-item.drag-over { border-color: #f59e0b; border-width: 2px; }
+        .task-item.completed .task-header { opacity: 0.5; }
+        .task-item.completed .task-text { text-decoration: line-through; }
         
         .task-header {
             display: flex;
@@ -233,17 +147,8 @@
             cursor: pointer;
         }
         
-        .drag-handle {
-            cursor: grab;
-            color: #444;
-            font-size: 1.2rem;
-            padding: 5px;
-            touch-action: none;
-        }
-        
-        .drag-handle:active {
-            cursor: grabbing;
-        }
+        .drag-handle { cursor: grab; color: #444; font-size: 1.2rem; padding: 5px; touch-action: none; }
+        .drag-handle:active { cursor: grabbing; }
         
         .task-checkbox {
             width: 24px;
@@ -254,40 +159,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
             flex-shrink: 0;
         }
         
-        .task-checkbox:hover {
-            border-color: #4ade80;
-        }
+        .task-checkbox:hover { border-color: #4ade80; }
+        .task-checkbox.checked { background: #4ade80; border-color: #4ade80; }
+        .task-checkbox.checked::after { content: "✓"; color: #000; font-weight: bold; }
         
-        .task-checkbox.checked {
-            background: #4ade80;
-            border-color: #4ade80;
-        }
+        .task-text { flex: 1; font-size: 1rem; }
         
-        .task-checkbox.checked::after {
-            content: "✓";
-            color: #000;
-            font-weight: bold;
-        }
-        
-        .task-text {
-            flex: 1;
-            font-size: 1rem;
-        }
-        
-        .task-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .task-has-notes {
-            font-size: 0.7rem;
-            color: #4ade80;
-        }
+        .task-meta { display: flex; align-items: center; gap: 10px; }
+        .task-has-notes { font-size: 0.7rem; color: #4ade80; }
         
         .task-category {
             padding: 4px 10px;
@@ -303,15 +185,8 @@
         .task-category.construction { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
         .task-category.equipment { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
         
-        .task-expand {
-            color: #666;
-            font-size: 1.2rem;
-            transition: transform 0.2s;
-        }
-        
-        .task-item.expanded .task-expand {
-            transform: rotate(180deg);
-        }
+        .task-expand { color: #666; font-size: 1.2rem; transition: transform 0.2s; }
+        .task-item.expanded .task-expand { transform: rotate(180deg); }
         
         .task-delete {
             width: 30px;
@@ -322,29 +197,20 @@
             cursor: pointer;
             border-radius: 6px;
             font-size: 1.2rem;
-            transition: all 0.2s;
             flex-shrink: 0;
         }
         
-        .task-delete:hover {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
+        .task-delete:hover { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
         
         .task-details {
             display: none;
             padding: 0 20px 20px;
             border-top: 1px solid #222;
-            margin-top: 0;
         }
         
-        .task-item.expanded .task-details {
-            display: block;
-        }
+        .task-item.expanded .task-details { display: block; }
         
-        .detail-section {
-            margin-top: 15px;
-        }
+        .detail-section { margin-top: 15px; }
         
         .detail-section label {
             display: block;
@@ -368,16 +234,9 @@
             font-family: inherit;
         }
         
-        .detail-section textarea:focus {
-            outline: none;
-            border-color: #4ade80;
-        }
+        .detail-section textarea:focus { outline: none; border-color: #4ade80; }
         
-        .links-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .links-list { display: flex; flex-direction: column; gap: 8px; }
         
         .link-item {
             display: flex;
@@ -388,36 +247,13 @@
             border-radius: 8px;
         }
         
-        .link-item a {
-            flex: 1;
-            color: #4ade80;
-            text-decoration: none;
-            font-size: 0.9rem;
-            word-break: break-all;
-        }
+        .link-item a { flex: 1; color: #4ade80; text-decoration: none; font-size: 0.9rem; word-break: break-all; }
+        .link-item a:hover { text-decoration: underline; }
         
-        .link-item a:hover {
-            text-decoration: underline;
-        }
+        .link-delete { background: none; border: none; color: #666; cursor: pointer; font-size: 1rem; padding: 5px; }
+        .link-delete:hover { color: #ef4444; }
         
-        .link-delete {
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 5px;
-        }
-        
-        .link-delete:hover {
-            color: #ef4444;
-        }
-        
-        .add-link {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
+        .add-link { display: flex; gap: 8px; margin-top: 10px; }
         
         .add-link input {
             flex: 1;
@@ -429,10 +265,7 @@
             font-size: 0.9rem;
         }
         
-        .add-link input:focus {
-            outline: none;
-            border-color: #4ade80;
-        }
+        .add-link input:focus { outline: none; border-color: #4ade80; }
         
         .add-link button {
             padding: 10px 16px;
@@ -445,26 +278,7 @@
             cursor: pointer;
         }
         
-        .add-link button:hover {
-            background: #22c55e;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-        }
-        
-        .empty-state h3 {
-            margin-bottom: 10px;
-            color: #888;
-        }
-        
-        .stats {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+        .stats { display: flex; gap: 20px; margin-bottom: 30px; }
         
         .stat-box {
             padding: 15px 20px;
@@ -473,18 +287,9 @@
             border: 1px solid #222;
         }
         
-        .stat-box .number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #4ade80;
-        }
+        .stat-box .number { font-size: 1.5rem; font-weight: 700; color: #4ade80; }
+        .stat-box .label { font-size: 0.8rem; color: #888; }
         
-        .stat-box .label {
-            font-size: 0.8rem;
-            color: #888;
-        }
-        
-        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             position: fixed;
@@ -502,27 +307,18 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         
-        .mobile-menu-btn.open {
-            background: #dc2626;
-            color: white;
-        }
+        .mobile-menu-btn.open { background: #dc2626; color: white; }
         
         .mobile-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(0,0,0,0.7);
             z-index: 99;
         }
         
-        .mobile-overlay.show {
-            display: block;
-        }
+        .mobile-overlay.show { display: block; }
         
-        /* Toast notification */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -538,82 +334,27 @@
             transition: opacity 0.3s;
         }
         
-        .toast.show {
-            opacity: 1;
-        }
+        .toast.show { opacity: 1; }
+        
+        .empty-state { text-align: center; padding: 60px 20px; color: #666; }
+        .empty-state h3 { margin-bottom: 10px; color: #888; }
         
         @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .left-nav {
-                position: fixed;
-                top: 0;
-                left: -200px;
-                height: 100vh;
-                z-index: 100;
-                transition: left 0.3s ease;
-            }
-            
-            .left-nav.open {
-                left: 0;
-            }
-            
-            .container {
-                padding: 80px 15px 30px;
-            }
-            
-            h1 {
-                font-size: 1.5rem;
-            }
-            
-            .header-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .add-task {
-                flex-direction: column;
-            }
-            
-            .add-task button {
-                width: 100%;
-            }
-            
-            .stats {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            
-            .stat-box {
-                flex: 1;
-                min-width: 90px;
-                text-align: center;
-            }
-            
-            .task-header {
-                padding: 14px;
-                gap: 10px;
-            }
-            
-            .task-category {
-                display: none;
-            }
-            
-            .task-details {
-                padding: 0 14px 14px;
-            }
-            
-            .add-link {
-                flex-direction: column;
-            }
-            
-            .drag-handle {
-                padding: 10px;
-            }
+            .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+            .left-nav { position: fixed; top: 0; left: -200px; height: 100vh; z-index: 100; transition: left 0.3s ease; }
+            .left-nav.open { left: 0; }
+            .container { padding: 80px 15px 30px; }
+            h1 { font-size: 1.5rem; }
+            .header-row { flex-direction: column; align-items: flex-start; }
+            .add-task { flex-direction: column; }
+            .add-task button { width: 100%; }
+            .stats { flex-wrap: wrap; gap: 10px; }
+            .stat-box { flex: 1; min-width: 90px; text-align: center; }
+            .task-header { padding: 14px; gap: 10px; }
+            .task-category { display: none; }
+            .task-details { padding: 0 14px 14px; }
+            .add-link { flex-direction: column; }
+            .drag-handle { padding: 10px; }
         }
     </style>
 </head>
@@ -635,33 +376,30 @@
             <div class="container">
                 <div class="header-row">
                     <h1>✅ Naples Property — To Do</h1>
-                    <div>
-                        <div class="sync-controls">
-                            <button class="sync-btn" onclick="syncFromCloud()" title="Pull latest from cloud">☁️ Sync</button>
-                            <button class="sync-btn" onclick="pushToCloud()" title="Copy data for Jerry to save">📤 Export</button>
-                        </div>
-                        <div class="sync-status" id="syncStatus">Local data</div>
+                    <div class="sync-status syncing" id="syncStatus">
+                        <span class="sync-dot"></span>
+                        <span id="syncText">Syncing...</span>
                     </div>
                 </div>
                 
                 <div class="stats">
                     <div class="stat-box">
                         <div class="number" id="totalTasks">0</div>
-                        <div class="label">Total Tasks</div>
+                        <div class="label">Total</div>
                     </div>
                     <div class="stat-box">
                         <div class="number" id="completedTasks">0</div>
-                        <div class="label">Completed</div>
+                        <div class="label">Done</div>
                     </div>
                     <div class="stat-box">
                         <div class="number" id="remainingTasks">0</div>
-                        <div class="label">Remaining</div>
+                        <div class="label">Left</div>
                     </div>
                 </div>
                 
                 <div class="add-task">
                     <input type="text" id="newTaskInput" placeholder="Add a new task..." onkeypress="if(event.key==='Enter')addTask()">
-                    <button onclick="addTask()">Add Task</button>
+                    <button onclick="addTask()">Add</button>
                 </div>
                 
                 <div class="categories">
@@ -678,15 +416,22 @@
     </div>
     
     <script>
-        const CLOUD_DATA_URL = 'https://raw.githubusercontent.com/chuckieg4/jerry-status/main/property-planner/todos.json';
-        const STORAGE_KEY = 'naplesPropertyTodos_v2';
+        // Cloud sync config
+        const BLOB_ID = '019c8753-ec0b-7648-85f0-b1abf18cbbec';
+        const BLOB_API = `https://jsonblob.com/api/jsonBlob/${BLOB_ID}`;
+        const STORAGE_KEY = 'naplesPropertyTodos_v3';
         
-        // Mobile menu
+        let tasks = [];
+        let currentFilter = 'all';
+        let expandedTaskId = null;
+        let draggedTaskId = null;
+        let syncTimer = null;
+        let isSyncing = false;
+        
         function toggleMobileMenu() {
             const nav = document.getElementById('leftNav');
             const overlay = document.getElementById('mobileOverlay');
             const btn = document.getElementById('mobileMenuBtn');
-            
             nav.classList.toggle('open');
             overlay.classList.toggle('show');
             btn.classList.toggle('open');
@@ -700,110 +445,99 @@
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
         
-        let tasks = [];
-        let currentFilter = 'all';
-        let expandedTaskId = null;
-        let draggedTaskId = null;
+        function updateSyncStatus(status, text) {
+            const el = document.getElementById('syncStatus');
+            const textEl = document.getElementById('syncText');
+            el.className = 'sync-status ' + status;
+            textEl.textContent = text;
+        }
         
-        // Default tasks (fallback if no data anywhere)
-        const DEFAULT_TASKS = [
-            { id: 1, text: "Privacy bushes?", category: "construction", completed: false, notes: '', links: [] },
-            { id: 2, text: "Light up driveway & walkways & trees", category: "construction", completed: false, notes: '', links: [] },
-            { id: 3, text: "Garage storage", category: "construction", completed: false, notes: '', links: [] },
-            { id: 4, text: "Walls painted", category: "construction", completed: false, notes: '', links: [] },
-            { id: 5, text: "Front gate", category: "construction", completed: false, notes: '', links: ['https://superiorfenceandrail.com'] },
-            { id: 6, text: "Landscaping", category: "construction", completed: false, notes: '', links: [] },
-            { id: 7, text: "Furniture", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 8, text: "Filing cabinet", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 9, text: "Whiteboard for wall", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 10, text: "Curtains", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 11, text: "Glass garage doors", category: "construction", completed: false, notes: '', links: [] },
-            { id: 12, text: "220 in garage for sauna", category: "construction", completed: false, notes: '', links: [] },
-            { id: 13, text: "Tesla charger in garage", category: "construction", completed: false, notes: '', links: [] },
-            { id: 14, text: "New gym mat", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 15, text: "Tortoise 🐢", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 16, text: "Patio furniture", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 17, text: "House and garage speaker system", category: "equipment", completed: false, notes: '', links: [] },
-            { id: 18, text: "Tesla power walls", category: "construction", completed: false, notes: '', links: [] },
-            { id: 19, text: "Tesla solar panels", category: "construction", completed: false, notes: '', links: [] },
-            { id: 20, text: "Mini golf course (popstroke style, leaderboard)", category: "design", completed: false, notes: '', links: [] },
-        ];
-        
+        // Load from cloud first, fallback to local
         async function loadTasks() {
-            // First try localStorage
-            const saved = localStorage.getItem(STORAGE_KEY);
-            if (saved) {
-                try {
-                    tasks = JSON.parse(saved);
-                    tasks = migrateTasks(tasks);
-                    document.getElementById('syncStatus').textContent = 'Local data loaded';
-                    renderTasks();
-                    return;
-                } catch (e) {
-                    console.error('Failed to parse local storage', e);
-                }
-            }
+            updateSyncStatus('syncing', 'Syncing...');
             
-            // Try cloud data
             try {
-                const response = await fetch(CLOUD_DATA_URL + '?t=' + Date.now());
+                const response = await fetch(BLOB_API);
                 if (response.ok) {
-                    const cloudData = await response.json();
-                    tasks = migrateTasks(cloudData.tasks || cloudData);
-                    saveTasks();
-                    document.getElementById('syncStatus').textContent = 'Synced from cloud';
+                    const data = await response.json();
+                    tasks = data.tasks || [];
+                    tasks = tasks.map(t => ({ ...t, notes: t.notes || '', links: t.links || [] }));
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+                    updateSyncStatus('synced', 'Synced ✓');
                     renderTasks();
                     return;
                 }
             } catch (e) {
-                console.log('Cloud data not available, using defaults');
+                console.log('Cloud sync failed, using local');
             }
             
-            // Fall back to defaults
-            tasks = DEFAULT_TASKS;
-            saveTasks();
-            document.getElementById('syncStatus').textContent = 'Using defaults';
+            // Fallback to local
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                tasks = JSON.parse(saved);
+                tasks = tasks.map(t => ({ ...t, notes: t.notes || '', links: t.links || [] }));
+            } else {
+                tasks = getDefaultTasks();
+            }
+            updateSyncStatus('error', 'Offline');
             renderTasks();
         }
         
-        function migrateTasks(taskList) {
-            return taskList.map(t => ({
-                ...t,
-                notes: t.notes || '',
-                links: t.links || []
-            }));
+        function getDefaultTasks() {
+            return [
+                { id: 1, text: "Privacy bushes?", category: "construction", completed: false, notes: '', links: [] },
+                { id: 2, text: "Light up driveway & walkways & trees", category: "construction", completed: false, notes: '', links: [] },
+                { id: 3, text: "Garage storage", category: "construction", completed: false, notes: '', links: [] },
+                { id: 4, text: "Walls painted", category: "construction", completed: false, notes: '', links: [] },
+                { id: 5, text: "Front gate", category: "construction", completed: false, notes: '', links: ['https://superiorfenceandrail.com'] },
+                { id: 6, text: "Landscaping", category: "construction", completed: false, notes: '', links: [] },
+                { id: 7, text: "Furniture", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 8, text: "Filing cabinet", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 9, text: "Whiteboard for wall", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 10, text: "Curtains", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 11, text: "Glass garage doors", category: "construction", completed: false, notes: '', links: [] },
+                { id: 12, text: "220 in garage for sauna", category: "construction", completed: false, notes: '', links: [] },
+                { id: 13, text: "Tesla charger in garage", category: "construction", completed: false, notes: '', links: [] },
+                { id: 14, text: "New gym mat", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 15, text: "Tortoise 🐢", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 16, text: "Patio furniture", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 17, text: "Speaker system", category: "equipment", completed: false, notes: '', links: [] },
+                { id: 18, text: "Tesla power walls", category: "construction", completed: false, notes: '', links: [] },
+                { id: 19, text: "Tesla solar panels", category: "construction", completed: false, notes: '', links: [] },
+                { id: 20, text: "Mini golf course (popstroke style)", category: "design", completed: false, notes: '', links: [] },
+            ];
         }
         
-        async function syncFromCloud() {
-            try {
-                const response = await fetch(CLOUD_DATA_URL + '?t=' + Date.now());
-                if (response.ok) {
-                    const cloudData = await response.json();
-                    tasks = migrateTasks(cloudData.tasks || cloudData);
-                    saveTasks();
-                    document.getElementById('syncStatus').textContent = 'Synced: ' + new Date().toLocaleTimeString();
-                    renderTasks();
-                    showToast('✓ Synced from cloud!');
-                } else {
-                    showToast('Cloud data not found');
-                }
-            } catch (e) {
-                showToast('Sync failed - check connection');
-            }
-        }
-        
-        function pushToCloud() {
-            const data = JSON.stringify({ tasks: tasks, updated: new Date().toISOString() }, null, 2);
-            navigator.clipboard.writeText(data).then(() => {
-                showToast('📋 Data copied! Send to Jerry to save.');
-            }).catch(() => {
-                // Fallback: show in prompt
-                prompt('Copy this data and send to Jerry:', data);
-            });
-        }
-        
+        // Debounced save to cloud
         function saveTasks() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+            
+            clearTimeout(syncTimer);
+            syncTimer = setTimeout(syncToCloud, 1000);
+        }
+        
+        async function syncToCloud() {
+            if (isSyncing) return;
+            isSyncing = true;
+            updateSyncStatus('syncing', 'Saving...');
+            
+            try {
+                const response = await fetch(BLOB_API, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tasks, updated: new Date().toISOString() })
+                });
+                
+                if (response.ok) {
+                    updateSyncStatus('synced', 'Synced ✓');
+                } else {
+                    updateSyncStatus('error', 'Sync failed');
+                }
+            } catch (e) {
+                updateSyncStatus('error', 'Offline');
+            }
+            
+            isSyncing = false;
         }
         
         function addTask() {
@@ -815,15 +549,7 @@
             let category = activeCategory ? activeCategory.dataset.category : 'permits';
             if (category === 'all') category = 'permits';
             
-            tasks.unshift({
-                id: Date.now(),
-                text: text,
-                category: category,
-                completed: false,
-                notes: '',
-                links: []
-            });
-            
+            tasks.unshift({ id: Date.now(), text, category, completed: false, notes: '', links: [] });
             input.value = '';
             saveTasks();
             renderTasks();
@@ -855,21 +581,14 @@
         
         function updateNotes(id, notes) {
             const task = tasks.find(t => t.id === id);
-            if (task) {
-                task.notes = notes;
-                saveTasks();
-            }
+            if (task) { task.notes = notes; saveTasks(); }
         }
         
         function addLink(id) {
             const input = document.getElementById(`link-input-${id}`);
             let url = input.value.trim();
             if (!url) return;
-            
-            if (!url.match(/^https?:\/\//)) {
-                url = 'https://' + url;
-            }
-            
+            if (!url.match(/^https?:\/\//)) url = 'https://' + url;
             const task = tasks.find(t => t.id === id);
             if (task) {
                 task.links = task.links || [];
@@ -882,11 +601,7 @@
         function deleteLink(taskId, linkIndex, e) {
             e.stopPropagation();
             const task = tasks.find(t => t.id === taskId);
-            if (task && task.links) {
-                task.links.splice(linkIndex, 1);
-                saveTasks();
-                renderTasks();
-            }
+            if (task && task.links) { task.links.splice(linkIndex, 1); saveTasks(); renderTasks(); }
         }
         
         function filterCategory(category) {
@@ -898,32 +613,22 @@
         }
         
         function formatUrl(url) {
-            try {
-                const u = new URL(url);
-                return u.hostname + (u.pathname !== '/' ? u.pathname : '');
-            } catch {
-                return url;
-            }
+            try { const u = new URL(url); return u.hostname; } catch { return url; }
         }
         
-        // Drag and drop
+        // Drag and drop (desktop)
         function handleDragStart(e, id) {
             draggedTaskId = id;
             e.target.closest('.task-item').classList.add('dragging');
-            e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/plain', id);
         }
         
         function handleDragEnd(e) {
-            document.querySelectorAll('.task-item').forEach(el => {
-                el.classList.remove('dragging', 'drag-over');
-            });
+            document.querySelectorAll('.task-item').forEach(el => el.classList.remove('dragging', 'drag-over'));
             draggedTaskId = null;
         }
         
         function handleDragOver(e) {
             e.preventDefault();
-            e.dataTransfer.dropEffect = 'move';
             const taskItem = e.target.closest('.task-item');
             if (taskItem && !taskItem.classList.contains('dragging')) {
                 document.querySelectorAll('.task-item').forEach(el => el.classList.remove('drag-over'));
@@ -934,31 +639,21 @@
         function handleDrop(e, targetId) {
             e.preventDefault();
             if (draggedTaskId === null || draggedTaskId === targetId) return;
-            
             const draggedIndex = tasks.findIndex(t => t.id === draggedTaskId);
             const targetIndex = tasks.findIndex(t => t.id === targetId);
-            
             if (draggedIndex === -1 || targetIndex === -1) return;
-            
             const [draggedTask] = tasks.splice(draggedIndex, 1);
             tasks.splice(targetIndex, 0, draggedTask);
-            
             saveTasks();
             renderTasks();
         }
         
         // Touch drag support
-        let touchStartY = 0;
-        let touchedTaskId = null;
-        let touchedElement = null;
-        let longPressTimer = null;
-        let isDraggingTouch = false;
+        let touchedTaskId = null, touchedElement = null, longPressTimer = null, isDraggingTouch = false;
         
         function handleTouchStart(e, id) {
             touchedTaskId = id;
             touchedElement = e.target.closest('.task-item');
-            touchStartY = e.touches[0].clientY;
-            
             longPressTimer = setTimeout(() => {
                 isDraggingTouch = true;
                 touchedElement.classList.add('dragging');
@@ -967,36 +662,26 @@
         }
         
         function handleTouchMove(e) {
-            if (!isDraggingTouch) {
-                clearTimeout(longPressTimer);
-                return;
-            }
-            
+            if (!isDraggingTouch) { clearTimeout(longPressTimer); return; }
             e.preventDefault();
             const touch = e.touches[0];
-            const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
-            const targetTask = elementAtPoint?.closest('.task-item');
-            
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            const targetTask = el?.closest('.task-item');
             document.querySelectorAll('.task-item').forEach(el => el.classList.remove('drag-over'));
-            if (targetTask && targetTask !== touchedElement) {
-                targetTask.classList.add('drag-over');
-            }
+            if (targetTask && targetTask !== touchedElement) targetTask.classList.add('drag-over');
         }
         
         function handleTouchEnd(e) {
             clearTimeout(longPressTimer);
-            
             if (isDraggingTouch) {
                 const touch = e.changedTouches[0];
-                const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
-                const targetTask = elementAtPoint?.closest('.task-item');
-                
+                const el = document.elementFromPoint(touch.clientX, touch.clientY);
+                const targetTask = el?.closest('.task-item');
                 if (targetTask && targetTask !== touchedElement) {
                     const targetId = parseInt(targetTask.dataset.id);
                     if (touchedTaskId && targetId) {
                         const draggedIndex = tasks.findIndex(t => t.id === touchedTaskId);
                         const targetIndex = tasks.findIndex(t => t.id === targetId);
-                        
                         if (draggedIndex !== -1 && targetIndex !== -1) {
                             const [draggedTask] = tasks.splice(draggedIndex, 1);
                             tasks.splice(targetIndex, 0, draggedTask);
@@ -1006,10 +691,7 @@
                     }
                 }
             }
-            
-            document.querySelectorAll('.task-item').forEach(el => {
-                el.classList.remove('dragging', 'drag-over');
-            });
+            document.querySelectorAll('.task-item').forEach(el => el.classList.remove('dragging', 'drag-over'));
             isDraggingTouch = false;
             touchedTaskId = null;
             touchedElement = null;
@@ -1017,33 +699,20 @@
         
         function renderTasks() {
             const list = document.getElementById('taskList');
-            const filtered = currentFilter === 'all' 
-                ? tasks 
-                : tasks.filter(t => t.category === currentFilter);
+            const filtered = currentFilter === 'all' ? tasks : tasks.filter(t => t.category === currentFilter);
             
             if (filtered.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-state">
-                        <h3>No tasks yet</h3>
-                        <p>Add your first task above</p>
-                    </div>
-                `;
+                list.innerHTML = `<div class="empty-state"><h3>No tasks</h3><p>Add one above</p></div>`;
             } else {
                 list.innerHTML = filtered.map(task => {
                     const isExpanded = expandedTaskId === task.id;
                     const hasContent = task.notes || (task.links && task.links.length > 0);
-                    
                     return `
                     <div class="task-item ${task.completed ? 'completed' : ''} ${isExpanded ? 'expanded' : ''}" 
-                         data-id="${task.id}"
-                         draggable="true"
-                         ondragstart="handleDragStart(event, ${task.id})"
-                         ondragend="handleDragEnd(event)"
-                         ondragover="handleDragOver(event)"
-                         ondrop="handleDrop(event, ${task.id})"
-                         ontouchstart="handleTouchStart(event, ${task.id})"
-                         ontouchmove="handleTouchMove(event)"
-                         ontouchend="handleTouchEnd(event)">
+                         data-id="${task.id}" draggable="true"
+                         ondragstart="handleDragStart(event, ${task.id})" ondragend="handleDragEnd(event)"
+                         ondragover="handleDragOver(event)" ondrop="handleDrop(event, ${task.id})"
+                         ontouchstart="handleTouchStart(event, ${task.id})" ontouchmove="handleTouchMove(event)" ontouchend="handleTouchEnd(event)">
                         <div class="task-header" onclick="toggleExpand(${task.id})">
                             <span class="drag-handle" onclick="event.stopPropagation()">⋮⋮</span>
                             <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id}, event)"></div>
@@ -1058,11 +727,7 @@
                         <div class="task-details">
                             <div class="detail-section">
                                 <label>📝 Notes</label>
-                                <textarea 
-                                    placeholder="Add notes..." 
-                                    onchange="updateNotes(${task.id}, this.value)"
-                                    onclick="event.stopPropagation()"
-                                >${task.notes || ''}</textarea>
+                                <textarea placeholder="Add notes..." onchange="updateNotes(${task.id}, this.value)" onclick="event.stopPropagation()">${task.notes || ''}</textarea>
                             </div>
                             <div class="detail-section">
                                 <label>🔗 Links</label>
@@ -1088,6 +753,25 @@
             document.getElementById('completedTasks').textContent = tasks.filter(t => t.completed).length;
             document.getElementById('remainingTasks').textContent = tasks.filter(t => !t.completed).length;
         }
+        
+        // Auto-refresh from cloud every 30 seconds
+        setInterval(async () => {
+            if (isSyncing) return;
+            try {
+                const response = await fetch(BLOB_API);
+                if (response.ok) {
+                    const data = await response.json();
+                    const cloudTasks = data.tasks || [];
+                    // Only update if cloud has newer data (more items or different)
+                    if (JSON.stringify(cloudTasks) !== JSON.stringify(tasks)) {
+                        tasks = cloudTasks.map(t => ({ ...t, notes: t.notes || '', links: t.links || [] }));
+                        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+                        renderTasks();
+                        updateSyncStatus('synced', 'Updated ✓');
+                    }
+                }
+            } catch (e) {}
+        }, 30000);
         
         loadTasks();
     </script>
