@@ -306,6 +306,82 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        
+        .boundary-controls {
+            margin-top: 25px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .boundary-toggle {
+            margin-bottom: 12px;
+        }
+        
+        .boundary-toggle label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .boundary-sliders {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .slider-group label {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+        
+        .slider-group label span {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+        
+        .slider-group input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            background: #333;
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .save-boundary-btn {
+            width: 100%;
+            margin-top: 12px;
+            padding: 10px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            color: #ff6b6b;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .save-boundary-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -342,6 +418,32 @@
                 <div class="label">TOTAL COVERAGE</div>
                 <div class="value" id="totalSqFt">0 sq ft</div>
                 <div class="percent" id="totalPercent">0% of property</div>
+            </div>
+            
+            <div class="boundary-controls">
+                <div class="section-title">Boundary Adjustment</div>
+                <div class="boundary-toggle">
+                    <label><input type="checkbox" id="showBoundaryCheck" checked onchange="toggleBoundary()"> Show red boundary</label>
+                </div>
+                <div class="boundary-sliders">
+                    <div class="slider-group">
+                        <label>Left: <span id="leftVal">6.4%</span></label>
+                        <input type="range" id="leftSlider" min="0" max="20" step="0.1" value="6.4" oninput="updateBoundary()">
+                    </div>
+                    <div class="slider-group">
+                        <label>Top: <span id="topVal">28.3%</span></label>
+                        <input type="range" id="topSlider" min="15" max="40" step="0.1" value="28.3" oninput="updateBoundary()">
+                    </div>
+                    <div class="slider-group">
+                        <label>Right: <span id="rightVal">97.4%</span></label>
+                        <input type="range" id="rightSlider" min="80" max="100" step="0.1" value="97.4" oninput="updateBoundary()">
+                    </div>
+                    <div class="slider-group">
+                        <label>Bottom: <span id="bottomVal">80.3%</span></label>
+                        <input type="range" id="bottomSlider" min="60" max="90" step="0.1" value="80.3" oninput="updateBoundary()">
+                    </div>
+                </div>
+                <button class="save-boundary-btn" onclick="saveBoundary()">📋 Copy Settings</button>
             </div>
             
             <div class="shapes-list">
@@ -383,13 +485,38 @@
         const PROPERTY_DEPTH_FT = 180;
         const PROPERTY_SQFT = 118800;
         
-        // Property boundary as percentage of image (tight to white outline)
-        const BOUNDARY = {
+        // Property boundary as percentage of image (adjustable via sliders)
+        let BOUNDARY = {
             left: 0.064,    // left edge at road
             top: 0.283,     // top edge of white line
             right: 0.974,   // right edge of white line
             bottom: 0.803   // bottom edge of white line
         };
+        
+        function updateBoundary() {
+            BOUNDARY.left = parseFloat(document.getElementById('leftSlider').value) / 100;
+            BOUNDARY.top = parseFloat(document.getElementById('topSlider').value) / 100;
+            BOUNDARY.right = parseFloat(document.getElementById('rightSlider').value) / 100;
+            BOUNDARY.bottom = parseFloat(document.getElementById('bottomSlider').value) / 100;
+            
+            document.getElementById('leftVal').textContent = document.getElementById('leftSlider').value + '%';
+            document.getElementById('topVal').textContent = document.getElementById('topSlider').value + '%';
+            document.getElementById('rightVal').textContent = document.getElementById('rightSlider').value + '%';
+            document.getElementById('bottomVal').textContent = document.getElementById('bottomSlider').value + '%';
+            
+            draw();
+        }
+        
+        function toggleBoundary() {
+            showBoundary = document.getElementById('showBoundaryCheck').checked;
+            draw();
+        }
+        
+        function saveBoundary() {
+            const settings = `BOUNDARY: left=${(BOUNDARY.left*100).toFixed(1)}%, top=${(BOUNDARY.top*100).toFixed(1)}%, right=${(BOUNDARY.right*100).toFixed(1)}%, bottom=${(BOUNDARY.bottom*100).toFixed(1)}%`;
+            navigator.clipboard.writeText(settings);
+            alert('Boundary settings copied to clipboard!\\n\\n' + settings + '\\n\\nSend this to Jerry to make it permanent.');
+        }
         
         let shapes = [];
         let selectedShape = null;
