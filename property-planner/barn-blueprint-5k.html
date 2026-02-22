@@ -16,7 +16,41 @@
             background: #0a0a0f;
             color: #fff;
             min-height: 100vh;
-            padding: 20px;
+        }
+        
+        .top-nav {
+            display: flex;
+            background: #0f0f1a;
+            border-bottom: 1px solid #333;
+            padding: 0 20px;
+        }
+        
+        .nav-tab {
+            padding: 15px 25px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav-tab:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .nav-tab.active {
+            color: #f59e0b;
+            border-bottom-color: #f59e0b;
+        }
+        
+        .header, .comparison, .stats-bar, .floors-container, .design-notes, .cost-breakdown, .back-link {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        .header {
+            padding-top: 20px;
         }
         
         .header {
@@ -310,6 +344,13 @@
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <a href="index.html" class="nav-tab">🗺️ Property Planner</a>
+        <a href="barn-blueprint-5k.html" class="nav-tab active">📐 Blueprint</a>
+        <a href="barn-mockups.html" class="nav-tab">🖼️ Mockups</a>
+        <a href="todo.html" class="nav-tab">✅ To Do</a>
+    </nav>
+    
     <div class="header">
         <h1>🏗️ THE BARN — Compact Build</h1>
         <div class="subtitle">50' × 100' Clearspan Metal Building (5,000 sq ft footprint)</div>

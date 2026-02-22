@@ -18,6 +18,32 @@
             min-height: 100vh;
         }
         
+        .top-nav {
+            display: flex;
+            background: #0f0f1a;
+            border-bottom: 1px solid #333;
+            padding: 0 20px;
+        }
+        
+        .nav-tab {
+            padding: 15px 25px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .nav-tab:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        .nav-tab.active {
+            color: #4ade80;
+            border-bottom-color: #4ade80;
+        }
+        
         .header {
             background: linear-gradient(135deg, #16213e 0%, #1a1a2e 100%);
             padding: 15px 20px;
@@ -385,6 +411,13 @@
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <a href="index.html" class="nav-tab active">🗺️ Property Planner</a>
+        <a href="barn-blueprint-5k.html" class="nav-tab">📐 Blueprint</a>
+        <a href="barn-mockups.html" class="nav-tab">🖼️ Mockups</a>
+        <a href="todo.html" class="nav-tab">✅ To Do</a>
+    </nav>
+    
     <div class="header">
         <h1>🏡 Naples Property Planner <span>2.73 Acres</span></h1>
         <div class="property-stats">
@@ -1030,7 +1063,98 @@
             draw();
         }
         
+        // SAVE/LOAD from localStorage
+        function saveState() {
+            const state = {
+                shapes: shapes,
+                boundary: BOUNDARY,
+                showBoundary: showBoundary,
+                showSetbacks: showSetbacks
+            };
+            localStorage.setItem('naplesPropertyPlanner', JSON.stringify(state));
+        }
+        
+        function loadState() {
+            const saved = localStorage.getItem('naplesPropertyPlanner');
+            if (saved) {
+                try {
+                    const state = JSON.parse(saved);
+                    if (state.shapes) shapes = state.shapes;
+                    if (state.boundary) {
+                        BOUNDARY = state.boundary;
+                        document.getElementById('leftSlider').value = BOUNDARY.left * 100;
+                        document.getElementById('topSlider').value = BOUNDARY.top * 100;
+                        document.getElementById('rightSlider').value = BOUNDARY.right * 100;
+                        document.getElementById('bottomSlider').value = BOUNDARY.bottom * 100;
+                        document.getElementById('leftVal').textContent = (BOUNDARY.left * 100).toFixed(1) + '%';
+                        document.getElementById('topVal').textContent = (BOUNDARY.top * 100).toFixed(1) + '%';
+                        document.getElementById('rightVal').textContent = (BOUNDARY.right * 100).toFixed(1) + '%';
+                        document.getElementById('bottomVal').textContent = (BOUNDARY.bottom * 100).toFixed(1) + '%';
+                    }
+                    if (typeof state.showBoundary !== 'undefined') {
+                        showBoundary = state.showBoundary;
+                        document.getElementById('showBoundaryCheck').checked = showBoundary;
+                    }
+                    if (typeof state.showSetbacks !== 'undefined') {
+                        showSetbacks = state.showSetbacks;
+                        document.getElementById('showSetbacksCheck').checked = showSetbacks;
+                    }
+                    updateShapesList();
+                    updateTotalCoverage();
+                } catch (e) {
+                    console.log('Could not load saved state');
+                }
+            }
+        }
+        
+        // Auto-save on changes
+        const originalAddShape = addShape;
+        addShape = function(...args) {
+            originalAddShape(...args);
+            saveState();
+        };
+        
+        const originalDeleteShape = deleteShape;
+        deleteShape = function(index) {
+            shapes.splice(index, 1);
+            if (selectedShape >= shapes.length) selectedShape = shapes.length - 1;
+            if (selectedShape < 0) selectedShape = null;
+            updateShapesList();
+            updateTotalCoverage();
+            draw();
+            saveState();
+        };
+        
+        const originalUpdateBoundary = updateBoundary;
+        updateBoundary = function() {
+            BOUNDARY.left = parseFloat(document.getElementById('leftSlider').value) / 100;
+            BOUNDARY.top = parseFloat(document.getElementById('topSlider').value) / 100;
+            BOUNDARY.right = parseFloat(document.getElementById('rightSlider').value) / 100;
+            BOUNDARY.bottom = parseFloat(document.getElementById('bottomSlider').value) / 100;
+            
+            document.getElementById('leftVal').textContent = document.getElementById('leftSlider').value + '%';
+            document.getElementById('topVal').textContent = document.getElementById('topSlider').value + '%';
+            document.getElementById('rightVal').textContent = document.getElementById('rightSlider').value + '%';
+            document.getElementById('bottomVal').textContent = document.getElementById('bottomSlider').value + '%';
+            
+            draw();
+            saveState();
+        };
+        
+        // Save when shapes are moved/resized
+        canvas.addEventListener('mouseup', () => {
+            if (isDragging || isResizing) {
+                saveState();
+            }
+            if (isDragging) updateShapesList();
+            isDragging = false;
+            isResizing = false;
+            isPanning = false;
+            resizeCorner = null;
+        });
+        
         // Initial setup
+        loadState();
         resizeCanvas();
     </script>
 </body>
