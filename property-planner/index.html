@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naples Property Planner - 2.73 Acres</title>
+    <title>Naples Property — To Do</title>
     <style>
         * {
             margin: 0;
@@ -13,14 +13,14 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #1a1a2e;
+            background: #0a0a0f;
             color: #fff;
             min-height: 100vh;
         }
         
         .app-layout {
             display: flex;
-            height: 100vh;
+            min-height: 100vh;
         }
         
         .left-nav {
@@ -60,347 +60,219 @@
             background: rgba(74, 222, 128, 0.1);
         }
         
-        .nav-footer {
-            margin-top: auto;
-            padding: 15px;
-            border-top: 1px solid #222;
-        }
-        
-        .nav-stat {
-            font-size: 0.75rem;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
         .main-content {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            overflow-y: auto;
         }
         
         .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #4ade80;
+        }
+        
+        .add-task {
             display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .add-task input {
             flex: 1;
-            overflow: hidden;
+            padding: 15px 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background: #12121a;
+            color: #fff;
+            font-size: 1rem;
         }
         
-        .sidebar {
-            width: 280px;
-            background: #16213e;
-            padding: 20px;
-            overflow-y: auto;
-            border-right: 1px solid #333;
+        .add-task input:focus {
+            outline: none;
+            border-color: #4ade80;
         }
         
-        .section-title {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888;
-            margin-bottom: 12px;
-        }
-        
-        .add-shape-btn {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 8px;
+        .add-task button {
+            padding: 15px 30px;
+            background: #4ade80;
+            color: #000;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
+            transition: background 0.2s;
+        }
+        
+        .add-task button:hover {
+            background: #22c55e;
+        }
+        
+        .categories {
             display: flex;
-            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 8px 16px;
+            border: 2px solid #333;
+            border-radius: 20px;
+            background: transparent;
+            color: #888;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .category-btn:hover {
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+        
+        .category-btn.active {
+            background: #4ade80;
+            border-color: #4ade80;
+            color: #000;
+        }
+        
+        .task-list {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
         }
         
-        .add-shape-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .btn-barn {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-            color: white;
-        }
-        
-        .btn-garage {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-        }
-        
-        .btn-shed {
-            background: linear-gradient(135deg, #059669 0%, #047857 100%);
-            color: white;
-        }
-        
-        .btn-custom {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-            color: white;
-        }
-        
-        .btn-fence {
-            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-            color: white;
-        }
-        
-        .shapes-list {
-            margin-top: 25px;
-        }
-        
-        .shape-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
-            border: 1px solid transparent;
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: #12121a;
+            border-radius: 12px;
+            border: 1px solid #222;
             transition: all 0.2s;
         }
         
-        .shape-item:hover {
-            border-color: #4ade80;
+        .task-item:hover {
+            border-color: #333;
         }
         
-        .shape-item.selected {
-            border-color: #4ade80;
-            background: rgba(74, 222, 128, 0.1);
+        .task-item.completed {
+            opacity: 0.5;
         }
         
-        .shape-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
+        .task-item.completed .task-text {
+            text-decoration: line-through;
         }
         
-        .shape-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .shape-delete {
-            background: #dc2626;
-            border: none;
-            color: white;
+        .task-checkbox {
             width: 24px;
             height: 24px;
-            border-radius: 4px;
+            border: 2px solid #444;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
         }
         
-        .shape-dims {
-            font-size: 0.85rem;
-            color: #aaa;
+        .task-checkbox:hover {
+            border-color: #4ade80;
         }
         
-        .shape-dims strong {
-            color: #4ade80;
+        .task-checkbox.checked {
+            background: #4ade80;
+            border-color: #4ade80;
         }
         
-        .canvas-container {
+        .task-checkbox.checked::after {
+            content: "✓";
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .task-text {
             flex: 1;
-            position: relative;
-            overflow: hidden;
-            background: #0f0f1a;
+            font-size: 1rem;
         }
         
-        #propertyCanvas {
-            cursor: crosshair;
-        }
-        
-        .instructions {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.8);
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            max-width: 350px;
-        }
-        
-        .instructions h3 {
+        .task-category {
+            padding: 4px 10px;
+            background: rgba(74, 222, 128, 0.15);
             color: #4ade80;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            flex-shrink: 0;
         }
         
-        .instructions ul {
-            list-style: none;
-            color: #ccc;
+        .task-category.permits { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .task-category.design { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .task-category.construction { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .task-category.equipment { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+        
+        .task-delete {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: transparent;
+            color: #666;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+            flex-shrink: 0;
         }
         
-        .instructions li {
-            margin-bottom: 4px;
+        .task-delete:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
         }
         
-        .instructions li::before {
-            content: "•";
-            color: #4ade80;
-            margin-right: 8px;
-        }
-        
-        .total-coverage {
-            margin-top: 25px;
-            background: linear-gradient(135deg, #1e3a5f 0%, #16213e 100%);
-            padding: 15px;
-            border-radius: 10px;
+        .empty-state {
             text-align: center;
+            padding: 60px 20px;
+            color: #666;
         }
         
-        .total-coverage .label {
-            font-size: 0.8rem;
+        .empty-state h3 {
+            margin-bottom: 10px;
             color: #888;
-            margin-bottom: 5px;
         }
         
-        .total-coverage .value {
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-box {
+            padding: 15px 20px;
+            background: #12121a;
+            border-radius: 10px;
+            border: 1px solid #222;
+        }
+        
+        .stat-box .number {
             font-size: 1.5rem;
             font-weight: 700;
             color: #4ade80;
         }
         
-        .total-coverage .percent {
-            font-size: 0.9rem;
-            color: #aaa;
-            margin-top: 3px;
-        }
-        
-        .existing-structures {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid #333;
-            text-align: left;
-        }
-        
-        .existing-label {
-            font-size: 0.7rem;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
-        .existing-item {
-            font-size: 0.75rem;
-            color: #888;
-            margin-bottom: 3px;
-        }
-        
-        .dimension-input {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        .dimension-input input {
-            width: 70px;
-            padding: 6px 8px;
-            border: 1px solid #444;
-            border-radius: 4px;
-            background: #1a1a2e;
-            color: white;
-            font-size: 0.85rem;
-        }
-        
-        .dimension-input label {
-            font-size: 0.75rem;
-            color: #888;
-        }
-        
-        .dimension-input .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        
-        .zoom-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .zoom-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .zoom-btn:hover {
-            background: rgba(74, 222, 128, 0.3);
-        }
-        
-        .color-picker {
-            margin-top: 8px;
-        }
-        
-        .color-picker input {
-            width: 100%;
-            height: 30px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        .boundary-controls {
-            margin-top: 25px;
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-        }
-        
-        .boundary-toggle {
-            margin-bottom: 12px;
-        }
-        
-        .boundary-toggle label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-        }
-        
-        .boundary-sliders {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .slider-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        
-        .slider-group label {
+        .stat-box .label {
             font-size: 0.8rem;
-            color: #aaa;
+            color: #888;
         }
         
-        .slider-group label span {
-            color: #ff6b6b;
-            font-weight: 600;
-        }
-        
-        .slider-group input[type="range"] {
-            width: 100%;
-            height: 6px;
-            -webkit-appearance: none;
-        }
-        
-        /* Mobile Menu Button */
+        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             position: fixed;
@@ -423,7 +295,6 @@
             color: white;
         }
         
-        /* Mobile Overlay */
         .mobile-overlay {
             display: none;
             position: fixed;
@@ -439,126 +310,61 @@
             display: block;
         }
         
-        /* Mobile Responsive */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
             
-            .app-layout {
-                flex-direction: column;
-            }
-            
             .left-nav {
-                display: none;
-            }
-            
-            .container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
                 position: fixed;
                 top: 0;
-                left: -320px;
-                width: 300px;
+                left: -200px;
                 height: 100vh;
                 z-index: 100;
                 transition: left 0.3s ease;
-                padding-top: 80px;
             }
             
-            .sidebar.open {
+            .left-nav.open {
                 left: 0;
             }
             
-            .canvas-container {
-                width: 100%;
-                height: 100vh;
+            .container {
+                padding: 80px 15px 30px;
             }
             
-            .instructions {
-                display: none;
-            }
-            
-            .zoom-controls {
-                top: 15px;
-                right: 15px;
-            }
-            
-            .zoom-btn {
-                width: 50px;
-                height: 50px;
+            h1 {
                 font-size: 1.5rem;
             }
             
-            .add-shape-btn {
-                padding: 16px;
-                font-size: 1rem;
-            }
-            
-            .shape-delete {
-                width: 36px;
-                height: 36px;
-                font-size: 18px;
-            }
-            
-            .dimension-input input {
-                width: 80px;
-                padding: 10px;
-                font-size: 1rem;
-            }
-            
-            .boundary-controls {
-                margin-top: 15px;
-                padding: 12px;
-            }
-            
-            .slider-group input[type="range"] {
-                height: 12px;
-            }
-            
-            .slider-group input[type="range"]::-webkit-slider-thumb {
-                width: 24px;
-                height: 24px;
-            }
-            
-            .total-coverage {
-                margin-top: 15px;
-            }
-        }
-        
-        @media (max-width: 500px) {
-            .sidebar {
-                width: 85vw;
-                left: -90vw;
-            }
-            
-            .dimension-input {
+            .add-task {
                 flex-direction: column;
             }
             
-            .dimension-input input {
+            .add-task button {
                 width: 100%;
             }
-        }
-        
-        .save-boundary-btn {
-            width: 100%;
-            margin-top: 12px;
-            padding: 10px;
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            color: #ff6b6b;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-        
-        .save-boundary-btn:hover {
-            background: rgba(255, 0, 0, 0.3);
+            
+            .stats {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .stat-box {
+                flex: 1;
+                min-width: 90px;
+                text-align: center;
+            }
+            
+            .task-item {
+                padding: 14px;
+                gap: 10px;
+            }
+            
+            .task-category {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -567,846 +373,177 @@
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
     
     <div class="app-layout">
-        <nav class="left-nav">
+        <nav class="left-nav" id="leftNav">
             <div class="nav-header">🏡 Naples Property</div>
-            <a href="index.html" class="nav-item active">🗺️ Planner</a>
+            <a href="index.html" class="nav-item active">✅ To Do</a>
+            <a href="planner.html" class="nav-item">🗺️ Planner</a>
             <a href="barn-blueprint-5k.html" class="nav-item">📐 Blueprint</a>
             <a href="barn-mockups.html" class="nav-item">🖼️ Mockups</a>
-            <a href="todo.html" class="nav-item">✅ To Do</a>
-            <div class="nav-footer">
-                <div class="nav-stat">660' × 180'</div>
-                <div class="nav-stat">2.73 Acres</div>
-            </div>
         </nav>
         
         <div class="main-content">
             <div class="container">
-                <div class="sidebar">
-            <div class="section-title">Add Structures</div>
-            
-            <button class="add-shape-btn btn-barn" onclick="addShape('THE BARN', 100, 50, '#f59e0b')">
-                🏗️ The Barn (100×50 ft)
-            </button>
-            <button class="add-shape-btn btn-garage" onclick="addShape('Garage', 30, 24, '#2563eb')">
-                🚗 Garage (30×24 ft)
-            </button>
-            <button class="add-shape-btn btn-shed" onclick="addShape('Shed', 20, 16, '#059669')">
-                🛖 Shed (20×16 ft)
-            </button>
-            <button class="add-shape-btn btn-fence" onclick="addShape('Paddock', 100, 80, '#d97706')">
-                🐴 Paddock (100×80 ft)
-            </button>
-            <button class="add-shape-btn btn-custom" onclick="addShape('Custom', 40, 30, '#7c3aed')">
-                ➕ Custom Shape
-            </button>
-            
-            <div class="total-coverage">
-                <div class="label">TOTAL COVERAGE</div>
-                <div class="value" id="totalSqFt">0 sq ft</div>
-                <div class="percent" id="totalPercent">0% of property</div>
-                <div class="existing-structures">
-                    <div class="existing-label">Existing Structures:</div>
-                    <div class="existing-item">🏠 Main House: ~4,000 sq ft</div>
-                    <div class="existing-item">🏡 Guest House: ~1,200 sq ft</div>
-                </div>
-            </div>
-            
-            <div class="boundary-controls">
-                <div class="section-title">Boundary Adjustment</div>
-                <div class="boundary-toggle">
-                    <label><input type="checkbox" id="showBoundaryCheck" checked onchange="toggleBoundary()"> Show red boundary</label>
-                </div>
-                <div class="boundary-toggle">
-                    <label><input type="checkbox" id="showSetbacksCheck" checked onchange="toggleSetbacks()"> Show setback lines (yellow)</label>
-                </div>
-                <div class="boundary-sliders">
-                    <div class="slider-group">
-                        <label>Left: <span id="leftVal">10.2%</span></label>
-                        <input type="range" id="leftSlider" min="0" max="25" step="0.1" value="10.2" oninput="updateBoundary()">
+                <h1>✅ Naples Property — To Do</h1>
+                
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="number" id="totalTasks">0</div>
+                        <div class="label">Total Tasks</div>
                     </div>
-                    <div class="slider-group">
-                        <label>Top: <span id="topVal">31%</span></label>
-                        <input type="range" id="topSlider" min="15" max="50" step="0.1" value="31" oninput="updateBoundary()">
+                    <div class="stat-box">
+                        <div class="number" id="completedTasks">0</div>
+                        <div class="label">Completed</div>
                     </div>
-                    <div class="slider-group">
-                        <label>Right: <span id="rightVal">88.7%</span></label>
-                        <input type="range" id="rightSlider" min="70" max="100" step="0.1" value="88.7" oninput="updateBoundary()">
-                    </div>
-                    <div class="slider-group">
-                        <label>Bottom: <span id="bottomVal">71.6%</span></label>
-                        <input type="range" id="bottomSlider" min="50" max="85" step="0.1" value="71.6" oninput="updateBoundary()">
+                    <div class="stat-box">
+                        <div class="number" id="remainingTasks">0</div>
+                        <div class="label">Remaining</div>
                     </div>
                 </div>
-                <button class="save-boundary-btn" onclick="saveBoundary()">📋 Copy Settings</button>
-            </div>
-            
-            <div class="shapes-list">
-                <div class="section-title">Placed Structures</div>
-                <div id="shapesList"></div>
-            </div>
-        </div>
-        
-        <div class="canvas-container">
-            <canvas id="propertyCanvas"></canvas>
-            
-            <div class="zoom-controls">
-                <button class="zoom-btn" onclick="zoomIn()">+</button>
-                <button class="zoom-btn" onclick="zoomOut()">−</button>
-                <button class="zoom-btn" onclick="resetView()">⟲</button>
-            </div>
-            
-            <div class="instructions">
-                <h3>How to Use</h3>
-                <ul>
-                    <li>Click buttons to add structures</li>
-                    <li>Drag shapes to move them</li>
-                    <li>Drag corners to resize</li>
-                    <li>Click shape to select & edit</li>
-                    <li>Press <strong>B</strong> to toggle boundary line</li>
-                    <li>Use +/− to zoom, scroll to pan</li>
-                </ul>
+                
+                <div class="add-task">
+                    <input type="text" id="newTaskInput" placeholder="Add a new task..." onkeypress="if(event.key==='Enter')addTask()">
+                    <button onclick="addTask()">Add Task</button>
+                </div>
+                
+                <div class="categories">
+                    <button class="category-btn active" data-category="all" onclick="filterCategory('all')">All</button>
+                    <button class="category-btn" data-category="permits" onclick="filterCategory('permits')">🏛️ Permits</button>
+                    <button class="category-btn" data-category="design" onclick="filterCategory('design')">📐 Design</button>
+                    <button class="category-btn" data-category="construction" onclick="filterCategory('construction')">🏗️ Construction</button>
+                    <button class="category-btn" data-category="equipment" onclick="filterCategory('equipment')">🎯 Equipment</button>
+                </div>
+                
+                <div class="task-list" id="taskList"></div>
             </div>
         </div>
     </div>
-
+    
     <script>
-        const canvas = document.getElementById('propertyCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Property dimensions (2.73 acres = 118,800 sq ft)
-        // Actual: 660 ft wide × 180 ft deep
-        const PROPERTY_WIDTH_FT = 660;
-        const PROPERTY_DEPTH_FT = 180;
-        const PROPERTY_SQFT = 118800;
-        
-        // Property boundary as percentage of image (adjustable via sliders)
-        let BOUNDARY = {
-            left: 0.102,    // left edge at road
-            top: 0.31,      // top edge of white line
-            right: 0.887,   // right edge of white line
-            bottom: 0.716   // bottom edge of white line
-        };
-        
-        function updateBoundary() {
-            BOUNDARY.left = parseFloat(document.getElementById('leftSlider').value) / 100;
-            BOUNDARY.top = parseFloat(document.getElementById('topSlider').value) / 100;
-            BOUNDARY.right = parseFloat(document.getElementById('rightSlider').value) / 100;
-            BOUNDARY.bottom = parseFloat(document.getElementById('bottomSlider').value) / 100;
-            
-            document.getElementById('leftVal').textContent = document.getElementById('leftSlider').value + '%';
-            document.getElementById('topVal').textContent = document.getElementById('topSlider').value + '%';
-            document.getElementById('rightVal').textContent = document.getElementById('rightSlider').value + '%';
-            document.getElementById('bottomVal').textContent = document.getElementById('bottomSlider').value + '%';
-            
-            draw();
-        }
-        
-        function toggleBoundary() {
-            showBoundary = document.getElementById('showBoundaryCheck').checked;
-            draw();
-        }
-        
-        function saveBoundary() {
-            const settings = `BOUNDARY: left=${(BOUNDARY.left*100).toFixed(1)}%, top=${(BOUNDARY.top*100).toFixed(1)}%, right=${(BOUNDARY.right*100).toFixed(1)}%, bottom=${(BOUNDARY.bottom*100).toFixed(1)}%`;
-            navigator.clipboard.writeText(settings);
-            alert('Boundary settings copied to clipboard!\\n\\n' + settings + '\\n\\nSend this to Jerry to make it permanent.');
-        }
-        
-        let shapes = [];
-        let selectedShape = null;
-        let showBoundary = true; // Press 'B' to toggle red boundary line
-        let showSetbacks = true; // Press 'S' to toggle setback lines
-        let dragOffset = { x: 0, y: 0 };
-        let isDragging = false;
-        let isResizing = false;
-        let resizeCorner = null;
-        let zoom = 1;
-        let panX = 0, panY = 0;
-        let isPanning = false;
-        let lastPan = { x: 0, y: 0 };
-        
-        const propertyImage = new Image();
-        propertyImage.src = 'property.webp';
-        
-        let imageLoaded = false;
-        let imgWidth, imgHeight, scale;
-        
-        propertyImage.onload = () => {
-            imageLoaded = true;
-            resizeCanvas();
-        };
-        
-        function resizeCanvas() {
-            const container = canvas.parentElement;
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight;
-            
-            if (imageLoaded) {
-                // Calculate scale to fit image
-                const scaleX = canvas.width / propertyImage.width;
-                const scaleY = canvas.height / propertyImage.height;
-                scale = Math.min(scaleX, scaleY) * 0.95;
-                
-                imgWidth = propertyImage.width * scale;
-                imgHeight = propertyImage.height * scale;
-            }
-            
-            draw();
-        }
-        
-        window.addEventListener('resize', resizeCanvas);
-        
-        function getPropertyBounds() {
-            const offsetX = (canvas.width - imgWidth * zoom) / 2 + panX;
-            const offsetY = (canvas.height - imgHeight * zoom) / 2 + panY;
-            
-            return {
-                x: offsetX + BOUNDARY.left * imgWidth * zoom,
-                y: offsetY + BOUNDARY.top * imgHeight * zoom,
-                width: (BOUNDARY.right - BOUNDARY.left) * imgWidth * zoom,
-                height: (BOUNDARY.bottom - BOUNDARY.top) * imgHeight * zoom
-            };
-        }
-        
-        function ftToPixels(ft, isWidth = true) {
-            const bounds = getPropertyBounds();
-            if (isWidth) {
-                return (ft / PROPERTY_WIDTH_FT) * bounds.width;
-            }
-            return (ft / PROPERTY_DEPTH_FT) * bounds.height;
-        }
-        
-        function pixelsToFt(px, isWidth = true) {
-            const bounds = getPropertyBounds();
-            if (isWidth) {
-                return (px / bounds.width) * PROPERTY_WIDTH_FT;
-            }
-            return (px / bounds.height) * PROPERTY_DEPTH_FT;
-        }
-        
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            if (!imageLoaded) return;
-            
-            const offsetX = (canvas.width - imgWidth * zoom) / 2 + panX;
-            const offsetY = (canvas.height - imgHeight * zoom) / 2 + panY;
-            
-            // Draw property image
-            ctx.drawImage(propertyImage, offsetX, offsetY, imgWidth * zoom, imgHeight * zoom);
-            
-            // Property boundary - show semi-transparent overlay to verify alignment
-            const bounds = getPropertyBounds();
-            
-            // Draw thin border to verify alignment (toggle with 'B' key)
-            if (showBoundary) {
-                ctx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(bounds.x, bounds.y, bounds.width, bounds.height);
-            }
-            
-            // Draw setback lines (building zone)
-            // Property orientation: LEFT=front (road), RIGHT=rear, TOP/BOTTOM=sides
-            if (showSetbacks) {
-                const sideSetback = 30; // 30 ft from top and bottom (sides)
-                const rearSetback = 75; // 75 ft from right (rear/back)
-                
-                // Calculate pixel offsets
-                const sideOffsetPx = (sideSetback / PROPERTY_DEPTH_FT) * bounds.height;
-                const rearOffsetPx = (rearSetback / PROPERTY_WIDTH_FT) * bounds.width;
-                
-                ctx.strokeStyle = 'rgba(255, 200, 0, 0.7)';
-                ctx.lineWidth = 2;
-                ctx.setLineDash([8, 6]);
-                
-                // Top setback (30 ft from top - side)
-                ctx.beginPath();
-                ctx.moveTo(bounds.x, bounds.y + sideOffsetPx);
-                ctx.lineTo(bounds.x + bounds.width, bounds.y + sideOffsetPx);
-                ctx.stroke();
-                
-                // Bottom setback (30 ft from bottom - side)
-                ctx.beginPath();
-                ctx.moveTo(bounds.x, bounds.y + bounds.height - sideOffsetPx);
-                ctx.lineTo(bounds.x + bounds.width, bounds.y + bounds.height - sideOffsetPx);
-                ctx.stroke();
-                
-                // Rear setback (75 ft from right - back of property)
-                ctx.beginPath();
-                ctx.moveTo(bounds.x + bounds.width - rearOffsetPx, bounds.y);
-                ctx.lineTo(bounds.x + bounds.width - rearOffsetPx, bounds.y + bounds.height);
-                ctx.stroke();
-                
-                ctx.setLineDash([]);
-                
-                // Label the setbacks
-                ctx.fillStyle = 'rgba(255, 200, 0, 0.9)';
-                ctx.font = '11px sans-serif';
-                ctx.textAlign = 'center';
-                ctx.save();
-                ctx.translate(bounds.x + bounds.width - rearOffsetPx/2, bounds.y + bounds.height/2);
-                ctx.rotate(-Math.PI/2);
-                ctx.fillText('75 ft rear setback', 0, 0);
-                ctx.restore();
-                ctx.fillText('30 ft', bounds.x + bounds.width/2, bounds.y + sideOffsetPx/2 + 4);
-                ctx.fillText('30 ft', bounds.x + bounds.width/2, bounds.y + bounds.height - sideOffsetPx/2 + 4);
-            }
-            
-            // Draw shapes
-            shapes.forEach((shape, index) => {
-                const x = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
-                const y = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
-                const w = (shape.width / PROPERTY_WIDTH_FT) * bounds.width;
-                const h = (shape.height / PROPERTY_DEPTH_FT) * bounds.height;
-                
-                // Fill
-                ctx.fillStyle = shape.color + '80';
-                ctx.fillRect(x, y, w, h);
-                
-                // Border
-                ctx.strokeStyle = shape.color;
-                ctx.lineWidth = selectedShape === index ? 4 : 2;
-                ctx.strokeRect(x, y, w, h);
-                
-                // Label
-                ctx.fillStyle = 'white';
-                ctx.font = `bold ${Math.max(12, 14 * zoom)}px sans-serif`;
-                ctx.textAlign = 'center';
-                ctx.fillText(shape.name, x + w/2, y + h/2 - 8);
-                
-                ctx.font = `${Math.max(10, 12 * zoom)}px sans-serif`;
-                ctx.fillText(`${Math.round(shape.width)}×${Math.round(shape.height)} ft`, x + w/2, y + h/2 + 10);
-                ctx.fillText(`${Math.round(shape.width * shape.height).toLocaleString()} sq ft`, x + w/2, y + h/2 + 26);
-                
-                // Resize handles if selected
-                if (selectedShape === index) {
-                    const handleSize = 10;
-                    ctx.fillStyle = '#4ade80';
-                    
-                    // Corners
-                    [[x, y], [x + w, y], [x, y + h], [x + w, y + h]].forEach(([hx, hy]) => {
-                        ctx.fillRect(hx - handleSize/2, hy - handleSize/2, handleSize, handleSize);
-                    });
-                }
-            });
-            
-            // Draw scale reference
-            ctx.fillStyle = 'rgba(0,0,0,0.7)';
-            ctx.fillRect(canvas.width - 180, canvas.height - 50, 170, 40);
-            
-            const scale50ft = ftToPixels(50, true);
-            ctx.fillStyle = '#4ade80';
-            ctx.fillRect(canvas.width - 170, canvas.height - 35, scale50ft, 8);
-            
-            ctx.fillStyle = 'white';
-            ctx.font = '12px sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('50 ft', canvas.width - 170 + scale50ft/2, canvas.height - 18);
-        }
-        
-        function addShape(name, width, height, color) {
-            const shape = {
-                name: name,
-                x: PROPERTY_WIDTH_FT / 2 - width / 2,
-                y: PROPERTY_DEPTH_FT / 2 - height / 2,
-                width: width,
-                height: height,
-                color: color
-            };
-            shapes.push(shape);
-            selectedShape = shapes.length - 1;
-            updateShapesList();
-            updateTotalCoverage();
-            draw();
-        }
-        
-        function updateShapesList() {
-            const list = document.getElementById('shapesList');
-            list.innerHTML = shapes.map((shape, index) => `
-                <div class="shape-item ${selectedShape === index ? 'selected' : ''}" onclick="selectShape(${index})">
-                    <div class="shape-header">
-                        <input type="text" class="shape-name-input" value="${shape.name}" 
-                               style="color: ${shape.color}; background: transparent; border: 1px solid transparent; border-radius: 4px; font-weight: 600; font-size: 0.95rem; width: 140px; padding: 2px 5px;"
-                               onchange="updateShapeName(${index}, this.value)"
-                               onfocus="this.style.borderColor='#4ade80'; this.style.background='rgba(0,0,0,0.3)'"
-                               onblur="this.style.borderColor='transparent'; this.style.background='transparent'"
-                               onclick="event.stopPropagation()">
-                        <button class="shape-delete" onclick="deleteShape(${index}); event.stopPropagation();">×</button>
-                    </div>
-                    <div class="shape-dims">
-                        <strong>${Math.round(shape.width)}×${Math.round(shape.height)} ft</strong> = 
-                        ${Math.round(shape.width * shape.height).toLocaleString()} sq ft
-                    </div>
-                    <div class="dimension-input">
-                        <div class="input-group">
-                            <label>Width (ft)</label>
-                            <input type="number" value="${Math.round(shape.width)}" 
-                                   onchange="updateShapeDim(${index}, 'width', this.value)" 
-                                   onclick="event.stopPropagation()">
-                        </div>
-                        <div class="input-group">
-                            <label>Depth (ft)</label>
-                            <input type="number" value="${Math.round(shape.height)}" 
-                                   onchange="updateShapeDim(${index}, 'height', this.value)"
-                                   onclick="event.stopPropagation()">
-                        </div>
-                    </div>
-                    <div class="color-picker" onclick="event.stopPropagation()">
-                        <input type="color" value="${shape.color}" 
-                               onchange="updateShapeColor(${index}, this.value)">
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        function selectShape(index) {
-            selectedShape = index;
-            updateShapesList();
-            draw();
-        }
-        
-        function deleteShape(index) {
-            shapes.splice(index, 1);
-            if (selectedShape >= shapes.length) selectedShape = shapes.length - 1;
-            if (selectedShape < 0) selectedShape = null;
-            updateShapesList();
-            updateTotalCoverage();
-            draw();
-        }
-        
-        function updateShapeDim(index, dim, value) {
-            shapes[index][dim] = parseFloat(value) || 1;
-            updateShapesList();
-            updateTotalCoverage();
-            draw();
-            saveState();
-        }
-        
-        function updateShapeColor(index, color) {
-            shapes[index].color = color;
-            updateShapesList();
-            draw();
-            saveState();
-        }
-        
-        function updateShapeName(index, name) {
-            shapes[index].name = name || 'Unnamed';
-            updateShapesList();
-            draw();
-            saveState();
-        }
-        
-        function updateTotalCoverage() {
-            const MAIN_HOUSE_SQFT = 4000;
-            const GUEST_HOUSE_SQFT = 1200;
-            const EXISTING_SQFT = MAIN_HOUSE_SQFT + GUEST_HOUSE_SQFT;
-            
-            const newStructures = shapes.reduce((sum, s) => sum + s.width * s.height, 0);
-            const total = newStructures + EXISTING_SQFT;
-            
-            document.getElementById('totalSqFt').textContent = Math.round(total).toLocaleString() + ' sq ft';
-            document.getElementById('totalPercent').textContent = 
-                (total / PROPERTY_SQFT * 100).toFixed(2) + '% of property';
-        }
-        
-        function getMousePos(e) {
-            const rect = canvas.getBoundingClientRect();
-            return {
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
-            };
-        }
-        
-        function getShapeAtPos(pos) {
-            const bounds = getPropertyBounds();
-            
-            for (let i = shapes.length - 1; i >= 0; i--) {
-                const shape = shapes[i];
-                const x = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
-                const y = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
-                const w = (shape.width / PROPERTY_WIDTH_FT) * bounds.width;
-                const h = (shape.height / PROPERTY_DEPTH_FT) * bounds.height;
-                
-                if (pos.x >= x && pos.x <= x + w && pos.y >= y && pos.y <= y + h) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-        
-        function getResizeCorner(pos, shapeIndex) {
-            if (shapeIndex < 0) return null;
-            
-            const bounds = getPropertyBounds();
-            const shape = shapes[shapeIndex];
-            const x = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
-            const y = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
-            const w = (shape.width / PROPERTY_WIDTH_FT) * bounds.width;
-            const h = (shape.height / PROPERTY_DEPTH_FT) * bounds.height;
-            
-            const handleSize = 15;
-            const corners = [
-                { name: 'nw', x: x, y: y },
-                { name: 'ne', x: x + w, y: y },
-                { name: 'sw', x: x, y: y + h },
-                { name: 'se', x: x + w, y: y + h }
-            ];
-            
-            for (const corner of corners) {
-                if (Math.abs(pos.x - corner.x) < handleSize && Math.abs(pos.y - corner.y) < handleSize) {
-                    return corner.name;
-                }
-            }
-            return null;
-        }
-        
-        canvas.addEventListener('mousedown', (e) => {
-            const pos = getMousePos(e);
-            
-            if (e.button === 1 || e.shiftKey) {
-                isPanning = true;
-                lastPan = pos;
-                return;
-            }
-            
-            const corner = selectedShape !== null ? getResizeCorner(pos, selectedShape) : null;
-            
-            if (corner) {
-                isResizing = true;
-                resizeCorner = corner;
-                return;
-            }
-            
-            const shapeIndex = getShapeAtPos(pos);
-            
-            if (shapeIndex >= 0) {
-                selectedShape = shapeIndex;
-                isDragging = true;
-                
-                const bounds = getPropertyBounds();
-                const shape = shapes[shapeIndex];
-                const shapeX = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
-                const shapeY = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
-                
-                dragOffset = {
-                    x: pos.x - shapeX,
-                    y: pos.y - shapeY
-                };
-                
-                updateShapesList();
-            } else {
-                selectedShape = null;
-                updateShapesList();
-            }
-            
-            draw();
-        });
-        
-        canvas.addEventListener('mousemove', (e) => {
-            const pos = getMousePos(e);
-            
-            if (isPanning) {
-                panX += pos.x - lastPan.x;
-                panY += pos.y - lastPan.y;
-                lastPan = pos;
-                draw();
-                return;
-            }
-            
-            if (isDragging && selectedShape !== null) {
-                const bounds = getPropertyBounds();
-                const shape = shapes[selectedShape];
-                
-                shape.x = ((pos.x - dragOffset.x - bounds.x) / bounds.width) * PROPERTY_WIDTH_FT;
-                shape.y = ((pos.y - dragOffset.y - bounds.y) / bounds.height) * PROPERTY_DEPTH_FT;
-                
-                // Clamp to property
-                shape.x = Math.max(0, Math.min(PROPERTY_WIDTH_FT - shape.width, shape.x));
-                shape.y = Math.max(0, Math.min(PROPERTY_DEPTH_FT - shape.height, shape.y));
-                
-                draw();
-            }
-            
-            if (isResizing && selectedShape !== null) {
-                const bounds = getPropertyBounds();
-                const shape = shapes[selectedShape];
-                
-                const ftX = ((pos.x - bounds.x) / bounds.width) * PROPERTY_WIDTH_FT;
-                const ftY = ((pos.y - bounds.y) / bounds.height) * PROPERTY_DEPTH_FT;
-                
-                if (resizeCorner.includes('e')) {
-                    shape.width = Math.max(10, ftX - shape.x);
-                }
-                if (resizeCorner.includes('w')) {
-                    const newWidth = shape.x + shape.width - ftX;
-                    if (newWidth >= 10) {
-                        shape.x = ftX;
-                        shape.width = newWidth;
-                    }
-                }
-                if (resizeCorner.includes('s')) {
-                    shape.height = Math.max(10, ftY - shape.y);
-                }
-                if (resizeCorner.includes('n')) {
-                    const newHeight = shape.y + shape.height - ftY;
-                    if (newHeight >= 10) {
-                        shape.y = ftY;
-                        shape.height = newHeight;
-                    }
-                }
-                
-                updateShapesList();
-                updateTotalCoverage();
-                draw();
-            }
-            
-            // Update cursor
-            if (selectedShape !== null && getResizeCorner(pos, selectedShape)) {
-                canvas.style.cursor = 'nwse-resize';
-            } else if (getShapeAtPos(pos) >= 0) {
-                canvas.style.cursor = 'move';
-            } else {
-                canvas.style.cursor = 'crosshair';
-            }
-        });
-        
-        canvas.addEventListener('mouseup', () => {
-            if (isDragging) updateShapesList();
-            isDragging = false;
-            isResizing = false;
-            isPanning = false;
-            resizeCorner = null;
-        });
-        
-        canvas.addEventListener('mouseleave', () => {
-            isDragging = false;
-            isResizing = false;
-            isPanning = false;
-        });
-        
-        canvas.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const delta = e.deltaY > 0 ? 0.9 : 1.1;
-            zoom = Math.max(0.5, Math.min(3, zoom * delta));
-            draw();
-        });
-        
-        function zoomIn() {
-            zoom = Math.min(3, zoom * 1.2);
-            draw();
-        }
-        
-        function zoomOut() {
-            zoom = Math.max(0.5, zoom / 1.2);
-            draw();
-        }
-        
-        function resetView() {
-            zoom = 1;
-            panX = 0;
-            panY = 0;
-            draw();
-        }
-        
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'b' || e.key === 'B') {
-                showBoundary = !showBoundary;
-                document.getElementById('showBoundaryCheck').checked = showBoundary;
-                draw();
-            }
-            if (e.key === 's' || e.key === 'S') {
-                showSetbacks = !showSetbacks;
-                document.getElementById('showSetbacksCheck').checked = showSetbacks;
-                draw();
-            }
-            if (e.key === 'Delete' || e.key === 'Backspace') {
-                if (selectedShape !== null) {
-                    deleteShape(selectedShape);
-                }
-            }
-        });
-        
-        function toggleSetbacks() {
-            showSetbacks = document.getElementById('showSetbacksCheck').checked;
-            draw();
-        }
-        
-        // SAVE/LOAD from localStorage
-        function saveState() {
-            const state = {
-                shapes: shapes,
-                boundary: BOUNDARY,
-                showBoundary: showBoundary,
-                showSetbacks: showSetbacks
-            };
-            localStorage.setItem('naplesPropertyPlanner', JSON.stringify(state));
-        }
-        
-        function loadState() {
-            const saved = localStorage.getItem('naplesPropertyPlanner');
-            if (saved) {
-                try {
-                    const state = JSON.parse(saved);
-                    if (state.shapes) shapes = state.shapes;
-                    if (state.boundary) {
-                        BOUNDARY = state.boundary;
-                        document.getElementById('leftSlider').value = BOUNDARY.left * 100;
-                        document.getElementById('topSlider').value = BOUNDARY.top * 100;
-                        document.getElementById('rightSlider').value = BOUNDARY.right * 100;
-                        document.getElementById('bottomSlider').value = BOUNDARY.bottom * 100;
-                        document.getElementById('leftVal').textContent = (BOUNDARY.left * 100).toFixed(1) + '%';
-                        document.getElementById('topVal').textContent = (BOUNDARY.top * 100).toFixed(1) + '%';
-                        document.getElementById('rightVal').textContent = (BOUNDARY.right * 100).toFixed(1) + '%';
-                        document.getElementById('bottomVal').textContent = (BOUNDARY.bottom * 100).toFixed(1) + '%';
-                    }
-                    if (typeof state.showBoundary !== 'undefined') {
-                        showBoundary = state.showBoundary;
-                        document.getElementById('showBoundaryCheck').checked = showBoundary;
-                    }
-                    if (typeof state.showSetbacks !== 'undefined') {
-                        showSetbacks = state.showSetbacks;
-                        document.getElementById('showSetbacksCheck').checked = showSetbacks;
-                    }
-                    updateShapesList();
-                    updateTotalCoverage();
-                } catch (e) {
-                    console.log('Could not load saved state');
-                }
-            }
-        }
-        
-        // Auto-save on changes
-        const originalAddShape = addShape;
-        addShape = function(...args) {
-            originalAddShape(...args);
-            saveState();
-        };
-        
-        const originalDeleteShape = deleteShape;
-        deleteShape = function(index) {
-            shapes.splice(index, 1);
-            if (selectedShape >= shapes.length) selectedShape = shapes.length - 1;
-            if (selectedShape < 0) selectedShape = null;
-            updateShapesList();
-            updateTotalCoverage();
-            draw();
-            saveState();
-        };
-        
-        const originalUpdateBoundary = updateBoundary;
-        updateBoundary = function() {
-            BOUNDARY.left = parseFloat(document.getElementById('leftSlider').value) / 100;
-            BOUNDARY.top = parseFloat(document.getElementById('topSlider').value) / 100;
-            BOUNDARY.right = parseFloat(document.getElementById('rightSlider').value) / 100;
-            BOUNDARY.bottom = parseFloat(document.getElementById('bottomSlider').value) / 100;
-            
-            document.getElementById('leftVal').textContent = document.getElementById('leftSlider').value + '%';
-            document.getElementById('topVal').textContent = document.getElementById('topSlider').value + '%';
-            document.getElementById('rightVal').textContent = document.getElementById('rightSlider').value + '%';
-            document.getElementById('bottomVal').textContent = document.getElementById('bottomSlider').value + '%';
-            
-            draw();
-            saveState();
-        };
-        
-        // Save when shapes are moved/resized
-        canvas.addEventListener('mouseup', () => {
-            if (isDragging || isResizing) {
-                saveState();
-            }
-            if (isDragging) updateShapesList();
-            isDragging = false;
-            isResizing = false;
-            isPanning = false;
-            resizeCorner = null;
-        });
-        
-        // Mobile menu toggle
+        // Mobile menu
         function toggleMobileMenu() {
-            const sidebar = document.querySelector('.sidebar');
+            const nav = document.getElementById('leftNav');
             const overlay = document.getElementById('mobileOverlay');
             const btn = document.getElementById('mobileMenuBtn');
             
-            sidebar.classList.toggle('open');
+            nav.classList.toggle('open');
             overlay.classList.toggle('show');
             btn.classList.toggle('open');
             btn.textContent = btn.classList.contains('open') ? '✕' : '☰';
         }
         
-        // Touch support for mobile
-        let touchStartPos = null;
+        let tasks = [];
+        let currentFilter = 'all';
+        let currentCategory = 'permits';
         
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const pos = {
-                x: touch.clientX - canvas.getBoundingClientRect().left,
-                y: touch.clientY - canvas.getBoundingClientRect().top
-            };
-            touchStartPos = pos;
-            
-            const shapeIndex = getShapeAtPos(pos);
-            
-            if (shapeIndex >= 0) {
-                selectedShape = shapeIndex;
-                isDragging = true;
-                
-                const bounds = getPropertyBounds();
-                const shape = shapes[shapeIndex];
-                const shapeX = bounds.x + (shape.x / PROPERTY_WIDTH_FT) * bounds.width;
-                const shapeY = bounds.y + (shape.y / PROPERTY_DEPTH_FT) * bounds.height;
-                
-                dragOffset = {
-                    x: pos.x - shapeX,
-                    y: pos.y - shapeY
-                };
-                
-                updateShapesList();
+        function loadTasks() {
+            const saved = localStorage.getItem('naplesPropertyTodos');
+            if (saved) {
+                tasks = JSON.parse(saved);
             } else {
-                selectedShape = null;
-                updateShapesList();
+                tasks = [
+                    { id: 1, text: "Privacy bushes?", category: "construction", completed: false },
+                    { id: 2, text: "Light up driveway & walkways & trees", category: "construction", completed: false },
+                    { id: 3, text: "Garage storage", category: "construction", completed: false },
+                    { id: 4, text: "Walls painted", category: "construction", completed: false },
+                    { id: 5, text: "Front gate (superiorfenceandrail.com)", category: "construction", completed: false },
+                    { id: 6, text: "Landscaping", category: "construction", completed: false },
+                    { id: 7, text: "Furniture", category: "equipment", completed: false },
+                    { id: 8, text: "Filing cabinet", category: "equipment", completed: false },
+                    { id: 9, text: "Whiteboard for wall", category: "equipment", completed: false },
+                    { id: 10, text: "Curtains", category: "equipment", completed: false },
+                    { id: 11, text: "Glass garage doors", category: "construction", completed: false },
+                    { id: 12, text: "220 in garage for sauna", category: "construction", completed: false },
+                    { id: 13, text: "Tesla charger in garage", category: "construction", completed: false },
+                    { id: 14, text: "New gym mat", category: "equipment", completed: false },
+                    { id: 15, text: "Tortoise 🐢", category: "equipment", completed: false },
+                    { id: 16, text: "Patio furniture", category: "equipment", completed: false },
+                    { id: 17, text: "House and garage speaker system", category: "equipment", completed: false },
+                    { id: 18, text: "Tesla power walls", category: "construction", completed: false },
+                    { id: 19, text: "Tesla solar panels", category: "construction", completed: false },
+                    { id: 20, text: "Mini golf course (popstroke style, leaderboard)", category: "design", completed: false },
+                ];
+            }
+            renderTasks();
+        }
+        
+        function saveTasks() {
+            localStorage.setItem('naplesPropertyTodos', JSON.stringify(tasks));
+        }
+        
+        function addTask() {
+            const input = document.getElementById('newTaskInput');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            const activeCategory = document.querySelector('.category-btn.active');
+            let category = activeCategory ? activeCategory.dataset.category : 'permits';
+            if (category === 'all') category = 'permits';
+            
+            tasks.push({
+                id: Date.now(),
+                text: text,
+                category: category,
+                completed: false
+            });
+            
+            input.value = '';
+            saveTasks();
+            renderTasks();
+        }
+        
+        function toggleTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.completed = !task.completed;
+                saveTasks();
+                renderTasks();
+            }
+        }
+        
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            saveTasks();
+            renderTasks();
+        }
+        
+        function filterCategory(category) {
+            currentFilter = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === category);
+            });
+            renderTasks();
+        }
+        
+        function renderTasks() {
+            const list = document.getElementById('taskList');
+            const filtered = currentFilter === 'all' 
+                ? tasks 
+                : tasks.filter(t => t.category === currentFilter);
+            
+            if (filtered.length === 0) {
+                list.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No tasks yet</h3>
+                        <p>Add your first task above</p>
+                    </div>
+                `;
+            } else {
+                list.innerHTML = filtered.map(task => `
+                    <div class="task-item ${task.completed ? 'completed' : ''}">
+                        <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id})"></div>
+                        <span class="task-text">${task.text}</span>
+                        <span class="task-category ${task.category}">${task.category}</span>
+                        <button class="task-delete" onclick="deleteTask(${task.id})">×</button>
+                    </div>
+                `).join('');
             }
             
-            draw();
-        }, { passive: false });
+            document.getElementById('totalTasks').textContent = tasks.length;
+            document.getElementById('completedTasks').textContent = tasks.filter(t => t.completed).length;
+            document.getElementById('remainingTasks').textContent = tasks.filter(t => !t.completed).length;
+        }
         
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const pos = {
-                x: touch.clientX - canvas.getBoundingClientRect().left,
-                y: touch.clientY - canvas.getBoundingClientRect().top
-            };
-            
-            if (isDragging && selectedShape !== null) {
-                const bounds = getPropertyBounds();
-                const shape = shapes[selectedShape];
-                
-                shape.x = ((pos.x - dragOffset.x - bounds.x) / bounds.width) * PROPERTY_WIDTH_FT;
-                shape.y = ((pos.y - dragOffset.y - bounds.y) / bounds.height) * PROPERTY_DEPTH_FT;
-                
-                shape.x = Math.max(0, Math.min(PROPERTY_WIDTH_FT - shape.width, shape.x));
-                shape.y = Math.max(0, Math.min(PROPERTY_DEPTH_FT - shape.height, shape.y));
-                
-                draw();
-            }
-        }, { passive: false });
-        
-        canvas.addEventListener('touchend', (e) => {
-            if (isDragging) {
-                saveState();
-                updateShapesList();
-            }
-            isDragging = false;
-            touchStartPos = null;
-        });
-        
-        // Initial setup
-        loadState();
-        resizeCanvas();
+        loadTasks();
     </script>
-        </div>
-    </div>
 </body>
 </html>

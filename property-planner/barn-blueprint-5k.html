@@ -357,16 +357,112 @@
             background: #f59e0b;
             color: #000;
         }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(245, 158, 11, 0.9);
+            color: #000;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-menu-btn.open {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 99;
+        }
+        
+        .mobile-overlay.show {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .left-nav {
+                position: fixed;
+                top: 0;
+                left: -200px;
+                height: 100vh;
+                z-index: 100;
+                transition: left 0.3s ease;
+            }
+            
+            .left-nav.open {
+                left: 0;
+            }
+            
+            .main-content {
+                padding: 70px 10px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .stats-bar {
+                gap: 10px;
+            }
+            
+            .stat-box {
+                padding: 15px;
+            }
+            
+            .floors-container {
+                gap: 20px;
+            }
+            
+            .floor {
+                padding: 15px;
+                overflow-x: auto;
+            }
+            
+            .blueprint.main-floor {
+                width: 500px;
+                height: 250px;
+            }
+            
+            .cost-breakdown, .design-notes {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+    
     <div class="app-layout">
-        <nav class="left-nav">
+        <nav class="left-nav" id="leftNav">
             <div class="nav-header">🏡 Naples Property</div>
-            <a href="index.html" class="nav-item">🗺️ Planner</a>
+            <a href="index.html" class="nav-item">✅ To Do</a>
+            <a href="planner.html" class="nav-item">🗺️ Planner</a>
             <a href="barn-blueprint-5k.html" class="nav-item active">📐 Blueprint</a>
             <a href="barn-mockups.html" class="nav-item">🖼️ Mockups</a>
-            <a href="todo.html" class="nav-item">✅ To Do</a>
         </nav>
         
         <div class="main-content">
@@ -601,5 +697,18 @@
     </div>
         </div>
     </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('leftNav');
+            const overlay = document.getElementById('mobileOverlay');
+            const btn = document.getElementById('mobileMenuBtn');
+            
+            nav.classList.toggle('open');
+            overlay.classList.toggle('show');
+            btn.classList.toggle('open');
+            btn.textContent = btn.classList.contains('open') ? '✕' : '☰';
+        }
+    </script>
 </body>
 </html>
