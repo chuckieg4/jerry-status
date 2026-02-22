@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuckie's Barn Blueprint - 70×100 ft</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #4ade80, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        
+        .stat-box .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        
+        .stat-box .label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 5px;
+        }
+        
+        .floors-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        
+        .floor {
+            background: #12121a;
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid #333;
+        }
+        
+        .floor h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4ade80;
+            font-size: 1.2rem;
+        }
+        
+        .blueprint {
+            position: relative;
+            background: #1a1a2e;
+            border: 3px solid #4ade80;
+            border-radius: 8px;
+        }
+        
+        .main-floor {
+            width: 700px;
+            height: 500px;
+        }
+        
+        .second-floor {
+            width: 400px;
+            height: 300px;
+        }
+        
+        .room {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.75rem;
+            padding: 5px;
+            transition: all 0.3s;
+        }
+        
+        .room:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+        
+        .room .name {
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 3px;
+        }
+        
+        .room .dims {
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+        
+        .room .sqft {
+            font-size: 0.65rem;
+            opacity: 0.6;
+        }
+        
+        /* Room colors */
+        .basketball { background: rgba(234, 88, 12, 0.3); border-color: #ea580c; color: #fed7aa; }
+        .gym { background: rgba(220, 38, 38, 0.3); border-color: #dc2626; color: #fecaca; }
+        .recovery { background: rgba(37, 99, 235, 0.3); border-color: #2563eb; color: #bfdbfe; }
+        .ninja { background: rgba(168, 85, 247, 0.3); border-color: #a855f7; color: #e9d5ff; }
+        .bouldering { background: rgba(234, 179, 8, 0.3); border-color: #eab308; color: #fef08a; }
+        .office { background: rgba(20, 184, 166, 0.3); border-color: #14b8a6; color: #99f6e4; }
+        .bar { background: rgba(236, 72, 153, 0.3); border-color: #ec4899; color: #fbcfe8; }
+        .games { background: rgba(34, 197, 94, 0.3); border-color: #22c55e; color: #bbf7d0; }
+        .golf { background: rgba(59, 130, 246, 0.3); border-color: #3b82f6; color: #bfdbfe; }
+        .stage { background: rgba(239, 68, 68, 0.3); border-color: #ef4444; color: #fecaca; }
+        .bathroom { background: rgba(107, 114, 128, 0.3); border-color: #6b7280; color: #d1d5db; }
+        .stairs { background: rgba(255, 255, 255, 0.1); border-color: #fff; color: #fff; }
+        
+        .dimension-label {
+            position: absolute;
+            font-size: 0.75rem;
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .cost-breakdown {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            background: #12121a;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid #333;
+        }
+        
+        .cost-breakdown h2 {
+            color: #4ade80;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .cost-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            border-left: 3px solid #4ade80;
+        }
+        
+        .cost-item .name {
+            color: #ccc;
+        }
+        
+        .cost-item .price {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .cost-total {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(34, 211, 238, 0.1));
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #4ade80;
+        }
+        
+        .cost-total .label {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .cost-total .amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        
+        .features-list {
+            max-width: 900px;
+            margin: 0 auto 50px;
+        }
+        
+        .features-list h2 {
+            color: #4ade80;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-card {
+            background: #12121a;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        
+        .feature-card h3 {
+            color: #22d3ee;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .feature-card li {
+            padding: 5px 0;
+            border-bottom: 1px solid #222;
+        }
+        
+        .feature-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-card li::before {
+            content: "✓ ";
+            color: #4ade80;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .back-link a {
+            color: #4ade80;
+            text-decoration: none;
+            padding: 12px 25px;
+            border: 2px solid #4ade80;
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .back-link a:hover {
+            background: #4ade80;
+            color: #000;
+        }
+        
+        .mezzanine-note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: #888;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏗️ The Barn — Blueprint</h1>
+        <div class="subtitle">652 15th St SW, Naples FL • 70' × 100' Clearspan Metal Building</div>
+    </div>
+    
+    <div class="stats-bar">
+        <div class="stat-box">
+            <div class="value">7,000</div>
+            <div class="label">Ground Floor (sq ft)</div>
+        </div>
+        <div class="stat-box">
+            <div class="value">2,400</div>
+            <div class="label">Mezzanine (sq ft)</div>
+        </div>
+        <div class="stat-box">
+            <div class="value">9,400</div>
+            <div class="label">Total Usable (sq ft)</div>
+        </div>
+        <div class="stat-box">
+            <div class="value">30'</div>
+            <div class="label">Peak Height</div>
+        </div>
+    </div>
+    
+    <div class="floors-container">
+        <!-- MAIN FLOOR -->
+        <div class="floor">
+            <h2>⬇️ GROUND FLOOR — Athletic & Office</h2>
+            <div class="blueprint main-floor">
+                <!-- Dimension labels -->
+                <div class="dimension-label" style="top: -25px; left: 50%; transform: translateX(-50%);">100 ft</div>
+                <div class="dimension-label" style="left: -35px; top: 50%; transform: translateY(-50%) rotate(-90deg);">70 ft</div>
+                
+                <!-- BASKETBALL COURT - Center -->
+                <div class="room basketball" style="left: 180px; top: 30px; width: 330px; height: 350px;">
+                    <div class="name">🏀 Half Court</div>
+                    <div class="dims">47' × 50'</div>
+                    <div class="sqft">2,350 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 10px; opacity: 0.7;">Sport court flooring<br>20' ceiling clearance</div>
+                </div>
+                
+                <!-- BOULDERING WALL - Left side of court -->
+                <div class="room bouldering" style="left: 5px; top: 30px; width: 170px; height: 350px;">
+                    <div class="name">🧗 Bouldering Wall</div>
+                    <div class="dims">24' × 50'</div>
+                    <div class="sqft">1,200 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 5px; opacity: 0.7;">16' climbing height<br>Leads to mezzanine</div>
+                </div>
+                
+                <!-- HOME GYM - Top right -->
+                <div class="room gym" style="left: 515px; top: 30px; width: 180px; height: 170px;">
+                    <div class="name">🏋️ Home Gym</div>
+                    <div class="dims">26' × 24'</div>
+                    <div class="sqft">624 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 5px; opacity: 0.7;">Free weights, machines<br>Cardio, mirrors</div>
+                </div>
+                
+                <!-- RECOVERY - Right middle -->
+                <div class="room recovery" style="left: 515px; top: 205px; width: 180px; height: 175px;">
+                    <div class="name">❄️ Recovery Suite</div>
+                    <div class="dims">26' × 25'</div>
+                    <div class="sqft">650 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 5px; opacity: 0.7;">Sauna • Cold plunge<br>Red light • Shower</div>
+                </div>
+                
+                <!-- NINJA WARRIOR - Bottom strip -->
+                <div class="room ninja" style="left: 5px; top: 385px; width: 505px; height: 110px;">
+                    <div class="name">🥷 Ninja Warrior Course</div>
+                    <div class="dims">72' × 16'</div>
+                    <div class="sqft">1,152 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 3px; opacity: 0.7;">Salmon ladder • Warped wall • Rings • Cargo net • Balance obstacles</div>
+                </div>
+                
+                <!-- CONFERENCE/OFFICE - Bottom right -->
+                <div class="room office" style="left: 515px; top: 385px; width: 180px; height: 110px;">
+                    <div class="name">💼 Command Center</div>
+                    <div class="dims">26' × 16'</div>
+                    <div class="sqft">416 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 3px; opacity: 0.7;">Big table • Desk setup<br>Floor-to-ceiling whiteboard</div>
+                </div>
+                
+                <!-- STAIRS indicator -->
+                <div class="room stairs" style="left: 5px; top: 5px; width: 60px; height: 20px; font-size: 0.6rem;">
+                    ↑ Stairs to L2
+                </div>
+                
+                <div class="mezzanine-note">Mezzanine above left side (L2)</div>
+            </div>
+        </div>
+        
+        <!-- SECOND FLOOR -->
+        <div class="floor">
+            <h2>⬆️ MEZZANINE (L2) — Entertainment</h2>
+            <div class="blueprint second-floor">
+                <div class="dimension-label" style="top: -25px; left: 50%; transform: translateX(-50%);">60 ft</div>
+                <div class="dimension-label" style="left: -30px; top: 50%; transform: translateY(-50%) rotate(-90deg);">40 ft</div>
+                
+                <!-- BAR/LOUNGE -->
+                <div class="room bar" style="left: 5px; top: 5px; width: 190px; height: 140px;">
+                    <div class="name">🍸 Bar & Lounge</div>
+                    <div class="dims">28' × 20'</div>
+                    <div class="sqft">560 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 3px; opacity: 0.7;">Full bar • 85" TV<br>Sectional couch<br>Overlooks court ⬇️</div>
+                </div>
+                
+                <!-- GAME AREA -->
+                <div class="room games" style="left: 200px; top: 5px; width: 195px; height: 140px;">
+                    <div class="name">🎱 Game Room</div>
+                    <div class="dims">29' × 20'</div>
+                    <div class="sqft">580 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 3px; opacity: 0.7;">Pool table • Darts<br>Chess • Card table</div>
+                </div>
+                
+                <!-- GOLF SIM -->
+                <div class="room golf" style="left: 5px; top: 150px; width: 195px; height: 145px;">
+                    <div class="name">⛳ Golf Simulator</div>
+                    <div class="dims">29' × 20'</div>
+                    <div class="sqft">580 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 3px; opacity: 0.7;">TrackMan / Foresight<br>Impact screen • Turf<br>12' ceiling</div>
+                </div>
+                
+                <!-- STAGE -->
+                <div class="room stage" style="left: 205px; top: 150px; width: 190px; height: 145px;">
+                    <div class="name">🥁 Stage</div>
+                    <div class="dims">28' × 20'</div>
+                    <div class="sqft">560 sq ft</div>
+                    <div style="font-size: 0.6rem; margin-top: 3px; opacity: 0.7;">Raised platform<br>Drum kit • PA system<br>Stage lighting</div>
+                </div>
+                
+                <div class="mezzanine-note">Open railing overlooks court</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- COST BREAKDOWN -->
+    <div class="cost-breakdown">
+        <h2>💰 Cost Estimate</h2>
+        <div class="cost-grid">
+            <div class="cost-item">
+                <span class="name">Metal Building Shell (70×100, 30' peak)</span>
+                <span class="price">$175,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Concrete Slab + Foundation</span>
+                <span class="price">$65,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Steel Mezzanine Structure</span>
+                <span class="price">$55,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">HVAC (5-zone commercial)</span>
+                <span class="price">$50,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Electrical + Lighting</span>
+                <span class="price">$45,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Plumbing (3 bathrooms, recovery)</span>
+                <span class="price">$35,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Sport Court Flooring</span>
+                <span class="price">$22,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Custom Bouldering Wall</span>
+                <span class="price">$35,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Ninja Warrior Obstacles</span>
+                <span class="price">$25,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Recovery Suite (sauna, plunge, red light)</span>
+                <span class="price">$30,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Golf Simulator (mid-tier TrackMan)</span>
+                <span class="price">$35,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Bar Buildout + Appliances</span>
+                <span class="price">$25,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Interior Finishes + Insulation</span>
+                <span class="price">$55,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Gym Equipment (quality mid-tier)</span>
+                <span class="price">$35,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Game Room (pool table, darts, etc.)</span>
+                <span class="price">$12,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Stage + Sound System</span>
+                <span class="price">$15,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Office/Conference Buildout</span>
+                <span class="price">$18,000</span>
+            </div>
+            <div class="cost-item">
+                <span class="name">Permits + Engineering</span>
+                <span class="price">$15,000</span>
+            </div>
+        </div>
+        
+        <div class="cost-total">
+            <div class="label">ESTIMATED TOTAL</div>
+            <div class="amount">$750,000 - $850,000</div>
+        </div>
+        <p style="text-align: center; margin-top: 15px; color: #888; font-size: 0.85rem;">
+            Range accounts for finish quality and equipment choices. Could go lower (~$600K) with DIY/value engineering or higher (~$1M+) with premium everything.
+        </p>
+    </div>
+    
+    <!-- FEATURES -->
+    <div class="features-list">
+        <h2>✨ Key Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🏀 Athletic Zone</h3>
+                <ul>
+                    <li>Regulation half court (47'×50')</li>
+                    <li>Sport court flooring</li>
+                    <li>20' clear ceiling height</li>
+                    <li>LED court lighting</li>
+                    <li>Wall-mounted hoops</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🧗 Bouldering Wall</h3>
+                <ul>
+                    <li>16' climbing height</li>
+                    <li>Multiple routes/difficulty</li>
+                    <li>Padded crash zone</li>
+                    <li>Connects to mezzanine</li>
+                    <li>Rotating holds</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🥷 Ninja Course</h3>
+                <ul>
+                    <li>Salmon ladder</li>
+                    <li>Warped wall (mini)</li>
+                    <li>Ring swing</li>
+                    <li>Cargo net climb</li>
+                    <li>Balance obstacles</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>❄️ Recovery Suite</h3>
+                <ul>
+                    <li>Barrel sauna (4-person)</li>
+                    <li>Cold plunge tub</li>
+                    <li>Full-body red light panel</li>
+                    <li>Rainfall shower</li>
+                    <li>Heated floors</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>⛳ Golf Simulator</h3>
+                <ul>
+                    <li>TrackMan or Foresight launch monitor</li>
+                    <li>4K impact screen</li>
+                    <li>Premium turf hitting area</li>
+                    <li>100+ courses</li>
+                    <li>12' ceiling clearance</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🍸 Entertainment Deck</h3>
+                <ul>
+                    <li>Full bar with tap system</li>
+                    <li>85" TV + surround sound</li>
+                    <li>Sectional seating</li>
+                    <li>Overlooks basketball court</li>
+                    <li>Mini fridge + dishwasher</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="back-link">
+        <a href="index.html">← Back to Property Planner</a>
+    </div>
+</body>
+</html>
