@@ -71,10 +71,50 @@
             padding: 40px 20px;
         }
         
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
         h1 {
             font-size: 2rem;
-            margin-bottom: 30px;
             color: #4ade80;
+        }
+        
+        .sync-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .sync-btn {
+            padding: 8px 14px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #12121a;
+            color: #888;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .sync-btn:hover {
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+        
+        .sync-btn.synced {
+            border-color: #4ade80;
+            color: #4ade80;
+        }
+        
+        .sync-status {
+            font-size: 0.75rem;
+            color: #666;
+            text-align: right;
         }
         
         .add-task {
@@ -155,6 +195,7 @@
             border: 1px solid #222;
             transition: all 0.2s;
             overflow: hidden;
+            user-select: none;
         }
         
         .task-item:hover {
@@ -163,6 +204,17 @@
         
         .task-item.expanded {
             border-color: #4ade80;
+        }
+        
+        .task-item.dragging {
+            opacity: 0.5;
+            border-color: #4ade80;
+            transform: scale(1.02);
+        }
+        
+        .task-item.drag-over {
+            border-color: #f59e0b;
+            border-width: 2px;
         }
         
         .task-item.completed .task-header {
@@ -179,6 +231,18 @@
             gap: 15px;
             padding: 18px 20px;
             cursor: pointer;
+        }
+        
+        .drag-handle {
+            cursor: grab;
+            color: #444;
+            font-size: 1.2rem;
+            padding: 5px;
+            touch-action: none;
+        }
+        
+        .drag-handle:active {
+            cursor: grabbing;
         }
         
         .task-checkbox {
@@ -458,6 +522,26 @@
             display: block;
         }
         
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4ade80;
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: flex;
@@ -484,6 +568,11 @@
             
             h1 {
                 font-size: 1.5rem;
+            }
+            
+            .header-row {
+                flex-direction: column;
+                align-items: flex-start;
             }
             
             .add-task {
@@ -521,12 +610,17 @@
             .add-link {
                 flex-direction: column;
             }
+            
+            .drag-handle {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+    <div class="toast" id="toast"></div>
     
     <div class="app-layout">
         <nav class="left-nav" id="leftNav">
@@ -539,7 +633,16 @@
         
         <div class="main-content">
             <div class="container">
-                <h1>✅ Naples Property — To Do</h1>
+                <div class="header-row">
+                    <h1>✅ Naples Property — To Do</h1>
+                    <div>
+                        <div class="sync-controls">
+                            <button class="sync-btn" onclick="syncFromCloud()" title="Pull latest from cloud">☁️ Sync</button>
+                            <button class="sync-btn" onclick="pushToCloud()" title="Copy data for Jerry to save">📤 Export</button>
+                        </div>
+                        <div class="sync-status" id="syncStatus">Local data</div>
+                    </div>
+                </div>
                 
                 <div class="stats">
                     <div class="stat-box">
@@ -575,6 +678,9 @@
     </div>
     
     <script>
+        const CLOUD_DATA_URL = 'https://raw.githubusercontent.com/chuckieg4/jerry-status/main/property-planner/todos.json';
+        const STORAGE_KEY = 'naplesPropertyTodos_v2';
+        
         // Mobile menu
         function toggleMobileMenu() {
             const nav = document.getElementById('leftNav');
@@ -587,49 +693,117 @@
             btn.textContent = btn.classList.contains('open') ? '✕' : '☰';
         }
         
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        
         let tasks = [];
         let currentFilter = 'all';
         let expandedTaskId = null;
+        let draggedTaskId = null;
         
-        function loadTasks() {
-            const saved = localStorage.getItem('naplesPropertyTodos');
+        // Default tasks (fallback if no data anywhere)
+        const DEFAULT_TASKS = [
+            { id: 1, text: "Privacy bushes?", category: "construction", completed: false, notes: '', links: [] },
+            { id: 2, text: "Light up driveway & walkways & trees", category: "construction", completed: false, notes: '', links: [] },
+            { id: 3, text: "Garage storage", category: "construction", completed: false, notes: '', links: [] },
+            { id: 4, text: "Walls painted", category: "construction", completed: false, notes: '', links: [] },
+            { id: 5, text: "Front gate", category: "construction", completed: false, notes: '', links: ['https://superiorfenceandrail.com'] },
+            { id: 6, text: "Landscaping", category: "construction", completed: false, notes: '', links: [] },
+            { id: 7, text: "Furniture", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 8, text: "Filing cabinet", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 9, text: "Whiteboard for wall", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 10, text: "Curtains", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 11, text: "Glass garage doors", category: "construction", completed: false, notes: '', links: [] },
+            { id: 12, text: "220 in garage for sauna", category: "construction", completed: false, notes: '', links: [] },
+            { id: 13, text: "Tesla charger in garage", category: "construction", completed: false, notes: '', links: [] },
+            { id: 14, text: "New gym mat", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 15, text: "Tortoise 🐢", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 16, text: "Patio furniture", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 17, text: "House and garage speaker system", category: "equipment", completed: false, notes: '', links: [] },
+            { id: 18, text: "Tesla power walls", category: "construction", completed: false, notes: '', links: [] },
+            { id: 19, text: "Tesla solar panels", category: "construction", completed: false, notes: '', links: [] },
+            { id: 20, text: "Mini golf course (popstroke style, leaderboard)", category: "design", completed: false, notes: '', links: [] },
+        ];
+        
+        async function loadTasks() {
+            // First try localStorage
+            const saved = localStorage.getItem(STORAGE_KEY);
             if (saved) {
-                tasks = JSON.parse(saved);
-                // Migrate old tasks to include notes/links if missing
-                tasks = tasks.map(t => ({
-                    ...t,
-                    notes: t.notes || '',
-                    links: t.links || []
-                }));
-            } else {
-                tasks = [
-                    { id: 1, text: "Privacy bushes?", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 2, text: "Light up driveway & walkways & trees", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 3, text: "Garage storage", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 4, text: "Walls painted", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 5, text: "Front gate", category: "construction", completed: false, notes: '', links: ['https://superiorfenceandrail.com'] },
-                    { id: 6, text: "Landscaping", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 7, text: "Furniture", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 8, text: "Filing cabinet", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 9, text: "Whiteboard for wall", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 10, text: "Curtains", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 11, text: "Glass garage doors", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 12, text: "220 in garage for sauna", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 13, text: "Tesla charger in garage", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 14, text: "New gym mat", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 15, text: "Tortoise 🐢", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 16, text: "Patio furniture", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 17, text: "House and garage speaker system", category: "equipment", completed: false, notes: '', links: [] },
-                    { id: 18, text: "Tesla power walls", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 19, text: "Tesla solar panels", category: "construction", completed: false, notes: '', links: [] },
-                    { id: 20, text: "Mini golf course (popstroke style, leaderboard)", category: "design", completed: false, notes: '', links: [] },
-                ];
+                try {
+                    tasks = JSON.parse(saved);
+                    tasks = migrateTasks(tasks);
+                    document.getElementById('syncStatus').textContent = 'Local data loaded';
+                    renderTasks();
+                    return;
+                } catch (e) {
+                    console.error('Failed to parse local storage', e);
+                }
             }
+            
+            // Try cloud data
+            try {
+                const response = await fetch(CLOUD_DATA_URL + '?t=' + Date.now());
+                if (response.ok) {
+                    const cloudData = await response.json();
+                    tasks = migrateTasks(cloudData.tasks || cloudData);
+                    saveTasks();
+                    document.getElementById('syncStatus').textContent = 'Synced from cloud';
+                    renderTasks();
+                    return;
+                }
+            } catch (e) {
+                console.log('Cloud data not available, using defaults');
+            }
+            
+            // Fall back to defaults
+            tasks = DEFAULT_TASKS;
+            saveTasks();
+            document.getElementById('syncStatus').textContent = 'Using defaults';
             renderTasks();
         }
         
+        function migrateTasks(taskList) {
+            return taskList.map(t => ({
+                ...t,
+                notes: t.notes || '',
+                links: t.links || []
+            }));
+        }
+        
+        async function syncFromCloud() {
+            try {
+                const response = await fetch(CLOUD_DATA_URL + '?t=' + Date.now());
+                if (response.ok) {
+                    const cloudData = await response.json();
+                    tasks = migrateTasks(cloudData.tasks || cloudData);
+                    saveTasks();
+                    document.getElementById('syncStatus').textContent = 'Synced: ' + new Date().toLocaleTimeString();
+                    renderTasks();
+                    showToast('✓ Synced from cloud!');
+                } else {
+                    showToast('Cloud data not found');
+                }
+            } catch (e) {
+                showToast('Sync failed - check connection');
+            }
+        }
+        
+        function pushToCloud() {
+            const data = JSON.stringify({ tasks: tasks, updated: new Date().toISOString() }, null, 2);
+            navigator.clipboard.writeText(data).then(() => {
+                showToast('📋 Data copied! Send to Jerry to save.');
+            }).catch(() => {
+                // Fallback: show in prompt
+                prompt('Copy this data and send to Jerry:', data);
+            });
+        }
+        
         function saveTasks() {
-            localStorage.setItem('naplesPropertyTodos', JSON.stringify(tasks));
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
         }
         
         function addTask() {
@@ -641,7 +815,7 @@
             let category = activeCategory ? activeCategory.dataset.category : 'permits';
             if (category === 'all') category = 'permits';
             
-            tasks.push({
+            tasks.unshift({
                 id: Date.now(),
                 text: text,
                 category: category,
@@ -667,6 +841,7 @@
         
         function deleteTask(id, e) {
             e.stopPropagation();
+            if (!confirm('Delete this task?')) return;
             tasks = tasks.filter(t => t.id !== id);
             if (expandedTaskId === id) expandedTaskId = null;
             saveTasks();
@@ -691,7 +866,6 @@
             let url = input.value.trim();
             if (!url) return;
             
-            // Add https if no protocol
             if (!url.match(/^https?:\/\//)) {
                 url = 'https://' + url;
             }
@@ -732,6 +906,115 @@
             }
         }
         
+        // Drag and drop
+        function handleDragStart(e, id) {
+            draggedTaskId = id;
+            e.target.closest('.task-item').classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', id);
+        }
+        
+        function handleDragEnd(e) {
+            document.querySelectorAll('.task-item').forEach(el => {
+                el.classList.remove('dragging', 'drag-over');
+            });
+            draggedTaskId = null;
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            const taskItem = e.target.closest('.task-item');
+            if (taskItem && !taskItem.classList.contains('dragging')) {
+                document.querySelectorAll('.task-item').forEach(el => el.classList.remove('drag-over'));
+                taskItem.classList.add('drag-over');
+            }
+        }
+        
+        function handleDrop(e, targetId) {
+            e.preventDefault();
+            if (draggedTaskId === null || draggedTaskId === targetId) return;
+            
+            const draggedIndex = tasks.findIndex(t => t.id === draggedTaskId);
+            const targetIndex = tasks.findIndex(t => t.id === targetId);
+            
+            if (draggedIndex === -1 || targetIndex === -1) return;
+            
+            const [draggedTask] = tasks.splice(draggedIndex, 1);
+            tasks.splice(targetIndex, 0, draggedTask);
+            
+            saveTasks();
+            renderTasks();
+        }
+        
+        // Touch drag support
+        let touchStartY = 0;
+        let touchedTaskId = null;
+        let touchedElement = null;
+        let longPressTimer = null;
+        let isDraggingTouch = false;
+        
+        function handleTouchStart(e, id) {
+            touchedTaskId = id;
+            touchedElement = e.target.closest('.task-item');
+            touchStartY = e.touches[0].clientY;
+            
+            longPressTimer = setTimeout(() => {
+                isDraggingTouch = true;
+                touchedElement.classList.add('dragging');
+                navigator.vibrate && navigator.vibrate(50);
+            }, 400);
+        }
+        
+        function handleTouchMove(e) {
+            if (!isDraggingTouch) {
+                clearTimeout(longPressTimer);
+                return;
+            }
+            
+            e.preventDefault();
+            const touch = e.touches[0];
+            const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+            const targetTask = elementAtPoint?.closest('.task-item');
+            
+            document.querySelectorAll('.task-item').forEach(el => el.classList.remove('drag-over'));
+            if (targetTask && targetTask !== touchedElement) {
+                targetTask.classList.add('drag-over');
+            }
+        }
+        
+        function handleTouchEnd(e) {
+            clearTimeout(longPressTimer);
+            
+            if (isDraggingTouch) {
+                const touch = e.changedTouches[0];
+                const elementAtPoint = document.elementFromPoint(touch.clientX, touch.clientY);
+                const targetTask = elementAtPoint?.closest('.task-item');
+                
+                if (targetTask && targetTask !== touchedElement) {
+                    const targetId = parseInt(targetTask.dataset.id);
+                    if (touchedTaskId && targetId) {
+                        const draggedIndex = tasks.findIndex(t => t.id === touchedTaskId);
+                        const targetIndex = tasks.findIndex(t => t.id === targetId);
+                        
+                        if (draggedIndex !== -1 && targetIndex !== -1) {
+                            const [draggedTask] = tasks.splice(draggedIndex, 1);
+                            tasks.splice(targetIndex, 0, draggedTask);
+                            saveTasks();
+                            renderTasks();
+                        }
+                    }
+                }
+            }
+            
+            document.querySelectorAll('.task-item').forEach(el => {
+                el.classList.remove('dragging', 'drag-over');
+            });
+            isDraggingTouch = false;
+            touchedTaskId = null;
+            touchedElement = null;
+        }
+        
         function renderTasks() {
             const list = document.getElementById('taskList');
             const filtered = currentFilter === 'all' 
@@ -751,8 +1034,18 @@
                     const hasContent = task.notes || (task.links && task.links.length > 0);
                     
                     return `
-                    <div class="task-item ${task.completed ? 'completed' : ''} ${isExpanded ? 'expanded' : ''}">
+                    <div class="task-item ${task.completed ? 'completed' : ''} ${isExpanded ? 'expanded' : ''}" 
+                         data-id="${task.id}"
+                         draggable="true"
+                         ondragstart="handleDragStart(event, ${task.id})"
+                         ondragend="handleDragEnd(event)"
+                         ondragover="handleDragOver(event)"
+                         ondrop="handleDrop(event, ${task.id})"
+                         ontouchstart="handleTouchStart(event, ${task.id})"
+                         ontouchmove="handleTouchMove(event)"
+                         ontouchend="handleTouchEnd(event)">
                         <div class="task-header" onclick="toggleExpand(${task.id})">
+                            <span class="drag-handle" onclick="event.stopPropagation()">⋮⋮</span>
                             <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id}, event)"></div>
                             <span class="task-text">${task.text}</span>
                             <div class="task-meta">

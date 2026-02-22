@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    { "id": 1, "text": "Privacy bushes?", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 2, "text": "Light up driveway & walkways & trees", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 3, "text": "Garage storage", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 4, "text": "Walls painted", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 5, "text": "Front gate", "category": "construction", "completed": false, "notes": "", "links": ["https://superiorfenceandrail.com"] },
+    { "id": 6, "text": "Landscaping", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 7, "text": "Furniture", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 8, "text": "Filing cabinet", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 9, "text": "Whiteboard for wall", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 10, "text": "Curtains", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 11, "text": "Glass garage doors", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 12, "text": "220 in garage for sauna", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 13, "text": "Tesla charger in garage", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 14, "text": "New gym mat", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 15, "text": "Tortoise 🐢", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 16, "text": "Patio furniture", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 17, "text": "House and garage speaker system", "category": "equipment", "completed": false, "notes": "", "links": [] },
+    { "id": 18, "text": "Tesla power walls", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 19, "text": "Tesla solar panels", "category": "construction", "completed": false, "notes": "", "links": [] },
+    { "id": 20, "text": "Mini golf course (popstroke style, leaderboard)", "category": "design", "completed": false, "notes": "", "links": [] }
+  ],
+  "updated": "2026-02-22T21:22:00.000Z"
+}
