@@ -430,20 +430,20 @@
                 </div>
                 <div class="boundary-sliders">
                     <div class="slider-group">
-                        <label>Left: <span id="leftVal">6.4%</span></label>
-                        <input type="range" id="leftSlider" min="0" max="20" step="0.1" value="6.4" oninput="updateBoundary()">
+                        <label>Left: <span id="leftVal">10.2%</span></label>
+                        <input type="range" id="leftSlider" min="0" max="25" step="0.1" value="10.2" oninput="updateBoundary()">
                     </div>
                     <div class="slider-group">
-                        <label>Top: <span id="topVal">28.3%</span></label>
-                        <input type="range" id="topSlider" min="15" max="40" step="0.1" value="28.3" oninput="updateBoundary()">
+                        <label>Top: <span id="topVal">31%</span></label>
+                        <input type="range" id="topSlider" min="15" max="50" step="0.1" value="31" oninput="updateBoundary()">
                     </div>
                     <div class="slider-group">
-                        <label>Right: <span id="rightVal">97.4%</span></label>
-                        <input type="range" id="rightSlider" min="80" max="100" step="0.1" value="97.4" oninput="updateBoundary()">
+                        <label>Right: <span id="rightVal">88.7%</span></label>
+                        <input type="range" id="rightSlider" min="70" max="100" step="0.1" value="88.7" oninput="updateBoundary()">
                     </div>
                     <div class="slider-group">
-                        <label>Bottom: <span id="bottomVal">80.3%</span></label>
-                        <input type="range" id="bottomSlider" min="60" max="90" step="0.1" value="80.3" oninput="updateBoundary()">
+                        <label>Bottom: <span id="bottomVal">71.6%</span></label>
+                        <input type="range" id="bottomSlider" min="50" max="85" step="0.1" value="71.6" oninput="updateBoundary()">
                     </div>
                 </div>
                 <button class="save-boundary-btn" onclick="saveBoundary()">📋 Copy Settings</button>
@@ -490,10 +490,10 @@
         
         // Property boundary as percentage of image (adjustable via sliders)
         let BOUNDARY = {
-            left: 0.064,    // left edge at road
-            top: 0.283,     // top edge of white line
-            right: 0.974,   // right edge of white line
-            bottom: 0.803   // bottom edge of white line
+            left: 0.102,    // left edge at road
+            top: 0.31,      // top edge of white line
+            right: 0.887,   // right edge of white line
+            bottom: 0.716   // bottom edge of white line
         };
         
         function updateBoundary() {
@@ -615,33 +615,35 @@
             }
             
             // Draw setback lines (building zone)
+            // Property orientation: LEFT=front (road), RIGHT=rear, TOP/BOTTOM=sides
             if (showSetbacks) {
-                const sideSetback = 30; // 30 ft from each side
-                const rearSetback = 75; // 75 ft from rear (bottom)
+                const sideSetback = 30; // 30 ft from top and bottom (sides)
+                const rearSetback = 75; // 75 ft from right (rear/back)
                 
-                const sideOffsetPx = (sideSetback / PROPERTY_WIDTH_FT) * bounds.width;
-                const rearOffsetPx = (rearSetback / PROPERTY_DEPTH_FT) * bounds.height;
+                // Calculate pixel offsets
+                const sideOffsetPx = (sideSetback / PROPERTY_DEPTH_FT) * bounds.height;
+                const rearOffsetPx = (rearSetback / PROPERTY_WIDTH_FT) * bounds.width;
                 
                 ctx.strokeStyle = 'rgba(255, 200, 0, 0.7)';
                 ctx.lineWidth = 2;
                 ctx.setLineDash([8, 6]);
                 
-                // Left setback (30 ft from left)
+                // Top setback (30 ft from top - side)
                 ctx.beginPath();
-                ctx.moveTo(bounds.x + sideOffsetPx, bounds.y);
-                ctx.lineTo(bounds.x + sideOffsetPx, bounds.y + bounds.height);
+                ctx.moveTo(bounds.x, bounds.y + sideOffsetPx);
+                ctx.lineTo(bounds.x + bounds.width, bounds.y + sideOffsetPx);
                 ctx.stroke();
                 
-                // Right setback (30 ft from right)
+                // Bottom setback (30 ft from bottom - side)
                 ctx.beginPath();
-                ctx.moveTo(bounds.x + bounds.width - sideOffsetPx, bounds.y);
-                ctx.lineTo(bounds.x + bounds.width - sideOffsetPx, bounds.y + bounds.height);
+                ctx.moveTo(bounds.x, bounds.y + bounds.height - sideOffsetPx);
+                ctx.lineTo(bounds.x + bounds.width, bounds.y + bounds.height - sideOffsetPx);
                 ctx.stroke();
                 
-                // Rear setback (75 ft from bottom)
+                // Rear setback (75 ft from right - back of property)
                 ctx.beginPath();
-                ctx.moveTo(bounds.x, bounds.y + bounds.height - rearOffsetPx);
-                ctx.lineTo(bounds.x + bounds.width, bounds.y + bounds.height - rearOffsetPx);
+                ctx.moveTo(bounds.x + bounds.width - rearOffsetPx, bounds.y);
+                ctx.lineTo(bounds.x + bounds.width - rearOffsetPx, bounds.y + bounds.height);
                 ctx.stroke();
                 
                 ctx.setLineDash([]);
@@ -650,9 +652,13 @@
                 ctx.fillStyle = 'rgba(255, 200, 0, 0.9)';
                 ctx.font = '11px sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText('30 ft', bounds.x + sideOffsetPx/2, bounds.y + bounds.height/2);
-                ctx.fillText('30 ft', bounds.x + bounds.width - sideOffsetPx/2, bounds.y + bounds.height/2);
-                ctx.fillText('75 ft setback', bounds.x + bounds.width/2, bounds.y + bounds.height - rearOffsetPx/2);
+                ctx.save();
+                ctx.translate(bounds.x + bounds.width - rearOffsetPx/2, bounds.y + bounds.height/2);
+                ctx.rotate(-Math.PI/2);
+                ctx.fillText('75 ft rear setback', 0, 0);
+                ctx.restore();
+                ctx.fillText('30 ft', bounds.x + bounds.width/2, bounds.y + sideOffsetPx/2 + 4);
+                ctx.fillText('30 ft', bounds.x + bounds.width/2, bounds.y + bounds.height - sideOffsetPx/2 + 4);
             }
             
             // Draw shapes
