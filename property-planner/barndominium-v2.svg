@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="700" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#1a3a5c" stroke-width="0.3" opacity="0.3"/>
+    </pattern>
+    <pattern id="gridLarge" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#1a3a5c" stroke-width="0.5" opacity="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="700" fill="#0a1628"/>
+  
+  <!-- Grid -->
+  <rect x="50" y="100" width="1300" height="500" fill="url(#grid)"/>
+  <rect x="50" y="100" width="1300" height="500" fill="url(#gridLarge)"/>
+  
+  <!-- Title -->
+  <text x="700" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">BARNDOMINIUM FLOOR PLAN</text>
+  <text x="700" y="75" font-family="Arial, sans-serif" font-size="14" fill="#6b8aad" text-anchor="middle">140' x 50' | 7,000 sq ft total</text>
+  
+  <!-- Main structure outline -->
+  <rect x="100" y="150" width="1200" height="400" fill="none" stroke="#3d8bfd" stroke-width="3"/>
+  
+  <!-- Left Wing - 20' x 50' (scaled: 171.4 x 400) -->
+  <rect x="100" y="150" width="171" height="400" fill="#1a3a5c" fill-opacity="0.4" stroke="#3d8bfd" stroke-width="2"/>
+  <text x="185" y="360" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">LIVING</text>
+  <text x="185" y="380" font-family="Arial, sans-serif" font-size="12" fill="#6b8aad" text-anchor="middle">20' x 50'</text>
+  <text x="185" y="400" font-family="Arial, sans-serif" font-size="11" fill="#4a6a8a" text-anchor="middle">1,000 sq ft</text>
+  
+  <!-- Center Court - 100' x 50' (scaled: 857 x 400) -->
+  <rect x="271" y="150" width="857" height="400" fill="#0d2137" stroke="#3d8bfd" stroke-width="2"/>
+  
+  <!-- Basketball Court Markings -->
+  <!-- Center circle -->
+  <circle cx="700" cy="350" r="50" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <circle cx="700" cy="350" r="8" fill="#ff6b35"/>
+  
+  <!-- Center line -->
+  <line x1="700" y1="150" x2="700" y2="550" stroke="#ff6b35" stroke-width="2"/>
+  
+  <!-- Left three-point arc -->
+  <path d="M 271 250 L 350 250 Q 450 350 350 450 L 271 450" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <!-- Left key -->
+  <rect x="271" y="280" width="120" height="140" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <!-- Left hoop -->
+  <circle cx="291" cy="350" r="15" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <rect x="271" y="340" width="10" height="20" fill="#ff6b35"/>
+  
+  <!-- Right three-point arc -->
+  <path d="M 1128 250 L 1050 250 Q 950 350 1050 450 L 1128 450" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <!-- Right key -->
+  <rect x="1008" y="280" width="120" height="140" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <!-- Right hoop -->
+  <circle cx="1108" cy="350" r="15" fill="none" stroke="#ff6b35" stroke-width="2"/>
+  <rect x="1118" y="340" width="10" height="20" fill="#ff6b35"/>
+  
+  <!-- Court label -->
+  <text x="700" y="340" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#ffffff" text-anchor="middle">BASKETBALL COURT</text>
+  <text x="700" y="365" font-family="Arial, sans-serif" font-size="14" fill="#6b8aad" text-anchor="middle">100' x 50'</text>
+  <text x="700" y="385" font-family="Arial, sans-serif" font-size="12" fill="#4a6a8a" text-anchor="middle">5,000 sq ft</text>
+  
+  <!-- Right Wing - 20' x 50' (scaled: 171.4 x 400) -->
+  <rect x="1128" y="150" width="172" height="400" fill="#1a3a5c" fill-opacity="0.4" stroke="#3d8bfd" stroke-width="2"/>
+  <text x="1214" y="360" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">LIVING</text>
+  <text x="1214" y="380" font-family="Arial, sans-serif" font-size="12" fill="#6b8aad" text-anchor="middle">20' x 50'</text>
+  <text x="1214" y="400" font-family="Arial, sans-serif" font-size="11" fill="#4a6a8a" text-anchor="middle">1,000 sq ft</text>
+  
+  <!-- Dimension lines - Top -->
+  <line x1="100" y1="120" x2="271" y2="120" stroke="#ffffff" stroke-width="1"/>
+  <line x1="100" y1="115" x2="100" y2="125" stroke="#ffffff" stroke-width="1"/>
+  <line x1="271" y1="115" x2="271" y2="125" stroke="#ffffff" stroke-width="1"/>
+  <text x="185" y="115" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">20'</text>
+  
+  <line x1="271" y1="120" x2="1128" y2="120" stroke="#ffffff" stroke-width="1"/>
+  <line x1="1128" y1="115" x2="1128" y2="125" stroke="#ffffff" stroke-width="1"/>
+  <text x="700" y="115" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">100'</text>
+  
+  <line x1="1128" y1="120" x2="1300" y2="120" stroke="#ffffff" stroke-width="1"/>
+  <line x1="1300" y1="115" x2="1300" y2="125" stroke="#ffffff" stroke-width="1"/>
+  <text x="1214" y="115" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">20'</text>
+  
+  <!-- Dimension line - Side -->
+  <line x1="1330" y1="150" x2="1330" y2="550" stroke="#ffffff" stroke-width="1"/>
+  <line x1="1325" y1="150" x2="1335" y2="150" stroke="#ffffff" stroke-width="1"/>
+  <line x1="1325" y1="550" x2="1335" y2="550" stroke="#ffffff" stroke-width="1"/>
+  <text x="1355" y="355" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" transform="rotate(90 1355 355)">50'</text>
+  
+  <!-- Total dimension -->
+  <line x1="100" y1="580" x2="1300" y2="580" stroke="#3d8bfd" stroke-width="1"/>
+  <line x1="100" y1="575" x2="100" y2="585" stroke="#3d8bfd" stroke-width="1"/>
+  <line x1="1300" y1="575" x2="1300" y2="585" stroke="#3d8bfd" stroke-width="1"/>
+  <text x="700" y="600" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#3d8bfd" text-anchor="middle">TOTAL: 140'</text>
+  
+  <!-- Legend -->
+  <rect x="100" y="630" width="20" height="20" fill="#1a3a5c" fill-opacity="0.4" stroke="#3d8bfd" stroke-width="1"/>
+  <text x="130" y="645" font-family="Arial, sans-serif" font-size="12" fill="#6b8aad">Living Space (2,000 sq ft)</text>
+  
+  <rect x="300" y="630" width="20" height="20" fill="#0d2137" stroke="#3d8bfd" stroke-width="1"/>
+  <text x="330" y="645" font-family="Arial, sans-serif" font-size="12" fill="#6b8aad">Court (5,000 sq ft)</text>
+  
+  <line x1="500" y1="640" x2="530" y2="640" stroke="#ff6b35" stroke-width="2"/>
+  <text x="540" y="645" font-family="Arial, sans-serif" font-size="12" fill="#6b8aad">Court Markings</text>
+  
+  <!-- Footer -->
+  <text x="700" y="680" font-family="Arial, sans-serif" font-size="10" fill="#4a6a8a" text-anchor="middle">GREGORY BARNDOMINIUM | SCALE: 1" = 10'</text>
+</svg>
