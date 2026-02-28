@@ -1,0 +1,77 @@
+{
+  "lastUpdated": "2026-02-27T22:45:00Z",
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Scale Chino statics ($2.13 CPA winners)",
+      "status": "backlog",
+      "owner": "slater",
+      "priority": "high",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "2",
+      "title": "Test more Goodbye Headlines variations",
+      "status": "backlog",
+      "owner": "seth",
+      "priority": "high",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "3",
+      "title": "Kill VSL1_V2 ($96 CPA)",
+      "status": "in-progress",
+      "owner": "slater",
+      "priority": "high",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "4",
+      "title": "Fix size selector JS error (12% of errors)",
+      "status": "backlog",
+      "owner": "mclovin",
+      "priority": "medium",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "5",
+      "title": "Daily influencer research (10 new targets)",
+      "status": "done",
+      "owner": "jules",
+      "priority": "medium",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "6",
+      "title": "Implement LEARNINGS.md self-improvement loop",
+      "status": "done",
+      "owner": "jerry",
+      "priority": "medium",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "7",
+      "title": "Add Kanban to Mission Control",
+      "status": "done",
+      "owner": "jerry",
+      "priority": "medium",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "8",
+      "title": "Scale retargeting budget (3x more efficient)",
+      "status": "backlog",
+      "owner": "slater",
+      "priority": "high",
+      "date": "2026-02-27"
+    },
+    {
+      "id": "9",
+      "title": "Morning brief delivery - Seth trend reports to Slack",
+      "status": "done",
+      "owner": "jerry",
+      "priority": "low",
+      "date": "2026-02-27"
+    }
+  ]
+}
