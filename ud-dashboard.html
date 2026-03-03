@@ -300,6 +300,7 @@
             </div>
             <div class="controls">
                 <select id="monthSelector" onchange="updateDashboard()">
+                    <option value="feb2026">February 2026</option>
                     <option value="jan2026">January 2026</option>
                     <option value="dec2025">December 2025</option>
                     <option value="nov2025">November 2025</option>
@@ -698,11 +699,26 @@
                 totalRevenue: 1570433, newRevenue: 1189170, repeatRevenue: 438144,
                 aov: 91, netProfit: 142876, netProfitPct: 9,
                 cogs: 45, returnsDollar: 56770, returnsPct: 3.50,
-                software: 22898.03, people: 69521.28, totalFixed: 92419.31, fixedPct: 5.89
+                software: 22967.07, people: 55458.93, totalFixed: 78426.00, fixedPct: 5.00
+            },
+            feb2026: {
+                label: 'Feb 2026',
+                adSpend: 434909.14, hookCost: 0.16, cpm: 26.08, ctr: 1.46, cpc: 1.78,
+                outboundClicks: 207865, sessions: 82554, scrollDepth: 20.37, sessionDuration: 59,
+                atcRate: 8.56, checkoutRate: 10.53, checkoutCvr: 69.35, overallCvr: 3.65,
+                popupEngage: 65.99, smsSignup: 10.22, emailSignup: 7.73,
+                ncRoas: 2.28, ncCac: 42.7, mer: 25,
+                ocuRevenue: 42872.02, ocuVisitors: 4997, perVisitor: 8.58,
+                emailRevenue: 50307.32, emailFlowOpen: 55.10, emailFlowClick: 4.64,
+                emailCampOpen: 52.00, emailCampClick: 2.00, smsRevenue: 134767.71, walletRevenue: 48166.81,
+                totalRevenue: 1657838, newRevenue: 991244, repeatRevenue: 721192,
+                aov: 98, netProfit: 332679, netProfitPct: 19,
+                cogs: 45, returnsDollar: 54426, returnsPct: 3.2,
+                software: 24804.01, people: 73906.19, totalFixed: 98710.20, fixedPct: 5.96
             }
         };
 
-        const months = ['oct2025', 'nov2025', 'dec2025', 'jan2026'];
+        const months = ['oct2025', 'nov2025', 'dec2025', 'jan2026', 'feb2026'];
         let chartInstance = null;
 
         function fmt(v, type) {
