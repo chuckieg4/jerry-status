@@ -82,6 +82,26 @@
             color: var(--text-muted);
         }
         
+        .compare-btn {
+            background: linear-gradient(135deg, #58a6ff, #1f6feb);
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .compare-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.4);
+        }
+        
         .section { margin-bottom: 28px; }
         
         .section-header {
@@ -291,6 +311,41 @@
             font-weight: 600;
         }
         
+        /* Comparison Modal Styles */
+        .compare-modal-content { max-width: 1000px; }
+        .compare-layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; }
+        .metric-selector { border-right: 1px solid var(--border); padding-right: 24px; max-height: 500px; overflow-y: auto; }
+        .metric-group { margin-bottom: 16px; }
+        .metric-group-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; padding: 4px 8px; border-radius: 4px; }
+        .metric-group-title.preclick { background: rgba(255, 107, 53, 0.15); color: var(--preclick); }
+        .metric-group-title.postclick { background: rgba(255, 193, 7, 0.15); color: var(--postclick); }
+        .metric-group-title.optins { background: rgba(76, 175, 80, 0.15); color: var(--optins); }
+        .metric-group-title.efficiency { background: rgba(0, 188, 212, 0.15); color: var(--efficiency); }
+        .metric-group-title.postpurchase { background: rgba(33, 150, 243, 0.15); color: var(--postpurchase); }
+        .metric-group-title.business { background: rgba(156, 39, 176, 0.15); color: var(--business); }
+        .metric-checkbox { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 4px; cursor: pointer; transition: background 0.2s; font-size: 13px; }
+        .metric-checkbox:hover { background: rgba(255, 255, 255, 0.05); }
+        .metric-checkbox input { width: 16px; height: 16px; accent-color: var(--blue); cursor: pointer; }
+        .metric-checkbox.disabled { opacity: 0.4; cursor: not-allowed; }
+        .compare-chart-area { display: flex; flex-direction: column; }
+        .compare-chart-container { height: 400px; margin-bottom: 16px; }
+        .chart-mode-toggle { display: flex; gap: 8px; margin-bottom: 16px; }
+        .mode-btn { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-muted); padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+        .mode-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+        .mode-btn:hover:not(.active) { border-color: var(--blue); color: var(--text); }
+        .selected-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; min-height: 32px; }
+        .selected-tag { display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 16px; font-size: 12px; font-weight: 500; }
+        .selected-tag .remove { cursor: pointer; opacity: 0.7; font-size: 14px; }
+        .selected-tag .remove:hover { opacity: 1; }
+        .legend-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 6px; }
+        .legend-color { width: 12px; height: 12px; border-radius: 3px; }
+        
+        @media (max-width: 900px) {
+            .compare-layout { grid-template-columns: 1fr; }
+            .metric-selector { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 16px; max-height: 200px; }
+        }
+        
         @media (max-width: 768px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
             .efficiency-grid { grid-template-columns: 1fr; }
@@ -311,7 +366,9 @@
                 </div>
             </div>
             <div class="controls">
+                <button class="compare-btn" onclick="openCompareModal()">📈 Compare Metrics</button>
                 <select id="monthSelector" onchange="updateDashboard()">
+                    <option value="feb2026">February 2026</option>
                     <option value="jan2026">January 2026</option>
                     <option value="dec2025">December 2025</option>
                     <option value="nov2025">November 2025</option>
@@ -682,6 +739,77 @@
         </div>
     </div>
 
+    <!-- Compare Metrics Modal -->
+    <div class="modal" id="compareModal">
+        <div class="modal-content compare-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">📈 Compare Metrics</h3>
+                <button class="modal-close" onclick="closeCompareModal()">×</button>
+            </div>
+            <div class="compare-layout">
+                <div class="metric-selector">
+                    <div class="metric-group">
+                        <div class="metric-group-title preclick">📣 Pre-Click</div>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="adSpend" data-label="Ad Spend" data-format="M"> Ad Spend</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="hookCost" data-label="Hook Cost" data-format="$"> Hook Cost (3s)</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="cpm" data-label="CPM" data-format="$"> CPM</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="ctr" data-label="CTR" data-format="%"> CTR</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="cpc" data-label="CPC" data-format="$"> CPC</label>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-group-title postclick">🎯 Post-Click</div>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="outboundClicks" data-label="Outbound Clicks" data-format="N"> Outbound Clicks</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="sessions" data-label="Sessions" data-format="N"> Sessions</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="scrollDepth" data-label="Scroll Depth" data-format="%"> Scroll Depth</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="atcRate" data-label="ATC Rate" data-format="%"> ATC Rate</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="checkoutCvr" data-label="Checkout CVR" data-format="%"> Checkout CVR</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="overallCvr" data-label="Overall CVR" data-format="%"> Overall CVR</label>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-group-title optins">📝 Opt-Ins</div>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="popupEngage" data-label="Popup Engage" data-format="%"> Popup Engagement</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="smsSignup" data-label="SMS Signup" data-format="%"> SMS Signup Rate</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="emailSignup" data-label="Email Signup" data-format="%"> Email Signup Rate</label>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-group-title efficiency">⚡ Efficiency</div>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="ncRoas" data-label="ncROAS" data-format="x"> ncROAS</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="ncCac" data-label="ncCAC" data-format="$"> ncCAC</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="mer" data-label="MER" data-format="pct"> MER %</label>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-group-title postpurchase">📦 Post Purchase</div>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="emailRevenue" data-label="Email Revenue" data-format="K"> Email Revenue</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="smsRevenue" data-label="SMS Revenue" data-format="K"> SMS Revenue</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="aftersellRevenue" data-label="Aftersell Revenue" data-format="K"> Aftersell Revenue</label>
+                    </div>
+                    <div class="metric-group">
+                        <div class="metric-group-title business">📊 Business</div>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="totalRevenue" data-label="Total Revenue" data-format="M"> Total Revenue</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="shopifyRevenue" data-label="Shopify Revenue" data-format="M"> Shopify Revenue</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="amazonRevenue" data-label="Amazon Revenue" data-format="M"> Amazon Revenue</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="netProfit" data-label="Net Profit" data-format="M"> Net Profit</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="netProfitPct" data-label="Net Profit %" data-format="pct"> Net Profit %</label>
+                        <label class="metric-checkbox"><input type="checkbox" data-key="aov" data-label="AOV" data-format="$int"> AOV</label>
+                    </div>
+                </div>
+                <div class="compare-chart-area">
+                    <div class="chart-mode-toggle">
+                        <button class="mode-btn active" data-mode="normalized" onclick="setChartMode('normalized')">% Change (Normalized)</button>
+                        <button class="mode-btn" data-mode="absolute" onclick="setChartMode('absolute')">Absolute Values</button>
+                    </div>
+                    <div class="selected-metrics" id="selectedMetrics">
+                        <span style="color: var(--text-muted); font-size: 12px;">Select metrics from the left →</span>
+                    </div>
+                    <div class="compare-chart-container">
+                        <canvas id="compareChart"></canvas>
+                    </div>
+                    <div class="legend-stats" id="legendStats"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const data = {
             jul2025: {
@@ -792,7 +920,7 @@
                 outboundClicks: 847396, sessions: 1494044, scrollDepth: 21.87, sessionDuration: 46,
                 atcRate: 4.49, checkoutRate: 5.13, checkoutCvr: 37.59, overallCvr: 1.84,
                 popupEngage: 61.65, smsSignup: 12.00, emailSignup: 15.61,
-                ncRoas: 0.66, ncCac: 122.20, mer: 43,
+                ncRoas: 0.66, ncCac: 122.00, mer: 43,
                 aftersellRevenue: 132754.80, aftersellVisitors: 39883, perVisitor: 3.33,
                 emailRevenue: 216958.46, emailFlowOpen: 39.70, emailFlowClick: 1.84,
                 emailCampOpen: 44.00, emailCampClick: 0.70, smsRevenue: 663680.85,
@@ -801,11 +929,28 @@
                 amazonRevenue: 1598559, amazonNewRev: 1151022, amazonRepeatRev: 588474,
                 returns: 815304, aov: 63, netProfit: 2125967, netProfitPct: 12,
                 cogs: 33, returnsPct: 4.40,
-                software: 135220.59, people: 322064.30, totalFixed: 457284.89, fixedPct: 2.45
+                software: 228040.33, people: 322064.30, totalFixed: 550104.63, fixedPct: 2.95
+            },
+            feb2026: {
+                label: 'Feb 2026',
+                adSpend: 5079016.10, hookCost: 0.09, cpm: 25.37, ctr: 0.91, cpc: 2.78,
+                outboundClicks: 1264649, sessions: 1352183, scrollDepth: 18.86, sessionDuration: 40,
+                atcRate: 4.04, checkoutRate: 4.68, checkoutCvr: 35.75, overallCvr: 1.48,
+                popupEngage: 68.20, smsSignup: 10.95, emailSignup: 14.28,
+                ncRoas: 0.63, ncCac: 126.80, mer: 42,
+                aftersellRevenue: 111942.23, aftersellVisitors: 35803, perVisitor: 3.18,
+                emailRevenue: 179006.91, emailFlowOpen: 37.30, emailFlowClick: 1.53,
+                emailCampOpen: 43.00, emailCampClick: 0.33, smsRevenue: 566643.73,
+                totalRevenue: 15588972, shopifyRevenue: 14053147,
+                shopifyNewRev: 4173007, shopifyRepeatRev: 11613323,
+                amazonRevenue: 1535825, amazonNewRev: 979177, amazonRepeatRev: 536883,
+                returns: 1077972, aov: 63, netProfit: 1726931, netProfitPct: 11,
+                cogs: 32, returnsPct: 6.8,
+                software: 201600.31, people: 253639.44, totalFixed: 455439.75, fixedPct: 2.92
             }
         };
 
-        const months = ['jul2025', 'aug2025', 'sep2025', 'oct2025', 'nov2025', 'dec2025', 'jan2026'];
+        const months = ['jul2025', 'aug2025', 'sep2025', 'oct2025', 'nov2025', 'dec2025', 'jan2026', 'feb2026'];
         let chartInstance = null;
 
         function fmt(v, type) {
@@ -942,8 +1087,174 @@
         });
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') { closeModal(); closeCompareModal(); }
         });
+
+        // Comparison Chart Logic
+        const chartColors = ['#58a6ff', '#3fb950', '#f97316', '#eab308', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6'];
+        let selectedMetrics = [];
+        let compareChartInstance = null;
+        let chartMode = 'normalized';
+        const MAX_METRICS = 6;
+        
+        function openCompareModal() {
+            document.getElementById('compareModal').classList.add('active');
+            updateCompareChart();
+        }
+        
+        function closeCompareModal() {
+            document.getElementById('compareModal').classList.remove('active');
+        }
+        
+        document.getElementById('compareModal')?.addEventListener('click', e => {
+            if (e.target.id === 'compareModal') closeCompareModal();
+        });
+        
+        document.querySelectorAll('.metric-checkbox input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const key = this.dataset.key;
+                const label = this.dataset.label;
+                const format = this.dataset.format;
+                
+                if (this.checked) {
+                    if (selectedMetrics.length >= MAX_METRICS) { this.checked = false; return; }
+                    selectedMetrics.push({ key, label, format });
+                } else {
+                    selectedMetrics = selectedMetrics.filter(m => m.key !== key);
+                }
+                
+                updateSelectedTags();
+                updateCheckboxStates();
+                updateCompareChart();
+            });
+        });
+        
+        function updateSelectedTags() {
+            const container = document.getElementById('selectedMetrics');
+            if (selectedMetrics.length === 0) {
+                container.innerHTML = '<span style="color: var(--text-muted); font-size: 12px;">Select metrics from the left →</span>';
+                return;
+            }
+            container.innerHTML = selectedMetrics.map((m, i) => `
+                <span class="selected-tag" style="background: ${chartColors[i]}22; border: 1px solid ${chartColors[i]}; color: ${chartColors[i]}">
+                    ${m.label}
+                    <span class="remove" onclick="removeMetric('${m.key}')">×</span>
+                </span>
+            `).join('');
+        }
+        
+        function updateCheckboxStates() {
+            document.querySelectorAll('.metric-checkbox').forEach(label => {
+                const checkbox = label.querySelector('input');
+                const isSelected = selectedMetrics.some(m => m.key === checkbox.dataset.key);
+                if (!isSelected && selectedMetrics.length >= MAX_METRICS) {
+                    label.classList.add('disabled');
+                    checkbox.disabled = true;
+                } else {
+                    label.classList.remove('disabled');
+                    checkbox.disabled = false;
+                }
+            });
+        }
+        
+        function removeMetric(key) {
+            selectedMetrics = selectedMetrics.filter(m => m.key !== key);
+            const checkbox = document.querySelector(`.metric-checkbox input[data-key="${key}"]`);
+            if (checkbox) checkbox.checked = false;
+            updateSelectedTags();
+            updateCheckboxStates();
+            updateCompareChart();
+        }
+        
+        function setChartMode(mode) {
+            chartMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.mode === mode);
+            });
+            updateCompareChart();
+        }
+        
+        function updateCompareChart() {
+            const ctx = document.getElementById('compareChart').getContext('2d');
+            const statsContainer = document.getElementById('legendStats');
+            
+            if (compareChartInstance) compareChartInstance.destroy();
+            if (selectedMetrics.length === 0) { statsContainer.innerHTML = ''; return; }
+            
+            const labels = months.map(m => data[m].label);
+            
+            const datasets = selectedMetrics.map((metric, i) => {
+                const rawValues = months.map(m => data[m][metric.key]);
+                let values;
+                if (chartMode === 'normalized') {
+                    const firstValid = rawValues.find(v => v !== 0 && v !== null) || 1;
+                    values = rawValues.map(v => ((v - firstValid) / Math.abs(firstValid)) * 100);
+                } else {
+                    values = rawValues;
+                }
+                return {
+                    label: metric.label, data: values,
+                    borderColor: chartColors[i], backgroundColor: chartColors[i] + '15',
+                    borderWidth: 2.5, fill: false, tension: 0.3,
+                    pointBackgroundColor: chartColors[i], pointBorderColor: '#0d1117',
+                    pointBorderWidth: 2, pointRadius: 5, pointHoverRadius: 7,
+                    rawValues: rawValues, format: metric.format
+                };
+            });
+            
+            compareChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: { labels, datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#161b22', titleColor: '#e6edf3', bodyColor: '#e6edf3',
+                            borderColor: '#30363d', borderWidth: 1, padding: 12,
+                            callbacks: {
+                                label: function(ctx) {
+                                    const ds = ctx.dataset;
+                                    const rawVal = ds.rawValues[ctx.dataIndex];
+                                    const formatted = fmt(rawVal, ds.format);
+                                    if (chartMode === 'normalized') {
+                                        const change = ctx.raw >= 0 ? '+' + ctx.raw.toFixed(1) : ctx.raw.toFixed(1);
+                                        return `${ds.label}: ${formatted} (${change}%)`;
+                                    }
+                                    return `${ds.label}: ${formatted}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { color: '#21262d', drawBorder: false }, ticks: { color: '#7d8590', font: { size: 12 } } },
+                        y: { grid: { color: '#21262d', drawBorder: false }, ticks: { color: '#7d8590', font: { size: 12 }, callback: v => chartMode === 'normalized' ? v.toFixed(0) + '%' : v.toLocaleString() } }
+                    },
+                    interaction: { intersect: false, mode: 'index' }
+                }
+            });
+            
+            statsContainer.innerHTML = selectedMetrics.map((metric, i) => {
+                const current = data[months[months.length - 1]][metric.key];
+                const first = data[months[0]][metric.key] || 1;
+                const change = ((current - first) / Math.abs(first) * 100).toFixed(1);
+                const changeClass = parseFloat(change) >= 0 ? 'up' : 'down';
+                return `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: ${chartColors[i]}"></div>
+                        <div style="flex: 1">
+                            <div style="font-weight: 600; font-size: 13px;">${metric.label}</div>
+                            <div style="font-size: 12px; color: var(--text-muted)">
+                                Current: ${fmt(current, metric.format)} 
+                                <span class="kpi-change ${changeClass}" style="margin-left: 8px;">
+                                    ${parseFloat(change) >= 0 ? '↑' : '↓'} ${change}% since Jul
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
         function updateDashboard() {
             const m = document.getElementById('monthSelector').value;
