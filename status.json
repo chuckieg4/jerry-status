@@ -9,9 +9,9 @@
     "seth": {
       "name": "Seth",
       "role": "Creative Director",
-      "status": "idle",
-      "currentTask": "Reviewing MTRX batch 4 creatives, briefing new hook variations",
-      "lastActive": "2026-02-14T16:25:00Z",
+      "status": "active",
+      "currentTask": "Daily Creative Drop to #creative-team at 9:30 AM EST (new cron job)",
+      "lastActive": "2026-03-04T16:37:00Z",
       "stats": {
         "briefsToday": 12,
         "reviews": 3,
@@ -256,6 +256,12 @@
       "description": "Check homepage, /bro, PDP for issues"
     },
     {
+      "name": "Seth Daily Creative Drop",
+      "schedule": "9:30 AM EST",
+      "frequency": "daily",
+      "description": "Post 3 ad concepts to #creative-team (competitive intel, trend jacker, out of box)"
+    },
+    {
       "name": "Parker Creative Sync",
       "schedule": "9:00 AM EST",
       "frequency": "daily",
@@ -296,6 +302,12 @@
     "tasksToday": 1
   },
   "activity": [
+    {
+      "agent": "jerry",
+      "action": "🎨 Seth Daily Creative Drop cron job created — 9:30 AM EST to #creative-team",
+      "time": "just now",
+      "timestamp": "2026-03-04T16:37:00Z"
+    },
     {
       "agent": "jerry",
       "action": "📊 Daily KPI Brief delivered — CVR 2.69%, NCPA $50.40, Revenue $25.3K",
