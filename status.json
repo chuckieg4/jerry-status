@@ -1,0 +1,68 @@
+{
+  "lastUpdated": "2026-03-06T08:00:00Z",
+  "shopify": {
+    "yesterday": {
+      "revenue": 22030,
+      "orders": 297,
+      "aov": 80.42
+    },
+    "last7d": {
+      "revenue": 164285,
+      "orders": 2143
+    }
+  },
+  "metaAds": {
+    "yesterday": {
+      "spend": 7921,
+      "purchases": 153,
+      "roas": 1.69,
+      "ncpa": 47.60
+    },
+    "last7d": {
+      "spend": 74483,
+      "ncpa": 52.40,
+      "roas": 2.00
+    }
+  },
+  "webAnalytics": {
+    "yesterday": {
+      "sessions": 6784,
+      "cvr": 3.11,
+      "atc": 4.05
+    },
+    "last7d": {
+      "sessions": 59232,
+      "cvr": 2.96,
+      "atc": 4.42
+    }
+  },
+  "klaviyo": {
+    "yesterday": {
+      "openRate": 45.1,
+      "clickRate": 2.5,
+      "revenue": 3648
+    },
+    "activeFlows": 5,
+    "totalFlows": 32
+  },
+  "tripleWhale": {
+    "yesterday": {
+      "totalSales": 22030,
+      "netSales": 22848,
+      "orders": 291,
+      "ncpa": 47.60,
+      "ncRoas": 1.95,
+      "mer": 2.35
+    },
+    "last7d": {
+      "totalSales": 164285,
+      "ncpa": 52.40,
+      "ncRoas": 1.73
+    },
+    "mtd": {
+      "sales": 152047,
+      "adSpend": 76531,
+      "netProfit": -29386
+    }
+  }
+}
