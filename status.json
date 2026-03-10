@@ -1,71 +1,71 @@
 {
-  "lastUpdated": "2026-03-09T08:00:00Z",
+  "lastUpdated": "2026-03-10T08:00:00Z",
   "shopify": {
-    "lastSync": "2026-03-09T07:00:33Z",
+    "lastSync": "2026-03-10T07:00:33Z",
     "yesterday": {
-      "date": "2026-03-08",
-      "orders": 440,
-      "newCustomerOrders": 398,
-      "revenue": 40266,
-      "blendedAdSpend": 16827,
-      "mer": 2.20,
-      "aov": 91.51
+      "date": "2026-03-09",
+      "orders": 422,
+      "newCustomerOrders": 346,
+      "revenue": 31040,
+      "blendedAdSpend": 16871,
+      "mer": 2.26,
+      "aov": 79.90
     },
-    "totalCustomers": 254441
+    "totalCustomers": 254984
   },
   "metaAds": {
-    "lastSync": "2026-03-09T07:00:33Z",
+    "lastSync": "2026-03-10T07:00:33Z",
     "yesterday": {
-      "date": "2026-03-08",
-      "spend": 14590,
-      "purchases": 331,
-      "newCustomers": 398,
-      "ncpa": 45.73,
-      "ncroas": 2.02,
-      "cpa": 33.15,
-      "roas": 2.11
+      "date": "2026-03-09",
+      "spend": 13147,
+      "purchases": 284,
+      "newCustomers": 346,
+      "ncpa": 44.75,
+      "ncroas": 2.11,
+      "cpa": 31.15,
+      "roas": 1.83
     },
     "last7d": {
-      "dateRange": "2026-03-02 to 2026-03-08",
-      "spend": 76500.43,
-      "purchases": 1539,
-      "ncpa": 51.85,
-      "ncroas": 1.76,
-      "roas": 1.798724,
-      "revenue": 190162,
-      "orders": 2290
+      "dateRange": "2026-03-03 to 2026-03-09",
+      "spend": 79644.2,
+      "purchases": 1627,
+      "ncpa": 48.27,
+      "ncroas": 1.89,
+      "roas": 1.819291,
+      "revenue": 197232,
+      "orders": 2392
     }
   },
   "webAnalytics": {
     "yesterday": {
       "sessions": 6784,
-      "cvr": 3.33,
-      "atc": 4.33
+      "cvr": 3.15,
+      "atc": 4.37
     },
     "last7d": {
       "sessions": 59232,
-      "cvr": 2.91,
-      "atc": 4.00
+      "cvr": 3.10,
+      "atc": 4.19
     }
   },
   "klaviyo": {
-    "lastSync": "2026-03-09T07:00:33Z",
+    "lastSync": "2026-03-10T07:00:33Z",
     "activeFlows": 5,
     "totalFlows": 32,
     "yesterday": {
-      "emailsSent": 1570,
-      "openRate": 223.6,
-      "clickRate": 11.6,
-      "revenue": 31781
+      "emailsSent": 1642,
+      "openRate": 218.6,
+      "clickRate": 9.3,
+      "revenue": 21927
     },
     "lists": {
-      "newsletter": 54973,
-      "sms": 0
+      "newsletter": 55149,
+      "sms": 49269
     }
   },
   "tripleWhale": {
     "yesterday": {
-      "totalSales": 38091,
+      "totalSales": 31040,
       "netSales": 36876,
       "orders": 441,
       "ncpa": 45.60,
@@ -75,7 +75,7 @@
       "roas": 2.20
     },
     "last7d": {
-      "totalSales": 174326,
+      "totalSales": 182169,
       "ncpa": 51.80,
       "ncRoas": 1.77,
       "ads": 87933,
@@ -87,67 +87,67 @@
       "netProfit": -39546
     }
   },
-  "lastUpdate": "2026-03-09T07:00:33Z",
+  "lastUpdate": "2026-03-10T07:00:33Z",
   "agents": {
     "malby": {
       "stats": {
-        "spendYesterday": 14590,
-        "purchases": 331,
-        "ncpa": 45.73,
-        "cpa": 33.15,
-        "roas": 2.11,
-        "newCustomers": 398,
-        "revenueYesterday": 40266,
-        "spend7d": 76500.43,
+        "spendYesterday": 13147,
+        "purchases": 284,
+        "ncpa": 44.75,
+        "cpa": 31.15,
+        "roas": 1.83,
+        "newCustomers": 346,
+        "revenueYesterday": 33720,
+        "spend7d": 79644.2,
         "ncpa7d": 51.80,
-        "roas7d": 1.798724,
-        "cpa7d": 33.406301310043666
+        "roas7d": 1.819291,
+        "cpa7d": 33.296070234113714
       },
-      "lastActive": "2026-03-09T07:00:33Z"
+      "lastActive": "2026-03-10T07:00:33Z"
     },
     "dave": {
       "stats": {
         "activeFlows": 5,
-        "openRate": 223.6,
-        "clickRate": 11.6
+        "openRate": 218.6,
+        "clickRate": 9.3
       },
-      "lastActive": "2026-03-09T07:00:33Z"
+      "lastActive": "2026-03-10T07:00:33Z"
     },
     "penny": {
       "stats": {
-        "mtdSales": 246024,
-        "mtdNetProfit": -40907,
-        "mer": 48.6
+        "mtdSales": 277674,
+        "mtdNetProfit": -44206,
+        "mer": 48.4
       },
-      "lastActive": "2026-03-09T07:00:33Z"
+      "lastActive": "2026-03-10T07:00:33Z"
     },
     "tanner": {
       "stats": {
-        "cvr": 3.31
+        "cvr": 3.15
       },
-      "lastActive": "2026-03-09T07:00:33Z"
+      "lastActive": "2026-03-10T07:00:33Z"
     }
   },
   "meta": {
-    "lastKlaviyoSync": "2026-03-09T07:00:33Z",
-    "lastTripleWhaleSync": "2026-03-09T07:00:33Z"
+    "lastKlaviyoSync": "2026-03-10T07:00:33Z",
+    "lastTripleWhaleSync": "2026-03-10T07:00:33Z"
   },
   "penny": {
-    "lastSync": "2026-03-09T07:00:33Z",
+    "lastSync": "2026-03-10T07:00:33Z",
     "mtd": {
-      "period": "2026-03-01 to 2026-03-08",
-      "sales": 246024,
-      "adSpend": 119446,
-      "netProfit": -40907,
-      "mer": 48.6,
-      "netMargin": -16.6,
-      "ncpa": 49.81
+      "period": "2026-03-01 to 2026-03-09",
+      "sales": 277674,
+      "adSpend": 134395,
+      "netProfit": -44206,
+      "mer": 48.4,
+      "netMargin": -15.9,
+      "ncpa": 49.37
     },
     "previousMonth": {
       "name": "February",
       "sales": 1650852,
       "adSpend": 432397,
-      "netProfit": 329699
+      "netProfit": 329690
     }
   },
   "cronJobs": [
